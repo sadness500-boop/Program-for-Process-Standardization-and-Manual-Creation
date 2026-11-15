@@ -626,7 +626,6 @@ function openAcctMenu(){
     <div class="ag-menu">
       ${isAdm?'<button id="mnAdmin">🛡️ 관리자 페이지 (사용자 · 접속기록 · 기기 · 설정)</button>':''}
       <button id="mnSync">🔄 지금 동기화</button>
-      <button id="mnBak">🗂️ 백업에서 근태 되살리기</button>
       <button id="mnProfile">✏️ 내 정보 수정</button>
       <button id="mnPw">🔑 비밀번호 변경</button>
       <button id="mnOut">🚪 로그아웃</button>
@@ -634,7 +633,7 @@ function openAcctMenu(){
   if(g('mnAdmin')) g('mnAdmin').onclick=()=>{ closePop(); openAdmin(); };
   g('mnSync').onclick=async()=>{ closePop(); await syncPull(false); for(const k of SYNC_KEYS) if(lsGet(k)!=null) await pushKey(k); tip('동기화했습니다'); };
   g('mnPw').onclick=()=>{ closePop(); viewChangePw(false); };
-  g('mnBak').onclick=openBackups;
+  // (근태 백업 되살리기 메뉴 없음 — 이 프로그램은 근태 자료를 다루지 않음)
   g('mnOut').onclick=()=>logout(true);
   g('mnProfile').onclick=()=>{
     pop(`<h2>내 정보 수정</h2>

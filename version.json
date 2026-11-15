@@ -1,7 +1,7 @@
 {
-  "version": "1.3.0",
+  "version": "1.3.1",
   "date": "2026-11-16",
-  "note": "상단 화면 정리(이름 2줄·소개 문구 제외·카드 축소), 매뉴얼과 별도 인쇄용 Word 「업무 서식집」(사업장명 미리 기재·업종별·stec 머리글/바닥글, 서명 날짜 제외)",
-  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.0.html",
-  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.0.apk"
+  "note": "내 계정 메뉴에서 해당 없는 「백업에서 근태 되살리기」 삭제",
+  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.1.html",
+  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.1.apk"
 }
