@@ -4,7 +4,7 @@
 
 <img src="icons/icon-192.png" width="96" alt="업무표준화 제작 시스템 아이콘">
 
-**에스텍 그룹 업무표준화 제작 시스템** · Program for Creating Operational Standards · v1.0.0
+**에스텍 그룹 업무표준화 제작 시스템** · Program for Creating Operational Standards · v1.1.0
 
 직종·산업·사업장을 고르고 표준 항목을 선택하면, 근로기준법·노동관계법·경비업법·산업안전보건법 기준의 **업무표준서**를
 **Word(머리글·바닥글 서식 + 점검표·교육 확인서) · PPT(16:9, 현장 영상 포함) · PDF(PPT와 같은 디자인)** 3종으로 바로 만들어 줍니다.
@@ -15,15 +15,33 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Creating-Operational-Standards/ |
-| 웹 버전 (버전별) | [releases/S-Tec-Operational-Standards-System_v1.0.0.html](releases/S-Tec-Operational-Standards-System_v1.0.0.html) | |
+| 웹 버전 (버전별) | [releases/S-Tec-Operational-Standards-System_v1.1.0.html](releases/S-Tec-Operational-Standards-System_v1.1.0.html) | |
 | 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Creating-Operational-Standards/releases/download/app-latest/stos-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/S-Tec-Operational-Standards-System_v1.0.0.apk` | 릴리스 `v1.0.0` |
+| 안드로이드 앱 (버전별) | `releases/S-Tec-Operational-Standards-System_v1.1.0.apk` | 릴리스 `v1.1.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
 - 서명 키(`android-keystore/stos-debug.keystore`)를 고정해 두었으므로 새 버전은 지우지 않고 덮어 설치하면 됩니다.
 - **웹 버전 주소를 열려면** 저장소 Settings › Pages › Branch를 `main` / `/(root)` 로 한 번 켜야 합니다.
 - 웹 버전은 인터넷 없이도 동작합니다(로그인·지도·영상 재생만 인터넷 필요).
+
+## 📘 업무매뉴얼 제작 (v1.1.0)
+
+②에서 **📋 업무표준서 / 📘 업무매뉴얼**을 고릅니다. 업무매뉴얼은 [ Manual - Project ]의 4계층 체계를 따릅니다.
+
+| 계층 | 문서 | 문서번호 |
+|---|---|---|
+| 1계층 | 용역회사 운영 통합매뉴얼 (전 직종 공통) | STB-COM-000 |
+| 2계층 | 직종별 통합 매뉴얼 (7권) | STB-SEC-100 등 |
+| 3계층 | 직종 × 산업 매뉴얼 (7 × 12 = 84종) | STB-SEC-101 ~ 112 등 |
+| 4계층 | 현장별 근무지침 (사업장 단위) | STB-SEC-9xx 등 |
+
+- **장 구성(10장 29절):** 총론 · 직무 이해 · 근무 수칙 · 핵심 업무 절차 · 산업별 특수 업무 · 사건사고 상황별 대처 · 안전보건 · 보고·기록 · 법적 근거·판례 · 현장별 근무지침. 「📦 계층 권장 구성」으로 계층에 맞는 장·절을 한 번에 선택.
+- **사건사고 상황별 대처 24건:** 화재·가스, 응급·재해, 침입·도난, 폭언·폭행·집회, 차량·주차, 정전·재난, 약품·위생, 개인정보·부당지시·괴롭힘 — 상황 · 대처 순서 · 금지 행동 · 보고 경로 · 법적 근거.
+- **판례·행정해석 10건**(휴게시간의 근로시간 해당, 불법파견 판단 기준, 감시·단속적 승인, 해고 정당성 등) — 실무 참고 요지.
+- **멀티미디어:** 직종별 3D 피규어(디오라마·캐릭터), 현장 사진(근무 영상 대표 장면 19종), Complaint 사례 영상 7편(「이런 행동은 안 됩니다」), PPT에는 영상이 직접 들어가 재생되고 Word에는 영상 QR이 들어갑니다.
+- **Word:** 표지(피규어·사진·영상 QR) · 결재란 · 목차 · 장별 배너 · 사진+본문 2단 편집(여백 최소화) · 상황별 대처 카드 · 붙임(일일 점검표·교육 확인서·경위서 6하원칙 양식).
+- **PPT·PDF:** 장 표지 슬라이드, 절별 사진·영상·QR 슬라이드, 상황별 대처 슬라이드(영상 + 단계 카드 + 금지 행동), 사례 영상 슬라이드.
 
 ## 사용 순서
 
@@ -88,6 +106,8 @@ build.py                       python3 build.py → index.html
 vendor/                        내장 라이브러리(docx·pptxgenjs·jsPDF·html2canvas·JSZip·QR·supabase) · 로그인 모듈 · 그림 자산
 media/main/                    메인 화면 직종 소개 영상(S-Tec-Quotation-System 영상)
 media/videos · media/posters   PPT 현장 교육 영상 · 대표 장면
+media/cases                    Complaint 사례 영상(업무매뉴얼 「이런 행동은 안 됩니다」)
+src/man_kb.js · src/man.js     업무매뉴얼 장·절·상황별 대처·판례 · Word·PPT 생성
 tools/                         연계 데이터 추출 스크립트 · 아이콘 원본
 icons/ · manifest.webmanifest · sw.js   앱 아이콘 · 홈 화면 설치(PWA)
 package.json · capacitor.config.json · android-keystore/   안드로이드 앱 포장
@@ -96,6 +116,8 @@ server/                        로그인 서버 SQL
 ```
 
 ## 변경 이력
+
+- **v1.1.0** (2026-11-16) — 📘 업무매뉴얼 제작: Manual-Project 4계층, 10장 29절, 사건사고 상황별 대처 24건, 판례·행정해석 10건, Complaint 사례 영상 7편(media/cases), 3D 피규어·현장 사진·PPT 영상·Word 영상 QR
 
 - **v1.0.0** (2026-11-15) — 최초 버전: 업무표준 대분류 7·중분류 15·표준 50, 직종 7 × 산업 12, 법령 85개 조항, 에스텍 6개 프로그램 연계 자동 산출, Word·PPT·PDF 3종 출력, 상단 기능(업무표준 담당·다운로드 QR·친구 추천·로그인·주간/야간/시스템), 직종 소개 영상, 카카오맵 사업장 위치, 안드로이드 앱(APK) 자동 빌드
 

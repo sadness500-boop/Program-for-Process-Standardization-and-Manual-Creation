@@ -7,7 +7,7 @@ const APP = {
   name: 'S-Tec Operational Standards System',
   ko: '업무표준화 제작 시스템',
   en: 'Program for Creating Operational Standards',
-  version: 'v1.0.0',
+  version: 'v1.1.0',
   build: '2026-11-15',
   shareUrl: 'https://sadness500-boop.github.io/Program-for-Creating-Operational-Standards/',
   apkUrl: 'https://github.com/sadness500-boop/Program-for-Creating-Operational-Standards/releases/download/app-latest/stos-latest.apk',
@@ -19,7 +19,7 @@ const APP = {
 };
 const K = { ink: '18224F', navy: '22348F', mute: '6B7385', line: 'E3E7EE', tint: 'F4F6FB', tintG: 'EEF7F1', red: 'C8553D', grn: '2E8B57', grn2: '3A9D6A', blu: '2B4C9B', blu2: '1F3A73', amber: 'D98E04' };
 const C = { navy: '0B1F8F', navyD: '07124F', green: '1E8B3A', greenD: '17552F', brick: 'E34234', silver: 'C9CED6', silverL: 'EEF1F5', ink: '1C2333', gray: '5B6475', white: 'FFFFFF' };
-const state = { picked: [], plan: null, sigDataUrl: null, sigPx: 0, site: null, job: 'sec', code: '' };
+const state = { picked: [], plan: null, sigDataUrl: null, sigPx: 0, site: null, job: 'sec', code: '', kind: 'std', level: 'L2' };
 
 /* ---------- 유틸 ---------- */
 const $ = s => document.querySelector(s);
@@ -74,20 +74,24 @@ function loadImg(src) { return new Promise((res, rej) => { const i = new Image()
 /* =====================================================================
  * 1) 화면 — 표준 분류 트리 / 작성 정보 / 추천
  * ===================================================================== */
-const MAX_PICK = 24;
-function findSmall(code) { for (const L of STD) for (const M of L.mids) for (const S of M.smalls) if (S.c === code) return { L, M, S }; return null; }
-function isRec(S) { const pk = PACK.common.concat(PACK[state.job] || []); return pk.includes(S.c) || (S.jobs && S.jobs.includes(state.job)); }
+const MAX_PICK = 40;
+const TAXV = () => state.kind === 'man' ? MAN : STD;
+function flatV() { const o = []; TAXV().forEach(L => L.mids.forEach(M => M.smalls.forEach(S => o.push({ L, M, S })))); return o; }
+function findSmall(code) { for (const T0 of [STD, MAN]) for (const L of T0) for (const M of L.mids) for (const S of M.smalls) if (S.c === code) return { L, M, S }; return null; }
+function manPack(level) { return MAN_PACK[level].flatMap(c => c === 'MF-*' ? flatV().filter(x => x.L.c === 'MF').map(x => x.S.c) : [c]); }
+function isRec(S) { if (state.kind === 'man') return manPack(state.level).includes(S.c); const pk = PACK.common.concat(PACK[state.job] || []); return pk.includes(S.c) || (S.jobs && S.jobs.includes(state.job)); }
 function renderTree(filter = '') {
   const f = filter.trim();
   const box = $('#tree'); let h = '';
-  STD.forEach(L => {
+  TAXV().forEach(L => {
     let lh = '', nOn = 0;
     L.mids.forEach(M => {
       const smalls = M.smalls.filter(S => !f || (S.n + M.n + L.n + S.k.join(' ') + S.c).includes(f));
       if (!smalls.length) return;
       nOn += smalls.filter(S => state.picked.includes(S.c)).length;
-      lh += `<details class="mid" ${f || smalls.some(S => state.picked.includes(S.c)) ? 'open' : ''}><summary><b>${M.c}</b> ${esc(M.n)} <i>${smalls.length}</i></summary><ul>` +
-        smalls.map(S => `<li class="sm ${state.picked.includes(S.c) ? 'on' : ''} ${S.jobs && !S.jobs.includes(state.job) ? 'dim' : ''}" data-c="${S.c}"><span class="sev g${S.g}">${GRADE[S.g].label}</span><span class="nm">${esc(S.n)}${isRec(S) ? ' <b class="rec" title="선택한 직종의 권장 표준">★</b>' : ''}${S.int ? ' <small class="int">내부</small>' : ''}${S.gen ? ' <small class="lnk">연계</small>' : ''}</span><em>${S.c}</em></li>`).join('') + '</ul></details>';
+      const flatM = L.mids.length === 1 && M.c === L.c;
+      lh += (flatM ? '<ul class="flatm">' : `<details class="mid" ${f || smalls.some(S => state.picked.includes(S.c)) ? 'open' : ''}><summary><b>${M.c}</b> ${esc(M.n)} <i>${smalls.length}</i></summary><ul>`) +
+        smalls.map(S => `<li class="sm ${state.picked.includes(S.c) ? 'on' : ''} ${S.jobs && !S.jobs.includes(state.job) ? 'dim' : ''}" data-c="${S.c}"><span class="sev g${S.g}">${GRADE[S.g].label}</span><span class="nm">${esc(S.n)}${isRec(S) ? ' <b class="rec" title="선택한 직종의 권장 표준">★</b>' : ''}${S.int ? ' <small class="int">내부</small>' : ''}${S.gen && state.kind !== 'man' ? ' <small class="lnk">연계</small>' : ''}${S.gen === 'scn' || S.gen === 'bad' ? ' <small class="lnk">영상</small>' : ''}</span><em>${S.c}</em></li>`).join('') + (flatM ? '</ul>' : '</ul></details>');
     });
     if (lh) h += `<details class="big" ${f || nOn ? 'open' : ''}><summary><span class="ic">${L.e}</span><b>${L.c}.</b> ${esc(L.n)}${nOn ? ` <span class="cnt">${nOn}</span>` : ''}</summary>${lh}</details>`;
   });
@@ -99,7 +103,7 @@ function togglePick(code, quiet) {
   else { if (state.picked.length >= MAX_PICK) { if (!quiet) toast(`표준 항목은 최대 ${MAX_PICK}개까지 선택할 수 있습니다.`); return; } state.picked.push(code); }
   sortPicked(); if (!quiet) { renderTree($('#q').value); renderPicked(); }
 }
-function sortPicked() { const order = kbFlat().map(x => x.S.c); state.picked.sort((a, b) => order.indexOf(a) - order.indexOf(b)); }
+function sortPicked() { const order = flatV().map(x => x.S.c); state.picked.sort((a, b) => order.indexOf(a) - order.indexOf(b)); }
 function renderPicked() {
   const box = $('#picked');
   if (!state.picked.length) { box.innerHTML = '<span class="hint">② 분류에서 표준 항목을 고르거나 [📦 직종 권장 패키지]를 누르세요.</span>'; $('#pickCnt').textContent = '0'; return; }
@@ -107,15 +111,15 @@ function renderPicked() {
   $('#pickCnt').textContent = state.picked.length;
 }
 function pickPackage() {
-  const pk = uniq(PACK.common.concat(PACK[state.job] || [])); let n = 0;
+  const pk = state.kind === 'man' ? manPack(state.level) : uniq(PACK.common.concat(PACK[state.job] || [])); let n = 0;
   pk.forEach(c => { if (!state.picked.includes(c) && state.picked.length < MAX_PICK) { state.picked.push(c); n++; } });
   sortPicked(); renderTree($('#q').value); renderPicked();
-  toast(n ? `${JOB[state.job].n} 권장 표준 ${n}개를 선택했습니다.` : '권장 표준이 이미 모두 선택되어 있습니다.');
+  toast(n ? (state.kind === 'man' ? `${MAN_LEVEL[state.level].n} 권장 구성 ${n}개 절을 선택했습니다.` : `${JOB[state.job].n} 권장 표준 ${n}개를 선택했습니다.`) : '권장 항목이 이미 모두 선택되어 있습니다.');
 }
 function suggest() {
   const txt = ($('#f_special').value + ' ' + $('#f_reason').value).toLowerCase();
   if (txt.trim().length < 2) return toast('사업장 특이사항·고객사 요구를 먼저 입력하세요.');
-  const scored = kbFlat().map(x => ({ x, sc: x.S.k.reduce((a, k) => a + (txt.includes(k.toLowerCase()) ? (k.length >= 3 ? 2 : 1) : 0), 0) })).filter(o => o.sc > 0).sort((a, b) => b.sc - a.sc).slice(0, 8);
+  const scored = flatV().map(x => ({ x, sc: x.S.k.reduce((a, k) => a + (txt.includes(k.toLowerCase()) ? (k.length >= 3 ? 2 : 1) : 0), 0) })).filter(o => o.sc > 0).sort((a, b) => b.sc - a.sc).slice(0, 8);
   const box = $('#sugg');
   if (!scored.length) { box.innerHTML = '<span class="hint">일치하는 표준이 없습니다. ② 분류에서 직접 선택하세요.</span>'; return; }
   box.innerHTML = '<span class="lbl">추천</span>' + scored.map(o => `<button class="sg" data-c="${o.x.S.c}">${o.x.S.c} ${esc(o.x.S.n)} <small>${'●'.repeat(Math.min(3, o.sc))}</small></button>`).join('');
@@ -136,7 +140,20 @@ function setJob(k, silent) {
   if (!JOB[k]) return; state.job = k; renderJobChips(); renderCodes(); renderTree($('#q').value); autoTitle();
   if (!silent) toast(`적용 직종: ${JOB[k].n} — ★ 표시가 권장 표준입니다.`);
 }
-function autoTitle() { const t = $('#f_title'); if (t && !t.dataset.touched) t.value = `${JOB[state.job].n} 업무표준서${$('#f_client').value ? ' — ' + $('#f_client').value : ''}`; }
+function autoTitle() { const t = $('#f_title'); if (!t || t.dataset.touched) return; const J = JOB[state.job].n, I = IND[($('#f_ind') || {}).value || 'etc'].n, cl = $('#f_client').value;
+  t.value = state.kind !== 'man' ? `${J} 업무표준서${cl ? ' — ' + cl : ''}` : state.level === 'L1' ? '용역회사 운영 통합매뉴얼' : state.level === 'L2' ? `${J} 통합 업무매뉴얼` : state.level === 'L3' ? `${J} × ${I} 업무매뉴얼` : `${cl || '사업장'} ${J} 근무지침`; }
+function setKind(k, silent) {
+  state.kind = k; state.picked = [];
+  document.querySelectorAll('[data-kind]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.kind === k)));
+  document.body.classList.toggle('mode-man', k === 'man');
+  $('#treeTitle').textContent = k === 'man' ? '업무매뉴얼 장 · 절 선택' : '업무표준 항목 선택';
+  $('#btnGen').textContent = k === 'man' ? '📘 업무매뉴얼 생성' : '⚙ 업무표준안 생성';
+  $('#btnPack').textContent = k === 'man' ? '📦 계층 권장 구성' : '📦 직종 권장 패키지';
+  $('#q').placeholder = k === 'man' ? '🔍 장·절·상황 검색 (예: 화재, 폭언, 순찰, 판례)' : '🔍 표준·키워드 검색 (예: 순찰, 휴게, 연차, 감정노동)';
+  $('#outTitle').textContent = k === 'man' ? '업무매뉴얼 검토 · 출력' : '업무표준안 검토 · 출력';
+  const t = $('#f_title'); if (t) delete t.dataset.touched; autoTitle(); renderTree($('#q').value); renderPicked();
+  if (!silent) { if (k === 'man') pickPackage(); toast(k === 'man' ? '업무매뉴얼 제작 — Manual-Project 4계층 체계 · 사진·영상 포함' : '업무표준서 제작'); }
+}
 function jobFromWork(w) { w = w || ''; return /보안|경비/.test(w) ? 'sec' : /미화/.test(w) ? 'cln' : /주차/.test(w) ? 'prk' : /시설/.test(w) ? 'fac' : null; }
 
 function readForm() {
@@ -145,7 +162,7 @@ function readForm() {
     client: g('f_client'), title: g('f_title'), ind: g('f_ind') || 'etc', code: g('f_code'), rev: g('f_rev') || '0', eff: g('f_eff'),
     dept: g('f_dept') || APP.branch, author: g('f_author'), reviewer: g('f_reviewer'), approver: g('f_approver'),
     special: g('f_special'), reason: g('f_reason'), mode: document.querySelector('input[name=mode]:checked').value,
-    job: state.job, siteObj: state.site
+    job: state.job, siteObj: state.site, level: state.level, kind: state.kind
   };
 }
 
@@ -305,7 +322,7 @@ function buildPlan() {
 /* 편집 패널 */
 function renderEditor(p) {
   const L = p.lawIds.map(id => { const x = LAWS[id]; return `<label class="law"><input type="checkbox" data-law="${id}" ${p.lawOn[id] ? 'checked' : ''}> <b>${esc(x.law)} ${esc(x.art)}</b> ${esc(x.title)}<small>${esc(x.sum)}</small></label>`; }).join('');
-  const g = p.gen, links = [];
+  const g = p.gen, links = p.links ? p.links.slice() : [];
   if (g.sop) links.push(`📋 표준 업무목록 ${g.sop.rows.length}개 · 월 ${Math.round(g.sop.total).toLocaleString()}h · ${g.sop.fte.toFixed(1)}명(FTE) <small>WBE ${esc(p.J.n)}×${esc(p.I.n)}</small>`);
   if (g.time) links.push(`🕘 일일 타임테이블 ${g.time.filter(r => !r.head).length}개 시간대 <small>${esc(p.code.id)}</small>`);
   if (g.shift) links.push(`🔁 근무조 코드 ${g.shift.length}종 지표(조 수·월 근로시간·법정 확인) <small>근태관리 프로그램</small>`);
@@ -313,12 +330,12 @@ function renderEditor(p) {
   if (g.cmp) links.push(`📣 Complaint 유형 ↔ 예방 표준 ${g.cmp.length}개 <small>Complaint Response System</small>`);
   if (g.quote) links.push('💰 최저임금·4대보험 요율(2026·2027) · 단기 견적 산식 <small>견적시스템</small>');
   const isClient = p.f.mode === 'client';
-  $('#editor').innerHTML = `<div class="ed-head"><div><b>${esc(p.title)}</b><br><small>${esc(p.where)} · ${esc(p.I.n)}</small></div><span class="sevbig gC">${p.items.length}개 표준</span></div>
+  $('#editor').innerHTML = `<div class="ed-head"><div><b>${esc(p.title)}</b><br><small>${esc(p.where)} · ${esc(p.I.n)}${p.kind === 'man' ? ' · ' + esc(p.docNo) : ''}</small></div><span class="sevbig gC">${p.kind === 'man' ? p.lv.n.replace(/ .*/, '') + ' · ' + p.items.length + '절' : p.items.length + '개 표준'}</span></div>
    <p class="ed-tip">생성된 표준안을 그대로 쓰거나 고쳐서 출력하세요. <b>■</b>로 시작하는 줄은 소제목, <b>-</b>로 시작하는 줄은 항목입니다. 「점검 항목」은 붙임 점검표로도 출력됩니다.</p>
-   ${links.length ? `<div class="links"><b>프로그램 연계 자동 산출</b>${links.map(x => `<span>${x}</span>`).join('')}</div>` : ''}
+   ${links.length ? `<div class="links"><b>${p.kind === 'man' ? '매뉴얼 구성 · 멀티미디어' : '프로그램 연계 자동 산출'}</b>${links.map(x => `<span>${x}</span>`).join('')}</div>` : ''}
    <div class="ed"><label>□ 주요 내용</label><textarea data-k="summary" rows="5">${esc(p.summary)}</textarea></div>
-   <div class="ed"><label>Ⅰ. 총칙 — 목적·적용 범위·운영 원칙</label><textarea data-k="scope" rows="7">${esc(p.scope)}</textarea></div>
-   <div class="ed"><label>Ⅰ. 총칙 — 용어 정의·사업장 특수 기준</label><textarea data-k="terms" rows="6">${esc(p.terms)}</textarea></div>` +
+   ${p.kind === 'man' ? '' : `<div class="ed"><label>Ⅰ. 총칙 — 목적·적용 범위·운영 원칙</label><textarea data-k="scope" rows="7">${esc(p.scope)}</textarea></div>
+   <div class="ed"><label>Ⅰ. 총칙 — 용어 정의·사업장 특수 기준</label><textarea data-k="terms" rows="6">${esc(p.terms)}</textarea></div>`}` +
     p.items.map(x => `<div class="ed ${x.S.int && isClient ? 'muted' : ''}"><label><span class="sev g${x.S.g}">${GRADE[x.S.g].label}</span> ${x.S.c} ${esc(x.S.n)}${x.S.int ? ' <small>(내부 전용 — 고객사 제출용에서 제외)</small>' : ''}</label><textarea data-t="${x.S.c}" rows="9">${esc(p.text[x.S.c])}</textarea></div>`).join('') +
     `<div class="ed"><label>법적 근거 — 출력할 법령 선택</label><div class="laws">${L}</div></div>`;
   $('#outPanel').classList.add('ready');
@@ -333,7 +350,7 @@ function syncEditor() {
 }
 function outItems(p) { return p.items.filter(x => !(x.S.int && p.f.mode === 'client')); }
 function docTitle(p) { return p.title; }
-function fileBase(p) { const d = p.made; return `${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}_${safeName(p.f.client)}_${safeName(p.J.n)}_업무표준서${p.f.mode === 'client' ? '(제출용)' : '(사내)'}`; }
+function fileBase(p) { const d = p.made; return `${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}_${safeName(p.f.client)}_${safeName(p.J.n)}_${p.kind === 'man' ? safeName(p.docNo) + '_업무매뉴얼' : '업무표준서'}${p.f.mode === 'client' ? '(제출용)' : '(사내)'}`; }
 function revLabel(p) { return Number(p.f.rev) ? `Rev.${p.f.rev} (개정)` : 'Rev.0 (제정)'; }
 
 
@@ -698,7 +715,8 @@ function figBox(name, x, y, maxW, maxH, align) {
 }
 const Vd = (x, y, w, h, key) => ({ t: 'video', x, y, w, h, key, src: ASSET.poster[key] });
 async function fetchVideo(k) {
-  for (const u of ['media/videos/' + k + '.mp4', APP.shareUrl + 'media/videos/' + k + '.mp4']) {
+  const rel = (k.includes('/') ? 'media/' + k : 'media/videos/' + k) + '.mp4';
+  for (const u of [rel, APP.shareUrl + rel]) {
     try { const r = await fetch(u); if (r.ok) { const b = await r.blob(); if (b.size > 10000) return await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1]); fr.readAsDataURL(b); }); } } catch (e) { }
   }
   return null;
@@ -800,6 +818,7 @@ function tbl(o, x, y, cols, rows, o2 = {}) {
   return y + hh + rows.length * rh;
 }
 function buildSlides(p) {
+  if (p.kind === 'man') return buildManSlides(p);
   const f = p.f, isClient = f.mode === 'client', S = [], items = outItems(p), g = p.gen;
   let no = 1, sec = 0;
   JOB_NAME[jobKey(p)] = p.J.n;
@@ -1077,10 +1096,10 @@ async function makePdf(p, onProgress, slidesIn, titleIn) {
  * ===================================================================== */
 function busy(on, msg) { $('#busy').classList.toggle('on', on); if (msg) $('#busyMsg').textContent = msg; }
 async function run(kind) {
-  const p = syncEditor(); if (!p) return toast('먼저 [업무표준안 생성]을 누르세요.');
+  const p = syncEditor(); if (!p) return toast('먼저 [생성] 버튼을 누르세요.');
   try {
     const base = fileBase(p);
-    if (kind === 'docx' || kind === 'all') { busy(true, 'Word 업무표준서 생성 중…'); await download(await makeDocx(p), base + '.docx'); }
+    if (kind === 'docx' || kind === 'all') { busy(true, p.kind === 'man' ? 'Word 업무매뉴얼 생성 중… (사진·QR 포함)' : 'Word 업무표준서 생성 중…'); await download(await (p.kind === 'man' ? makeManDocx(p) : makeDocx(p)), base + '.docx'); }
     if (kind === 'pptx' || kind === 'all') { busy(true, 'PPT 생성 중… (현장 영상 포함)'); await download(await makePptx(p), base + '.pptx'); }
     if (kind === 'pdf' || kind === 'all') { await download(await makePdf(p, (i, n) => busy(true, `PDF 변환 중… ${i}/${n}`)), base + '.pdf'); }
     saveHistory(p); toast('출력 완료 — 다운로드 폴더를 확인하세요.');
@@ -1092,7 +1111,7 @@ function saveHistory(p) {
   try {
     const h = readHist();
     const f2 = Object.assign({}, p.f); delete f2.siteObj;
-    h.unshift({ at: fmtD(kstNow()), client: p.f.client, title: p.title, names: p.items.map(x => x.S.c), f: f2, siteId: p.site ? p.site.id : null, picked: p.items.map(x => x.S.c) });
+    h.unshift({ at: fmtD(kstNow()), kind: p.kind || 'std', client: p.f.client, title: p.title, names: p.items.map(x => x.S.c), f: f2, siteId: p.site ? p.site.id : null, picked: p.items.map(x => x.S.c) });
     storeHistory(h.slice(0, 20)); renderHistory();
   } catch (e) { }
 }
@@ -1106,7 +1125,7 @@ function renderHistory() {
     <span class="hcnt">${h.length}건${HSEL.size ? ` · ${HSEL.size}건 선택` : ''}</span>
     <button class="btn l" id="hDelSel" ${HSEL.size ? '' : 'disabled'}>🗑 선택 삭제</button><button class="btn l" id="hDelAll">전체 삭제</button>` : '';
   $('#hist').innerHTML = h.length ? h.map((x, i) => `<li data-i="${i}" class="${HSEL.has(i) ? 'sel' : ''}"><input type="checkbox" class="hsel" data-i="${i}" ${HSEL.has(i) ? 'checked' : ''} aria-label="선택">
-      <div class="hb"><b>${esc(x.title || x.client)}</b><span>${esc(x.client)} · 표준 ${(x.picked || []).length}개</span><em>${esc(x.at)}</em></div>
+      <div class="hb"><b>${x.kind === 'man' ? '📘 ' : '📋 '}${esc(x.title || x.client)}</b><span>${esc(x.client)} · ${x.kind === 'man' ? '매뉴얼' : '표준'} ${(x.picked || []).length}개</span><em>${esc(x.at)}</em></div>
       <button class="hdel" data-del="${i}" title="이 기록 삭제">🗑</button></li>`).join('') : '<li class="empty">출력 기록이 없습니다.</li>';
   if (!h.length) return;
   $('#hAll').onchange = e => { HSEL.clear(); if (e.target.checked) h.forEach((_, i) => HSEL.add(i)); renderHistory(); };
@@ -1128,13 +1147,14 @@ function histClick(e) {
 }
 function loadHistory(i) {
   const h = readHist()[i]; if (!h) return;
+  setKind(h.kind || 'std', true); if (h.f.level) { state.level = h.f.level; $('#f_level').value = h.f.level; }
   if (h.siteId) { const st = SITES.find(x => x.id === h.siteId); if (st) selectSite(st, true); }
   const map = { client: 'f_client', title: 'f_title', ind: 'f_ind', rev: 'f_rev', eff: 'f_eff', dept: 'f_dept', author: 'f_author', reviewer: 'f_reviewer', approver: 'f_approver', special: 'f_special', reason: 'f_reason' };
   if (h.f.job) setJob(h.f.job, true);
   Object.entries(map).forEach(([k, id]) => { if (h.f[k] != null) $('#' + id).value = h.f[k]; });
   if (h.f.title) $('#f_title').dataset.touched = '1';
   if (h.f.code) { state.code = h.f.code; renderCodes(); }
-  state.picked = (h.picked || []).filter(findSmall); renderTree(); renderPicked(); toast('불러왔습니다. [업무표준안 생성]을 눌러 주세요.');
+  state.picked = (h.picked || []).filter(findSmall); renderTree(); renderPicked(); toast('불러왔습니다. [생성]을 눌러 주세요.');
 }
 function sample() {
   const tcc = SITES.find(x => x.id === 25) || SITES[0]; selectSite(tcc, true);
@@ -1142,32 +1162,37 @@ function sample() {
   state.code = 'SEC-S32-01'; renderCodes();
   $('#f_special').value = '정문 차량 출입 시 차단기 상시개방 금지 — 등록 차량만 개방\n화재경보 발생 시 수신기 임의 복구 금지, 방재실 보고 후 복구\n야간 순찰 2시간 간격, 순찰 체크포인트 6개소 기록\n협력업체 차량은 사전 등록 명단으로만 출입 허용';
   $('#f_reason').value = '고객사 Complaint(차단기·화재경보) 재발방지를 위한 업무표준 제정';
-  state.picked = []; pickPackage(); ['A2-04', 'B2-01', 'F1-01'].forEach(c => { if (!state.picked.includes(c)) state.picked.push(c); }); sortPicked();
-  autoTitle(); renderTree(); renderPicked(); toast('예시(보안 · 제조공장)를 채웠습니다. [업무표준안 생성]을 누르세요.');
+  state.picked = []; pickPackage(); if (state.kind === 'std') ['A2-04', 'B2-01', 'F1-01'].forEach(c => { if (!state.picked.includes(c)) state.picked.push(c); }); sortPicked();
+  autoTitle(); renderTree(); renderPicked(); toast('예시(보안 · 제조공장)를 채웠습니다. [생성]을 누르세요.');
 }
 function siteCommon() {
   state.site = null; $('#f_client').value = '에스텍 그룹 전사 공통'; renderSiteInfo(); renderSites(); autoTitle(); toast('전사 공통 표준으로 작성합니다.');
 }
 async function init() {
   $('#f_ind').innerHTML = IND_ORDER.map(k => `<option value="${k}">${IND[k].n}</option>`).join('');
+  $('#f_level').innerHTML = Object.entries(MAN_LEVEL).map(([k, v]) => `<option value="${k}" ${k === state.level ? 'selected' : ''}>${v.n} — ${v.s}</option>`).join('');
   const t = kstNow(); $('#f_eff').value = `${t.getFullYear()}-${pad(t.getMonth() + 1)}-${pad(t.getDate())}`;
   $('#f_dept').value = APP.branch;
   renderJobChips(); renderCodes();
   uiInit();
   const nS = kbFlat().length, nM = STD.reduce((a, L) => a + L.mids.length, 0);
-  $('#stat').textContent = `대분류 ${STD.length} · 중분류 ${nM} · 표준 ${nS} · 법령 ${Object.keys(LAWS).length - 1} · 업무 ${Object.values(WBE.tasks).reduce((a, r) => a + r.length, 0)} · 근무조 ${AMS_CODES.length}`;
+  $('#stat').textContent = `표준 ${nS} · 매뉴얼 ${MAN.length}장 ${MAN.reduce((a, L) => a + L.mids[0].smalls.length, 0)}절 · 상황별 대처 ${SCN.length} · 판례 ${CASES.length} · 법령 ${Object.keys(LAWS).length - 1} · 업무 ${Object.values(WBE.tasks).reduce((a, r) => a + r.length, 0)} · 근무조 ${AMS_CODES.length}`;
+  void nM;
   renderTree(); renderPicked(); renderHistory();
   $('#q').addEventListener('input', e => renderTree(e.target.value));
   $('#tree').addEventListener('click', e => { const li = e.target.closest('li.sm'); if (li) togglePick(li.dataset.c); });
   $('#picked').addEventListener('click', e => { const b = e.target.closest('button[data-x]'); if (b) togglePick(b.dataset.x); });
   $('#sugg').addEventListener('click', e => { const b = e.target.closest('button.sg'); if (b && !state.picked.includes(b.dataset.c)) togglePick(b.dataset.c); });
+  document.querySelectorAll('[data-kind]').forEach(b => b.onclick = () => setKind(b.dataset.kind));
+  $('#f_level').onchange = e => { state.level = e.target.value; autoTitle(); renderTree($('#q').value); if (state.kind === 'man') { state.picked = []; pickPackage(); } };
+  $('#f_ind').addEventListener('change', autoTitle);
   $('#jobChips').onclick = e => { const b = e.target.closest('button[data-job]'); if (b) setJob(b.dataset.job); };
   $('#f_code').onchange = e => { state.code = e.target.value; renderCodes(); };
   $('#f_title').addEventListener('input', e => e.target.dataset.touched = '1');
   $('#f_client').addEventListener('input', autoTitle);
   $('#btnSugg').onclick = suggest; $('#btnSample').onclick = sample; $('#btnPack').onclick = pickPackage; $('#siteCommon').onclick = siteCommon;
   $('#btnClear').onclick = () => { state.picked = []; renderTree($('#q').value); renderPicked(); };
-  $('#btnGen').onclick = () => { const p = buildPlan(); if (!p) return; state.plan = p; renderEditor(p); toast('업무표준안이 생성되었습니다. 검토 후 출력하세요.'); if (innerWidth < 1100) $('#outPanel').scrollIntoView({ behavior: 'smooth' }); };
+  $('#btnGen').onclick = () => { const p = state.kind === 'man' ? buildManPlan(readForm()) : buildPlan(); if (!p) return; state.plan = p; renderEditor(p); toast(p.kind === 'man' ? '업무매뉴얼이 생성되었습니다. 검토 후 출력하세요.' : '업무표준안이 생성되었습니다. 검토 후 출력하세요.'); if (innerWidth < 1100) $('#outPanel').scrollIntoView({ behavior: 'smooth' }); };
   document.querySelectorAll('input[name=mode]').forEach(r => r.onchange = () => { if (state.plan) { syncEditor(); renderEditor(state.plan); } });
   $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all');
   $('#hist').addEventListener('click', histClick);

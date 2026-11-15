@@ -335,6 +335,11 @@ body.dark .links{background:#132a1d;border-color:#2c7a45}
 .ed-head small{color:var(--gray);font-weight:400}
 #siteCommon{margin-top:6px;width:100%}
 .sevbig{color:#fff}
+.kindseg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.kindseg button{border:1.5px solid var(--line);background:var(--soft);color:var(--ink);border-radius:10px;padding:9px 6px;font-size:13.5px;font-weight:700}
+.kindseg button[aria-pressed="true"]{background:linear-gradient(100deg,#1E8B3A,#0B1F8F);border-color:transparent;color:#fff;box-shadow:0 3px 10px rgba(11,31,143,.25)}
+.manonly{display:none!important}body.mode-man .manonly{display:flex!important}
+ul.flatm{list-style:none;margin:4px 8px 6px 10px;padding:0}
 </style>
 </head>
 <body>
@@ -377,8 +382,9 @@ body.dark .links{background:#132a1d;border-color:#2c7a45}
   </section>
   <!-- ② 분류 -->
   <section class="card" id="treeCard">
-    <h2><span class="stepn">2</span> 업무표준 항목 선택 <span class="r">대 · 중 · 소</span></h2>
+    <h2><span class="stepn">2</span> <span id="treeTitle">업무표준 항목 선택</span> <span class="r">대 · 중 · 소</span></h2>
     <div class="body">
+      <div class="kindseg" role="group" aria-label="문서 종류"><button type="button" data-kind="std" aria-pressed="true">📋 업무표준서</button><button type="button" data-kind="man" aria-pressed="false">📘 업무매뉴얼</button></div>
       <input class="search" id="q" placeholder="🔍 표준·키워드 검색 (예: 순찰, 휴게, 연차, 감정노동)">
       <div id="tree"></div>
       <ul class="principle">
@@ -403,6 +409,7 @@ body.dark .links{background:#132a1d;border-color:#2c7a45}
       <div class="siteinfo empty" id="siteInfo"></div>
       <div class="grid">
         <div class="f full"><span style="font-size:12px;font-weight:700;color:var(--gray)">적용 직종 <b style="color:var(--brick)">*</b></span><div id="jobChips" role="group" aria-label="직종"></div></div>
+        <label class="f full manonly"><span>매뉴얼 계층 (Manual - Project 4계층 체계)</span><select id="f_level"></select></label>
         <label class="f"><span>적용 사업장(고객사) <b>*</b></span><input type="text" id="f_client" placeholder="① 사업장 선택 시 자동 입력"></label>
         <label class="f"><span>산업(사업장 유형)</span><select id="f_ind"></select></label>
         <label class="f full"><span>기준 근무형태 (근태관리 프로그램 근무조 코드)</span><select id="f_code"></select></label>
@@ -436,8 +443,8 @@ body.dark .links{background:#132a1d;border-color:#2c7a45}
   <!-- ④ 출력 -->
   <section class="out">
     <div class="card" id="outPanel">
-      <h2><span class="stepn">4</span> 업무표준안 검토 · 출력 <span class="r">검토 · 편집 후 출력</span></h2>
-      <div class="body"><div id="editor"><div class="placeholder"><div class="vstage" id="vStage"></div><p>① 사업장 → ② 표준 항목 → ③ 작성 정보를 정한 뒤<br><b>[업무표준안 생성]</b>을 누르세요.</p><p class="hint">사내 표준은 징계·견적 등 내부 기준까지, 고객사 제출용은 내부 전용 항목을 빼고 출력됩니다.</p></div></div></div>
+      <h2><span class="stepn">4</span> <span id="outTitle">업무표준안 검토 · 출력</span> <span class="r">검토 · 편집 후 출력</span></h2>
+      <div class="body"><div id="editor"><div class="placeholder"><div class="vstage" id="vStage"></div><p>① 사업장 → ② 표준 항목 → ③ 작성 정보를 정한 뒤<br><b>[생성]</b>을 누르세요.<br><small>📋 업무표준서 / 📘 업무매뉴얼(사진·3D 피규어·영상 포함)을 ②에서 고릅니다.</small></p><p class="hint">사내 표준은 징계·견적 등 내부 기준까지, 고객사 제출용은 내부 전용 항목을 빼고 출력됩니다.</p></div></div></div>
       <div class="outbtns">
         <button class="btn" id="btnDocx" style="background:#2b579a;box-shadow:0 3px 0 #173361">📄 Word<small>업무표준서 · 점검표</small></button>
         <button class="btn" id="btnPptx" style="background:#C43E1C;box-shadow:0 3px 0 #7d2712">📊 PPT<small>16:9 교육·보고용</small></button>
@@ -473,6 +480,8 @@ body.dark .links{background:#132a1d;border-color:#2c7a45}
 <script>/*KB*/</script>
 <script>/*UI*/</script>
 <script>/*APP*/</script>
+<script>/*MANKB*/</script>
+<script>/*MAN*/</script>
 <script>/*WORKER*/</script>
 <script>
 /* 제작자 관리(로그인) 설정 — Attendance Management Software와 같은 모듈 · Designed & Developed by Rat Rae Choi */

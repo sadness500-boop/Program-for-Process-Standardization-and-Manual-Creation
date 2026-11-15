@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
-  "date": "2026-11-15",
-  "note": "최초 버전 — 직종 7 × 산업 12 업무표준서(Word·PPT·PDF) 자동 작성, 6개 에스텍 프로그램 연계(근무조 코드·업무량·Complaint·견적·사업장), 통합 로그인",
-  "html": "releases/S-Tec-Operational-Standards-System_v1.0.0.html",
-  "apk": "releases/S-Tec-Operational-Standards-System_v1.0.0.apk"
+  "version": "1.1.0",
+  "date": "2026-11-16",
+  "note": "업무매뉴얼 제작 추가 — Manual-Project 4계층(통합·직종별·직종×산업·현장별), 사건사고 상황별 대처 24건, 판례·행정해석 10건, Complaint 사례 영상 7편, 3D 피규어·현장 사진·영상(PPT)·영상 QR(Word)",
+  "html": "releases/S-Tec-Operational-Standards-System_v1.1.0.html",
+  "apk": "releases/S-Tec-Operational-Standards-System_v1.1.0.apk"
 }

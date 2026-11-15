@@ -6,6 +6,9 @@ VER = json.load(open(R + 'version.json'))['version']
 def b64(p): return base64.b64encode(open(R + p, 'rb').read()).decode()
 A = json.load(open(R + 'vendor/asset.json'))
 assets = {k: A[k] for k in ('logo', 'cube', 'sanitec', 'headerTbc', 'sigBase', 'dancing', 'fig', 'figDim', 'poster')}
+import glob
+for f in sorted(glob.glob(R + 'media/cases/*.jpg')):
+    assets['poster']['cases/' + os.path.basename(f)[:-4]] = 'data:image/jpeg;base64,' + b64(f.replace(R, ''))
 assets['icon'] = 'data:image/png;base64,' + b64('icons/header-160.png')
 assets['osi'] = 'data:image/png;base64,' + b64('icons/cover-420.png')
 def scr(s): return s.replace('</script', '<\\/script')
@@ -15,7 +18,7 @@ libs = ['vendor/jszip.js', 'vendor/docx.js', 'vendor/pptx.js', 'vendor/jspdf.js'
 html = html.replace('<!--LIBS-->', ''.join('<script>' + scr(rd(l)) + '</script>\n' for l in libs))
 html = html.replace('<!--QR-->', '<script>' + scr(rd('vendor/qr.js')) + '</script>')
 html = html.replace('/*ASSETS*/', 'const ASSET=' + json.dumps(assets) + ';')
-for k, f in [('HF', 'src/hf.js'), ('SITES', 'src/sites.js'), ('DATA', 'src/data.js'), ('KB', 'src/kb.js'), ('UI', 'src/ui.js'), ('APP', 'src/app.js'),
+for k, f in [('HF', 'src/hf.js'), ('SITES', 'src/sites.js'), ('DATA', 'src/data.js'), ('KB', 'src/kb.js'), ('UI', 'src/ui.js'), ('APP', 'src/app.js'), ('MANKB', 'src/man_kb.js'), ('MAN', 'src/man.js'),
              ('SUPABASE', 'vendor/supabase.js'), ('AUTH', 'vendor/auth.js'), ('APPACCESS', 'vendor/app_access.js')]:
     html = html.replace('/*' + k + '*/', scr(rd(f)))
 html = html.replace('<script>/*WORKER*/</script>\n', '').replace('<!--AUTHCSS-->', rd('vendor/auth.css'))
