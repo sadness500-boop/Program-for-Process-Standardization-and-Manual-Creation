@@ -308,7 +308,7 @@ async function makeManDocx(p) {
   const fIds = formIdsOf(p, items);
   if (fIds.length) { ch.push(new docx.Paragraph({ children: [new docx.PageBreak()] })); ch.push(H1(`붙임 4. 업무 서식 (${fIds.length}종)`));
     const fw2 = [1400, 3200, 5038]; ch.push(table([[th('서식번호', fw2[0]), th('서식명', fw2[1]), th('용도', fw2[2])]].concat(fIds.map(id => { const fm = FORMS.find(z => z.id === id); return [td(id, fw2[0], { size: 16, align: docx.AlignmentType.CENTER, color: C.green, bold: true }), td(fm.n, fw2[1], { size: 17, bold: true }), td(fm.pur, fw2[2], { size: 16 })]; })), fw2, { header: true }));
-    fIds.forEach(id => ch.push(...formDoc(FORMS.find(z => z.id === id), p, false))); }
+    ch.push(boxPara([P([R(`인쇄용 양식은 매뉴얼과 별도 Word 파일 「${formsFileName(p.f)}」로 함께 출력됩니다. 사업장명·소속·직종이 미리 적혀 있어 바로 인쇄해 쓸 수 있습니다. (프로그램 ④ 출력의 [업무 서식 Word] 버튼으로 언제든 다시 만들 수 있습니다)`, { size: 17 })], { after: 0 })])); }
   ch.push(...imgPara(ASSET.fig.team, 2.2, 'The Best Choice, S-Tec — 매뉴얼대로 일하는 에스텍 그룹', ASSET.figDim.team));
   ch.push(P([R('- 끝 -', { size: 20, bold: true })], { align: AC, before: 120, after: 80 }));
   ch.push(P([R(`※ 법령·판례 요약은 실무 참고용입니다. 적용 전 원문과 노무 자문으로 확인하십시오. 영상 QR은 웹 주소(${APP.shareUrl})의 현장 영상으로 연결됩니다.  |  ${APP.name} ${APP.version}`, { size: 15, color: '8A93A3' })], { align: AC }));
@@ -365,7 +365,7 @@ function buildManSlides(p) {
       if (x.S.gen === 'forms') {
         const ids = []; G.forEach(g => g.lines.forEach(l => { const m = /^(F-[A-Z]+-\d+)/.exec(l); if (m && FORMS.find(z => z.id === m[1])) ids.push(m[1]); }));
         for (let k = 0; k < ids.length; k += 6) {
-          const o = frame(`${ttl}${ids.length > 6 ? ` (${k / 6 + 1}/${Math.ceil(ids.length / 6)})` : ''}`, `${L.e} ${L.n} · 인쇄용 양식은 Word 붙임 「업무 서식」 수록`, no, p);
+          const o = frame(`${ttl}${ids.length > 6 ? ` (${k / 6 + 1}/${Math.ceil(ids.length / 6)})` : ''}`, `${L.e} ${L.n} · 인쇄용 양식은 별도 Word 「업무 서식집」으로 출력`, no, p);
           ids.slice(k, k + 6).forEach((id, i) => { const fm = FORMS.find(z => z.id === id), cx = 0.6 + (i % 3) * 4.1, cy = 1.6 + Math.floor(i / 3) * 2.45, cw = 3.95, chh = 2.3;
             o.push(Rc(cx, cy, cw, chh, C.white, { line: K.line })); o.push(Rc(cx, cy, cw, 0.5, K.navy)); o.push(Rc(cx, cy, 0.08, chh, C.green));
             o.push(T(cx + 0.18, cy, cw - 0.25, 0.5, [{ text: `${fm.id}  ${fm.n}`, bold: true }], { max: 12.5, min: 8.5, color: C.white, valign: 'middle' }));
@@ -411,4 +411,79 @@ function buildManSlides(p) {
   S.push(videoSlide(p, no, `현장 교육 — ${p.J.n} 근무 영상`, '신규 배치·직무교육 · 매뉴얼과 함께 시청', null, TEN_RULES.slice(0, 5), jobKey(p))); no++;
   S.push(closingSlide({ fig: 'team', tag: '매뉴얼대로 일하고, 기록으로 증명합니다 — 어느 현장에서나 같은 품질을 약속드립니다.', org: `${APP.org}  ·  ${f.dept}` }));
   return S;
+}
+
+/* =====================================================================
+ * 업무 서식집 — 매뉴얼과 별도의 인쇄용 Word (사업장 · 직종 맞춤)
+ *  · 보안/주차/시설/미화/기타 직종별 서식 + 공통 · 안전 서식
+ *  · stec-header-footer 머리글·바닥글(바닥글 날짜 제외 서명)
+ *  · Program & Design by Rat Rae Choi
+ * ===================================================================== */
+const FORM_GROUP = { sec: '보안', prk: '주차', fac: '시설', cln: '미화' };
+function formGroupName(job) { return FORM_GROUP[job] ? FORM_GROUP[job] + ' 업무 서식' : `기타 업종(${JOB[job].n}) 업무 서식`; }
+function formsForJob(job) { return ['common', 'job', 'safety'].flatMap(s => formsFor(s, job)); }
+function formCtx(f) {
+  const st = f.siteObj, J = JOB[f.job], code = AMS_CODES.find(c => c.id === f.code) || null;
+  const site = st ? st.name : (f.client || '');
+  const org = st ? `에스텍베스트 ${st.br}지사` : (f.dept || APP.branch);
+  const shift = code ? code.name.replace(/^\S+\s/, '') : (st && st.shift) || '';
+  return { st, J, site, org, addr: st ? st.addr : '', shift, mgr: st && st.mgr ? `${st.mgr} ${st.pos || ''}`.trim() : '' };
+}
+const FORM_ROWS = 19;
+function formPage(fm, c, first) {
+  const AC = docx.AlignmentType.CENTER, out = [], tot = fm.cols.reduce((a, x) => a + x[1], 0);
+  const w = fm.cols.map(x => Math.floor(CW * x[1] / tot)); w[w.length - 1] += CW - w.reduce((a, b) => a + b, 0);
+  const lab = (t, ww, o = {}) => td(t, ww, Object.assign({ fill: C.silverL, bold: true, align: AC, size: 16 }, o));
+  const val = (t, ww) => td(t || ' ', ww, { size: 17 });
+  out.push(new docx.Paragraph({ pageBreakBefore: !first, spacing: { after: 30 }, tabStops: [{ type: docx.TabStopType.RIGHT, position: CW }], children: [R(`${c.org}  |  ${c.site || '사업장명'}`, { size: 15, color: C.gray, bold: true }), new docx.TextRun({ text: '\t', font: W_FONT }), R(`서식 ${fm.id}`, { size: 15, color: C.green, bold: true })] }));
+  out.push(P([R(fm.n, { size: 36, bold: true, color: C.navy })], { align: AC, after: 30, line: 360 }));
+  out.push(P([R(fm.pur, { size: 16, color: C.gray })], { align: AC, after: 100 }));
+  const mw = [1000, 3150, 950, 1810, 910, 910, 908];
+  const sign = (span) => new docx.TableCell({ rowSpan: 2, width: { size: 910, type: docx.WidthType.DXA }, borders: bAll(), children: [new docx.Paragraph({ children: [] })] });
+  out.push(new docx.Table({ width: { size: CW, type: docx.WidthType.DXA }, columnWidths: mw, rows: [
+    new docx.TableRow({ cantSplit: true, children: [lab('사업장', mw[0]), val(c.site, mw[1]), lab('직  종', mw[2]), val(c.J.n, mw[3]), lab('담 당', mw[4]), lab('현장대리인', mw[5], { size: 15 }), lab('지사장', mw[6])] }),
+    new docx.TableRow({ cantSplit: true, height: { value: 330, rule: docx.HeightRule.ATLEAST }, children: [lab('소  속', mw[0]), val(c.org, mw[1]), lab('근무형태', mw[2], { size: 15 }), val(c.shift, mw[3]), sign(), sign(), sign()] }),
+    new docx.TableRow({ cantSplit: true, height: { value: 330, rule: docx.HeightRule.ATLEAST }, children: [lab('소재지', mw[0]), td(c.addr || ' ', mw[1], { size: 15 }), lab('기  간', mw[2]), td('    .    .    ~    .    .', mw[3], { size: 16, color: C.gray })] })] }));
+  out.push(P([R('')], { after: 40, line: 200 }));
+  const head = new docx.TableRow({ tableHeader: true, cantSplit: true, children: fm.cols.map((x, i) => cell([P([R(x[0], { bold: true, color: C.white, size: 16 })], { align: AC, after: 0, line: 240 })], { w: w[i], fill: C.navy })) });
+  const blank = (ww, t) => cell([P([R(t || '', { size: 17, bold: !!t, color: C.navy })], { after: 0, line: 240 })], { w: ww });
+  const rows = fm.fixed
+    ? fm.fixed.map(r => new docx.TableRow({ cantSplit: true, height: { value: 1310, rule: docx.HeightRule.EXACT }, children: [cell([P([R(r[0], { size: 17, bold: true, color: C.navy })], { after: 0 })], { w: w[0], fill: 'F4F6FA' })].concat(w.slice(1).map(x => blank(x))) }))
+    : Array.from({ length: FORM_ROWS }, () => new docx.TableRow({ cantSplit: true, height: { value: 440, rule: docx.HeightRule.EXACT }, children: w.map(x => blank(x)) }));
+  out.push(new docx.Table({ width: { size: CW, type: docx.WidthType.DXA }, columnWidths: w, rows: [head].concat(rows) }));
+  out.push(P([R(`보존 기간: ${fm.keep}   ·   근거: ${lawShort(fm.l.filter(id => LAWS[id])) || '용역(도급)계약서'}   ·   ${c.site ? c.site + ' 비치용' : '사업장 비치용'}`, { size: 14, color: '8A93A3' })], { before: 50, after: 0 }));
+  return out;
+}
+async function makeFormsDocx(f) {
+  const c = formCtx(f), AC = docx.AlignmentType.CENTER, list = formsForJob(f.job), ch = [];
+  const now = kstNow();
+  // 표지 · 목차
+  ch.push(P([R(`${c.org}`, { size: 18, bold: true, color: C.green })], { align: docx.AlignmentType.RIGHT, after: 40 }));
+  ch.push(P([R(formGroupName(f.job), { size: 22, bold: true, color: C.green })], { align: AC, before: 60, after: 40 }));
+  ch.push(P([R(`${c.site || '○○ 사업장'}  ${c.J.n} 업무 서식집`, { size: 36, bold: true, color: C.navy })], { align: AC, after: 120, line: 400 }));
+  const iw = [1800, 7838];
+  ch.push(table([['사 업 장', c.site], ['소    속', c.org], ['소 재 지', c.addr], ['직    종', c.J.n], ['근무형태', c.shift], ['서 식 수', `${list.length}종 (공통 ${list.filter(x => x.set === 'common').length} · ${FORM_GROUP[f.job] || '직종'} ${list.filter(x => x.set === 'job').length} · 안전·보고 ${list.filter(x => x.set === 'safety').length})`]].map(r => [cell([P([R(r[0], { size: 17, bold: true })], { align: AC, after: 0, line: 240 })], { w: iw[0], fill: C.silverL, m: 40 }), cell([P([R(r[1] || ' ', { size: 17 })], { after: 0, line: 240 })], { w: iw[1], m: 40 })]), iw));
+  ch.push(P([R('')], { after: 40, line: 200 }));
+  ch.push(P([R('■ 서식 목록', { size: 19, bold: true, color: C.greenD })], { after: 30 }));
+  const lw = [600, 1300, 1500, 3138, 1500, 1600];
+  const sc = (t, ww, o = {}) => cell([P([R(t, { size: o.size || 15, bold: o.bold, color: o.color })], { align: o.align, after: 0, line: 240 })], { w: ww, fill: o.fill, m: 25 });
+  ch.push(table([[th('No', lw[0]), th('서식번호', lw[1]), th('구분', lw[2]), th('서식명', lw[3]), th('보존', lw[4]), th('쪽', lw[5])]].concat(list.map((fm, i) => [sc(String(i + 1), lw[0], { align: AC }), sc(fm.id, lw[1], { align: AC, bold: true, color: C.green }), sc(fm.set === 'job' ? (FORM_GROUP[f.job] || c.J.n) : FORM_SET[fm.set].replace(' 서식', ''), lw[2], { align: AC }), sc(fm.n, lw[3], { size: 16, bold: true }), sc(fm.keep.replace(/\(.*\)/, '').replace('방문 목적 달성 후 파기', '목적 달성 후 파기'), lw[4], { align: AC, size: 14 }), sc(`- ${i + 2} -`, lw[5], { align: AC, color: C.gray })])), lw, { header: true }));
+  ch.push(P([R('■ 사용 안내', { size: 19, bold: true, color: C.greenD })], { before: 80, after: 20 }));
+  ['각 서식은 한 쪽에 한 종씩 들어 있습니다. 필요한 쪽만 골라 인쇄하거나 Word에서 바로 입력해 쓰십시오.',
+   '사업장·소속·소재지·직종·근무형태는 미리 적혀 있습니다. 기간과 결재란(담당·현장대리인·지사장)은 사용할 때 적습니다.',
+   '방문객·CCTV 열람 등 개인정보가 들어가는 서식은 보존 기간이 지나면 파쇄하고, 열람은 승인자만 합니다.',
+   '사고·이상 상황은 서식 작성보다 즉시 보고(현장대리인 → 지사)가 먼저입니다.'].forEach(t => ch.push(P([R('- ' + t, { size: 15 })], { after: 0, line: 252, indent: { left: 200, hanging: 140 } })));
+  list.forEach(fm => ch.push(...formPage(fm, c, false)));
+  const doc = new docx.Document({ creator: APP.maker, title: `${c.site} ${c.J.n} 업무 서식집`, description: `${APP.name} ${APP.version}`,
+    styles: { default: { document: { run: { font: W_FONT, size: 20 } } } },
+    sections: [{ properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1850, bottom: 1831, left: 1134, right: 1134, header: 1020, footer: 973 } } }, children: ch }] });
+  return await applyHeaderFooter(await docx.Packer.toBlob(doc), { noDate: true });
+}
+function formsFileName(f) { const c = formCtx(f), d = kstNow(); return `${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}_${safeName(c.site || '사업장')}_${safeName(FORM_GROUP[f.job] || c.J.n)}_업무서식집.docx`; }
+async function runForms() {
+  const f = readForm();
+  if (!f.siteObj && !f.client) toast('사업장을 고르지 않아 사업장명 칸을 비워 둡니다. ①에서 사업장을 고르면 이름이 미리 적힙니다.', 4200);
+  try { busy(true, `${formGroupName(f.job)} Word 생성 중…`); await download(await makeFormsDocx(f), formsFileName(f)); toast('업무 서식집을 만들었습니다 — 인쇄해서 바로 쓰십시오.'); }
+  catch (e) { console.error(e); toast('생성 오류: ' + e.message, 5000); }
+  finally { busy(false); }
 }

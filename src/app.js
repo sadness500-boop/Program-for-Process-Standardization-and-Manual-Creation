@@ -7,7 +7,7 @@ const APP = {
   name: 'Program for Process Standardization and Manual Creation',
   ko: '업무표준화·매뉴얼 제작 시스템',
   en: 'Program for Process Standardization and Manual Creation',
-  version: 'v1.2.0',
+  version: 'v1.3.0',
   build: '2026-11-15',
   shareUrl: 'https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/',
   apkUrl: 'https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk',
@@ -69,6 +69,9 @@ async function buildSignature(date) {
   const out = document.createElement('canvas'); out.width = W; out.height = H;
   const o = out.getContext('2d'); o.imageSmoothingQuality = 'high'; o.drawImage(cv, 0, 0, W, H);
   state.sigDataUrl = out.toDataURL('image/png'); state.sigPx = W;
+  // 날짜 없는 서명(업무 서식용): "Document prepared by RatRae Choi"까지만
+  const NW = 1290, nd = document.createElement('canvas'); nd.width = NW; nd.height = H; nd.getContext('2d').drawImage(base, 0, 0);
+  state.sigNoDate = nd.toDataURL('image/png'); state.sigNoDatePx = NW;
 }
 function loadImg(src) { return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; }); }
 /* =====================================================================
@@ -369,7 +372,7 @@ function bAll(color = 'B8C0CC', size = 4) { const b = { style: docx.BorderStyle.
 function cell(paras, o = {}) {
   return new docx.TableCell({ children: paras, width: { size: o.w, type: docx.WidthType.DXA }, columnSpan: o.span, verticalAlign: o.va || docx.VerticalAlign.CENTER,
     shading: o.fill ? { fill: o.fill, type: docx.ShadingType.CLEAR, color: 'auto' } : undefined,
-    margins: { top: 70, bottom: 70, left: 110, right: 110 }, borders: o.borders || bAll() });
+    margins: o.m != null ? { top: o.m, bottom: o.m, left: 90, right: 90 } : { top: 70, bottom: 70, left: 110, right: 110 }, borders: o.borders || bAll() });
 }
 function table(rows, widths, o = {}) {
   return new docx.Table({ width: { size: widths.reduce((a, b) => a + b, 0), type: docx.WidthType.DXA }, columnWidths: widths, rows: rows.map((r, i) => new docx.TableRow({ cantSplit: true, tableHeader: o.header && i === 0, height: o.rowH && i > 0 ? { value: o.rowH, rule: docx.HeightRule.ATLEAST } : undefined, children: r })) });
@@ -612,15 +615,16 @@ async function packDocx(ch, title) {
 }
 
 /* stec-header-footer 스킬(apply_header_footer.py)과 동일한 주입 로직 — JS 이식판 */
-async function applyHeaderFooter(blob) {
+async function applyHeaderFooter(blob, opt = {}) {
   const zip = await JSZip.loadAsync(blob);
   const EMU_PER_PX = 2520000 / 1860; // 원본 서명 1860px = 2520000 EMU
-  const cx = Math.round(state.sigPx * EMU_PER_PX);
+  const sigUrl = opt.noDate ? state.sigNoDate : state.sigDataUrl, sigW = opt.noDate ? state.sigNoDatePx : state.sigPx;
+  const cx = Math.round(sigW * EMU_PER_PX);
   let ftr = HF_FOOTER_XML.replace(/cx="2520000"/g, `cx="${cx}"`);
   zip.file('word/stecHeader.xml', HF_HEADER_XML);
   zip.file('word/stecFooter.xml', ftr);
   zip.file('word/media/stec-header-thebestchoice.png', b64ToU8(dataUrlB64(ASSET.headerTbc)));
-  zip.file('word/media/stec-footer-signature.png', b64ToU8(dataUrlB64(state.sigDataUrl)));
+  zip.file('word/media/stec-footer-signature.png', b64ToU8(dataUrlB64(sigUrl)));
   const rel = (id, t) => `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="${id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="${t}"/></Relationships>`;
   zip.file('word/_rels/stecHeader.xml.rels', rel('rId1', 'media/stec-header-thebestchoice.png'));
   zip.file('word/_rels/stecFooter.xml.rels', rel('rId2', 'media/stec-footer-signature.png'));
@@ -1099,7 +1103,8 @@ async function run(kind) {
   const p = syncEditor(); if (!p) return toast('먼저 [생성] 버튼을 누르세요.');
   try {
     const base = fileBase(p);
-    if (kind === 'docx' || kind === 'all') { busy(true, p.kind === 'man' ? 'Word 업무매뉴얼 생성 중… (사진·QR 포함)' : 'Word 업무표준서 생성 중…'); await download(await (p.kind === 'man' ? makeManDocx(p) : makeDocx(p)), base + '.docx'); }
+    if (kind === 'docx' || kind === 'all') { busy(true, p.kind === 'man' ? 'Word 업무매뉴얼 생성 중… (사진·QR 포함)' : 'Word 업무표준서 생성 중…'); await download(await (p.kind === 'man' ? makeManDocx(p) : makeDocx(p)), base + '.docx');
+      if (p.kind === 'man' && formIdsOf(p, outItems(p)).length) { busy(true, '업무 서식집 Word 생성 중…'); await download(await makeFormsDocx(p.f), formsFileName(p.f)); } }
     if (kind === 'pptx' || kind === 'all') { busy(true, 'PPT 생성 중… (현장 영상 포함)'); await download(await makePptx(p), base + '.pptx'); }
     if (kind === 'pdf' || kind === 'all') { await download(await makePdf(p, (i, n) => busy(true, `PDF 변환 중… ${i}/${n}`)), base + '.pdf'); }
     saveHistory(p); toast('출력 완료 — 다운로드 폴더를 확인하세요.');
@@ -1176,7 +1181,7 @@ async function init() {
   renderJobChips(); renderCodes();
   uiInit();
   const nS = kbFlat().length, nM = STD.reduce((a, L) => a + L.mids.length, 0);
-  $('#stat').textContent = `표준 ${nS} · 매뉴얼 ${MAN.length}장 ${MAN.reduce((a, L) => a + L.mids[0].smalls.length, 0)}절 · 상황별 대처 ${SCN.length} · 판례 ${CASES.length} · 서식 ${FORMS.length} · 법령 ${Object.keys(LAWS).length - 1} · 업무 ${Object.values(WBE.tasks).reduce((a, r) => a + r.length, 0)} · 근무조 ${AMS_CODES.length}`;
+  if ($('#stat')) $('#stat').textContent = `표준 ${nS} · 매뉴얼 ${MAN.length}장 ${MAN.reduce((a, L) => a + L.mids[0].smalls.length, 0)}절 · 상황별 대처 ${SCN.length} · 판례 ${CASES.length} · 서식 ${FORMS.length} · 법령 ${Object.keys(LAWS).length - 1} · 업무 ${Object.values(WBE.tasks).reduce((a, r) => a + r.length, 0)} · 근무조 ${AMS_CODES.length}`;
   void nM;
   renderTree(); renderPicked(); renderHistory();
   $('#q').addEventListener('input', e => renderTree(e.target.value));
@@ -1194,7 +1199,7 @@ async function init() {
   $('#btnClear').onclick = () => { state.picked = []; renderTree($('#q').value); renderPicked(); };
   $('#btnGen').onclick = () => { const p = state.kind === 'man' ? buildManPlan(readForm()) : buildPlan(); if (!p) return; state.plan = p; renderEditor(p); toast(p.kind === 'man' ? '업무매뉴얼이 생성되었습니다. 검토 후 출력하세요.' : '업무표준안이 생성되었습니다. 검토 후 출력하세요.'); if (innerWidth < 1100) $('#outPanel').scrollIntoView({ behavior: 'smooth' }); };
   document.querySelectorAll('input[name=mode]').forEach(r => r.onchange = () => { if (state.plan) { syncEditor(); renderEditor(state.plan); } });
-  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all');
+  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnForms').onclick = runForms;
   $('#hist').addEventListener('click', histClick);
   await buildSignature(kstNow());
   $('#sigImg').src = state.sigDataUrl;

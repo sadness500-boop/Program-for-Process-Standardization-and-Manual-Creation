@@ -1,6 +1,6 @@
 # Program for Process Standardization and Manual Creation
 
-**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.2.0
+**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.3.0
 
 <img src="icons/icon-192.png" width="96" alt="업무표준화·매뉴얼 제작 시스템 아이콘">
 
@@ -14,9 +14,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/ |
-| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.2.0.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.2.0.html) | |
+| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.0.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.0.html) | |
 | 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.2.0.apk` | 릴리스 `v1.2.0` |
+| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.0.apk` | 릴리스 `v1.3.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -28,14 +28,14 @@
 
 | 문서 | Word | PPT |
 |---|---|---|
-| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.2.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.2.0.pptx) |
-| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.2.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.2.0.pptx) |
+| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.pptx) |
+| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.pptx) |
 
 매뉴얼은 `tools/make_guides.py`(화면 캡처) + `tools/guide.js`(프로그램과 같은 Word·PPT 엔진)로 다시 만들 수 있습니다.
 
-## 🗂 업무 서식 38종 (v1.2.0)
+## 🗂 업무 서식 38종 — 별도 Word 「업무 서식집」 (v1.3.0)
 
-업무매뉴얼 「업무 서식(양식)」 장을 고르면 직종에 맞는 서식 목록이 본문에, **인쇄용 양식**이 Word 붙임 4에 들어갑니다(서식마다 사업장·기간·확인자 서명란, 보존 기간·근거 법령 표기).
+④ 출력의 **[📝 업무 서식 Word]** 버튼을 누르면 고른 사업장·직종에 맞는 서식만 모은 **인쇄용 Word 「업무 서식집」**이 매뉴얼과 별도로 만들어집니다. 사업장명·소속 지사·소재지·직종·근무형태가 미리 적혀 있고, 한 쪽에 한 서식씩 결재란(담당·현장대리인·지사장)·보존 기간·근거 법령이 들어갑니다. 보안 → 보안 서식, 주차 → 주차 서식, 시설 → 시설 서식, 미화 → 미화 서식, 안내·조리·소독방역 → 기타 업종 서식(+ 공통·안전 서식). 머리글·바닥글은 stec 서식이며 바닥글 서명에는 날짜가 없습니다. 업무 서식 장이 든 매뉴얼을 Word로 출력하면 서식집이 함께 저장됩니다.
 
 - **공통(5):** 근무일지 · 인수인계 대장 · 고객사 요청 접수 대장 · 연차·휴가 신청서 · 장비·보호구 지급 대장
 - **보안(8):** 방문객 출입 관리대장 · 차량 출입 대장 · 물품 반출입 확인 대장 · 순찰 기록부 · 열쇠 관리대장 · 습득물·분실물 관리대장 · CCTV 영상정보 열람 대장 · 화재경보 처리 대장
@@ -137,6 +137,7 @@ server/                        로그인 서버 SQL
 
 ## 변경 이력
 
+- **v1.3.0** (2026-11-16) — 상단 화면 정리(프로그램 이름 2줄 · 아이콘 확대 · 소개 문구 제외 · 오른쪽 카드 축소), 매뉴얼과 별도의 인쇄용 Word 「업무 서식집」(④ [📝 업무 서식 Word] 버튼 · 사업장명·소속·소재지·직종·근무형태 미리 기재 · 보안/주차/시설/미화/기타 업종별 · 한 쪽 한 서식 · 결재란 · stec 머리글·바닥글, 바닥글 서명 날짜 제외), 업무 서식이 든 매뉴얼 Word 출력 시 서식집 자동 동시 저장
 - **v1.2.0** (2026-11-16) — 프로그램 이름 변경(Program for Process Standardization and Manual Creation) · 새 앱 아이콘, 업종별 업무 서식 38종(매뉴얼 「업무 서식」 장 · Word 인쇄용 양식), ② 장·절 선택 화면 확대(글자·간격·높이), 상단 소개 문구 2줄 정리, 사용자 매뉴얼·제작자 관리 매뉴얼(Word·PPT)
 
 - **v1.1.0** (2026-11-16) — 📘 업무매뉴얼 제작: Manual-Project 4계층, 10장 29절, 사건사고 상황별 대처 24건, 판례·행정해석 10건, Complaint 사례 영상 7편(media/cases), 3D 피규어·현장 사진·PPT 영상·Word 영상 QR
