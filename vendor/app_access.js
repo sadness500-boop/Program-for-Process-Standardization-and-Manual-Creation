@@ -18,7 +18,7 @@
     { id: 'stso', name: '사업장 지도', full: 'S-Tec-Business-Site-Overview' },
     { id: 'stqs', name: '용역 견적', full: 'S-Tec-Quotation-System' },
     { id: 'wbe', name: '업무량 산정', full: 'Workload-Based Cost and Labor Estimation' },
-    { id: 'stos', name: '업무표준화', full: 'S-Tec Operational Standards System' }
+    { id: 'stos', name: '업무표준화', full: 'Program for Process Standardization and Manual Creation' }
   ];
   const BR = ['동부', '서부', '남부', '중부'];
   const ROLE = { owner: '제작자', admin: '관리자', user: '사용자' };
@@ -140,7 +140,7 @@ table.aa-t{border-collapse:collapse;width:100%;font-size:12.5px;min-width:820px}
     body.innerHTML = '<div class="ag-spin"></div>';
     const { data, error } = await A().client.rpc('admin_list_app_access');
     if (error) {
-      body.innerHTML = `<div class="aa-note warn"><b>프로그램별 권한 서버 설정이 아직 없습니다.</b><br>Supabase 프로젝트 → SQL Editor → <b>supabase_app_access.sql</b> 전체를 붙여넣고 Run 하세요(한 번만).<br>파일 위치: GitHub S-Tec-Complaint-Response-System 저장소 › server 폴더<br><small>${E(error.message || '')}</small></div>${SIGN}`;
+      body.innerHTML = `<div class="aa-note warn"><b>프로그램별 권한 서버 설정이 아직 없습니다.</b><br>Supabase 프로젝트 → SQL Editor → <b>supabase_app_access.sql</b> 전체를 붙여넣고 Run 하세요(한 번만).<br>파일 위치: GitHub S-Tec-Complaint-Response-System 저장소 › server 폴더 (업무표준화 열은 Program-for-Process-Standardization-and-Manual-Creation 저장소 › server › supabase_app_access_stos.sql 추가 실행)<br><small>${E(error.message || '')}</small></div>${SIGN}`;
       return;
     }
     ROWS = data || []; draw();
@@ -149,7 +149,7 @@ table.aa-t{border-collapse:collapse;width:100%;font-size:12.5px;min-width:820px}
     const body = document.getElementById('admBody'); if (!body) return;
     const q = Q.trim().toLowerCase();
     const rows = ROWS.filter(u => !q || (u.name + ' ' + u.email + ' ' + (u.dept || '')).toLowerCase().includes(q));
-    body.innerHTML = `<div class="aa-note">하나의 아이디(통합 로그인)로 쓰는 <b>5개 프로그램</b>의 사용 권한을 사람마다 따로 줍니다. 칸을 누르면 <b>사용 / 사용 안 함 · 사용기한 · 관리 범위(담당 지사)</b>를 정합니다.<br>
+    body.innerHTML = `<div class="aa-note">하나의 아이디(통합 로그인)로 쓰는 <b>6개 프로그램</b>의 사용 권한을 사람마다 따로 줍니다. 칸을 누르면 <b>사용 / 사용 안 함 · 사용기한 · 관리 범위(담당 지사)</b>를 정합니다.<br>
       제작자·관리자는 모든 프로그램을 씁니다. 가입 승인·차단·계정 기한은 「👥 사용자」 탭에서 관리하며 모든 프로그램에 함께 적용됩니다. (근태관리 프로그램은 자체 「관리 범위」를 씁니다.)</div>
       <div class="aa-tools"><input id="aaQ" placeholder="🔍 이름·이메일·부서 검색" value="${E(Q)}"><span style="font-size:12px;color:#6b7391">${rows.length}명</span></div>
       <div class="aa-wrap"><table class="aa-t"><thead><tr><th style="text-align:left">사용자</th>${APPS.map(a => `<th class="${a.id === APP ? 'me' : ''}">${E(a.name)}${a.id === APP ? '<br><small>(이 프로그램)</small>' : ''}</th>`).join('')}</tr></thead>

@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "date": "2026-11-16",
-  "note": "업무매뉴얼 제작 추가 — Manual-Project 4계층(통합·직종별·직종×산업·현장별), 사건사고 상황별 대처 24건, 판례·행정해석 10건, Complaint 사례 영상 7편, 3D 피규어·현장 사진·영상(PPT)·영상 QR(Word)",
-  "html": "releases/S-Tec-Operational-Standards-System_v1.1.0.html",
-  "apk": "releases/S-Tec-Operational-Standards-System_v1.1.0.apk"
+  "note": "프로그램 이름 변경(Program for Process Standardization and Manual Creation)·새 아이콘, 업종별 업무 서식 38종(매뉴얼 「업무 서식」 장·Word 인쇄용 양식), ② 장·절 선택 화면 확대, 상단 소개 2줄, 사용자·제작자 매뉴얼",
+  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.2.0.html",
+  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.2.0.apk"
 }

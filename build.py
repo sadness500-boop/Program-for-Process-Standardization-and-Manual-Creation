@@ -1,4 +1,4 @@
-# S-Tec Operational Standards System — 한 파일 HTML 빌드 (라이브러리·자산 내장)
+# Program for Process Standardization and Manual Creation — 한 파일 HTML 빌드 (라이브러리·자산 내장)
 # 사용: python3 build.py [출력경로]   · Designed & Developed by Rat Rae Choi
 import base64, json, sys, os
 R = os.path.dirname(os.path.abspath(__file__)) + '/'

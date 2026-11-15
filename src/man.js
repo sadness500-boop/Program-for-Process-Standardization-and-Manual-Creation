@@ -1,5 +1,5 @@
 /* =====================================================================
- * S-Tec Operational Standards System — 업무매뉴얼 제작 (v1.1.0)
+ * Program for Process Standardization and Manual Creation — 업무매뉴얼 제작 (v1.1.0)
  * [ Manual - Project ] 4계층 체계 · 사건사고 상황별 대처 · 법적 근거·판례 · 3D 피규어·사진·영상·QR
  * Program & Design by Rat Rae Choi (제작자 서명 — 하드코딩)
  * ===================================================================== */
@@ -140,6 +140,9 @@ function manGroups(S, f, p) {
     case 'special':
       G.push({ title: '사업장 특수 지시사항', lines: lines(f.special).length ? lines(f.special) : ['(현장 작성) 고객사 요구사항·특수 지시'] });
       break;
+    case 'forms':
+      G.push({ title: FORM_SET[S.set], lines: formsFor(S.set, f.job).map(x => `${x.id} ${x.n} — ${x.pur} (보존 ${x.keep})`) });
+      break;
     case 'contact': {
       const br = st ? BRANCHES.find(b => b.key === st.br) : null;
       G.push({ title: '비상연락망', lines: ['화재·구급 119 · 경찰 112 · 가스 누출 119', st ? `사업장 현장 책임자: ${[st.pos, st.mgr].filter(Boolean).join(' ')} ${st.mtel || ''}` : '현장 책임자: (현장 작성)', st && st.stel ? `사업장 전화: ${st.stel}` : '사업장 전화: (현장 작성)', br ? `관할 ${br.name}: ${br.head} ${br.title} ${br.tel} · ${br.addr}` : '관할 지사: (현장 작성)'] });
@@ -153,7 +156,7 @@ function manMedia(S, p) {
   const J = p.J, fig = jobKey(p), jp = JOB_POSTERS[p.f.job] || ['sec1'], ip = IND_POSTER[p.f.ind];
   const m = { intro: { fig: 'team' }, terms: { fig: 'team_dio' }, org: { fig: 'hq' }, duty: { fig: 'dio_' + fig }, shift: { fig: 'cute_' + fig, poster: jp[0] }, kit: { fig: 'cute_' + fig }, ban: { poster: jp[1] || jp[0] },
     flow: { poster: jp[0], vid: VIDEO_OF[fig] }, rules: { poster: 'cases/cmp7' }, cs: { poster: p.f.job === 'cln' ? 'cln' : 'sec2' }, core: { poster: VIDEO_OF[fig], vid: VIDEO_OF[fig] }, tasks: { fig: 'dio_' + fig }, check: { fig: 'cute_' + fig },
-    ind: { poster: ip, vid: ip }, indlaw: { poster: ip }, tbm: { fig: 'team_dio' }, risk: { poster: 'spc' }, report: { poster: 'pt' }, log: { poster: 'off' }, laws: { fig: 'mgr' }, cases: { poster: 'off2' }, site: { fig: 'dio_' + fig }, special: { poster: jp[0] }, contact: { fig: 'mgr' } }[S.gen] || {};
+    forms: { fig: 'cute_' + fig }, ind: { poster: ip, vid: ip }, indlaw: { poster: ip }, tbm: { fig: 'team_dio' }, risk: { poster: 'spc' }, report: { poster: 'pt' }, log: { poster: 'off' }, laws: { fig: 'mgr' }, cases: { poster: 'off2' }, site: { fig: 'dio_' + fig }, special: { poster: jp[0] }, contact: { fig: 'mgr' } }[S.gen] || {};
   if (m.fig && !ASSET.fig[m.fig]) m.fig = figName(m.fig.split('_')[0], fig);
   return m;
 }
@@ -173,9 +176,10 @@ function buildManPlan(f) {
   const nBad = items.some(x => x.S.gen === 'bad') ? badFor(f.job).length : 0;
   const vids = uniq(items.flatMap(x => { const m = p.media[x.S.c]; return [m.vid].concat(x.S.gen === 'scn' ? scnFor(x.S.grp, f.job).map(s => s.vid) : []).concat(x.S.gen === 'bad' ? badFor(f.job).map(b => b.k) : []); }).filter(Boolean));
   p.vids = vids;
-  p.summary = [`${lv.n} · ${docNo} · ${where}${f.level === 'L1' ? '' : ' · ' + J.n}${f.level === 'L3' ? ' × ' + I.n : ''}`, `장 ${uniq(items.map(x => x.L.c)).length}개 · 절 ${items.length}개 · 상황별 대처 ${nScn}건 · Complaint 사례 영상 ${nBad}편 · 판례·행정해석 ${items.some(x => x.S.gen === 'cases') ? casesFor(f.job, f.ind).length : 0}건`, `멀티미디어: 3D 피규어·현장 사진 + 영상 ${vids.length}편(PPT 재생 · Word QR)`, `시행일 ${fmtD(eff)} · ${Number(f.rev) ? `개정 ${f.rev}차` : '제정'} · 관계 법령 ${lawIds.length}개 조항`].join('\n');
+  const nForms = uniq(items.filter(x => x.S.gen === 'forms').flatMap(x => formsFor(x.S.set, f.job).map(z => z.id))).length;
+  p.summary = [`${lv.n} · ${docNo} · ${where}${f.level === 'L1' ? '' : ' · ' + J.n}${f.level === 'L3' ? ' × ' + I.n : ''}`, `장 ${uniq(items.map(x => x.L.c)).length}개 · 절 ${items.length}개 · 상황별 대처 ${nScn}건 · Complaint 사례 영상 ${nBad}편 · 판례·행정해석 ${items.some(x => x.S.gen === 'cases') ? casesFor(f.job, f.ind).length : 0}건 · 업무 서식 ${nForms}종`, `멀티미디어: 3D 피규어·현장 사진 + 영상 ${vids.length}편(PPT 재생 · Word QR)`, `시행일 ${fmtD(eff)} · ${Number(f.rev) ? `개정 ${f.rev}차` : '제정'} · 관계 법령 ${lawIds.length}개 조항`].join('\n');
   p.scope = ''; p.terms = '';
-  p.links = [`📘 ${lv.n} (${docNo})`, `🚨 사건사고 상황별 대처 ${nScn}건 — 대표 사진·영상 QR`, `🎬 영상 ${vids.length}편 PPT 삽입 · Word에는 영상 QR`, `🧸 3D 피규어 · 현장 사진 · Complaint 사례 영상 ${nBad}편`];
+  p.links = [`📘 ${lv.n} (${docNo})`, `🚨 사건사고 상황별 대처 ${nScn}건 — 대표 사진·영상 QR`, `🎬 영상 ${vids.length}편 PPT 삽입 · Word에는 영상 QR`, `🧸 3D 피규어 · 현장 사진 · Complaint 사례 영상 ${nBad}편`, `🗂 업무 서식 ${nForms}종 — Word 붙임에 인쇄용 양식 수록`];
   return p;
 }
 
@@ -209,6 +213,21 @@ function scnCard(g, x) {
     new docx.TableRow({ cantSplit: true, children: [new docx.TableCell({ columnSpan: 2, children: [head], shading: { fill: C.navy, type: docx.ShadingType.CLEAR, color: 'auto' }, margins: { top: 50, bottom: 50, left: 120, right: 80 }, borders: { top: b, bottom: b, left: b, right: b } })] }),
     new docx.TableRow({ cantSplit: true, children: [mediaCell(m, wL, { posW: 150 }), new docx.TableCell({ children: grpParas([{ title: '', lines: g.lines }]), width: { size: wR, type: docx.WidthType.DXA }, borders: { top: b, bottom: b, left: b, right: b }, margins: { top: 40, bottom: 40, left: 100, right: 60 } })] })] });
 }
+function formIdsOf(p, items) { const ids = []; items.filter(x => x.S.gen === 'forms').forEach(x => parseGrp(p.text[x.S.c]).forEach(g => g.lines.forEach(l => { const m = /^(F-[A-Z]+-\d+)/.exec(l); if (m && FORMS.find(z => z.id === m[1]) && !ids.includes(m[1])) ids.push(m[1]); }))); return ids; }
+function formDoc(fm, p, first) {
+  const AC = docx.AlignmentType.CENTER, out = [], tot = fm.cols.reduce((a, c) => a + c[1], 0);
+  const w = fm.cols.map(c => Math.floor(CW * c[1] / tot)); w[w.length - 1] += CW - w.reduce((a, b) => a + b, 0);
+  out.push(new docx.Paragraph({ pageBreakBefore: !first, alignment: docx.AlignmentType.RIGHT, spacing: { after: 20 }, children: [R(`${fm.id}  ·  ${p.docNo}`, { size: 15, color: C.gray })] }));
+  out.push(P([R(fm.n, { size: 34, bold: true, color: C.navy })], { align: AC, after: 60 }));
+  out.push(P([R(fm.pur, { size: 17, color: C.gray })], { align: AC, after: 100 }));
+  const mw = [1300, 3300, 1100, 1900, 1100, 938];
+  out.push(table([[td('사업장', mw[0], { fill: C.silverL, bold: true, align: AC, size: 17 }), td(p.where, mw[1], { size: 17 }), td('기간', mw[2], { fill: C.silverL, bold: true, align: AC, size: 17 }), td('   년   월   일 ~', mw[3], { size: 17 }), td('확인자', mw[4], { fill: C.silverL, bold: true, align: AC, size: 17 }), td('(서명)', mw[5], { size: 15, color: C.gray, align: AC })]], mw));
+  out.push(P([R('')], { after: 60 }));
+  const rows = fm.fixed ? fm.fixed.map(r => [td(r[0], w[0], { fill: 'F4F6FA', bold: true, color: C.navy })].concat(w.slice(1).map(x => td('\n\n', x)))) : Array.from({ length: Math.max(fm.rows, 20) }, () => w.map(x => td(' ', x)));
+  out.push(table([fm.cols.map((c, i) => th(c[0], w[i]))].concat(rows), w, { header: true, rowH: fm.fixed ? 900 : 440 }));
+  out.push(P([R(`보존 기간: ${fm.keep}   ·   근거: ${lawShort(fm.l.filter(id => LAWS[id])) || '용역(도급)계약서'}   ·   ${APP.org} 업무 서식`, { size: 14, color: '8A93A3' })], { before: 60, after: 0 }));
+  return out;
+}
 async function makeManDocx(p) {
   const f = p.f, isClient = f.mode === 'client', AC = docx.AlignmentType.CENTER, ch = [], items = outItems(p);
   const fig = figName('dio', jobKey(p));
@@ -238,7 +257,7 @@ async function makeManDocx(p) {
     ch.push(P([R(`${i + 1}장  ${L.e} ${L.n}`, { size: 21, bold: true, color: C.navy })], { before: 60, after: 20 }));
     items.filter(x => x.L.c === L.c).forEach((x, j) => ch.push(P([R(`${i + 1}.${j + 1}  ${x.S.n}`, { size: 18 })], { indent: { left: 500 }, after: 10 })));
   });
-  ch.push(P([R('붙임  1. 일일 점검표  2. 교육 확인서  3. 경위서(6하원칙) 양식', { size: 18, color: C.gray })], { before: 80, after: 40 }));
+  ch.push(P([R('붙임  1. 일일 점검표  2. 교육 확인서  3. 경위서(6하원칙) 양식  4. 업무 서식', { size: 18, color: C.gray })], { before: 80, after: 40 }));
   ch.push(H2('제·개정 이력'));
   const rw = [1300, 2000, 4538, 1800];
   ch.push(table([[th('개정', rw[0]), th('일자', rw[1]), th('내용', rw[2]), th('작성', rw[3])], [td(revLabel(p).split(' ')[0], rw[0], { align: AC }), td(fmtD(p.made), rw[1], { align: AC }), td(f.reason || (Number(f.rev) ? '정기 검토 개정' : '업무매뉴얼 제정'), rw[2]), td(f.author || f.dept, rw[3], { align: AC })]], rw, { header: true }));
@@ -251,6 +270,12 @@ async function makeManDocx(p) {
       const G = parseGrp(p.text[x.S.c]), m = p.media[x.S.c] || {};
       if (x.S.gen === 'scn') { G.forEach(g => { const sc = SCN.find(s => g.title.startsWith(s.id + ' ')); if (sc) { ch.push(scnCard(g, sc)); ch.push(P([R('')], { after: 40 })); } else ch.push(...grpParas([g])); }); }
       else if (x.S.gen === 'bad') { G.forEach(g => { const b = BAD.find(b => g.title.includes(b.t)); ch.push(sideTable(b ? { poster: b.k, vid: b.k } : {}, grpParas([g]), 2700)); }); }
+      else if (x.S.gen === 'forms') {
+        const fw = [1300, 2600, 4238, 1500];
+        G.forEach(g => { if (g.title) ch.push(P([R('■ ' + g.title, { size: 19, bold: true, color: C.navy })], { before: 40, after: 30, keepNext: true }));
+          ch.push(table([[th('서식번호', fw[0]), th('서식명', fw[1]), th('용도', fw[2]), th('보존 기간', fw[3])]].concat(g.lines.map(l => { const m = /^(F-[A-Z]+-\d+)\s+(.*?)\s+—\s+(.*?)(?:\s+\(보존 (.*)\))?$/.exec(l) || [0, '', l, '', '']; return [td(m[1], fw[0], { size: 16, bold: true, color: C.green, align: docx.AlignmentType.CENTER }), td(m[2], fw[1], { size: 17, bold: true }), td(m[3], fw[2], { size: 16 }), td(m[4] || '', fw[3], { size: 15 })]; })), fw, { header: true })); });
+        ch.push(P([R('▶ 인쇄용 양식은 붙임 「업무 서식」에 수록', { size: 16, bold: true, color: C.green })], { before: 40, after: 40 }));
+      }
       else if (x.S.gen === 'laws' || x.S.gen === 'indlaw') {
         const lw = [2700, 6938]; G.forEach(g => { if (g.title) ch.push(H2(g.title)); ch.push(table([[th('법령·조항', lw[0]), th('요지', lw[1])]].concat(g.lines.map(l => { const k = l.indexOf(':'); return [td(k > 0 ? l.slice(0, k) : l, lw[0], { size: 16, bold: true, color: C.navy }), td(k > 0 ? l.slice(k + 1).trim() : '', lw[1], { size: 16 })]; })), lw, { header: true })); });
       } else if (x.S.gen === 'check') { G.forEach(g => { if (/점검/.test(g.title)) { allCk.push(...g.lines); ch.push(sideTable(m, [checkTable(g.lines)], 2000)); } else ch.push(...grpParas([g])); }); }
@@ -280,6 +305,10 @@ async function makeManDocx(p) {
   const kw = [2200, 7438];
   ch.push(table([['작성자 (소속·성명)', ''], ['언제 (일시)', ''], ['어디서 (장소)', ''], ['누가 (관련자)', ''], ['무엇을 (발생 사실)', ''], ['어떻게 (경과·조치)', '\n\n'], ['왜 (원인)', ''], ['재발 방지 다짐', '\n']].map(r => [td(r[0], kw[0], { fill: C.silverL, bold: true }), td(r[1], kw[1])]), kw));
   ch.push(P([R('위 내용은 사실과 다름없음을 확인합니다.      년    월    일        작성자 :              (서명)', { size: 18 })], { before: 80, after: 80 }));
+  const fIds = formIdsOf(p, items);
+  if (fIds.length) { ch.push(new docx.Paragraph({ children: [new docx.PageBreak()] })); ch.push(H1(`붙임 4. 업무 서식 (${fIds.length}종)`));
+    const fw2 = [1400, 3200, 5038]; ch.push(table([[th('서식번호', fw2[0]), th('서식명', fw2[1]), th('용도', fw2[2])]].concat(fIds.map(id => { const fm = FORMS.find(z => z.id === id); return [td(id, fw2[0], { size: 16, align: docx.AlignmentType.CENTER, color: C.green, bold: true }), td(fm.n, fw2[1], { size: 17, bold: true }), td(fm.pur, fw2[2], { size: 16 })]; })), fw2, { header: true }));
+    fIds.forEach(id => ch.push(...formDoc(FORMS.find(z => z.id === id), p, false))); }
   ch.push(...imgPara(ASSET.fig.team, 2.2, 'The Best Choice, S-Tec — 매뉴얼대로 일하는 에스텍 그룹', ASSET.figDim.team));
   ch.push(P([R('- 끝 -', { size: 20, bold: true })], { align: AC, before: 120, after: 80 }));
   ch.push(P([R(`※ 법령·판례 요약은 실무 참고용입니다. 적용 전 원문과 노무 자문으로 확인하십시오. 영상 QR은 웹 주소(${APP.shareUrl})의 현장 영상으로 연결됩니다.  |  ${APP.name} ${APP.version}`, { size: 15, color: '8A93A3' })], { align: AC }));
@@ -331,6 +360,22 @@ function buildManSlides(p) {
           steps.forEach((t, k) => { const y = 1.6 + k * (hS + 0.08); o.push(Rc(6.35, y, 6.4, hS, k % 2 ? 'F7F9FC' : C.white, { line: K.line })); o.push(Rc(6.35, y, 0.5, hS, k % 2 ? K.blu : C.green)); o.push(T(6.35, y, 0.5, hS, [{ text: String(k + 1), bold: true }], { pt: 14, color: C.white, align: 'center', valign: 'middle' })); o.push(T(6.95, y + 0.02, 5.7, hS - 0.04, t, { max: 13, min: 8, valign: 'middle' })); });
           if (dont.length) { o.push(Rc(6.35, 5.45, 6.4, 1.0, 'FDF1EF', { line: 'F2B8AE' })); o.push(T(6.55, 5.5, 6.1, 0.9, [{ text: '하지 마세요', bold: true, color: C.brick }].concat(dont.map(t => ({ text: '✕  ' + t, size: 0.9 }))), { max: 12, min: 8, gap: 2 })); }
           S.push(o); no++; });
+        return;
+      }
+      if (x.S.gen === 'forms') {
+        const ids = []; G.forEach(g => g.lines.forEach(l => { const m = /^(F-[A-Z]+-\d+)/.exec(l); if (m && FORMS.find(z => z.id === m[1])) ids.push(m[1]); }));
+        for (let k = 0; k < ids.length; k += 6) {
+          const o = frame(`${ttl}${ids.length > 6 ? ` (${k / 6 + 1}/${Math.ceil(ids.length / 6)})` : ''}`, `${L.e} ${L.n} · 인쇄용 양식은 Word 붙임 「업무 서식」 수록`, no, p);
+          ids.slice(k, k + 6).forEach((id, i) => { const fm = FORMS.find(z => z.id === id), cx = 0.6 + (i % 3) * 4.1, cy = 1.6 + Math.floor(i / 3) * 2.45, cw = 3.95, chh = 2.3;
+            o.push(Rc(cx, cy, cw, chh, C.white, { line: K.line })); o.push(Rc(cx, cy, cw, 0.5, K.navy)); o.push(Rc(cx, cy, 0.08, chh, C.green));
+            o.push(T(cx + 0.18, cy, cw - 0.25, 0.5, [{ text: `${fm.id}  ${fm.n}`, bold: true }], { max: 12.5, min: 8.5, color: C.white, valign: 'middle' }));
+            o.push(T(cx + 0.18, cy + 0.55, cw - 0.3, 0.5, fm.pur, { max: 10.5, min: 7.5, color: K.ink }));
+            const tw = cw - 0.36, tot = fm.cols.reduce((a, c) => a + c[1], 0); let xx = cx + 0.18;
+            fm.cols.forEach(c => { const ww = tw * c[1] / tot; o.push(Rc(xx, cy + 1.1, ww, 0.34, K.tintG, { line: 'CFE6D7' })); o.push(T(xx + 0.02, cy + 1.1, ww - 0.04, 0.34, c[0], { max: 7.5, min: 5, align: 'center', valign: 'middle', color: C.greenD, bold: true })); xx += ww; });
+            for (let r = 0; r < 3; r++) o.push(Rc(cx + 0.18, cy + 1.44 + r * 0.22, tw, 0.22, r % 2 ? 'F7F9FC' : C.white, { line: 'E3E7ED' }));
+            o.push(T(cx + 0.18, cy + 2.1, cw - 0.3, 0.2, `보존 ${fm.keep}`, { pt: 7.5, color: K.mute })); });
+          S.push(o); no++;
+        }
         return;
       }
       if (x.S.gen === 'bad') {

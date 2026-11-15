@@ -1,10 +1,9 @@
-# Program for Creating Operational Standards
+# Program for Process Standardization and Manual Creation
 
-**S-Tec Operational Standards System** (저장소: `Program-for-Creating-Operational-Standards`)
+**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.2.0
 
-<img src="icons/icon-192.png" width="96" alt="업무표준화 제작 시스템 아이콘">
+<img src="icons/icon-192.png" width="96" alt="업무표준화·매뉴얼 제작 시스템 아이콘">
 
-**에스텍 그룹 업무표준화 제작 시스템** · Program for Creating Operational Standards · v1.1.0
 
 직종·산업·사업장을 고르고 표준 항목을 선택하면, 근로기준법·노동관계법·경비업법·산업안전보건법 기준의 **업무표준서**를
 **Word(머리글·바닥글 서식 + 점검표·교육 확인서) · PPT(16:9, 현장 영상 포함) · PDF(PPT와 같은 디자인)** 3종으로 바로 만들어 줍니다.
@@ -14,16 +13,37 @@
 
 | 구분 | 파일 | 주소 |
 |---|---|---|
-| 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Creating-Operational-Standards/ |
-| 웹 버전 (버전별) | [releases/S-Tec-Operational-Standards-System_v1.1.0.html](releases/S-Tec-Operational-Standards-System_v1.1.0.html) | |
-| 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Creating-Operational-Standards/releases/download/app-latest/stos-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/S-Tec-Operational-Standards-System_v1.1.0.apk` | 릴리스 `v1.1.0` |
+| 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/ |
+| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.2.0.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.2.0.html) | |
+| 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk |
+| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.2.0.apk` | 릴리스 `v1.2.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
 - 서명 키(`android-keystore/stos-debug.keystore`)를 고정해 두었으므로 새 버전은 지우지 않고 덮어 설치하면 됩니다.
 - **웹 버전 주소를 열려면** 저장소 Settings › Pages › Branch를 `main` / `/(root)` 로 한 번 켜야 합니다.
 - 웹 버전은 인터넷 없이도 동작합니다(로그인·지도·영상 재생만 인터넷 필요).
+
+## 📖 사용 매뉴얼
+
+| 문서 | Word | PPT |
+|---|---|---|
+| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.2.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.2.0.pptx) |
+| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.2.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.2.0.pptx) |
+
+매뉴얼은 `tools/make_guides.py`(화면 캡처) + `tools/guide.js`(프로그램과 같은 Word·PPT 엔진)로 다시 만들 수 있습니다.
+
+## 🗂 업무 서식 38종 (v1.2.0)
+
+업무매뉴얼 「업무 서식(양식)」 장을 고르면 직종에 맞는 서식 목록이 본문에, **인쇄용 양식**이 Word 붙임 4에 들어갑니다(서식마다 사업장·기간·확인자 서명란, 보존 기간·근거 법령 표기).
+
+- **공통(5):** 근무일지 · 인수인계 대장 · 고객사 요청 접수 대장 · 연차·휴가 신청서 · 장비·보호구 지급 대장
+- **보안(8):** 방문객 출입 관리대장 · 차량 출입 대장 · 물품 반출입 확인 대장 · 순찰 기록부 · 열쇠 관리대장 · 습득물·분실물 관리대장 · CCTV 영상정보 열람 대장 · 화재경보 처리 대장
+- **미화(5):** 구역별 청소 점검표 · 화장실 위생 점검표 · 세제·약품 관리대장(MSDS) · 소모품 재고 대장 · 정기청소 작업 계획·실적표
+- **주차(4):** 주차 관제 일지 · 정산 마감표 · 불법·장기 주차 계도 기록 · 주차장 사고 접수 기록
+- **시설(5):** 설비 일상점검표 · 법정 점검 연간 계획표 · 설비 이력카드 · 작업허가서·LOTO 기록 · 에너지 검침표
+- **안내(1) · 조리(4) · 소독방역(2):** 전화 응대 기록 · 식재료 검수일지 · 보존식 관리대장 · 냉장·냉동고 온도 기록표 · 조리 종사자 위생 점검표 · 소독 실시 대장 · 해충 트랩 점검표
+- **안전·보고(4):** TBM 일지 · 사건사고 보고서(6하원칙) · 위험성평가 점검표 · 안전보건교육 일지
 
 ## 📘 업무매뉴얼 제작 (v1.1.0)
 
@@ -36,7 +56,7 @@
 | 3계층 | 직종 × 산업 매뉴얼 (7 × 12 = 84종) | STB-SEC-101 ~ 112 등 |
 | 4계층 | 현장별 근무지침 (사업장 단위) | STB-SEC-9xx 등 |
 
-- **장 구성(10장 29절):** 총론 · 직무 이해 · 근무 수칙 · 핵심 업무 절차 · 산업별 특수 업무 · 사건사고 상황별 대처 · 안전보건 · 보고·기록 · 법적 근거·판례 · 현장별 근무지침. 「📦 계층 권장 구성」으로 계층에 맞는 장·절을 한 번에 선택.
+- **장 구성(11장 36절):** 총론 · 직무 이해 · 근무 수칙 · 핵심 업무 절차 · 산업별 특수 업무 · 사건사고 상황별 대처 · 안전보건 · 보고·기록 · 법적 근거·판례 · 업무 서식 · 현장별 근무지침. 「📦 계층 권장 구성」으로 계층에 맞는 장·절을 한 번에 선택.
 - **사건사고 상황별 대처 24건:** 화재·가스, 응급·재해, 침입·도난, 폭언·폭행·집회, 차량·주차, 정전·재난, 약품·위생, 개인정보·부당지시·괴롭힘 — 상황 · 대처 순서 · 금지 행동 · 보고 경로 · 법적 근거.
 - **판례·행정해석 10건**(휴게시간의 근로시간 해당, 불법파견 판단 기준, 감시·단속적 승인, 해고 정당성 등) — 실무 참고 요지.
 - **멀티미디어:** 직종별 3D 피규어(디오라마·캐릭터), 현장 사진(근무 영상 대표 장면 19종), Complaint 사례 영상 7편(「이런 행동은 안 됩니다」), PPT에는 영상이 직접 들어가 재생되고 Word에는 영상 QR이 들어갑니다.
@@ -116,6 +136,8 @@ server/                        로그인 서버 SQL
 ```
 
 ## 변경 이력
+
+- **v1.2.0** (2026-11-16) — 프로그램 이름 변경(Program for Process Standardization and Manual Creation) · 새 앱 아이콘, 업종별 업무 서식 38종(매뉴얼 「업무 서식」 장 · Word 인쇄용 양식), ② 장·절 선택 화면 확대(글자·간격·높이), 상단 소개 문구 2줄 정리, 사용자 매뉴얼·제작자 관리 매뉴얼(Word·PPT)
 
 - **v1.1.0** (2026-11-16) — 📘 업무매뉴얼 제작: Manual-Project 4계층, 10장 29절, 사건사고 상황별 대처 24건, 판례·행정해석 10건, Complaint 사례 영상 7편(media/cases), 3D 피규어·현장 사진·PPT 영상·Word 영상 QR
 

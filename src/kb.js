@@ -1,6 +1,6 @@
 /* =====================================================================
- * S-Tec Operational Standards System — 지식베이스(KB)
- * 업무표준화 제작 시스템 · 에스텍 그룹
+ * Program for Process Standardization and Manual Creation — 지식베이스(KB)
+ * 업무표준화·매뉴얼 제작 시스템 · 에스텍 그룹
  * 근거: [S-Tec Job] · [Legal standards] · [Manual - Project] · [AI creation program] 프로젝트 자료와
  *       근로기준법·노동관계법·경비업법·산업안전보건법 등 관계 법령
  * 연계: Attendance Management Software(근무조 코드·근태 환산) · S-Tec short estimate(단기 견적식)

@@ -1,17 +1,17 @@
 /* =====================================================================
- * S-Tec Operational Standards System v1.0.0 — 앱 로직
- * 에스텍 그룹 업무표준화 제작 시스템 (Program for Creating Operational Standards)
+ * Program for Process Standardization and Manual Creation v1.0.0 — 앱 로직
+ * 에스텍 그룹 업무표준화·매뉴얼 제작 시스템 (Program for Process Standardization and Manual Creation)
  * Program & Design by Rat Rae Choi (제작자 서명 — 하드코딩)
  * ===================================================================== */
 const APP = {
-  name: 'S-Tec Operational Standards System',
-  ko: '업무표준화 제작 시스템',
-  en: 'Program for Creating Operational Standards',
-  version: 'v1.1.0',
+  name: 'Program for Process Standardization and Manual Creation',
+  ko: '업무표준화·매뉴얼 제작 시스템',
+  en: 'Program for Process Standardization and Manual Creation',
+  version: 'v1.2.0',
   build: '2026-11-15',
-  shareUrl: 'https://sadness500-boop.github.io/Program-for-Creating-Operational-Standards/',
-  apkUrl: 'https://github.com/sadness500-boop/Program-for-Creating-Operational-Standards/releases/download/app-latest/stos-latest.apk',
-  repo: 'https://github.com/sadness500-boop/Program-for-Creating-Operational-Standards',
+  shareUrl: 'https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/',
+  apkUrl: 'https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk',
+  repo: 'https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation',
   maker: 'Rat Rae Choi',
   makerKo: '제작 · Rat Rae Choi',
   org: '에스텍 그룹',
@@ -372,7 +372,7 @@ function cell(paras, o = {}) {
     margins: { top: 70, bottom: 70, left: 110, right: 110 }, borders: o.borders || bAll() });
 }
 function table(rows, widths, o = {}) {
-  return new docx.Table({ width: { size: widths.reduce((a, b) => a + b, 0), type: docx.WidthType.DXA }, columnWidths: widths, rows: rows.map((r, i) => new docx.TableRow({ cantSplit: true, tableHeader: o.header && i === 0, children: r })) });
+  return new docx.Table({ width: { size: widths.reduce((a, b) => a + b, 0), type: docx.WidthType.DXA }, columnWidths: widths, rows: rows.map((r, i) => new docx.TableRow({ cantSplit: true, tableHeader: o.header && i === 0, height: o.rowH && i > 0 ? { value: o.rowH, rule: docx.HeightRule.ATLEAST } : undefined, children: r })) });
 }
 function H1(t) {
   return P([R(t, { size: 26, bold: true, color: C.navy })], { before: 280, after: 120, keepNext: true,
@@ -761,7 +761,7 @@ function coverSlide(o) {
   c.push(Rc(7.75, 0, 0.04, SH, K.line));
   if (o.fig) c.push(figBox(o.fig, 8.1, 0.55, 4.95, 5.55)); else c.push(Im(8.45, 0.95, 4.2, 4.2 * (o.ratio || 1046 / 1024), o.img || ASSET.cube));
   c.push(Rc(0, 0, 0.12, SH, K.ink)); c.push(Rc(0.12, 0, 0.05, SH, C.green));
-  c.push(Im(0.85, 0.55, 1.55, 1.55, ASSET.osi));  /* 표지 로고 = 앱 아이콘(업무표준화 제작 시스템) */
+  c.push(Im(0.85, 0.55, 1.55, 1.55, ASSET.osi));  /* 표지 로고 = 앱 아이콘(업무표준화·매뉴얼 제작 시스템) */
   c.push(Rc(0.85, 2.55, 0.5, 0.05, C.green));
   c.push(T(0.85, 2.7, 6.6, 0.4, o.eyebrow, { pt: 13, color: C.green, bold: true }));
   c.push(T(0.85, 3.1, 6.7, 1.25, [{ text: o.title, bold: true }], { max: 36, min: 24, color: K.ink, lh: 1.15 }));
@@ -1176,7 +1176,7 @@ async function init() {
   renderJobChips(); renderCodes();
   uiInit();
   const nS = kbFlat().length, nM = STD.reduce((a, L) => a + L.mids.length, 0);
-  $('#stat').textContent = `표준 ${nS} · 매뉴얼 ${MAN.length}장 ${MAN.reduce((a, L) => a + L.mids[0].smalls.length, 0)}절 · 상황별 대처 ${SCN.length} · 판례 ${CASES.length} · 법령 ${Object.keys(LAWS).length - 1} · 업무 ${Object.values(WBE.tasks).reduce((a, r) => a + r.length, 0)} · 근무조 ${AMS_CODES.length}`;
+  $('#stat').textContent = `표준 ${nS} · 매뉴얼 ${MAN.length}장 ${MAN.reduce((a, L) => a + L.mids[0].smalls.length, 0)}절 · 상황별 대처 ${SCN.length} · 판례 ${CASES.length} · 서식 ${FORMS.length} · 법령 ${Object.keys(LAWS).length - 1} · 업무 ${Object.values(WBE.tasks).reduce((a, r) => a + r.length, 0)} · 근무조 ${AMS_CODES.length}`;
   void nM;
   renderTree(); renderPicked(); renderHistory();
   $('#q').addEventListener('input', e => renderTree(e.target.value));

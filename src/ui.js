@@ -1,5 +1,5 @@
 /* =====================================================================
- * S-Tec Operational Standards System — 상단 기능 · 적용 사업장 선정 · 직종 소개 영상
+ * Program for Process Standardization and Manual Creation — 상단 기능 · 적용 사업장 선정 · 직종 소개 영상
  * (Attendance Management Software 상단 기능과 동일: 담당 지정 · 다운로드 QR · 친구 추천 · 내 계정 · 주간/야간/시스템)
  * Designed & Developed by Rat Rae Choi
  * ===================================================================== */
@@ -65,7 +65,7 @@ function openQR() {
 }
 function openRef() {
   const mg = UI.manager || {};
-  const msg = `[에스텍 그룹] S-Tec Operational Standards System ${APP.version}\n직종·산업·사업장을 고르면 근로기준법·노동관계법 기준의 업무표준서를 Word·PPT·PDF로 바로 만들어 주는 업무표준화 제작 시스템입니다.\n${shareUrl()}${mg.name ? `\n추천: ${mg.name}${mg.title ? ' ' + mg.title : ''}${mg.org ? ' (' + mg.org + ')' : ''}` : ''}`;
+  const msg = `[에스텍 그룹] Program for Process Standardization and Manual Creation ${APP.version}\n직종·산업·사업장을 고르면 근로기준법·노동관계법 기준의 업무표준서를 Word·PPT·PDF로 바로 만들어 주는 업무표준화·매뉴얼 제작 시스템입니다.\n${shareUrl()}${mg.name ? `\n추천: ${mg.name}${mg.title ? ' ' + mg.title : ''}${mg.org ? ' (' + mg.org + ')' : ''}` : ''}`;
   openModal(`<h2>친구 추천</h2><div class="sub">QR을 보여주거나 주소·추천 메시지를 복사해 카카오톡·문자로 보내세요.</div>
     <div class="qrbig" id="refQr"></div>${urlBox('refUrl')}
     <div class="field"><label for="refMsg">추천 메시지</label><textarea id="refMsg" rows="5">${esc(msg)}</textarea></div>
@@ -132,7 +132,7 @@ function showGate() {
   if (UI.manager) { gt.classList.add('hidden'); document.body.classList.remove('gate-locked'); return; }
   gt.classList.remove('hidden'); document.body.classList.add('gate-locked');
   $('#gateForm').innerHTML = mgrFormHtml() + '<button class="btn pri" id="gateGo" style="width:100%;padding:11px;font-size:15px">업무표준 담당 지정하고 시작</button>';
-  const commit = bindMgrForm($('#gateForm'), () => { showGate(); toast('업무표준화 제작 시스템을 시작합니다'); });
+  const commit = bindMgrForm($('#gateForm'), () => { showGate(); toast('업무표준화·매뉴얼 제작 시스템을 시작합니다'); });
   $('#gateGo').onclick = commit;
   $('#mgName').addEventListener('keydown', e => { if (e.key === 'Enter') commit(); });
 }
@@ -342,5 +342,5 @@ function fitTree() {
   const t = document.getElementById('tree'); if (!t) return;
   if (innerWidth <= 820) { t.style.maxHeight = ''; return; }
   const top = t.getBoundingClientRect().top + scrollY, foot = (document.querySelector('.foot') || {}).offsetHeight || 0;
-  t.style.maxHeight = Math.max(140, Math.round(innerHeight - top - 66 - (getComputedStyle(document.querySelector('.foot') || document.body).position === 'fixed' ? foot : 0))) + 'px';
+  t.style.maxHeight = Math.max(560, Math.round(innerHeight - top - 66 - (getComputedStyle(document.querySelector('.foot') || document.body).position === 'fixed' ? foot : 0))) + 'px';
 }

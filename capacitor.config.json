@@ -1,6 +1,6 @@
 {
   "appId": "kr.stecbest.standards",
-  "appName": "S-Tec 업무표준",
+  "appName": "S-Tec 표준·매뉴얼",
   "webDir": "www",
   "server": {
     "androidScheme": "https",
