@@ -1,0 +1,12 @@
+{
+  "appId": "kr.stecbest.standards",
+  "appName": "S-Tec 업무표준",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "hostname": "sadness500-boop.github.io"
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

@@ -1,0 +1,103 @@
+# Program for Creating Operational Standards
+
+**S-Tec Operational Standards System** (저장소: `Program-for-Creating-Operational-Standards`)
+
+<img src="icons/icon-192.png" width="96" alt="업무표준화 제작 시스템 아이콘">
+
+**에스텍 그룹 업무표준화 제작 시스템** · Program for Creating Operational Standards · v1.0.0
+
+직종·산업·사업장을 고르고 표준 항목을 선택하면, 근로기준법·노동관계법·경비업법·산업안전보건법 기준의 **업무표준서**를
+**Word(머리글·바닥글 서식 + 점검표·교육 확인서) · PPT(16:9, 현장 영상 포함) · PDF(PPT와 같은 디자인)** 3종으로 바로 만들어 줍니다.
+웹 버전과 안드로이드 앱(APK)으로 씁니다.
+
+## 내려받기
+
+| 구분 | 파일 | 주소 |
+|---|---|---|
+| 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Creating-Operational-Standards/ |
+| 웹 버전 (버전별) | [releases/S-Tec-Operational-Standards-System_v1.0.0.html](releases/S-Tec-Operational-Standards-System_v1.0.0.html) | |
+| 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Creating-Operational-Standards/releases/download/app-latest/stos-latest.apk |
+| 안드로이드 앱 (버전별) | `releases/S-Tec-Operational-Standards-System_v1.0.0.apk` | 릴리스 `v1.0.0` |
+
+- **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다.
+- **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
+- 서명 키(`android-keystore/stos-debug.keystore`)를 고정해 두었으므로 새 버전은 지우지 않고 덮어 설치하면 됩니다.
+- **웹 버전 주소를 열려면** 저장소 Settings › Pages › Branch를 `main` / `/(root)` 로 한 번 켜야 합니다.
+- 웹 버전은 인터넷 없이도 동작합니다(로그인·지도·영상 재생만 인터넷 필요).
+
+## 사용 순서
+
+1. **① 적용 사업장 선정** — 에스텍베스트 동부·서부·남부·중부 지사 사업장 151곳(사업장 지도 프로그램 데이터). 사업장을 고르면 직종·산업·기준 근무형태가 자동으로 맞춰집니다. 「전사 공통 표준」도 가능.
+2. **② 업무표준 항목 선택** — 대분류 7 · 중분류 15 · 표준 50개. 등급(법정·핵심·권장), ★ 선택 직종 권장, 「연계」 다른 프로그램 자동 산출 표시. 「📦 직종 권장 패키지」로 한 번에 선택.
+3. **③ 표준 작성 정보** — 직종 7종(보안·미화·주차·시설관리·안내·조리·소독방역) × 산업 12종, 기준 근무형태(근무조 코드 57종), 문서명·개정 차수·시행일·작성/검토/승인, 사업장 특이사항(키워드로 표준 추천 + 「사업장 특수 기준」 반영), 사내 표준 / 고객사 제출용.
+4. **④ 업무표준안 검토·출력** — 화면에서 고친 내용 그대로 Word·PPT·PDF 출력. 고객사 제출용은 내부 전용 항목(징계 양정·진정 대응·도급 관리·견적)을 뺍니다.
+
+## 업무표준 체계 (대 · 중 · 소)
+
+| 대분류 | 중분류 | 주요 표준 |
+|---|---|---|
+| A. 직무·업무 표준 | 직무 정의 · 표준 업무절차(SOP) · 직종별 핵심 업무 | 직무기술서, 업무범위·금지업무, R&R, 표준시간표, 일일 타임테이블, 인수인계, 직종별 7종 |
+| B. 근무·근태 표준 | 근무형태·근로시간 · 근태관리 | 근무조 코드, 근로시간·휴게·휴일, 감시·단속적 승인, 근태 기호·환산, 연차, 연장·야간·휴일, 결원 대체 |
+| C. 복무·서비스 표준 | 복무규율 · 고객 서비스 | 3대 중대위반, 용모·복장, 휴대폰 통제, 응대 화법, 감정노동 보호, 지시 창구 일원화 |
+| D. 안전·비상대응 표준 | 안전보건 · 비상대응 | TBM·안전교육, 보호구·위험작업, 산재 처리, 화재·소방, 응급·재난, 즉보 |
+| E. 인사·노무 표준 | 채용·배치 · 인사관리 | 채용·결격·배치, 근로계약, 법정 의무교육, 징계, 괴롭힘·성희롱, 퇴직·금품청산, 진정 대응 |
+| F. 품질·고객관리 표준 | 품질관리 · 계약이행 | 월간 품질점검, Complaint 예방·대응, 고객사 보고, 계약 인원 이행, 도급·파견 구분, 개인정보·영상정보 |
+| G. 인력산정·원가 표준 | 인력산정 · 원가·견적 | 업무량 기반 인력산정, 근무형태별 소요인원, 도급비 견적 기준, 단기인력 견적 기준 |
+
+## 에스텍 프로그램 연계 (자동 산출)
+
+| 연계 프로그램 | 업무표준에 반영되는 내용 |
+|---|---|
+| Attendance Management Software | 근무조 코드 57종(순환 패턴·출퇴근·휴게·근로형태) → 월 근무일·실근로시간·주 평균·24시간 초소 조 수·법정 확인(주 52시간·감시단속 승인), 근태 기호·시간가감 환산, 일일 타임테이블 |
+| Workload-Based Cost and Labor Estimation Method | 업무 분류 라이브러리 257개(사업장 유형 × 직종, 단위시간·수량·빈도) → 표준 업무목록·표준시간표, 월 업무시간, 업무량 기준 필요 인원(FTE) |
+| S-Tec Complaint Response System | Complaint 분류 코드 ↔ 예방 표준 연계, D+0~D+30 대응 프로세스, 법령 56개 조항 |
+| S-Tec-Business-Site-Overview | 사업장 151곳(주소·계약일·유형·업종·근무형태·인원), 카카오맵 위치 |
+| S-Tec-Quotation-System | 연도별 최저시급·4대보험 요율(2026·2027), 도급비 견적 산출 기준 |
+| S-Tec short estimate | 단기인력 견적 산식 · 예시 계산 |
+
+## 출력물
+
+- **Word 업무표준서** — 결재란(작성·검토·승인), 주요 내용, 제·개정 이력, Ⅰ 총칙(목적·적용 범위·운영 원칙·용어·R&R), Ⅱ 적용 사업장·직무 개요(현장 피규어·영상 자료), Ⅲ 항목 체계, Ⅳ 세부 기준(목적·기준·절차·직종/산업 반영·점검표·기록·KPI·법적 근거 + 연계 표), Ⅴ 법적 근거 종합, 붙임 1 이행 점검표, 붙임 2 교육 확인서. 에스텍 머리글·바닥글(The Best Choice · 제작자 서명) 적용.
+- **PPT / PDF** — 표지(앱 아이콘), 목차, 총칙·R&R, 사업장 현황, 직무 개요, 항목 체계, 표준별 슬라이드(절차 카드·점검 항목·KPI), 연계 산출 슬라이드, 현장 표준 교육 영상(PPT에서 재생), 법적 근거, 이행 점검·교육·개정(PDCA), 맺음.
+
+## 에스텍 통합 로그인 · 프로그램별 권한
+
+하나의 아이디로 7개 프로그램을 씁니다(근태관리·Complaint·short estimate·Site-Overview·Quotation·WBE·**업무표준화**). [`auth-config.json`](auth-config.json)이 근태관리 프로그램과 같은 Supabase 서버를 가리킵니다.
+
+- **처음 한 번:** 근태관리 Supabase 프로젝트 → SQL Editor → [`server/supabase_app_access_stos.sql`](server/supabase_app_access_stos.sql) 실행 → 관리자 페이지 「🔐 프로그램별 권한」에 「업무표준화」 열이 생깁니다. (실행 전에는 승인된 사용자 모두 사용 가능)
+- 관리 범위(담당 지사)를 지정하면 ① 사업장 목록이 그 지사 사업장만 보입니다.
+- **끄는 법:** `auth-config.json` 의 `"enabled": false`.
+- publishable(anon) 키는 공개돼도 되는 키입니다. **secret / service_role 키는 절대 저장소·앱에 넣지 마세요.**
+
+## 개인정보
+
+- 공개 저장소이므로 사업장 현장 책임자 **휴대폰 번호 뒷자리는 `????`로 가렸습니다**(사업장 지도 프로그램과 같은 기준).
+- ※ 법령 요약은 실무 참고용입니다. 적용 전 국가법령정보센터(law.go.kr) 원문 및 노무 자문으로 확인하십시오.
+
+## 파일 구성
+
+```
+index.html                     프로그램 전체 (한 파일, 라이브러리·자산 내장)
+releases/                      버전별 HTML · APK
+src/                           index.html 을 만드는 원본
+  app.js  ui.js                화면·출력(Word·PPT·PDF) 로직
+  kb.js                        업무표준 분류·직종·산업·법령 85개 조항
+  data.js                      연계 데이터(WBE 업무 분류 · 근태관리 근무조 코드)
+  sites.js  hf.js              사업장 151곳 · Word 머리글·바닥글
+build.py                       python3 build.py → index.html
+vendor/                        내장 라이브러리(docx·pptxgenjs·jsPDF·html2canvas·JSZip·QR·supabase) · 로그인 모듈 · 그림 자산
+media/main/                    메인 화면 직종 소개 영상(S-Tec-Quotation-System 영상)
+media/videos · media/posters   PPT 현장 교육 영상 · 대표 장면
+tools/                         연계 데이터 추출 스크립트 · 아이콘 원본
+icons/ · manifest.webmanifest · sw.js   앱 아이콘 · 홈 화면 설치(PWA)
+package.json · capacitor.config.json · android-keystore/   안드로이드 앱 포장
+.github/workflows/android-apk.yml       안드로이드 앱 자동 빌드
+server/                        로그인 서버 SQL
+```
+
+## 변경 이력
+
+- **v1.0.0** (2026-11-15) — 최초 버전: 업무표준 대분류 7·중분류 15·표준 50, 직종 7 × 산업 12, 법령 85개 조항, 에스텍 6개 프로그램 연계 자동 산출, Word·PPT·PDF 3종 출력, 상단 기능(업무표준 담당·다운로드 QR·친구 추천·로그인·주간/야간/시스템), 직종 소개 영상, 카카오맵 사업장 위치, 안드로이드 앱(APK) 자동 빌드
+
+---
+Designed & Developed by **Rat Rae Choi**

@@ -1,0 +1,1 @@
+window.APP_ACCESS_CFG = { app: 'stcr', auth: 'STCR_AUTH', name: 'S-Tec Complaint Response System' };
