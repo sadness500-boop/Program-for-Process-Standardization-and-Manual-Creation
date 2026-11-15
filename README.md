@@ -26,8 +26,8 @@
 
 ## 📖 사용 매뉴얼
 
-| 문서 | Word | PPT |
-|---|---|---|
+| 문서 | Word | PPT | PDF |
+|---|---|---|---|
 | 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0(Word판).pdf) |
 | 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0(Word판).pdf) |
 
