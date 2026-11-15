@@ -28,8 +28,8 @@
 
 | 문서 | Word | PPT |
 |---|---|---|
-| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.pptx) |
-| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.pptx) |
+| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0(Word판).pdf) |
+| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0(Word판).pdf) |
 
 매뉴얼은 `tools/make_guides.py`(화면 캡처) + `tools/guide.js`(프로그램과 같은 Word·PPT 엔진)로 다시 만들 수 있습니다.
 
