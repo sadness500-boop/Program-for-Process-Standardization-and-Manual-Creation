@@ -1,6 +1,6 @@
 # Program for Process Standardization and Manual Creation
 
-**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.3.1
+**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.3.2
 
 <img src="icons/icon-192.png" width="96" alt="업무표준화·매뉴얼 제작 시스템 아이콘">
 
@@ -14,9 +14,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/ |
-| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.1.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.1.html) | |
+| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.2.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.2.html) | |
 | 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.1.apk` | 릴리스 `v1.3.1` |
+| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.2.apk` | 릴리스 `v1.3.2` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -137,6 +137,7 @@ server/                        로그인 서버 SQL
 
 ## 변경 이력
 
+- **v1.3.2** (2026-11-18) — 관리자 페이지 「관리 범위」에서 "이 기기에 조직·사업장 자료가 없습니다"가 뜨던 문제 수정: 근태관리 프로그램이 서버에 공유한 조직·사업장 목록을 불러와 지정(이 기기에 보관해 서버 연결이 안 될 때도 사용)
 - **v1.3.1** (2026-11-16) — 내 계정 메뉴에서 이 프로그램과 관계없는 「백업에서 근태 되살리기」 삭제
 - **v1.3.0** (2026-11-16) — 상단 화면 정리(프로그램 이름 2줄 · 아이콘 확대 · 소개 문구 제외 · 오른쪽 카드 축소), 매뉴얼과 별도의 인쇄용 Word 「업무 서식집」(④ [📝 업무 서식 Word] 버튼 · 사업장명·소속·소재지·직종·근무형태 미리 기재 · 보안/주차/시설/미화/기타 업종별 · 한 쪽 한 서식 · 결재란 · stec 머리글·바닥글, 바닥글 서명 날짜 제외), 업무 서식이 든 매뉴얼 Word 출력 시 서식집 자동 동시 저장
 - **v1.2.0** (2026-11-16) — 프로그램 이름 변경(Program for Process Standardization and Manual Creation) · 새 앱 아이콘, 업종별 업무 서식 38종(매뉴얼 「업무 서식」 장 · Word 인쇄용 양식), ② 장·절 선택 화면 확대(글자·간격·높이), 상단 소개 문구 2줄 정리, 사용자 매뉴얼·제작자 관리 매뉴얼(Word·PPT)
