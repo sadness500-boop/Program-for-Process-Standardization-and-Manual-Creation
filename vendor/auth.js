@@ -18,7 +18,14 @@ const CFG_SOURCES = [
   'auth-config.json',
   AC.cfgRaw
 ];
-const LS = { cfg:PFX+'_auth_cfg', dev:PFX+'_device_id', devName:PFX+'_device_name', loginAt:PFX+'_login_at',
+/* ---------- 에스텍 통합 로그인(SSO) ----------
+   S-Tec Operations and Sales Integrated Management System(메인 프로그램)과 7개 프로그램이
+   같은 로그인 정보(stec_auth_session)·기기 번호·로그인 시각을 함께 써서, 한 번 로그인하면 모든 프로그램이 열립니다.
+   예전에 이 프로그램에만 저장된 로그인은 처음 한 번 자동으로 옮겨 씁니다.  Designed & Developed by Rat Rae Choi */
+const STEC_SSO = 'stec_auth_session';
+function stecSSO(old){ try{ if(old && old !== STEC_SSO){ const v = localStorage.getItem(old); if(v && !localStorage.getItem(STEC_SSO)) localStorage.setItem(STEC_SSO, v); if(v) localStorage.removeItem(old); } }catch(e){} return STEC_SSO; }
+function stecShared(own, shared){ try{ if(localStorage.getItem(shared) == null){ const o = localStorage.getItem(own); if(o != null) localStorage.setItem(shared, o); } }catch(e){} return shared; }
+const LS = { cfg:PFX+'_auth_cfg', dev:stecShared(PFX+'_device_id','stec_device_id'), devName:stecShared(PFX+'_device_name','stec_device_name'), loginAt:stecShared(PFX+'_login_at','stec_login_at'),
              okAt:PFX+'_auth_ok_at', okUser:PFX+'_auth_ok_user', meta:PFX+'_sync_meta', prof:PFX+'_auth_profile',
              lastEmail:PFX+'_last_email', syncOwner:PFX+'_sync_owner', reloaded:PFX+'_sync_reloaded', session:PFX+'_auth_session' };
 const HOOKS = AC.hooks || [];                         /* [함수이름, 저장키] — 이 함수가 불리면 해당 키를 서버로 올림 */
@@ -996,7 +1003,7 @@ async function boot(retry){
   viewLoading(retry?'다시 확인 중…':'접속 확인 중…');
   if(!window.supabase||!window.supabase.createClient){ viewBlocked('offline'); return; }
   if(!SB){
-    SB = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:LS.session}});
+    SB = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:stecSSO(LS.session)}});
     SB.auth.onAuthStateChange((ev)=>{ if(ev==='PASSWORD_RECOVERY'){ recoveryMode=true; viewChangePw(false); } });
     window.APP_AUTH = window[(AC.globalName||'APP_AUTH')] = {get profile(){return PROFILE}, openAdmin, logout, client:SB};
   }
