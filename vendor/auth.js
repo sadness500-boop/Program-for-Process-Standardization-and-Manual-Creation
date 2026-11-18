@@ -46,11 +46,12 @@ const fmtDT = s => { if(!s) return '-'; const d=new Date(s); if(isNaN(d)) return
 const todayKST = () => new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
 const ROLE_KO = {owner:'제작자', admin:'관리자', user:'사용자'};
 const STATUS_KO = {pending:'승인 대기', active:'사용 중', suspended:'차단'};
-const EV_KO = {login:'로그인', login_fail:'로그인 실패', logout:'로그아웃', blocked:'접속 거부', forced:'강제 로그아웃'};
+const EV_KO = {login:'로그인', login_fail:'로그인 실패', logout:'로그아웃', blocked:'접속 거부', forced:'강제 로그아웃', app_open:'프로그램 열기'};
 const REASON_KO = {
   pending:['⏳','승인 대기 중','가입 신청이 접수되었습니다. 제작자(관리자)가 승인하면 바로 사용할 수 있습니다.<br>승인 후 이 화면에서 <b>다시 확인</b>을 누르세요.'],
   suspended:['⛔','사용이 중지된 계정','이 계정은 접속이 차단되었습니다. 필요하면 제작자에게 문의하세요.'],
   expired:['📅','사용기한 만료','사용기한이 지났습니다. 연장이 필요하면 제작자에게 요청하세요.'],
+  device_pending:['📲','새 기기 승인 대기','처음 사용하는 기기입니다. 제작자(관리자)가 관리 콘솔 「기기」에서 이 기기를 승인하면 바로 사용할 수 있습니다.<br>승인 후 <b>다시 확인</b>을 누르세요.'],
   device_blocked:['📵','이 기기는 사용 제한','이 기기에서는 사용할 수 없도록 설정되었습니다. 다른 기기를 쓰거나 제작자에게 문의하세요.'],
   locked:['🛠️','프로그램 점검 중',''],
   no_profile:['❓','계정 정보 없음','계정 정보가 아직 만들어지지 않았습니다. 잠시 뒤 다시 시도하거나 제작자에게 문의하세요.'],
