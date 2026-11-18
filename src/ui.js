@@ -216,6 +216,7 @@ function uiInit() {
  * ===================================================================== */
 const KAKAO_KEY = '8453c0a68310133484b3b92ed0f0a1f7';
 const BR_COLOR = { 동부: '#1E8B3A', 서부: '#0B1F8F', 남부: '#C2410C', 중부: '#6D28D9' };
+try{ if(window.StecMaster) StecMaster.colors(BR_COLOR); }catch(e){} /*sm-col*/
 const MAP = { ready: null, map: null, pins: [] };
 function mapCanLoad() { return (location.protocol === 'https:' && /(^|\.)sadness500-boop\.github\.io$/.test(location.hostname)) || !!window.Capacitor; }
 function loadKakao() {
