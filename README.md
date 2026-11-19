@@ -1,6 +1,6 @@
 # Program for Process Standardization and Manual Creation
 
-**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.3.2
+**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.3.3
 
 <img src="icons/icon-192.png" width="96" alt="업무표준화·매뉴얼 제작 시스템 아이콘">
 
@@ -14,9 +14,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/ |
-| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.2.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.2.html) | |
+| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.html) | |
 | 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.2.apk` | 릴리스 `v1.3.2` |
+| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.apk` | 릴리스 `v1.3.3` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -28,8 +28,8 @@
 
 | 문서 | Word | PPT | PDF |
 |---|---|---|---|
-| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.0(Word판).pdf) |
-| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.0(Word판).pdf) |
+| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.3.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.3.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.3.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.3(Word판).pdf) |
+| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.3.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.3.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.3.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.3(Word판).pdf) |
 
 매뉴얼은 `tools/make_guides.py`(화면 캡처) + `tools/guide.js`(프로그램과 같은 Word·PPT 엔진)로 다시 만들 수 있습니다.
 
@@ -137,6 +137,7 @@ server/                        로그인 서버 SQL
 
 ## 변경 이력
 
+- **v1.3.3** (2026-11-19) — 통합관리 시스템 연동(통합 로그인 SSO · 🏠 메인 버튼 · 공통 기준정보 · 조회 전용 기기 · 새 기기 승인 · 개별 앱 병행 안내) 반영 버전 정리, 사용자 매뉴얼·제작자 관리 매뉴얼 다시 작성(Word·PPT·PDF)
 - **v1.3.2** (2026-11-18) — 관리자 페이지 「관리 범위」에서 "이 기기에 조직·사업장 자료가 없습니다"가 뜨던 문제 수정: 근태관리 프로그램이 서버에 공유한 조직·사업장 목록을 불러와 지정(이 기기에 보관해 서버 연결이 안 될 때도 사용)
 - **v1.3.1** (2026-11-16) — 내 계정 메뉴에서 이 프로그램과 관계없는 「백업에서 근태 되살리기」 삭제
 - **v1.3.0** (2026-11-16) — 상단 화면 정리(프로그램 이름 2줄 · 아이콘 확대 · 소개 문구 제외 · 오른쪽 카드 축소), 매뉴얼과 별도의 인쇄용 Word 「업무 서식집」(④ [📝 업무 서식 Word] 버튼 · 사업장명·소속·소재지·직종·근무형태 미리 기재 · 보안/주차/시설/미화/기타 업종별 · 한 쪽 한 서식 · 결재란 · stec 머리글·바닥글, 바닥글 서명 날짜 제외), 업무 서식이 든 매뉴얼 Word 출력 시 서식집 자동 동시 저장

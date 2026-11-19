@@ -1,7 +1,7 @@
 {
-  "version": "1.3.2",
-  "date": "2026-11-18",
-  "note": "관리자 페이지 「관리 범위」: 조직·사업장 목록을 서버(근태관리 공유 목록)에서 불러오도록 수정",
-  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.2.html",
-  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.2.apk"
+  "version": "1.3.3",
+  "date": "2026-11-19",
+  "note": "통합관리 시스템 연동(통합 로그인·메인 버튼·공통 기준정보·조회 전용 기기·새 기기 승인) 반영 정식 버전, 사용자·제작자 매뉴얼 갱신(Word·PPT·PDF)",
+  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.html",
+  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.apk"
 }
