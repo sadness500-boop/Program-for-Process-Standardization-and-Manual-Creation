@@ -1,6 +1,6 @@
 # Program for Process Standardization and Manual Creation
 
-**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.3.3
+**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.4.0
 
 <img src="icons/icon-192.png" width="96" alt="업무표준화·매뉴얼 제작 시스템 아이콘">
 
@@ -14,9 +14,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/ |
-| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.html) | |
+| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.html) | |
 | 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.apk` | 릴리스 `v1.3.3` |
+| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.apk` | 릴리스 `v1.4.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -28,8 +28,8 @@
 
 | 문서 | Word | PPT | PDF |
 |---|---|---|---|
-| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.3.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.3.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.3.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.3.3(Word판).pdf) |
-| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.3.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.3.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.3.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.3.3(Word판).pdf) |
+| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.4.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.4.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.4.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.4.0(Word판).pdf) |
+| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.4.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.4.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.4.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.4.0(Word판).pdf) |
 
 매뉴얼은 `tools/make_guides.py`(화면 캡처) + `tools/guide.js`(프로그램과 같은 Word·PPT 엔진)로 다시 만들 수 있습니다.
 
@@ -137,6 +137,12 @@ server/                        로그인 서버 SQL
 
 ## 변경 이력
 
+- **v1.4.0** (2026-11-20) — 내용 대폭 보강
+  - **세부 작업표준(SOP) 114건**: 7개 직종 · 구역별 작업마다 주기·소요시간·담당·도구·약품(희석비율)·보호구·단계별 동작과 요령·완료 기준·금지 사항·기록 — OJT 없이 문서만 보고 일할 수 있는 수준. 업무표준서 「T. 세부 작업표준」, 업무매뉴얼 「직무 상세 작업표준」 장으로 자동 포함
+  - **🎬 웹 매뉴얼(HTML)**: 영상이 파일 안에 들어가 장마다 실제 재생 · PPT 영상 내장 · PDF·Word 영상 장면은 누르면 재생
+  - **시인성**: 본문 최소 11pt, 회색 글자 진하게, 줄 간격 확대, 슬라이드 최소 9.5pt
+  - **📦 사업장 자료 패키지(ZIP)**: 에스텍 「미화사업장 관리(관련) 서류 종합 LIST」 체계로 사업장명·소속을 미리 기재한 관리서류 36~52종(Word·Excel) — 인사·채용 / 인수·근무 편성 / 교육(월별 자료 12종) / 계획·일지·보고(작성 예시) / 품질평가(자동 합계) / 구매·입출고·재고(자동 계산) / 약품 규격·성분·유해물질·희석비율·MSDS 경고표지 14종 / 게시물 / 직종 대장
+  - **💼 견적 연동 · 제안서**: 제안서 제작시스템과 같은 견적 연동(용역인력 견적·업무량 기반 산정·단기인력 견적 「📑 제안서로 보내기」 + 엑셀·PDF 견적서 불러오기) → 작성 정보 반영 · 견적 기준 운영 제안서(Word·PPT·PDF, 대외 제출용/내부 검토용)
 - **v1.3.3** (2026-11-19) — 통합관리 시스템 연동(통합 로그인 SSO · 🏠 메인 버튼 · 공통 기준정보 · 조회 전용 기기 · 새 기기 승인 · 개별 앱 병행 안내) 반영 버전 정리, 사용자 매뉴얼·제작자 관리 매뉴얼 다시 작성(Word·PPT·PDF)
 - **v1.3.2** (2026-11-18) — 관리자 페이지 「관리 범위」에서 "이 기기에 조직·사업장 자료가 없습니다"가 뜨던 문제 수정: 근태관리 프로그램이 서버에 공유한 조직·사업장 목록을 불러와 지정(이 기기에 보관해 서버 연결이 안 될 때도 사용)
 - **v1.3.1** (2026-11-16) — 내 계정 메뉴에서 이 프로그램과 관계없는 「백업에서 근태 되살리기」 삭제

@@ -1,7 +1,7 @@
 {
-  "version": "1.3.3",
-  "date": "2026-11-19",
-  "note": "통합관리 시스템 연동(통합 로그인·메인 버튼·공통 기준정보·조회 전용 기기·새 기기 승인) 반영 정식 버전, 사용자·제작자 매뉴얼 갱신(Word·PPT·PDF)",
-  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.html",
-  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.3.3.apk"
+  "version": "1.4.0",
+  "date": "2026-11-20",
+  "note": "세부 작업표준(SOP) 114건 · 웹 매뉴얼(영상 실제 재생) · 시인성 개선 · 사업장 자료 패키지(관리서류 36~52종 ZIP) · 견적 연동(3종·엑셀/PDF) 운영 제안서",
+  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.html",
+  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.apk"
 }
