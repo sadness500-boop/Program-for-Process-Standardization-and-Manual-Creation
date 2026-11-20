@@ -17,7 +17,7 @@ const APP = {
   org: '에스텍 그룹',
   branch: '에스텍베스트 동부지사'
 };
-const K = { ink: '18224F', navy: '22348F', mute: '6B7385', line: 'E3E7EE', tint: 'F4F6FB', tintG: 'EEF7F1', red: 'C8553D', grn: '2E8B57', grn2: '3A9D6A', blu: '2B4C9B', blu2: '1F3A73', amber: 'D98E04' };
+const K = { ink: '18224F', navy: '22348F', mute: '4B5563', line: 'E3E7EE', tint: 'F4F6FB', tintG: 'EEF7F1', red: 'C8553D', grn: '2E8B57', grn2: '3A9D6A', blu: '2B4C9B', blu2: '1F3A73', amber: 'D98E04' };
 const C = { navy: '0B1F8F', navyD: '07124F', green: '1E8B3A', greenD: '17552F', brick: 'E34234', silver: 'C9CED6', silverL: 'EEF1F5', ink: '1C2333', gray: '5B6475', white: 'FFFFFF' };
 const state = { picked: [], plan: null, sigDataUrl: null, sigPx: 0, site: null, job: 'sec', code: '', kind: 'std', level: 'L2' };
 
@@ -77,11 +77,11 @@ function loadImg(src) { return new Promise((res, rej) => { const i = new Image()
 /* =====================================================================
  * 1) 화면 — 표준 분류 트리 / 작성 정보 / 추천
  * ===================================================================== */
-const MAX_PICK = 40;
+const MAX_PICK = 80;
 const TAXV = () => state.kind === 'man' ? MAN : STD;
 function flatV() { const o = []; TAXV().forEach(L => L.mids.forEach(M => M.smalls.forEach(S => o.push({ L, M, S })))); return o; }
 function findSmall(code) { for (const T0 of [STD, MAN]) for (const L of T0) for (const M of L.mids) for (const S of M.smalls) if (S.c === code) return { L, M, S }; return null; }
-function manPack(level) { return MAN_PACK[level].flatMap(c => c === 'MF-*' ? flatV().filter(x => x.L.c === 'MF').map(x => x.S.c) : [c]); }
+function manPack(level) { return MAN_PACK[level].flatMap(c => c === 'MF-*' ? flatV().filter(x => x.L.c === 'MF').map(x => x.S.c) : c === 'MT-*' ? flatV().filter(x => x.L.c === 'MT' && x.S.jobs.includes(state.job)).map(x => x.S.c) : [c]); }
 function isRec(S) { if (state.kind === 'man') return manPack(state.level).includes(S.c); const pk = PACK.common.concat(PACK[state.job] || []); return pk.includes(S.c) || (S.jobs && S.jobs.includes(state.job)); }
 function renderTree(filter = '') {
   const f = filter.trim();
@@ -89,7 +89,7 @@ function renderTree(filter = '') {
   TAXV().forEach(L => {
     let lh = '', nOn = 0;
     L.mids.forEach(M => {
-      const smalls = M.smalls.filter(S => !f || (S.n + M.n + L.n + S.k.join(' ') + S.c).includes(f));
+      const smalls = M.smalls.filter(S => (!S.sop || S.jobs.includes(state.job)) && (!f || (S.n + M.n + L.n + S.k.join(' ') + S.c).includes(f)));
       if (!smalls.length) return;
       nOn += smalls.filter(S => state.picked.includes(S.c)).length;
       const flatM = L.mids.length === 1 && M.c === L.c;
@@ -263,6 +263,7 @@ function parseGrp(text) {
 const JOBX = { 'A1-02': ['ban', '직종별 금지·제한 업무'], 'D1-01': ['risk', '직종 주요 위험요인'], 'D1-02': ['kit', '직종 지급 보호구·장비'], 'E1-01': ['qual', '직종 자격·교육 요건'], 'E1-03': ['qual', '직종 법정·필수 교육'], 'F1-01': ['kpi', '직종 품질 지표'], 'C1-02': ['kit', '직종 착용·지급 품목'] };
 const INDX = ['A1-01', 'A3-01', 'A3-02', 'A3-03', 'A3-04', 'A3-05', 'A3-06', 'A3-07', 'D1-01', 'F1-01', 'D2-02'];
 function itemGroups(S, f) {
+  if (S.gen === 'task') return sopGroups(S);
   const J = JOB[f.job], I = IND[f.ind], G = [];
   G.push({ title: '목적', lines: [S.pur] });
   G.push({ title: '기준·절차', lines: S.st.slice() });
@@ -362,9 +363,10 @@ function revLabel(p) { return Number(p.f.rev) ? `Rev.${p.f.rev} (개정)` : 'Rev
  * ===================================================================== */
 const W_FONT = { ascii: '맑은 고딕', eastAsia: '맑은 고딕', hAnsi: '맑은 고딕', cs: '맑은 고딕' };
 const CW = 9638; // A4 본문폭(twips)
-function R(text, o = {}) { return new docx.TextRun({ text, font: W_FONT, size: o.size || 20, bold: o.bold, color: o.color || C.ink, italics: o.it }); }
+/* 시인성: 본문 최소 10pt~11pt, 회색 글자도 진하게 (서식집 등 칸이 정해진 양식은 R.raw = true 로 원래 크기) */
+function R(text, o = {}) { let sz = o.size || 20; if (!R.raw && sz < 22) sz = Math.min(22, sz + 2); const col = o.color === C.gray && !R.raw ? '3F4757' : (o.color || C.ink); return new docx.TextRun({ text, font: W_FONT, size: sz, bold: o.bold, color: col, italics: o.it }); }
 function P(children, o = {}) {
-  return new docx.Paragraph({ children: Array.isArray(children) ? children : [children], alignment: o.align, spacing: { before: o.before ?? 0, after: o.after ?? 60, line: o.line || 288 },
+  return new docx.Paragraph({ children: Array.isArray(children) ? children : [children], alignment: o.align, spacing: { before: o.before ?? 0, after: o.after ?? 60, line: o.line || (R.raw ? 288 : 300) },
     indent: o.indent, keepNext: o.keepNext, border: o.border, shading: o.shading });
 }
 function noB() { const n = { style: docx.BorderStyle.NONE, size: 0, color: 'FFFFFF' }; return { top: n, bottom: n, left: n, right: n }; }
@@ -529,6 +531,7 @@ async function makeDocx(p) {
   items.forEach((x, i) => {
     ch.push(P([R(`${i + 1}. `, { size: 23, bold: true, color: C.green }), R(`[${x.S.c}] ${x.S.n}`, { size: 23, bold: true, color: C.navy }), R(`   ${GRADE[x.S.g].label}`, { size: 17, bold: true, color: GRADE[x.S.g].color })],
       { before: 240, after: 80, keepNext: true, border: { bottom: { style: docx.BorderStyle.SINGLE, size: 6, color: 'B8C0CC', space: 3 } } }));
+    if (x.S.gen === 'task') { ch.push(boxPara([P([R('목적  ', { bold: true, color: C.greenD, size: 21 }), R(x.S.pur, { size: 21 })], { after: 0 })], 'F2F7F3', C.green)); ch.push(...sopDocx(x.S, p)); ch.push(P([R('법적 근거  ', { bold: true, size: 17, color: C.navy }), R(lawShort(x.S.l.filter(id => p.lawOn[id] !== false)), { size: 17, color: C.gray })], { before: 60, after: 80 })); return; }
     const G = parseGrp(p.text[x.S.c]);
     G.forEach(g => {
       if (/^목적/.test(g.title)) { ch.push(boxPara(g.lines.map(l => P([R('목적  ', { bold: true, color: C.greenD, size: 19 }), R(l, { size: 19 })], { after: 0 })), 'F2F7F3', C.green)); return; }
@@ -681,7 +684,8 @@ function fit(paras, w, h, maxPt, minPt = 9, lh = 1.22, gapPt = 3) {
 }
 function T(x, y, w, h, paras, o = {}) {
   if (typeof paras === 'string') paras = [{ text: paras }];
-  const r = o.pt ? { pt: o.pt, ok: true } : fit(paras, w, h, o.max || 16, o.min || 9, o.lh || 1.22, o.gap ?? 3);
+  const mn = Math.max(o.min || 9, 9.5), mx = Math.max(o.max || 16, mn);
+  const r = o.pt ? { pt: o.pt, ok: true } : fit(paras, w, h, mx, mn, o.lh || 1.22, o.gap ?? 3);
   return { t: 'text', x, y, w, h, paras, pt: r.pt, ok: r.ok, color: o.color || C.ink, bold: o.bold, align: o.align || 'left', valign: o.valign || 'top', lh: o.lh || 1.22, gap: o.gap ?? 3, font: o.font };
 }
 const Rc = (x, y, w, h, fill, o = {}) => ({ t: 'shape', k: o.k || 'rect', x, y, w, h, fill, line: o.line, lw: o.lw, alpha: o.alpha });
@@ -889,6 +893,7 @@ function buildSlides(p) {
   /* 6. 세부 기준 — 항목별 */
   const secItems = String(++sec).padStart(2, '0');
   items.forEach(x => {
+    if (x.S.gen === 'task') { no = sopSlides(x.S, p, S, no, secItems); return; }
     const G = parseGrp(p.text[x.S.c]);
     const pur = (G.find(gg => /^목적/.test(gg.title)) || { lines: [] }).lines.join(' ');
     const steps = (G.find(gg => /^기준·절차/.test(gg.title)) || { lines: [] }).lines;
@@ -1038,7 +1043,7 @@ async function makePptx(p, slidesIn, titleIn) {
       if (e.t === 'img') s.addImage({ data: e.src, x: e.x, y: e.y, w: e.w, h: e.h });
       else if (e.t === 'video') {
         if (vids[e.key]) s.addMedia({ type: 'video', data: 'video/mp4;base64,' + vids[e.key], cover: covers[e.key], x: e.x, y: e.y, w: e.w, h: e.h, extn: 'mp4' });
-        else { s.addImage({ data: e.src, x: e.x, y: e.y, w: e.w, h: e.h }); s.addText('영상은 웹 주소·앱에서 만들면 PPT에 함께 들어갑니다', { x: e.x, y: e.y + e.h - 0.45, w: e.w, h: 0.4, fontSize: 11, color: 'FFFFFF', fill: { color: '000000', transparency: 45 }, align: 'center', fontFace: '맑은 고딕' }); }
+        else { s.addImage({ data: e.src, x: e.x, y: e.y, w: e.w, h: e.h, hyperlink: { url: vidUrl(e.key), tooltip: '영상 재생' } }); s.addText('▶ 누르면 영상 재생(인터넷 연결 시)', { x: e.x, y: e.y + e.h - 0.45, w: e.w, h: 0.4, fontSize: 12, bold: true, color: 'FFFFFF', fill: { color: '0B1757', transparency: 20 }, align: 'center', fontFace: '맑은 고딕', hyperlink: { url: vidUrl(e.key) } }); }
       }
       else if (e.t === 'shape') s.addShape(SHP[e.k], { x: e.x, y: e.y, w: e.w, h: e.h, fill: { color: e.fill }, line: e.line ? { color: e.line, width: e.lw || 0.75 } : { type: 'none' } });
       else if (e.t === 'text') {
@@ -1056,7 +1061,7 @@ function slideDom(els) {
   els.forEach(e => {
     const n = document.createElement('div'); n.style.cssText = `position:absolute;left:${e.x * DPI}px;top:${e.y * DPI}px;width:${e.w * DPI}px;height:${e.h * DPI}px;`;
     if (e.t === 'img' || e.t === 'video') { const im = document.createElement('img'); im.src = e.src; im.style.cssText = 'width:100%;height:100%;display:block;object-fit:cover'; n.appendChild(im);
-      if (e.t === 'video') { const pl = document.createElement('div'); pl.style.cssText = 'position:absolute;left:50%;top:50%;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;background:rgba(15,21,48,.72);box-shadow:0 0 0 4px rgba(255,255,255,.85)'; pl.innerHTML = '<div style="position:absolute;left:36px;top:26px;width:0;height:0;border-left:30px solid #fff;border-top:20px solid transparent;border-bottom:20px solid transparent"></div>'; n.appendChild(pl); } }
+      if (e.t === 'video') { n.dataset.vid = e.key; const cap = document.createElement('div'); cap.style.cssText = 'position:absolute;left:0;right:0;bottom:0;padding:6px 10px;background:rgba(11,23,87,.82);color:#fff;font:700 15px/1.3 ' + SFONT + ';text-align:center'; cap.textContent = '▶ 누르면 영상 재생 (PPT·웹 매뉴얼에서는 바로 재생)'; n.appendChild(cap); const pl = document.createElement('div'); pl.style.cssText = 'position:absolute;left:50%;top:50%;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;background:rgba(15,21,48,.72);box-shadow:0 0 0 4px rgba(255,255,255,.85)'; pl.innerHTML = '<div style="position:absolute;left:36px;top:26px;width:0;height:0;border-left:30px solid #fff;border-top:20px solid transparent;border-bottom:20px solid transparent"></div>'; n.appendChild(pl); } }
     else if (e.t === 'shape') {
       n.style.background = '#' + e.fill; if (e.line) n.style.boxShadow = `inset 0 0 0 1px #${e.line}`;
       const o = Math.min(e.w, e.h) * DPI, W = e.w * DPI;
@@ -1089,6 +1094,7 @@ async function makePdf(p, onProgress, slidesIn, titleIn) {
     const cv = await html2canvas(d, { scale: 2, backgroundColor: '#ffffff', logging: false, useCORS: true });
     if (i) pdf.addPage([SW, SH], 'landscape');
     pdf.addImage(cv.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, SW, SH);
+    slides[i].filter(e => e.t === 'video').forEach(e => { try { pdf.link(e.x, e.y, e.w, e.h, { url: vidUrl(e.key) }); } catch (er) { } });
   }
   host.innerHTML = '';
   pdf.setProperties({ title: titleIn || docTitle(p), author: APP.maker, creator: `${APP.name} ${APP.version}` });
@@ -1107,6 +1113,7 @@ async function run(kind) {
       if (p.kind === 'man' && formIdsOf(p, outItems(p)).length) { busy(true, '업무 서식집 Word 생성 중…'); await download(await makeFormsDocx(p.f), formsFileName(p.f)); } }
     if (kind === 'pptx' || kind === 'all') { busy(true, 'PPT 생성 중… (현장 영상 포함)'); await download(await makePptx(p), base + '.pptx'); }
     if (kind === 'pdf' || kind === 'all') { await download(await makePdf(p, (i, n) => busy(true, `PDF 변환 중… ${i}/${n}`)), base + '.pdf'); }
+    if (kind === 'web' || kind === 'all') { busy(true, '웹 매뉴얼 만드는 중…'); await download(await makeWebShow(p, null, null, m => busy(true, '웹 매뉴얼 — ' + m)), base + '_웹매뉴얼(영상재생).html'); }
     saveHistory(p); toast('출력 완료 — 다운로드 폴더를 확인하세요.');
   } catch (e) { console.error(e); toast('생성 오류: ' + e.message, 5000); }
   finally { busy(false); }
@@ -1174,6 +1181,7 @@ function siteCommon() {
   state.site = null; $('#f_client').value = '에스텍 그룹 전사 공통'; renderSiteInfo(); renderSites(); autoTitle(); toast('전사 공통 표준으로 작성합니다.');
 }
 async function init() {
+  sopTaxInit();
   $('#f_ind').innerHTML = IND_ORDER.map(k => `<option value="${k}">${IND[k].n}</option>`).join('');
   $('#f_level').innerHTML = Object.entries(MAN_LEVEL).map(([k, v]) => `<option value="${k}" ${k === state.level ? 'selected' : ''}>${v.n} — ${v.s}</option>`).join('');
   const t = kstNow(); $('#f_eff').value = `${t.getFullYear()}-${pad(t.getMonth() + 1)}-${pad(t.getDate())}`;
@@ -1199,7 +1207,7 @@ async function init() {
   $('#btnClear').onclick = () => { state.picked = []; renderTree($('#q').value); renderPicked(); };
   $('#btnGen').onclick = () => { const p = state.kind === 'man' ? buildManPlan(readForm()) : buildPlan(); if (!p) return; state.plan = p; renderEditor(p); toast(p.kind === 'man' ? '업무매뉴얼이 생성되었습니다. 검토 후 출력하세요.' : '업무표준안이 생성되었습니다. 검토 후 출력하세요.'); if (innerWidth < 1100) $('#outPanel').scrollIntoView({ behavior: 'smooth' }); };
   document.querySelectorAll('input[name=mode]').forEach(r => r.onchange = () => { if (state.plan) { syncEditor(); renderEditor(state.plan); } });
-  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnForms').onclick = runForms;
+  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnWeb').onclick = () => run('web'); $('#btnForms').onclick = runForms;
   $('#hist').addEventListener('click', histClick);
   await buildSignature(kstNow());
   $('#sigImg').src = state.sigDataUrl;

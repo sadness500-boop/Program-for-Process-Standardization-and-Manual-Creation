@@ -51,6 +51,7 @@ function manGroups(S, f, p) {
       G.push({ title: '지휘·보고 체계', lines: ['고객사 → 현장대리인(요청 접수) → 팀장·조장 → 근무자', '근무자 → 조장 → 현장대리인 → 지사장 → 본사(보고)', '고객사 직원의 직접 지시는 받지 않고 현장대리인을 통해 처리(도급 관계 유지)'] });
       G.push({ title: '에스텍베스트 지사', lines: BRANCHES.map(b => `${b.name}: ${b.addr}`) });
       break;
+    case 'task': return sopGroups(S);
     case 'duty':
       G.push({ title: `${J.n} 핵심 직무`, lines: J.duty });
       if (st) G.push({ title: '현장 배치', lines: [`${st.name}: 계약 업종 ${st.work} · 근무형태 ${st.shift} · 총 ${st.total}명(보안 ${st.sec} · 미화 ${st.cln} · 기타 ${st.etc})`] });
@@ -268,7 +269,8 @@ async function makeManDocx(p) {
     items.filter(x => x.L.c === L.c).forEach((x, j) => {
       ch.push(P([R(`${i + 1}.${j + 1} `, { size: 22, bold: true, color: C.green }), R(x.S.n, { size: 22, bold: true, color: C.navy }), R(`  ${GRADE[x.S.g].label}`, { size: 16, bold: true, color: GRADE[x.S.g].color })], { before: 160, after: 60, keepNext: true, border: { bottom: { style: docx.BorderStyle.SINGLE, size: 6, color: 'B8C0CC', space: 2 } } }));
       const G = parseGrp(p.text[x.S.c]), m = p.media[x.S.c] || {};
-      if (x.S.gen === 'scn') { G.forEach(g => { const sc = SCN.find(s => g.title.startsWith(s.id + ' ')); if (sc) { ch.push(scnCard(g, sc)); ch.push(P([R('')], { after: 40 })); } else ch.push(...grpParas([g])); }); }
+      if (x.S.gen === 'task') { ch.push(...sopDocx(x.S, p)); }
+      else if (x.S.gen === 'scn') { G.forEach(g => { const sc = SCN.find(s => g.title.startsWith(s.id + ' ')); if (sc) { ch.push(scnCard(g, sc)); ch.push(P([R('')], { after: 40 })); } else ch.push(...grpParas([g])); }); }
       else if (x.S.gen === 'bad') { G.forEach(g => { const b = BAD.find(b => g.title.includes(b.t)); ch.push(sideTable(b ? { poster: b.k, vid: b.k } : {}, grpParas([g]), 2700)); }); }
       else if (x.S.gen === 'forms') {
         const fw = [1300, 2600, 4238, 1500];
@@ -347,6 +349,7 @@ function buildManSlides(p) {
       S.push(o); no++; }
     its.forEach((x, j) => {
       const G = parseGrp(p.text[x.S.c]), m = p.media[x.S.c] || {}, ttl = `${sec}  ${ci + 1}.${j + 1} ${x.S.n}`;
+      if (x.S.gen === 'task') { no = sopSlides(x.S, p, S, no, `${sec}  ${ci + 1}.${j + 1}`); return; }
       if (x.S.gen === 'scn') {
         G.forEach(g => { const sc = SCN.find(s => g.title.startsWith(s.id + ' ')); if (!sc) return;
           const o = frame(`${sec}  🚨 ${g.title}`, `${x.S.n} · 상황별 대처`, no, p);
@@ -455,6 +458,9 @@ function formPage(fm, c, first) {
   return out;
 }
 async function makeFormsDocx(f) {
+  R.raw = true; try { return await makeFormsDocx0(f); } finally { R.raw = false; }
+}
+async function makeFormsDocx0(f) {
   const c = formCtx(f), AC = docx.AlignmentType.CENTER, list = formsForJob(f.job), ch = [];
   const now = kstNow();
   // 표지 · 목차

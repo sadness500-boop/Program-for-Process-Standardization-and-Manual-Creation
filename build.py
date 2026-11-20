@@ -21,6 +21,9 @@ html = html.replace('/*ASSETS*/', 'const ASSET=' + json.dumps(assets) + ';')
 for k, f in [('HF', 'src/hf.js'), ('SITES', 'src/sites.js'), ('DATA', 'src/data.js'), ('KB', 'src/kb.js'), ('UI', 'src/ui.js'), ('APP', 'src/app.js'), ('MANKB', 'src/man_kb.js'), ('MAN', 'src/man.js'),
              ('SUPABASE', 'vendor/supabase.js'), ('AUTH', 'vendor/auth.js'), ('APPACCESS', 'vendor/app_access.js')]:
     html = html.replace('/*' + k + '*/', scr(rd(f)))
+for k, fs in [('SOP', ['src/sop_cln.js', 'src/sop_sec.js', 'src/sop_etc.js', 'src/sop_out.js', 'src/webshow.js'])]:
+    assert html.count('/*' + k + '*/') == 1, k
+    html = html.replace('/*' + k + '*/', scr('\n'.join(rd(f) for f in fs)))
 html = html.replace('<script>/*WORKER*/</script>\n', '').replace('<!--AUTHCSS-->', rd('vendor/auth.css'))
 html = html.replace("version: 'v1.0.0'", f"version: 'v{VER}'")
 out = sys.argv[1] if len(sys.argv) > 1 else R + 'index.html'
