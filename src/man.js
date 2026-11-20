@@ -52,6 +52,7 @@ function manGroups(S, f, p) {
       G.push({ title: '에스텍베스트 지사', lines: BRANCHES.map(b => `${b.name}: ${b.addr}`) });
       break;
     case 'task': return sopGroups(S);
+    case 'emg': return emgGroups(S);
     case 'duty':
       G.push({ title: `${J.n} 핵심 직무`, lines: J.duty });
       if (st) G.push({ title: '현장 배치', lines: [`${st.name}: 계약 업종 ${st.work} · 근무형태 ${st.shift} · 총 ${st.total}명(보안 ${st.sec} · 미화 ${st.cln} · 기타 ${st.etc})`] });
@@ -262,6 +263,7 @@ async function makeManDocx(p) {
   ch.push(H2('제·개정 이력'));
   const rw = [1300, 2000, 4538, 1800];
   ch.push(table([[th('개정', rw[0]), th('일자', rw[1]), th('내용', rw[2]), th('작성', rw[3])], [td(revLabel(p).split(' ')[0], rw[0], { align: AC }), td(fmtD(p.made), rw[1], { align: AC }), td(f.reason || (Number(f.rev) ? '정기 검토 개정' : '업무매뉴얼 제정'), rw[2]), td(f.author || f.dept, rw[3], { align: AC })]], rw, { header: true }));
+  linkDocx(ch, p, null);
   // 장·절
   const allCk = [];
   chaps.forEach((L, i) => {
@@ -270,6 +272,7 @@ async function makeManDocx(p) {
       ch.push(P([R(`${i + 1}.${j + 1} `, { size: 22, bold: true, color: C.green }), R(x.S.n, { size: 22, bold: true, color: C.navy }), R(`  ${GRADE[x.S.g].label}`, { size: 16, bold: true, color: GRADE[x.S.g].color })], { before: 160, after: 60, keepNext: true, border: { bottom: { style: docx.BorderStyle.SINGLE, size: 6, color: 'B8C0CC', space: 2 } } }));
       const G = parseGrp(p.text[x.S.c]), m = p.media[x.S.c] || {};
       if (x.S.gen === 'task') { ch.push(...sopDocx(x.S, p)); }
+      else if (x.S.gen === 'emg') { ch.push(...emgDocx(x.S)); }
       else if (x.S.gen === 'scn') { G.forEach(g => { const sc = SCN.find(s => g.title.startsWith(s.id + ' ')); if (sc) { ch.push(scnCard(g, sc)); ch.push(P([R('')], { after: 40 })); } else ch.push(...grpParas([g])); }); }
       else if (x.S.gen === 'bad') { G.forEach(g => { const b = BAD.find(b => g.title.includes(b.t)); ch.push(sideTable(b ? { poster: b.k, vid: b.k } : {}, grpParas([g]), 2700)); }); }
       else if (x.S.gen === 'forms') {
@@ -332,6 +335,7 @@ function buildManSlides(p) {
       o.push(Rc(x, y, 0.85, 0.6, i % 2 ? K.tint : K.tintG, { k: 'para' })); o.push(T(x, y, 0.85, 0.6, String(i + 1).padStart(2, '0'), { pt: 19, bold: true, color: i % 2 ? K.navy : C.green, align: 'center', valign: 'middle' }));
       o.push(T(x + 1.0, y, 4.8, 0.6, [{ text: `${L.e} ${L.n}`, bold: true }, { text: items.filter(z => z.L.c === L.c).map(z => z.S.n).join(' · '), size: 0.6, color: C.gray }], { max: 17, min: 9, valign: 'middle', gap: 1 })); });
     S.push(o); no++; }
+  no = linkSlides(p, S, no, t => t);
   chaps.forEach((L, ci) => {
     const its = items.filter(x => x.L.c === L.c), sec = String(ci + 1).padStart(2, '0');
     // 장 표지
@@ -350,6 +354,7 @@ function buildManSlides(p) {
     its.forEach((x, j) => {
       const G = parseGrp(p.text[x.S.c]), m = p.media[x.S.c] || {}, ttl = `${sec}  ${ci + 1}.${j + 1} ${x.S.n}`;
       if (x.S.gen === 'task') { no = sopSlides(x.S, p, S, no, `${sec}  ${ci + 1}.${j + 1}`); return; }
+      if (x.S.gen === 'emg') { no = emgSlides(x.S, p, S, no, `${sec}  ${ci + 1}.${j + 1}`); return; }
       if (x.S.gen === 'scn') {
         G.forEach(g => { const sc = SCN.find(s => g.title.startsWith(s.id + ' ')); if (!sc) return;
           const o = frame(`${sec}  🚨 ${g.title}`, `${x.S.n} · 상황별 대처`, no, p);

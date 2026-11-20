@@ -1,6 +1,6 @@
 # Program for Process Standardization and Manual Creation
 
-**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.4.0
+**에스텍 그룹 업무표준화 · 매뉴얼 제작 시스템** · v1.5.0
 
 <img src="icons/icon-192.png" width="96" alt="업무표준화·매뉴얼 제작 시스템 아이콘">
 
@@ -14,9 +14,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/ |
-| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.html) | |
+| 웹 버전 (버전별) | [releases/Program-for-Process-Standardization-and-Manual-Creation_v1.5.0.html](releases/Program-for-Process-Standardization-and-Manual-Creation_v1.5.0.html) | |
 | 안드로이드 앱 (최신) | `stos-latest.apk` | https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.apk` | 릴리스 `v1.4.0` |
+| 안드로이드 앱 (버전별) | `releases/Program-for-Process-Standardization-and-Manual-Creation_v1.5.0.apk` | 릴리스 `v1.5.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -28,8 +28,8 @@
 
 | 문서 | Word | PPT | PDF |
 |---|---|---|---|
-| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.4.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.4.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.4.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.4.0(Word판).pdf) |
-| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.4.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.4.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.4.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.4.0(Word판).pdf) |
+| 사용자 매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.5.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.5.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.5.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_사용자매뉴얼_v1.5.0(Word판).pdf) |
+| 제작자 관리 사용매뉴얼 | [docx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.5.0.docx) | [pptx](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.5.0.pptx) | [pdf](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.5.0.pdf) · [pdf(Word판)](docs/Program-for-Process-Standardization-and-Manual-Creation_제작자관리매뉴얼_v1.5.0(Word판).pdf) |
 
 매뉴얼은 `tools/make_guides.py`(화면 캡처) + `tools/guide.js`(프로그램과 같은 Word·PPT 엔진)로 다시 만들 수 있습니다.
 
@@ -137,6 +137,11 @@ server/                        로그인 서버 SQL
 
 ## 변경 이력
 
+- **v1.5.0** (2026-11-20) — 견적·RFP 연동 · 비상대처 매뉴얼 · 출력 3종 정리
+  - **₩ 견적 연동**(화면 왼쪽 위): 제안서 제작시스템과 같은 구성 — 탭(전체·용역인력·업무량·단기·직접/엑셀/파일) · 견적 프로그램 열기 · 새로 불러오기 · 직접 입력 · 연동 파일 · 📊 엑셀 견적서 불러오기(.xlsx·.xls·.csv·PDF, 끌어다 놓기) → 사업장·직종·근무조 코드 자동 반영, 출력물 「인력 운영 기준(견적 연동)」
+  - **📎 RFP·과업지시서·공고문 불러오기**(③ 맨 위): PDF·Word·한글(HWPX)·메일·사진(글자 인식) → 요구사항 14개 구분 분석 → 작성 정보 반영 · 관련 표준/매뉴얼 장 자동 선택 · 출력물 「과업 요구사항 대응표」
+  - **🆘 비상대처 매뉴얼**: 에스텍 비상대처 매뉴얼 11개 장(사건사고·천재지변·집단민원·화재·소란난동·침입이상·응급환자·가스누출·보안사건·매스컴·대테러)을 업무매뉴얼 장으로 수록(Word 원문 그대로, PPT·PDF 항목별 슬라이드), 그림으로만 있던 항목은 표준 내용으로 보충
+  - **출력 정리**: v1.0.0 방식의 업무표준서·업무매뉴얼을 Word · PPT · PDF(PPT 내용 그대로) 3종으로 — 웹 매뉴얼·운영 제안서 출력 버튼은 정리
 - **v1.4.0** (2026-11-20) — 내용 대폭 보강
   - **세부 작업표준(SOP) 114건**: 7개 직종 · 구역별 작업마다 주기·소요시간·담당·도구·약품(희석비율)·보호구·단계별 동작과 요령·완료 기준·금지 사항·기록 — OJT 없이 문서만 보고 일할 수 있는 수준. 업무표준서 「T. 세부 작업표준」, 업무매뉴얼 「직무 상세 작업표준」 장으로 자동 포함
   - **🎬 웹 매뉴얼(HTML)**: 영상이 파일 안에 들어가 장마다 실제 재생 · PPT 영상 내장 · PDF·Word 영상 장면은 누르면 재생

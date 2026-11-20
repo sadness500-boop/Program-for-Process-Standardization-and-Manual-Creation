@@ -312,7 +312,7 @@ function initVidStage() {
 function vLoad(v, i) { v.poster = vSrc(VCASES[i].f, 'jpg'); v.src = vSrc(VCASES[i].f, 'mp4'); v.muted = VST.muted; v.load(); }
 function vProg(v) { const b = $('#vDots button.on b'); if (b && v.duration) b.style.width = (100 * v.currentTime / v.duration) + '%'; }
 function vCap(i) {
-  const c = VCASES[i]; $('#vBadge').textContent = `직종별 업무 소개 ${i + 1}/${VCASES.length} · ${c.job ? JOB[c.job].n : (c.tag || '공통')}`; $('#vT').textContent = c.t; $('#vS').textContent = c.s;
+  if (!$("#vBadge")) return; const c = VCASES[i]; $('#vBadge').textContent = `직종별 업무 소개 ${i + 1}/${VCASES.length} · ${c.job ? JOB[c.job].n : (c.tag || '공통')}`; $('#vT').textContent = c.t; $('#vS').textContent = c.s;
   const codes = c.pack || (c.job ? uniq(PACK.common.slice(0, 2).concat(PACK[c.job] || []).slice(0, 3)) : ['A1-01', 'C1-01']);
   $('#vChips').innerHTML = codes.slice(0, 3).map(code => { const x = findSmall(code); return x ? `<span class="vchip">${code} ${esc(x.S.n)}</span>` : ''; }).join(' ');
   document.querySelectorAll('#vDots button').forEach((b, k) => { b.classList.toggle('on', k === i); b.querySelector('b').style.width = k < i ? '100%' : '0'; });
@@ -325,7 +325,7 @@ function vGo(next) {
   const r = VST.box.getBoundingClientRect(), W = cv.width = Math.max(320, Math.round(r.width)), H = cv.height = Math.round(W * 9 / 16);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, D = reduce ? 300 : 1100, t0 = performance.now();
   $('#vBot').classList.add('fade'); cv.classList.add('on'); let swapped = false;
-  const step = now => {
+  const step = now => { if (!VST.box || !VST.box.isConnected || !$('#vBot')) { VST.busy = false; return; }
     const t = Math.min(1, (now - t0) / D), half = t < 0.5, src = half ? oldV : newV;
     const e = Math.sin(Math.PI * t), blk = reduce ? 1 : Math.max(1, Math.round(2 + 54 * e * e));
     if (!half && !swapped) { swapped = true; oldV.classList.remove('on'); newV.classList.add('on'); VST.cur = nk; VST.i = next; vCap(next); }

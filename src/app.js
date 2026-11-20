@@ -7,7 +7,7 @@ const APP = {
   name: 'Program for Process Standardization and Manual Creation',
   ko: '업무표준화·매뉴얼 제작 시스템',
   en: 'Program for Process Standardization and Manual Creation',
-  version: 'v1.4.0',
+  version: 'v1.5.0',
   build: '2026-11-15',
   shareUrl: 'https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/',
   apkUrl: 'https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk',
@@ -520,6 +520,7 @@ async function makeDocx(p) {
   ch.push(H2(`${p.J.n} 직무 개요`));
   ch.push(...bullets([{ title: '핵심 직무', lines: p.J.duty }, { title: `산업 특성 — ${p.I.n}`, lines: [p.I.feat].concat(p.I.risk) }]));
   { const v = VIDEO_OF[jobKey(p)]; ch.push(...imgPara(ASSET.poster[v], 3.6, `▶ 표준 교육 자료: ${p.J.n} 근무 영상 (업무표준 PPT에서 재생)`, [16, 9])); }
+  n = linkDocx(ch, p, n);
   // Ⅲ 체계표
   ch.push(H1(`${ROMAN[n++]}. 업무표준 항목 체계`));
   const cw2 = [2300, 2500, 3638, 1200];
@@ -883,6 +884,7 @@ function buildSlides(p) {
     o.push(Rc(8.4, 4.35, 4.35, 2.1, 'FDF1EF', { line: 'F2B8AE' }));
     o.push(T(8.6, 4.45, 4.0, 1.95, [{ text: '금지·제한 업무', bold: true, color: C.brick }].concat(p.J.ban.map(t => ({ text: '•  ' + t, size: 0.9 }))), { max: 12, min: 7.5 }));
     S.push(o); no++; }
+  no = linkSlides(p, S, no, H);
   /* 5. 체계 */
   { const o = frame(H('업무표준 항목 체계'), `대 · 중 · 소 분류 — 법정 ${items.filter(x => x.S.g === 'M').length} · 핵심 ${items.filter(x => x.S.g === 'C').length} · 권장 ${items.filter(x => x.S.g === 'R').length}`, no, p);
     const cols = items.length > 16 ? 4 : items.length > 8 ? 3 : 2, rowsN = Math.ceil(items.length / cols), cw = (12.15 - (cols - 1) * 0.15) / cols, chh = Math.min(0.9, (4.75 - (rowsN - 1) * 0.1) / rowsN);
@@ -1113,7 +1115,7 @@ async function run(kind) {
       if (p.kind === 'man' && formIdsOf(p, outItems(p)).length) { busy(true, '업무 서식집 Word 생성 중…'); await download(await makeFormsDocx(p.f), formsFileName(p.f)); } }
     if (kind === 'pptx' || kind === 'all') { busy(true, 'PPT 생성 중… (현장 영상 포함)'); await download(await makePptx(p), base + '.pptx'); }
     if (kind === 'pdf' || kind === 'all') { await download(await makePdf(p, (i, n) => busy(true, `PDF 변환 중… ${i}/${n}`)), base + '.pdf'); }
-    if (kind === 'web' || kind === 'all') { busy(true, '웹 매뉴얼 만드는 중…'); await download(await makeWebShow(p, null, null, m => busy(true, '웹 매뉴얼 — ' + m)), base + '_웹매뉴얼(영상재생).html'); }
+    if (kind === 'web') { busy(true, '웹 매뉴얼 만드는 중…'); await download(await makeWebShow(p, null, null, m => busy(true, '웹 매뉴얼 — ' + m)), base + '_웹매뉴얼(영상재생).html'); }
     saveHistory(p); toast('출력 완료 — 다운로드 폴더를 확인하세요.');
   } catch (e) { console.error(e); toast('생성 오류: ' + e.message, 5000); }
   finally { busy(false); }
@@ -1181,7 +1183,7 @@ function siteCommon() {
   state.site = null; $('#f_client').value = '에스텍 그룹 전사 공통'; renderSiteInfo(); renderSites(); autoTitle(); toast('전사 공통 표준으로 작성합니다.');
 }
 async function init() {
-  sopTaxInit();
+  sopTaxInit(); emgTaxInit();
   $('#f_ind').innerHTML = IND_ORDER.map(k => `<option value="${k}">${IND[k].n}</option>`).join('');
   $('#f_level').innerHTML = Object.entries(MAN_LEVEL).map(([k, v]) => `<option value="${k}" ${k === state.level ? 'selected' : ''}>${v.n} — ${v.s}</option>`).join('');
   const t = kstNow(); $('#f_eff').value = `${t.getFullYear()}-${pad(t.getMonth() + 1)}-${pad(t.getDate())}`;
@@ -1207,8 +1209,9 @@ async function init() {
   $('#btnClear').onclick = () => { state.picked = []; renderTree($('#q').value); renderPicked(); };
   $('#btnGen').onclick = () => { const p = state.kind === 'man' ? buildManPlan(readForm()) : buildPlan(); if (!p) return; state.plan = p; renderEditor(p); toast(p.kind === 'man' ? '업무매뉴얼이 생성되었습니다. 검토 후 출력하세요.' : '업무표준안이 생성되었습니다. 검토 후 출력하세요.'); if (innerWidth < 1100) $('#outPanel').scrollIntoView({ behavior: 'smooth' }); };
   document.querySelectorAll('input[name=mode]').forEach(r => r.onchange = () => { if (state.plan) { syncEditor(); renderEditor(state.plan); } });
-  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnWeb').onclick = () => run('web'); $('#btnForms').onclick = runForms; $('#btnPkg').onclick = runPackage; $('#btnEst').onclick = openEstimate;
+  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnForms').onclick = runForms; $('#btnPkg').onclick = runPackage;
   $('#hist').addEventListener('click', histClick);
+  try { initLinkUI(); } catch (e) { console.error('견적 연동 화면', e); }
   await buildSignature(kstNow());
   $('#sigImg').src = state.sigDataUrl;
 }

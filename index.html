@@ -124,7 +124,7 @@ body.dark .ed label{color:#9DB1FF}
 .law{font-size:12.2px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--soft)}
 .law small{display:block;color:var(--gray);margin:2px 0 0 20px}
 .law input{accent-color:var(--green)}
-.outbtns{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;padding:12px 16px;border-top:1px solid var(--line);background:var(--silver)}
+.outbtns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 16px;border-top:1px solid var(--line);background:var(--silver)}
 .outbtns .btn{padding:11px 6px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .outbtns .btn small{font-weight:400;font-size:10.5px;opacity:.85}
 .outbtns .all{grid-column:1/-1;background:linear-gradient(100deg,#1E8B3A,#0B1F8F)}
@@ -203,6 +203,45 @@ body.dark .wk-h b{color:#ff9e8c}
 .seg button{border:0;background:none;color:#fff;padding:5px 10px;border-radius:999px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:inherit}
 .seg button[aria-pressed="true"]{background:#fff;color:var(--band1);font-weight:700;box-shadow:0 0 0 2px #2BA24A}
 @media(max-width:760px){.bcard .t1,.bcard .t3{display:none}.bcard{padding:4px 10px 4px 4px}.bcard .ph{width:34px;height:34px}.cards{margin-left:0}.appicon{width:38px;height:38px}.brand-txt b{font-size:15px}.brand-txt b.pname{font-size:16px}.appicon{width:42px;height:42px}.band{position:static}}
+
+/* 견적 연동 · RFP (제안서 제작시스템과 같은 구성) */
+#linkCard>h2{white-space:nowrap}#linkMsg{max-width:58%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ltabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.ltabs button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--ink);font-family:inherit;cursor:pointer}
+.ltabs button i{font-style:normal;margin-left:4px;font-size:10.5px;background:var(--soft);border-radius:999px;padding:0 6px;color:var(--gray)}
+.ltabs button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}.ltabs button[aria-pressed="true"] i{background:rgba(255,255,255,.2);color:#fff}
+#linkList{list-style:none;margin:0;padding:0;max-height:240px;overflow:auto;border:1px solid var(--line);border-radius:12px}
+#linkList li.empty{padding:14px;text-align:center;color:var(--gray);font-size:12.5px;line-height:1.6}
+li.lk{display:flex;gap:8px;align-items:flex-start;padding:9px 10px;border-bottom:1px solid var(--line);cursor:pointer}
+li.lk:last-child{border-bottom:0}li.lk:hover{background:var(--soft)}
+li.lk.on{background:#E8F5EC;box-shadow:inset 4px 0 0 var(--green)}body.dark li.lk.on{background:#173a26}
+li.lk input{margin-top:3px;accent-color:var(--green)}
+li.lk .lb{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+li.lk .lb b{font-size:13px;line-height:1.3}li.lk .lb small{font-size:11.5px;color:var(--gray)}
+li.lk .amt{font-size:12.5px;font-weight:800;color:var(--navy)}body.dark li.lk .amt{color:#9DB0FF}li.lk .amt small{font-weight:500;color:var(--gray)}
+li.lk .lx{border:0;background:none;color:var(--gray);cursor:pointer;font-size:14px}
+.sb{display:inline-block;align-self:flex-start;font-size:10.5px;font-weight:800;border-radius:6px;padding:1px 7px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);margin-right:4px}
+.sb.raw{--c:#667089}.sb.ok{--c:#1B7A34}.sb.xl{--c:#1D6F42}
+.need{font-style:normal;color:#C2410C;font-weight:700}
+.lsum{margin-top:8px;font-size:12.5px;background:var(--soft);border-radius:10px;padding:8px 10px}
+.lsum .btn{margin-left:6px;padding:4px 10px;font-size:12px}
+.lacts{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.lacts .btn{font-size:12.5px;padding:8px 8px}
+.lacts .btn.wide{grid-column:1/-1;background:linear-gradient(135deg,#1D6F42,#21A366);color:#fff;border:0;font-weight:800;box-shadow:none}.lacts .btn.wide small{font-weight:500;opacity:.85;margin-left:4px}
+.lhint{margin-top:8px;line-height:1.6}.lhint a{color:var(--green);font-weight:700}
+#linkCard.drag{outline:3px dashed #21A366;outline-offset:-6px}
+.srcs{display:flex;flex-direction:column;gap:8px}
+.srcbtn{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--ink);border-left:5px solid var(--c)}
+.srcbtn:hover{background:var(--soft)}.srcbtn .ic{font-size:22px}.srcbtn b{display:block}.srcbtn small{color:var(--gray);font-size:11.5px}.srcbtn i{margin-left:auto;font-style:normal;color:var(--gray)}
+.rfpbox{margin-bottom:8px}
+#f_rfp{margin-bottom:6px}
+#rfpRes:empty{display:none}
+#rfpRes{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px;background:var(--soft)}
+.rfp-h{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:6px}.rfp-h b{font-size:13.5px;margin-right:4px}
+.tg{display:inline-block;font-size:10.5px;font-weight:800;color:var(--navy);background:rgba(42,68,212,.1);border-radius:6px;padding:1px 6px;margin-right:4px}
+.rfp-hint{font-size:12px;line-height:1.7}.rfp-hint .btn{margin:4px 4px 0 0;padding:4px 10px;font-size:12px}
+.rfp-list{margin:8px 0 0;padding-left:20px;font-size:12px;max-height:180px;overflow:auto}.rfp-list li{margin:2px 0}.rfp-list .more{list-style:none;color:var(--gray)}
+.tblw{overflow:auto}table.me{border-collapse:collapse;width:100%;font-size:12.5px;min-width:620px}table.me th{background:var(--soft);padding:6px;text-align:left}table.me td{padding:3px}table.me input{padding:6px 7px;font-size:12.5px;width:100%;border:1px solid var(--line);border-radius:6px;background:var(--panel2);color:var(--ink)}
 /* 모달 */
 .intake{border:1.5px dashed #9fb3d9;border-radius:12px;padding:10px 12px;margin-bottom:12px;background:linear-gradient(135deg,rgba(30,139,58,.06),rgba(11,31,143,.06));transition:.15s}
 .intake.drag{border-color:var(--green);background:rgba(30,139,58,.14);transform:scale(1.01)}
@@ -393,6 +432,24 @@ ul.flatm{list-style:none;margin:4px 8px 6px 10px;padding:0}
 <main class="wrap">
   <div class="col">
   <!-- ① 사업장 -->
+  <section class="card" id="linkCard">
+    <h2><span class="stepn" style="background:#E8750A">₩</span> 견적 연동 <span class="r" id="linkMsg"></span></h2>
+    <div class="body">
+      <div class="ltabs" id="linkTabs" role="group" aria-label="견적 프로그램"></div>
+      <ul id="linkList"></ul>
+      <div class="lsum" id="linkSum"></div>
+      <div class="lacts">
+        <button class="btn l" id="btnLinkOpen" type="button">↗ 견적 프로그램 열기</button>
+        <button class="btn l" id="btnLinkRefresh" type="button">↻ 새로 불러오기</button>
+        <button class="btn l" id="btnLinkManual" type="button">✍ 직접 입력</button>
+        <button class="btn l" id="btnLinkFile" type="button">📂 연동 파일</button>
+        <button class="btn xl wide" id="btnLinkXl" type="button">📊 엑셀 견적서 불러오기 <small>.xlsx · .xls · .csv · PDF</small></button>
+      </div>
+      <input type="file" id="xlFile" accept=".xlsx,.xlsm,.xls,.xlsb,.ods,.csv,.pdf,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" multiple hidden>
+      <input type="file" id="linkFile" accept=".json,application/json" hidden>
+      <p class="hint lhint">용역인력 견적·업무량 기반 산정·단기인력 견적에서 <b>「📑 제안서로 보내기」</b>를 누르면 인원·근무형태·금액이 자동으로 들어옵니다. 엑셀로 만든 견적서·원가분석표는 <b>「📊 엑셀 견적서 불러오기」</b>를 누르거나 이 칸에 끌어다 놓으세요. 체크한 견적은 업무표준서·업무매뉴얼의 <b>「인력 운영 기준(견적 연동)」</b>으로 출력되고, 같은 계정으로 로그인하면 다른 기기에서 보낸 견적도 보입니다. <a href="#" id="btnLinkExport">선택 견적 내보내기(.json)</a></p>
+    </div>
+  </section>
   <section class="card" id="siteCard">
     <h2><span class="stepn">1</span> 적용 사업장 선정 <span class="r" id="siteCnt"></span></h2>
     <div class="body">
@@ -428,6 +485,15 @@ ul.flatm{list-style:none;margin:4px 8px 6px 10px;padding:0}
   <section class="card" id="formCard">
     <h2><span class="stepn">3</span> 표준 작성 정보 <span class="r"><button class="btn l" id="btnSample">예시 채우기</button></span></h2>
     <div class="body">
+      <div class="intake rfpbox" id="intake" tabindex="0" aria-label="RFP 파일 올리기">
+        <input type="file" id="inFile" multiple hidden accept=".pdf,.docx,.hwpx,.hwp,.eml,.txt,image/*">
+        <div class="in-t"><b>📎 제안요청서(RFP)·과업지시서·공고문 불러오기</b><small>PDF · Word · 한글(HWPX) · 메일(.eml) · 사진(글자 인식) — 끌어다 놓거나 파일 선택. 이 기기 안에서만 처리됩니다.</small></div>
+        <div class="in-b"><button class="btn l" type="button" id="inPick">📂 파일 선택</button><button class="btn l" type="button" id="btnRfp">🔎 요구사항 분석</button><button class="btn l" type="button" id="btnRfpClear">비우기</button></div>
+        <div class="in-prog" id="inProg" hidden><i></i><span></span></div>
+        <div class="in-files" id="inFiles"></div>
+      </div>
+      <textarea id="f_rfp" rows="3" placeholder="RFP·과업지시서 내용을 붙여넣으세요 (선택). 요구사항을 찾아 업무표준서·업무매뉴얼 「과업 요구사항 대응표」로 만들고, 관련 표준 항목을 추천합니다."></textarea>
+      <div id="rfpRes"></div>
       <div class="siteinfo empty" id="siteInfo"></div>
       <div class="grid">
         <div class="f full"><span style="font-size:12px;font-weight:700;color:var(--gray)">적용 직종 <b style="color:var(--brick)">*</b></span><div id="jobChips" role="group" aria-label="직종"></div></div>
@@ -470,12 +536,10 @@ ul.flatm{list-style:none;margin:4px 8px 6px 10px;padding:0}
       <div class="outbtns">
         <button class="btn" id="btnDocx" style="background:#2b579a;box-shadow:0 3px 0 #173361">📄 Word<small>업무표준서 · 점검표</small></button>
         <button class="btn" id="btnPptx" style="background:#C43E1C;box-shadow:0 3px 0 #7d2712">📊 PPT<small>16:9 교육·보고용</small></button>
-        <button class="btn" id="btnPdf" style="background:#B71C1C;box-shadow:0 3px 0 #6d1010">📕 PDF<small>영상 누르면 재생</small></button>
-        <button class="btn" id="btnWeb" style="background:#0F766E;box-shadow:0 3px 0 #0a4f49">🎬 웹 매뉴얼<small>영상 실제 재생(HTML)</small></button>
+        <button class="btn" id="btnPdf" style="background:#B71C1C;box-shadow:0 3px 0 #6d1010">📕 PDF<small>PPT 내용 그대로 (영상 장면 누르면 재생)</small></button>
         <button class="btn forms" id="btnForms" type="button">📝 업무 서식 Word<small>사업장·직종 맞춤 인쇄용 양식 (보안·주차·시설·미화·기타)</small></button>
-        <button class="btn est" id="btnEst" type="button">💼 견적 연동 · 제안서<small>견적 3종 「제안서로 보내기」 · 엑셀·PDF 견적서 → 작성 정보 반영 · 운영 제안서(Word·PPT·PDF)</small></button>
         <button class="btn pkg" id="btnPkg" type="button">📦 사업장 자료 패키지 (ZIP)<small>관리서류 40여 종 — 계획표·일지·교육·품질평가·대장·약품 경고표지 (사업장명 기재)</small></button>
-        <button class="btn all" id="btnAll">⬇ 일괄 출력 (Word + PPT + PDF + 웹 매뉴얼)</button>
+        <button class="btn all" id="btnAll">⬇ 3종 일괄 출력 (Word + PPT + PDF)</button>
       </div>
     </div>
   </section>
@@ -4230,7 +4294,7 @@ function initVidStage() {
 function vLoad(v, i) { v.poster = vSrc(VCASES[i].f, 'jpg'); v.src = vSrc(VCASES[i].f, 'mp4'); v.muted = VST.muted; v.load(); }
 function vProg(v) { const b = $('#vDots button.on b'); if (b && v.duration) b.style.width = (100 * v.currentTime / v.duration) + '%'; }
 function vCap(i) {
-  const c = VCASES[i]; $('#vBadge').textContent = `직종별 업무 소개 ${i + 1}/${VCASES.length} · ${c.job ? JOB[c.job].n : (c.tag || '공통')}`; $('#vT').textContent = c.t; $('#vS').textContent = c.s;
+  if (!$("#vBadge")) return; const c = VCASES[i]; $('#vBadge').textContent = `직종별 업무 소개 ${i + 1}/${VCASES.length} · ${c.job ? JOB[c.job].n : (c.tag || '공통')}`; $('#vT').textContent = c.t; $('#vS').textContent = c.s;
   const codes = c.pack || (c.job ? uniq(PACK.common.slice(0, 2).concat(PACK[c.job] || []).slice(0, 3)) : ['A1-01', 'C1-01']);
   $('#vChips').innerHTML = codes.slice(0, 3).map(code => { const x = findSmall(code); return x ? `<span class="vchip">${code} ${esc(x.S.n)}</span>` : ''; }).join(' ');
   document.querySelectorAll('#vDots button').forEach((b, k) => { b.classList.toggle('on', k === i); b.querySelector('b').style.width = k < i ? '100%' : '0'; });
@@ -4243,7 +4307,7 @@ function vGo(next) {
   const r = VST.box.getBoundingClientRect(), W = cv.width = Math.max(320, Math.round(r.width)), H = cv.height = Math.round(W * 9 / 16);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, D = reduce ? 300 : 1100, t0 = performance.now();
   $('#vBot').classList.add('fade'); cv.classList.add('on'); let swapped = false;
-  const step = now => {
+  const step = now => { if (!VST.box || !VST.box.isConnected || !$('#vBot')) { VST.busy = false; return; }
     const t = Math.min(1, (now - t0) / D), half = t < 0.5, src = half ? oldV : newV;
     const e = Math.sin(Math.PI * t), blk = reduce ? 1 : Math.max(1, Math.round(2 + 54 * e * e));
     if (!half && !swapped) { swapped = true; oldV.classList.remove('on'); newV.classList.add('on'); VST.cur = nk; VST.i = next; vCap(next); }
@@ -4273,7 +4337,7 @@ const APP = {
   name: 'Program for Process Standardization and Manual Creation',
   ko: '업무표준화·매뉴얼 제작 시스템',
   en: 'Program for Process Standardization and Manual Creation',
-  version: 'v1.4.0',
+  version: 'v1.5.0',
   build: '2026-11-15',
   shareUrl: 'https://sadness500-boop.github.io/Program-for-Process-Standardization-and-Manual-Creation/',
   apkUrl: 'https://github.com/sadness500-boop/Program-for-Process-Standardization-and-Manual-Creation/releases/download/app-latest/stos-latest.apk',
@@ -4786,6 +4850,7 @@ async function makeDocx(p) {
   ch.push(H2(`${p.J.n} 직무 개요`));
   ch.push(...bullets([{ title: '핵심 직무', lines: p.J.duty }, { title: `산업 특성 — ${p.I.n}`, lines: [p.I.feat].concat(p.I.risk) }]));
   { const v = VIDEO_OF[jobKey(p)]; ch.push(...imgPara(ASSET.poster[v], 3.6, `▶ 표준 교육 자료: ${p.J.n} 근무 영상 (업무표준 PPT에서 재생)`, [16, 9])); }
+  n = linkDocx(ch, p, n);
   // Ⅲ 체계표
   ch.push(H1(`${ROMAN[n++]}. 업무표준 항목 체계`));
   const cw2 = [2300, 2500, 3638, 1200];
@@ -5149,6 +5214,7 @@ function buildSlides(p) {
     o.push(Rc(8.4, 4.35, 4.35, 2.1, 'FDF1EF', { line: 'F2B8AE' }));
     o.push(T(8.6, 4.45, 4.0, 1.95, [{ text: '금지·제한 업무', bold: true, color: C.brick }].concat(p.J.ban.map(t => ({ text: '•  ' + t, size: 0.9 }))), { max: 12, min: 7.5 }));
     S.push(o); no++; }
+  no = linkSlides(p, S, no, H);
   /* 5. 체계 */
   { const o = frame(H('업무표준 항목 체계'), `대 · 중 · 소 분류 — 법정 ${items.filter(x => x.S.g === 'M').length} · 핵심 ${items.filter(x => x.S.g === 'C').length} · 권장 ${items.filter(x => x.S.g === 'R').length}`, no, p);
     const cols = items.length > 16 ? 4 : items.length > 8 ? 3 : 2, rowsN = Math.ceil(items.length / cols), cw = (12.15 - (cols - 1) * 0.15) / cols, chh = Math.min(0.9, (4.75 - (rowsN - 1) * 0.1) / rowsN);
@@ -5379,7 +5445,7 @@ async function run(kind) {
       if (p.kind === 'man' && formIdsOf(p, outItems(p)).length) { busy(true, '업무 서식집 Word 생성 중…'); await download(await makeFormsDocx(p.f), formsFileName(p.f)); } }
     if (kind === 'pptx' || kind === 'all') { busy(true, 'PPT 생성 중… (현장 영상 포함)'); await download(await makePptx(p), base + '.pptx'); }
     if (kind === 'pdf' || kind === 'all') { await download(await makePdf(p, (i, n) => busy(true, `PDF 변환 중… ${i}/${n}`)), base + '.pdf'); }
-    if (kind === 'web' || kind === 'all') { busy(true, '웹 매뉴얼 만드는 중…'); await download(await makeWebShow(p, null, null, m => busy(true, '웹 매뉴얼 — ' + m)), base + '_웹매뉴얼(영상재생).html'); }
+    if (kind === 'web') { busy(true, '웹 매뉴얼 만드는 중…'); await download(await makeWebShow(p, null, null, m => busy(true, '웹 매뉴얼 — ' + m)), base + '_웹매뉴얼(영상재생).html'); }
     saveHistory(p); toast('출력 완료 — 다운로드 폴더를 확인하세요.');
   } catch (e) { console.error(e); toast('생성 오류: ' + e.message, 5000); }
   finally { busy(false); }
@@ -5447,7 +5513,7 @@ function siteCommon() {
   state.site = null; $('#f_client').value = '에스텍 그룹 전사 공통'; renderSiteInfo(); renderSites(); autoTitle(); toast('전사 공통 표준으로 작성합니다.');
 }
 async function init() {
-  sopTaxInit();
+  sopTaxInit(); emgTaxInit();
   $('#f_ind').innerHTML = IND_ORDER.map(k => `<option value="${k}">${IND[k].n}</option>`).join('');
   $('#f_level').innerHTML = Object.entries(MAN_LEVEL).map(([k, v]) => `<option value="${k}" ${k === state.level ? 'selected' : ''}>${v.n} — ${v.s}</option>`).join('');
   const t = kstNow(); $('#f_eff').value = `${t.getFullYear()}-${pad(t.getMonth() + 1)}-${pad(t.getDate())}`;
@@ -5473,8 +5539,9 @@ async function init() {
   $('#btnClear').onclick = () => { state.picked = []; renderTree($('#q').value); renderPicked(); };
   $('#btnGen').onclick = () => { const p = state.kind === 'man' ? buildManPlan(readForm()) : buildPlan(); if (!p) return; state.plan = p; renderEditor(p); toast(p.kind === 'man' ? '업무매뉴얼이 생성되었습니다. 검토 후 출력하세요.' : '업무표준안이 생성되었습니다. 검토 후 출력하세요.'); if (innerWidth < 1100) $('#outPanel').scrollIntoView({ behavior: 'smooth' }); };
   document.querySelectorAll('input[name=mode]').forEach(r => r.onchange = () => { if (state.plan) { syncEditor(); renderEditor(state.plan); } });
-  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnWeb').onclick = () => run('web'); $('#btnForms').onclick = runForms; $('#btnPkg').onclick = runPackage; $('#btnEst').onclick = openEstimate;
+  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnForms').onclick = runForms; $('#btnPkg').onclick = runPackage;
   $('#hist').addEventListener('click', histClick);
+  try { initLinkUI(); } catch (e) { console.error('견적 연동 화면', e); }
   await buildSignature(kstNow());
   $('#sigImg').src = state.sigDataUrl;
 }
@@ -5790,6 +5857,7 @@ function manGroups(S, f, p) {
       G.push({ title: '에스텍베스트 지사', lines: BRANCHES.map(b => `${b.name}: ${b.addr}`) });
       break;
     case 'task': return sopGroups(S);
+    case 'emg': return emgGroups(S);
     case 'duty':
       G.push({ title: `${J.n} 핵심 직무`, lines: J.duty });
       if (st) G.push({ title: '현장 배치', lines: [`${st.name}: 계약 업종 ${st.work} · 근무형태 ${st.shift} · 총 ${st.total}명(보안 ${st.sec} · 미화 ${st.cln} · 기타 ${st.etc})`] });
@@ -6000,6 +6068,7 @@ async function makeManDocx(p) {
   ch.push(H2('제·개정 이력'));
   const rw = [1300, 2000, 4538, 1800];
   ch.push(table([[th('개정', rw[0]), th('일자', rw[1]), th('내용', rw[2]), th('작성', rw[3])], [td(revLabel(p).split(' ')[0], rw[0], { align: AC }), td(fmtD(p.made), rw[1], { align: AC }), td(f.reason || (Number(f.rev) ? '정기 검토 개정' : '업무매뉴얼 제정'), rw[2]), td(f.author || f.dept, rw[3], { align: AC })]], rw, { header: true }));
+  linkDocx(ch, p, null);
   // 장·절
   const allCk = [];
   chaps.forEach((L, i) => {
@@ -6008,6 +6077,7 @@ async function makeManDocx(p) {
       ch.push(P([R(`${i + 1}.${j + 1} `, { size: 22, bold: true, color: C.green }), R(x.S.n, { size: 22, bold: true, color: C.navy }), R(`  ${GRADE[x.S.g].label}`, { size: 16, bold: true, color: GRADE[x.S.g].color })], { before: 160, after: 60, keepNext: true, border: { bottom: { style: docx.BorderStyle.SINGLE, size: 6, color: 'B8C0CC', space: 2 } } }));
       const G = parseGrp(p.text[x.S.c]), m = p.media[x.S.c] || {};
       if (x.S.gen === 'task') { ch.push(...sopDocx(x.S, p)); }
+      else if (x.S.gen === 'emg') { ch.push(...emgDocx(x.S)); }
       else if (x.S.gen === 'scn') { G.forEach(g => { const sc = SCN.find(s => g.title.startsWith(s.id + ' ')); if (sc) { ch.push(scnCard(g, sc)); ch.push(P([R('')], { after: 40 })); } else ch.push(...grpParas([g])); }); }
       else if (x.S.gen === 'bad') { G.forEach(g => { const b = BAD.find(b => g.title.includes(b.t)); ch.push(sideTable(b ? { poster: b.k, vid: b.k } : {}, grpParas([g]), 2700)); }); }
       else if (x.S.gen === 'forms') {
@@ -6070,6 +6140,7 @@ function buildManSlides(p) {
       o.push(Rc(x, y, 0.85, 0.6, i % 2 ? K.tint : K.tintG, { k: 'para' })); o.push(T(x, y, 0.85, 0.6, String(i + 1).padStart(2, '0'), { pt: 19, bold: true, color: i % 2 ? K.navy : C.green, align: 'center', valign: 'middle' }));
       o.push(T(x + 1.0, y, 4.8, 0.6, [{ text: `${L.e} ${L.n}`, bold: true }, { text: items.filter(z => z.L.c === L.c).map(z => z.S.n).join(' · '), size: 0.6, color: C.gray }], { max: 17, min: 9, valign: 'middle', gap: 1 })); });
     S.push(o); no++; }
+  no = linkSlides(p, S, no, t => t);
   chaps.forEach((L, ci) => {
     const its = items.filter(x => x.L.c === L.c), sec = String(ci + 1).padStart(2, '0');
     // 장 표지
@@ -6088,6 +6159,7 @@ function buildManSlides(p) {
     its.forEach((x, j) => {
       const G = parseGrp(p.text[x.S.c]), m = p.media[x.S.c] || {}, ttl = `${sec}  ${ci + 1}.${j + 1} ${x.S.n}`;
       if (x.S.gen === 'task') { no = sopSlides(x.S, p, S, no, `${sec}  ${ci + 1}.${j + 1}`); return; }
+      if (x.S.gen === 'emg') { no = emgSlides(x.S, p, S, no, `${sec}  ${ci + 1}.${j + 1}`); return; }
       if (x.S.gen === 'scn') {
         G.forEach(g => { const sc = SCN.find(s => g.title.startsWith(s.id + ' ')); if (!sc) return;
           const o = frame(`${sec}  🚨 ${g.title}`, `${x.S.n} · 상황별 대처`, no, p);
@@ -7979,13 +8051,236 @@ async function importEstimateFile(file) {
 }
 
 /* =====================================================================
- * 💼 견적 연동 · 제안서 — 에스텍 제안서 제작시스템과 같은 연동
- *  ① 3개 견적 프로그램(용역인력 견적 · 업무량 기반 산정 · 단기인력 견적)의 「📑 제안서로 보내기」 자료
- *  ② 엑셀(.xlsx·.xls·.csv)·PDF 견적서 불러오기 (고객사·기간·월 금액·직종·인원·단가·원가 구성)
- *  ③ 견적 기준 「운영 제안서」(Word · PPT · PDF) — 업무표준·작업표준(SOP)·교육·안전·품질·인수인계를 붙여 작성
+ * 제안요청서(RFP)·과업지시서·공고문 불러오기 + 요구사항 분석
+ *  에스텍 제안서 제작시스템 rfp.js와 같은 엔진 (PDF·Word·한글 HWPX·메일·사진 글자 인식 — 이 기기 안에서만 처리)
+ *  분석한 요구사항은 업무표준서·업무매뉴얼 「과업 요구사항 대응표」로 출력되고, 관련 표준 항목을 추천·선택합니다.
  *  Designed & Developed by Rat Rae Choi
  * ===================================================================== */
-const PROP = { mode: 'client', applied: null };
+const INTAKE = { att: [], busy: false };
+const RFP_CATS = [
+  { k: '인력·자격', kw: ['인원', '명 이상', '배치', '자격', '경력', '면허', '자격증', '연령', '선임', '상주'], std: ['A1-01', 'A1-03', 'E1-01'], man: ['MB-01', 'MB-02'] },
+  { k: '근무형태', kw: ['근무형태', '교대', '격일', '주간', '야간', '근무시간', '휴게', '24시간'], std: ['B1-01', 'B1-02', 'B1-03', 'B2-04'], man: ['MB-02', 'MC-01'] },
+  { k: '업무 범위', kw: ['과업', '업무 범위', '업무범위', '수행', '순찰', '청소', '점검', '출입', '관리 업무'], std: ['A1-02', 'A2-01', 'A2-02'], man: ['MB-04', 'MD-01', 'MD-02'] },
+  { k: '교육', kw: ['교육', '훈련', '이수'], std: ['E1-03', 'D1-01'], man: ['MG-01'] },
+  { k: '안전·보건', kw: ['안전', '재해', '보건', '중대재해', '사고', '보호구', '위험성'], std: ['D1-01', 'D1-02', 'D1-03'], man: ['MG-01', 'MG-02'] },
+  { k: '법규·노무', kw: ['법령', '준수', '최저임금', '근로기준', '4대보험', '퇴직', '노임단가', '파견'], std: ['E1-02', 'B1-02', 'F2-02'], man: ['MI-01'] },
+  { k: '품질·평가', kw: ['평가', '품질', '만족도', '패널티', '지체상금', '감점', '점검표', '보고서', '보고'], std: ['F1-01', 'F1-02', 'F1-03'], man: ['MD-03', 'MH-02'] },
+  { k: '장비·물품', kw: ['장비', '물품', '피복', '소모품', '차량', '비품'], std: ['D1-02'], man: ['MB-03'] },
+  { k: '고용승계', kw: ['고용승계', '승계', '기존 근로자', '고용 유지'], std: ['E1-01', 'E1-02'], man: [] },
+  { k: '인수인계·개시', kw: ['인수인계', '착수', '개시', '전환', '준비기간'], std: ['A2-03'], man: ['MC-01', 'MJ-01'] },
+  { k: '보험·보증', kw: ['보험', '배상', '보증', '이행보증'], std: [], man: [] },
+  { k: '가격·대가', kw: ['가격', '단가', '금액', '예산', '대가', '산출내역', '견적', '원가'], std: ['G1-01', 'G2-01'], man: [] },
+  { k: '제출서류', kw: ['제출', '서류', '증빙', '사업자등록', '허가증', '확약서', '실적증명'], std: ['A2-04'], man: ['MK-01'] },
+  { k: '비상·보고', kw: ['비상', '화재', '응급', '재난', '대피', '신고', '연락체계'], std: ['D2-01', 'D2-02', 'D2-03'], man: ['MF-01', 'MH-01', 'MX-01'] }
+];
+const RFP_IND = { factory: ['공장', '제조', '플랜트', '생산', '화학', '제철', '제지', '석유', '조선', '산단'], building: ['빌딩', '오피스', '사옥', '업무시설'], hospital: ['병원', '의료', '요양', '의원'], retail: ['백화점', '마트', '쇼핑', '유통', '판매'], logistics: ['물류', '창고', '택배', '하역'], univ: ['대학', '학교', '캠퍼스', '교육청'], training: ['연수원', '리조트', '호텔', '콘도'], power: ['발전소', '국가중요시설', '변전소', '항만', '공항'], apt: ['아파트', '공동주택', '관리사무소', '입주자'], public: ['공공기관', '관공서', '청사', '시청', '구청', '공단', '공사'], construction: ['건설', '공사현장', '현장사무소'] };
+const RFP_JOB = { sec: ['보안', '경비', '경비원', '초소', '출입통제', '순찰', '특수경비'], cln: ['미화', '청소', '환경', '위생', '미화원', '분리수거'], prk: ['주차', '주차장', '주차관리', '정산'], fac: ['시설', '설비', '전기', '기계', '영선', '기전'], info: ['안내', '리셉션', '데스크', '프론트', '안내원'], cook: ['조리', '급식', '식당', '주방', '조리원'], san: ['방역', '소독', '해충'] };
+let _ocrW = null, _ocrLog = null;
+async function ocrWorker() {
+  if (_ocrW) return _ocrW;
+  await loadScriptOnce(libUrl('lib/ocr/tesseract.min.js'));
+  _ocrW = await Tesseract.createWorker(['kor', 'eng'], 1, { workerPath: libUrl('lib/ocr/worker.min.js'), corePath: libUrl('lib/ocr/core'), langPath: libUrl('lib/ocr/lang'), logger: m => _ocrLog && _ocrLog(m) });
+  return _ocrW;
+}
+async function ocrCanvas(cv, label) {
+  const w = await ocrWorker();
+  _ocrLog = m => { if (m.status === 'recognizing text') inProg(`${label} 글자 읽는 중 ${Math.round(m.progress * 100)}%`); };
+  const r = await w.recognize(cv); _ocrLog = null;
+  return cleanOcr(r.data.text || '');
+}
+function cleanOcr(t) {
+  return t.split('\n').map(l => l.replace(/\s+/g, ' ').replace(/([가-힣])\s(?=[가-힣]\s[가-힣])/g, '$1').trim())
+    .filter(l => l.length > 1 && !/^(오전|오후)?\s*\d{1,2}:\d{2}$/.test(l) && !/^[\d\s.:,|/\\\-_=~'"`]+$/.test(l)).join('\n');
+}
+function imgToCanvas(src, maxW) { return new Promise((ok, no) => { const im = new Image(); im.onload = () => { const r = Math.min(1, maxW / im.naturalWidth), c = document.createElement('canvas'); c.width = Math.round(im.naturalWidth * r); c.height = Math.round(im.naturalHeight * r); const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height); ok(c); }; im.onerror = () => no(new Error('이미지를 열 수 없습니다')); im.src = src; }); }
+function decodeBytes(buf, cs) {
+  cs = String(cs || 'utf-8').toLowerCase().replace(/^ks_c_5601-1987$|^cp949$|^x-windows-949$|^ksc5601$/, 'euc-kr');
+  try { const t = new TextDecoder(cs).decode(buf); if (cs === 'utf-8' && (t.match(/�/g) || []).length > 3) return new TextDecoder('euc-kr').decode(buf); return t; } catch (e) { return new TextDecoder('utf-8').decode(buf); }
+}
+const xmlTxt = s => s.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&amp;/g, '&');
+function htmlToText(h) { const d = document.createElement('div'); d.innerHTML = h.replace(/<(script|style)[\s\S]*?<\/\1>/gi, '').replace(/<br\s*\/?>/gi, '\n').replace(/<\/(p|div|tr|li|h\d)>/gi, '\n'); return (d.textContent || '').replace(/ /g, ' ').replace(/\n{3,}/g, '\n\n').trim(); }
+
+/* ---------- 파일 종류별 읽기 ---------- */
+async function extractFile(file) {
+  const name = file.name || '붙여넣은 이미지.png', ext = (name.split('.').pop() || '').toLowerCase(), out = { name, kind: '기타', text: '', imgs: [], meta: {}, inc: true };
+  if (/^image\//.test(file.type) || /^(png|jpe?g|gif|bmp|webp|heic)$/.test(ext)) {
+    out.kind = '사진';
+    const url = await readAs(file, 'DataURL'), big = await imgToCanvas(url, 2000), small = await imgToCanvas(url, 1400);
+    out.imgs.push({ src: small.toDataURL('image/jpeg', 0.85), w: small.width, h: small.height });
+    out.text = await ocrCanvas(big, name);
+  } else if (ext === 'pdf') {
+    out.kind = "문서";
+    const pdfjs = await pdfLib(), doc = await pdfjs.getDocument({ data: new Uint8Array(await readAs(file, 'ArrayBuffer')), cMapUrl: libUrl('lib/pdf/cmaps/'), cMapPacked: true }).promise;
+    const pages = Math.min(doc.numPages, 40); let txt = [];
+    for (let i = 1; i <= pages; i++) {
+      inProg(`${name} ${i}/${pages}쪽 읽는 중`);
+      const pg = await doc.getPage(i), tc = await pg.getTextContent();
+      let t = ''; tc.items.forEach(it => { t += it.str + (it.hasEOL ? '\n' : ''); }); txt.push(t.trim());
+      if (i <= 3) { const vp = pg.getViewport({ scale: 1.6 }), c = document.createElement('canvas'); c.width = vp.width; c.height = vp.height; await pg.render({ canvasContext: c.getContext('2d'), viewport: vp, background: '#fff' }).promise; out.imgs.push({ src: c.toDataURL('image/jpeg', 0.82), w: c.width, h: c.height, cv: c }); }
+    }
+    if (txt.join('').replace(/\s/g, '').length < 30 * pages) {   // 스캔본 → 그림에서 글자 읽기
+      txt = []; for (const [k, im] of out.imgs.entries()) txt.push(await ocrCanvas(im.cv, `${name} ${k + 1}쪽`));
+    }
+    out.imgs.forEach(im => delete im.cv); out.text = txt.join('\n');
+  } else if (ext === 'docx') {
+    out.kind = "문서"; const z = await JSZip.loadAsync(await readAs(file, 'ArrayBuffer')), x = await z.file('word/document.xml').async('string');
+    out.text = xmlTxt(x.replace(/<w:tab\/>/g, '\t').replace(/<w:br[^>]*\/>/g, '\n').replace(/<\/w:p>/g, '\n'));
+  } else if (ext === 'hwpx') {
+    out.kind = "문서"; const z = await JSZip.loadAsync(await readAs(file, 'ArrayBuffer'));
+    const secs = Object.keys(z.files).filter(n => /^Contents\/section\d+\.xml$/i.test(n)).sort();
+    for (const s of secs) out.text += xmlTxt((await z.file(s).async('string')).replace(/<\/hp:p>/g, '\n').replace(/<hp:lineBreak\/>/g, '\n')) + '\n';
+  } else if (ext === 'hwp') {
+    throw new Error('한글(.hwp) 파일은 바로 읽을 수 없습니다. 한글에서 「PDF로 저장」하거나 「HWPX」로 저장해 올리시거나, 화면을 사진으로 찍어 올려 주세요.');
+  } else if (ext === 'eml') {
+    out.kind = '이메일'; await parseEml(new Uint8Array(await readAs(file, 'ArrayBuffer')), out);
+  } else if (ext === 'msg') {
+    throw new Error('Outlook(.msg) 파일은 바로 읽을 수 없습니다. 메일을 「다른 이름으로 저장 → .eml」 하거나, 본문을 복사해 붙여넣기(Ctrl+V) 하세요.');
+  } else if (ext === 'txt' || ext === 'csv' || /^text\//.test(file.type)) {
+    const t = decodeBytes(new Uint8Array(await readAs(file, 'ArrayBuffer')));
+    const k = parseKakao(t); if (k) { out.kind = '메신저'; out.text = k.text; out.meta = k.meta; } else { out.kind = '기타'; out.text = t; }
+  } else throw new Error(`「${name}」은(는) 읽을 수 없는 형식입니다. PDF·Word·HWPX·메일(.eml)·카톡(.txt)·사진을 올려 주세요.`);
+  out.text = String(out.text || '').replace(/\r/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  return out;
+}
+/* 메일(.eml) — 머리글(보낸 사람·날짜·제목) + 본문 + 첨부 사진 */
+function qpDecode(s) { const b = []; s = s.replace(/=\r?\n/g, ''); for (let i = 0; i < s.length; i++) { if (s[i] === '=' && /[0-9A-F]{2}/i.test(s.substr(i + 1, 2))) { b.push(parseInt(s.substr(i + 1, 2), 16)); i += 2; } else b.push(s.charCodeAt(i) & 255); } return new Uint8Array(b); }
+function b64Bytes(s) { const t = atob(s.replace(/[^A-Za-z0-9+/=]/g, '')); const u = new Uint8Array(t.length); for (let i = 0; i < t.length; i++) u[i] = t.charCodeAt(i); return u; }
+function mimeWord(s) { return String(s || '').replace(/=\?([^?]+)\?([BQ])\?([^?]*)\?=\s*/gi, (_, cs, enc, txt) => decodeBytes(enc.toUpperCase() === 'B' ? b64Bytes(txt) : qpDecode(txt.replace(/_/g, ' ')), cs)); }
+function splitMime(raw) {
+  const i = raw.search(/\r?\n\r?\n/), head = i < 0 ? raw : raw.slice(0, i), body = i < 0 ? '' : raw.slice(i).replace(/^\r?\n\r?\n/, '');
+  const h = {}; head.replace(/\r?\n[ \t]+/g, ' ').split(/\r?\n/).forEach(l => { const m = /^([\w-]+):\s*(.*)$/.exec(l); if (m) h[m[1].toLowerCase()] = m[2]; });
+  return { h, body };
+}
+async function parseEml(bytes, out) {
+  const raw = new TextDecoder('latin1').decode(bytes), top = splitMime(raw), texts = [];
+  out.meta.from = mimeWord(top.h.from || ''); out.meta.subject = mimeWord(top.h.subject || ''); out.meta.date = top.h.date ? new Date(top.h.date) : null;
+  async function walk(part) {
+    const ct = (part.h['content-type'] || 'text/plain').toLowerCase(), cte = (part.h['content-transfer-encoding'] || '').toLowerCase(), cs = (/charset="?([^";]+)/i.exec(part.h['content-type'] || '') || [])[1];
+    const bnd = /boundary="?([^";]+)"?/i.exec(part.h['content-type'] || '');
+    if (/^multipart\//.test(ct) && bnd) { for (const seg of part.body.split('--' + bnd[1]).slice(1)) { if (/^--/.test(seg)) break; await walk(splitMime(seg.replace(/^\r?\n/, ''))); } return; }
+    const data = cte === 'base64' ? b64Bytes(part.body) : cte === 'quoted-printable' ? qpDecode(part.body) : new Uint8Array([...part.body].map(c => c.charCodeAt(0) & 255));
+    const fname = mimeWord((/name="?([^";\r\n]+)"?/i.exec((part.h['content-disposition'] || '') + ';' + (part.h['content-type'] || '')) || [])[1] || '');
+    if (/^text\/plain/.test(ct) && !fname) texts.push({ t: decodeBytes(data, cs), p: 2 });
+    else if (/^text\/html/.test(ct) && !fname) texts.push({ t: htmlToText(decodeBytes(data, cs)), p: 1 });
+    else if (/^image\//.test(ct)) { const url = `data:${ct.split(';')[0]};base64,` + btoa(String.fromCharCode(...data.subarray(0, Math.min(data.length, 8e6)))); try { const c = await imgToCanvas(url, 1400); out.imgs.push({ src: c.toDataURL('image/jpeg', 0.85), w: c.width, h: c.height }); } catch (e) { } }
+    else if (/pdf$/i.test(fname) || /application\/pdf/.test(ct)) { try { const sub = await extractFile(new File([data], fname || '첨부.pdf', { type: 'application/pdf' })); texts.push({ t: `[첨부 ${sub.name}]\n` + sub.text, p: 0 }); out.imgs.push(...sub.imgs); } catch (e) { } }
+  }
+  await walk(top);
+  const best = texts.filter(x => x.p > 0).sort((a, b) => b.p - a.p)[0];
+  out.text = [out.meta.subject ? '제목: ' + out.meta.subject : '', best ? best.t : '', ...texts.filter(x => x.p === 0).map(x => x.t)].filter(Boolean).join('\n')
+    .split('\n').filter(l => !/^>/.test(l.trim())).join('\n').split(/\n-{2,}\s*Original Message|\n-+\s*원본 메시지|\n보낸 사람:\s/i)[0];
+}
+/* 카카오톡 「대화 내보내기」(.txt) — 휴대폰·PC 형식 */
+function parseKakao(t) {
+  const L = t.replace(/\r/g, '').split('\n'), msgs = []; let date = '';
+  const reM = /^(\d{4})년 (\d{1,2})월 (\d{1,2})일 (오전|오후) (\d{1,2}):(\d{2}),\s*(.+?)\s*:\s(.*)$/, reP = /^\[(.+?)\] \[(오전|오후) (\d{1,2}):(\d{2})\] (.*)$/, reD = /^-+\s*(\d{4})년 (\d{1,2})월 (\d{1,2})일/;
+  L.forEach(l => {
+    let m;
+    if ((m = reD.exec(l))) date = `${m[1]}-${pad(+m[2])}-${pad(+m[3])}`;
+    else if ((m = reM.exec(l))) msgs.push({ who: m[7], d: `${m[1]}-${pad(+m[2])}-${pad(+m[3])}`, tm: `${m[4]} ${m[5]}:${m[6]}`, t: m[8] });
+    else if ((m = reP.exec(l))) msgs.push({ who: m[1], d: date, tm: `${m[2]} ${m[3]}:${m[4]}`, t: m[5] });
+    else if (msgs.length && l.trim() && !/^(저장한 날짜|.+님과 카카오톡 대화)/.test(l)) msgs[msgs.length - 1].t += '\n' + l;
+  });
+  if (msgs.length < 1) return null;
+  const me = ((UI && UI.manager && UI.manager.name) || '').trim(), cnt = {};
+  msgs.forEach(m => { if (!me || !m.who.includes(me)) cnt[m.who] = (cnt[m.who] || 0) + m.t.length; });
+  const who = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a])[0] || msgs[0].who, mine = msgs.filter(m => m.who === who && !/^(사진|이모티콘|동영상|파일)( \d+장)?$/.test(m.t.trim()));
+  return { text: mine.map(m => m.t).join('\n'), meta: { from: who, date: mine.length ? mine[0].d : '', kakao: true } };
+}
+
+
+/* ---------- 진행 표시 ---------- */
+function inProg(msg) { const b = document.getElementById('inProg'); if (b) { b.hidden = !msg; b.querySelector('span').textContent = msg || ''; } }
+
+
+const RFP = { att: [], busy: false, res: null };
+const REQ_RE = /(하여야|해야|할 것|하여야 함|필수|이상|이내|제출|준수|배치|확보|보유|금지|불가|가능할 것|요구|조건|포함|실시|운영할|비치|선임|승계|부담|책임)/;
+function rfpSentences(t) {
+  return String(t || '').replace(/\r/g, '').split(/\n+/)
+    .flatMap(l => l.length > 160 ? l.split(/(?<=[다함음임요][.])\s+/) : [l])
+    .map(s => s.replace(/^\s*(?:[0-9]{1,2}[.)]|[가-하][.)]|[①-⑳]|[\-•·○◦▪■□*>※]+)\s*/, '').replace(/\s+/g, ' ').trim())
+    .filter(s => s.length >= 8 && s.length <= 220);
+}
+function rfpCat(s) {
+  let best = null, sc = 0;
+  RFP_CATS.forEach(c => { const n = c.kw.filter(k => s.includes(k)).length; if (n > sc) { sc = n; best = c; } });
+  return best;
+}
+const HOW = {
+  '인력·자격': '직종별 자격·경력 기준을 충족하는 인력으로 편성하고 배치 전 자격·교육 이수를 확인합니다',
+  '근무형태': '요구 근무형태·근무시간에 맞춘 교대 편성표와 휴게시간 부여 계획을 제시합니다',
+  '업무 범위': '과업 범위를 직종별 업무표준·점검표로 세분화해 누락 없이 수행합니다',
+  '교육': '법정 교육(신임·직무·안전보건)과 현장 특별 직무교육 계획·이수 기록을 관리합니다',
+  '안전·보건': '안전보건관리체계·TBM·위험성평가로 사고를 예방하고 사고 시 즉시 보고합니다',
+  '법규·노무': '최저임금·4대보험·근로기준법 등 관계 법령을 준수하고 근로조건 이행을 확약합니다',
+  '품질·평가': '월간 운영 보고와 정기 품질평가로 성과를 수치로 관리합니다',
+  '장비·물품': '필요 장비·피복·소모품을 원가에 반영해 지급·관리합니다',
+  '고용승계': '기존 근무자 고용승계 원칙을 적용하고 근로조건 저하 없이 전환합니다',
+  '인수인계·개시': '착수 전 인수인계 체크리스트와 운영 개시 일정을 수립합니다',
+  '보험·보증': '배상책임보험·이행보증 등 요구 보험·보증을 계약 전 가입합니다',
+  '가격·대가': '연동 견적의 산출내역(인건비·경비·일반관리비·이윤)으로 근거를 제시합니다',
+  '제출서류': '요구 제출서류 목록을 확인해 누락 없이 제출합니다',
+  '시스템·보고': '통합관리 플랫폼(근태·Complaint·현장 지도)으로 실시간 현황을 보고합니다',
+  '비상·보고': '비상대처 매뉴얼·상황별 대처 기준과 즉보 체계(5분 이내 1차 보고)로 대응합니다'
+};
+function analyzeRFP(text) {
+  const t = String(text || ''), sents = rfpSentences(t), seen = new Set(), rows = [];
+  sents.forEach(s => {
+    const c = rfpCat(s); if (!c) return;
+    if (!REQ_RE.test(s) && c.kw.filter(k => s.includes(k)).length < 2) return;
+    const key = s.replace(/\s/g, '').slice(0, 40); if (seen.has(key)) return; seen.add(key);
+    rows.push({ req: s.length > 160 ? s.slice(0, 158) + '…' : s, cat: c.k, std: c.std, man: c.man, how: HOW[c.k] || '', st: '충족' });
+  });
+  // 업종·직종·인원·기간·발주처·사업명
+  const score = o => Object.entries(o).map(([k, v]) => [k, v.kw.reduce((a, w) => a + (t.split(w).length - 1), 0)]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]);
+  const ind = score(Object.fromEntries(Object.entries(RFP_IND).map(([k, v]) => [k, { kw: v }]))), jobs = score(Object.fromEntries(Object.entries(RFP_JOB).map(([k, v]) => [k, { kw: v }]))).filter(x => x[1] >= 1).map(x => x[0]).slice(0, 4);
+  const heads = []; const HR = /(경비원|보안요원|경비|보안|미화원|청소원|미화|주차요원|주차관리원|주차|시설관리원|시설기사|전기기사|기계기사|안내원|안내|조리원|조리사|방역원|경호원|소장|반장)\s*[:：]?\s*(\d{1,3})\s*명/g;
+  let m; while ((m = HR.exec(t)) && heads.length < 12) heads.push({ job: m[1], count: +m[2] });
+  const pm = /(20\d{2})\s*[.\-년\/]\s*(\d{1,2})\s*[.\-월\/]\s*(\d{1,2})\s*일?\s*(?:부터)?\s*[~∼\-–]\s*(20\d{2})\s*[.\-년\/]\s*(\d{1,2})\s*[.\-월\/]\s*(\d{1,2})/.exec(t);
+  const period = pm ? { from: `${pm[1]}-${pad(+pm[2])}-${pad(+pm[3])}`, to: `${pm[4]}-${pad(+pm[5])}-${pad(+pm[6])}` } : null;
+  const cm = /(발주\s*기관|수요\s*기관|기관명|발주처|계약\s*상대자\s*\(발주\))\s*[:：]?\s*([^\n,]{2,30})/.exec(t);
+  const tm = /(사업명|용역명|건\s*명|과업명)\s*[:：]?\s*([^\n]{4,60})/.exec(t);
+  const budget = /(추정\s*가격|사업\s*예산|기초\s*금액|예정\s*가격|사업비)\s*[:：]?\s*(?:금\s*)?([\d,]{5,})\s*원/.exec(t);
+  const subm = sents.filter(s => /제출/.test(s) && /(서류|증명|확약|허가|등록증|계획서|제안서)/.test(s)).slice(0, 12);
+  RFP.res = { rows: rows.slice(0, 80), ind: ind.length ? ind[0][0] : '', jobs, heads, period, client: cm ? cm[2].trim() : '', title: tm ? tm[2].trim() : '', budget: budget ? +budget[2].replace(/,/g, '') : null, subm, len: t.length };
+  return RFP.res;
+}
+
+async function rfpFiles(files) {
+  files = [...files].filter(Boolean); if (!files.length || RFP.busy) return;
+  RFP.busy = true; const got = [], errs = [];
+  for (const f of files) { inProg(`${f.name || '이미지'} 읽는 중…`); try { got.push(await extractFile(f)); } catch (e) { errs.push(e.message || String(e)); } }
+  inProg(''); RFP.busy = false;
+  if (errs.length) toast(errs[0], 6000);
+  if (!got.length) return;
+  RFP.att.push(...got); renderRfpFiles();
+  const txt = got.map(a => a.text).filter(Boolean).join('\n\n');
+  if (!txt.trim()) return toast('파일에서 글자를 찾지 못했습니다. 요구사항을 직접 붙여넣어 주세요.', 5000);
+  const ta = $('#f_rfp'); ta.value = (ta.value ? ta.value + '\n\n' : '') + txt;
+  runRfp(true);
+}
+function renderRfpFiles() {
+  const box = document.getElementById('inFiles'); if (!box) return;
+  box.innerHTML = RFP.att.map((a, i) => `<span class="inf" title="${esc(a.name)}">📄 ${esc(a.name.length > 24 ? a.name.slice(0, 22) + '…' : a.name)}<button type="button" data-rm="${i}" aria-label="빼기">×</button></span>`).join('');
+}
+function initRfp() {
+  const z = document.getElementById('intake'); if (!z || z.dataset.ready) return; z.dataset.ready = '1';
+  const fi = document.getElementById('inFile');
+  document.getElementById('inPick').onclick = () => fi.click();
+  fi.onchange = () => { rfpFiles(fi.files); fi.value = ''; };
+  ['dragenter', 'dragover'].forEach(ev => z.addEventListener(ev, e => { e.preventDefault(); z.classList.add('drag'); }));
+  ['dragleave', 'drop'].forEach(ev => z.addEventListener(ev, e => { e.preventDefault(); z.classList.remove('drag'); }));
+  z.addEventListener('drop', e => rfpFiles(e.dataTransfer.files));
+  document.getElementById('inFiles').onclick = e => { const b = e.target.closest('[data-rm]'); if (b) { RFP.att.splice(+b.dataset.rm, 1); renderRfpFiles(); } };
+}
+
+/* =====================================================================
+ * 견적 연동 · RFP 화면 — 에스텍 제안서 제작시스템 ①견적 연동 · 엑셀/파일 불러오기 · RFP 불러오기와 같은 구성
+ *  · 체크한 견적 → 작성 정보(고객사·사업장·직종·근무형태) 자동 반영 + 출력물 「인력 운영 기준(견적 연동)」
+ *  · RFP 요구사항 → 관련 표준 항목·매뉴얼 장 추천 선택 + 출력물 「과업 요구사항 대응표」
+ *  Designed & Developed by Rat Rae Choi
+ * ===================================================================== */
+const LUI = { tab: 'all' };
 function jobFromText(t) {
   t = String(t || '');
   return /보안|경비|경호/.test(t) ? 'sec' : /미화|청소|환경/.test(t) ? 'cln' : /주차/.test(t) ? 'prk' : /시설|설비|기전|전기|영선/.test(t) ? 'fac' : /안내|리셉|데스크|프론트/.test(t) ? 'info' : /조리|식당|급식|주방/.test(t) ? 'cook' : /방역|소독|해충/.test(t) ? 'san' : null;
@@ -7995,207 +8290,305 @@ function estSummary(pkgs) {
   m.rows.forEach(r => { const j = jobFromText(r.job + ' ' + r.title); if (j && !jobs.includes(j)) jobs.push(j); });
   return { pkgs, client: (pkgs.find(p => p.client) || first).client || '', svc: (pkgs.find(p => p.svc) || {}).svc || '', addr: (pkgs.find(p => p.addr) || {}).addr || '',
     period: (pkgs.find(p => p.period && p.period.from) || first).period || { from: '', to: '', months: null }, heads: m.heads, monthly: m.monthly, vat: m.vat, yearly: m.yearly, once: m.once, onceVat: m.onceVat,
-    months: m.months, need: m.need, rows: m.rows, jobs: jobs.length ? jobs : [state.job], mix: (pkgs.find(p => p.mix) || {}).mix || null, notes: pkgs.flatMap(p => p.notes || []), tasks: pkgs.flatMap(p => p.tasks || []), srcs: [...new Set(pkgs.map(p => p.src))] };
+    months: m.months, need: m.need, rows: m.rows, jobs, mix: (pkgs.find(p => p.mix) || {}).mix || null, notes: pkgs.flatMap(p => p.notes || []), tasks: pkgs.flatMap(p => p.tasks || []), srcs: [...new Set(pkgs.map(p => p.src))] };
 }
+function curEst() { const s = (typeof LINK !== 'undefined') ? pickedPkgs() : []; return s.length ? estSummary(s) : null; }
+function curRfp() { return (typeof RFP !== 'undefined' && RFP.res && RFP.res.rows && RFP.res.rows.length) ? RFP.res : null; }
 
-/* ---------- 화면 ---------- */
-function estRow(p) {
-  const S = SRC[p.src] || SRC.manual, amt = p.unit === '건' ? (p.total != null ? `총 ${wonL(p.total)}원` : '금액 확인 필요') : (p.monthly != null ? `월 ${wonL(p.monthly)}원` : '금액 확인 필요');
-  return `<label class="est-it"><input type="checkbox" data-id="${esc(p.id)}" ${LINK.picked.has(p.id) ? 'checked' : ''}>
-    <span class="est-ic" style="background:#${S.color}">${S.ic}</span><span class="est-b"><b>${esc(p.title)}</b><small>${esc(S.n)}${p.origin === 'excel' ? ' · 엑셀/PDF' : p.origin === 'raw' ? ' · 보관함' : ''} · ${esc(p.client || '-')} · ${p.heads || 0}명 · ${amt}${p.at ? ' · ' + esc(String(p.at).slice(0, 10)) : ''}</small></span>
-    <button type="button" class="est-del" data-del="${esc(p.id)}" title="목록에서 지우기">✕</button></label>`;
+/* ---------- ① 견적 연동 목록 ---------- */
+function srcBadge(p) { const s = SRC[p.src] || SRC.manual; return `<span class="sb" style="--c:#${s.color}">${s.ic} ${esc(s.n)}</span>`; }
+function pkgAmt(p) {
+  if (p.unit === '건') { const sup = p.supply ?? (p.total != null ? Math.round(p.total / 1.1) : null); return sup != null ? `${wonL(sup)}원 <small>(건·VAT 별도)</small>` : '<em class="need">금액 연동 필요</em>'; }
+  return p.monthly != null ? `월 ${wonL(p.monthly)}원 <small>(VAT 별도)</small>` : '<em class="need">금액 연동 필요</em>';
 }
-async function openEstimate() {
-  openModal(`<h2>💼 견적 연동 · 제안서</h2><div class="sub">견적 프로그램 3종에서 「📑 제안서로 보내기」한 견적과 엑셀·PDF 견적서를 불러와, 견적 기준으로 작성 정보를 채우고 <b>운영 제안서</b>를 만듭니다.</div>
-    <div class="est-tools"><button class="btn" id="estRe">🔄 새로고침</button><button class="btn" id="estXl">📊 엑셀·PDF 견적서 불러오기</button><button class="btn" id="estJs">📁 연동 파일(.json)</button>
-      <input type="file" id="estFile" accept=".xlsx,.xlsm,.xls,.xlsb,.ods,.csv,.pdf" hidden multiple><input type="file" id="estJson" accept=".json" hidden></div>
-    <div class="est-drop" id="estDrop">엑셀·PDF 견적서를 여기에 끌어다 놓으세요 <small>(.xlsx · .xls · .csv · .pdf — 이 기기 안에서만 읽습니다)</small></div>
-    <div class="est-msg" id="estMsg">불러오는 중…</div><div class="est-list" id="estList"></div>
-    <div class="est-links">${['stqs', 'wbe', 'stse'].map(k => `<a href="${SRC[k].url}" target="_blank" rel="noopener">${SRC[k].ic} ${SRC[k].n} 열기</a>`).join('')}</div>
-    <div class="est-opt"><b>문서 용도</b><label><input type="radio" name="estMode" value="client" ${PROP.mode === 'client' ? 'checked' : ''}> 대외 제출용</label><label><input type="radio" name="estMode" value="internal" ${PROP.mode === 'internal' ? 'checked' : ''}> 내부 검토용 (원가 구성 포함)</label></div>
-    <div class="mrow"><button class="btn" id="estApply">✍ 작성 정보에 반영</button><button class="btn pri" id="estDoc">📄 제안서 Word</button><button class="btn pri" id="estPpt">📊 제안서 PPT</button><button class="btn pri" id="estPdf">📕 제안서 PDF</button><button class="btn" id="estX">닫기</button></div>`,
-  md => {
+const isManualSrc = p => p.src === 'manual' || p.origin === 'file' || p.origin === 'excel';
+function renderLinks() {
+  const tabs = [['all', '전체'], ['stqs', SRC.stqs.ic + ' 용역인력'], ['wbe', SRC.wbe.ic + ' 업무량'], ['stse', SRC.stse.ic + ' 단기'], ['manual', '✍ 직접·엑셀·파일']];
+  const cnt = k => k === 'all' ? LINK.items.length : LINK.items.filter(p => k === 'manual' ? isManualSrc(p) : p.src === k).length;
+  $('#linkTabs').innerHTML = tabs.map(([k, n]) => `<button type="button" data-tab="${k}" aria-pressed="${LUI.tab === k}">${n}<i>${cnt(k)}</i></button>`).join('');
+  const list = LINK.items.filter(p => LUI.tab === 'all' || (LUI.tab === 'manual' ? isManualSrc(p) : p.src === LUI.tab));
+  $('#linkList').innerHTML = list.length ? list.map(p => `<li class="lk ${LINK.picked.has(p.id) ? 'on' : ''}" data-id="${esc(p.id)}">
+      <input type="checkbox" ${LINK.picked.has(p.id) ? 'checked' : ''} aria-label="업무표준·매뉴얼에 반영">
+      <div class="lb">${srcBadge(p)}${p.origin === 'raw' ? '<span class="sb raw">보관함</span>' : p.origin === 'file' ? '<span class="sb raw">파일</span>' : p.origin === 'excel' ? '<span class="sb xl">엑셀</span>' : p.origin === 'manual' ? '' : '<span class="sb ok">연동</span>'}
+        <b>${esc(p.title)}</b><small>${esc(p.client || '')}${p.heads ? ` · ${p.heads}명` : ''}${p.rows.length ? ` · ${p.rows.length}개 직책` : ''}${p.at ? ` · ${esc(String(p.at).slice(0, 10))}` : ''}</small><span class="amt">${pkgAmt(p)}</span></div>
+      <button type="button" class="lx" data-x="${esc(p.id)}" title="목록에서 빼기">✕</button></li>`).join('')
+    : `<li class="empty">${LUI.tab === 'all' ? '연동된 견적이 없습니다.<br>아래 견적 프로그램에서 견적을 만든 뒤 <b>「📑 제안서로 보내기」</b>를 누르거나, 직접 입력하세요.' : '이 프로그램에서 보낸 견적이 없습니다.'}</li>`;
+  $('#linkMsg').textContent = LINK.serverMsg || '';
+  const m = moneyOf(pickedPkgs());
+  $('#linkSum').innerHTML = LINK.picked.size ? `<b>선택 ${LINK.picked.size}건</b> · 인원 ${m.heads}명${m.monthly ? ` · 월 ${wonL(m.monthly)}원` : ''}${m.once ? ` · 단기 ${wonL(m.once)}원` : ''}${m.need ? ' · <em class="need">금액 확인 필요</em>' : ''}<button type="button" class="btn l" id="btnEstApply">⤵ 작성 정보에 반영</button>`
+    : '업무표준·매뉴얼에 넣을 견적을 체크하세요 (여러 건 합산 가능)';
+  const ap = $('#btnEstApply'); if (ap) ap.onclick = () => { const E = curEst(); if (E) estApplyForm(E, false); };
+}
+async function refreshLinks(server) { $('#linkMsg').textContent = '불러오는 중…'; try { await loadLinks(server); } catch (e) { LINK.serverMsg = '불러오기 오류'; } renderLinks(); }
+/* 견적 → 작성 정보 */
+function estCodeForShift(job, shift) {
+  const list = codesFor(job); if (!shift || !list.length) return null;
+  const s = String(shift).replace(/\s/g, ''), keys = ['격일', '24h', '5조2교대', '4조3교대', '4조2교대', '3조2교대', '2조2교대', '주5일', '주6일', '야간', '주간'];
+  const k = keys.find(x => s.includes(x)); if (!k) return null;
+  return list.find(c => c.name.replace(/\s/g, '').includes(k)) || null;
+}
+function estApplyForm(E, quiet) {
+  const nm = s => String(s || '').replace(/\s|주식회사|\(주\)|㈜/g, '');
+  const st = E.client && SITES.find(s => { const a = nm(s.name), b = nm(E.client); return a && b && (a.includes(b) || b.includes(a)); });
+  if (st && state.site !== st) selectSite(st, true);
+  const j = E.jobs.find(x => JOB[x]); if (j && j !== state.job) setJob(j, true);
+  if (!st && E.client) { $('#f_client').value = E.client; renderSiteInfo(); }
+  const sh = (E.rows.find(r => jobFromText(r.job + ' ' + r.title) === state.job && r.shift) || E.rows.find(r => r.shift) || {}).shift;
+  const cd = estCodeForShift(state.job, sh); if (cd) { state.code = cd.id; renderCodes(); }
+  autoTitle();
+  if (!quiet) toast(`견적을 반영했습니다 — ${st ? st.name : E.client || '고객사'} · ${JOB[state.job].n} · ${E.heads}명${cd ? ' · ' + cd.name.replace(/^\S+\s/, '') : sh ? ' · ' + sh : ''} → 출력물 「인력 운영 기준(견적 연동)」에 들어갑니다`, 5000);
+}
+function openManualEst(edit) {
+  const p = edit || { title: '', client: $('#f_client').value, rows: [{ job: JOB[state.job].n, title: '근무원', count: 1, shift: '', unit: null, amount: null }], monthly: null };
+  const rowHtml = (r, i) => `<tr data-i="${i}"><td><input data-k="job" value="${esc(r.job)}" list="jobDl"></td><td><input data-k="title" value="${esc(r.title)}"></td><td><input data-k="count" type="number" min="0" value="${r.count ?? ''}"></td><td><input data-k="shift" value="${esc(r.shift)}" placeholder="예: 격일제, 3조2교대"></td><td><input data-k="unit" type="number" min="0" value="${r.unit ?? ''}" placeholder="1인 월 단가"></td><td><button type="button" class="btn l" data-del="${i}">✕</button></td></tr>`;
+  openModal(`<h2>✍ 견적 직접 입력</h2><div class="sub">견적 프로그램 없이 인력 구성을 넣을 때 사용합니다. 1인 월 단가를 넣으면 월 금액이 자동 합산됩니다(VAT 별도).</div>
+    <div class="grid2"><div class="field"><label>견적 이름</label><input id="meTitle" value="${esc(p.title)}" placeholder="예: ○○공장 보안·미화 2027"></div><div class="field"><label>고객사</label><input id="meClient" value="${esc(p.client)}"></div></div>
+    <datalist id="jobDl">${JOB_ORDER.map(k => `<option value="${JOB[k].n}">`).join('')}</datalist>
+    <div class="tblw"><table class="me"><thead><tr><th>직종</th><th>직책</th><th>인원</th><th>근무형태</th><th>1인 월 단가(원)</th><th></th></tr></thead><tbody id="meRows">${p.rows.map(rowHtml).join('')}</tbody></table></div>
+    <button type="button" class="btn l" id="meAdd" style="margin-top:6px">＋ 행 추가</button>
+    <div class="grid2" style="margin-top:10px"><div class="field"><label>월 도급비 합계 (비우면 단가×인원 합계)</label><input id="meMonthly" type="number" value="${p.monthly ?? ''}"></div><div class="field"><label>계약 개월 수</label><input id="meMonths" type="number" value="${(p.period && p.period.months) || 12}"></div></div>
+    <div class="mrow"><button class="btn" id="mClose">취소</button><button class="btn pri" id="meOk">저장하고 선택</button></div>`, md => {
     md.classList.add('wide');
-    const $m = s => md.querySelector(s);
-    const draw = () => { $m('#estList').innerHTML = LINK.items.length ? LINK.items.map(estRow).join('') : '<div class="est-empty">연동된 견적이 없습니다. 견적 프로그램에서 「📑 제안서로 보내기」를 누르거나 엑셀·PDF 견적서를 불러오세요.</div>';
-      const sel = pickedPkgs(); $m('#estMsg').textContent = `${LINK.serverMsg || ''}${LINK.serverMsg ? ' · ' : ''}${LINK.items.length}건 · 선택 ${sel.length}건${sel.length ? ` (합계 ${estSummary(sel).heads}명 · 월 ${wonL(estSummary(sel).monthly || null)}원)` : ''}`; };
-    const load = async srv => { $m('#estMsg').textContent = '불러오는 중…'; try { await loadLinks(srv); } catch (e) { LINK.serverMsg = '불러오기 오류: ' + e.message; } if (!LINK.picked.size && LINK.items[0]) LINK.picked.add(LINK.items[0].id); draw(); };
-    const addFiles = async files => { for (const f of files) { try { $m('#estMsg').textContent = `「${f.name}」 읽는 중…`; const p = await importEstimateFile(f); LINK.picked.add(p.id); toast(`견적서를 읽었습니다 — ${p.client || p.title} · ${p.heads}명`); } catch (e) { toast(`「${f.name}」: ${e.message}`, 5000); } } await load(false); };
-    md.addEventListener('change', e => { const c = e.target.closest('input[data-id]'); if (c) { c.checked ? LINK.picked.add(c.dataset.id) : LINK.picked.delete(c.dataset.id); draw(); } const r = e.target.closest('input[name=estMode]'); if (r) PROP.mode = r.value; });
-    md.addEventListener('click', e => { const d = e.target.closest('[data-del]'); if (d) { e.preventDefault(); removeLocalPkg(d.dataset.del); LINK.picked.delete(d.dataset.del); load(false); } });
-    $m('#estRe').onclick = () => load(true); $m('#estX').onclick = closeModal;
-    $m('#estXl').onclick = () => $m('#estFile').click(); $m('#estFile').onchange = e => addFiles([...e.target.files]);
-    $m('#estJs').onclick = () => $m('#estJson').click(); $m('#estJson').onchange = async e => { try { const a = await importLinkFile(e.target.files[0]); a.forEach(p => LINK.picked.add(p.id)); await load(false); } catch (er) { toast(er.message, 5000); } };
-    const dz = $m('#estDrop'); ['dragover', 'dragenter'].forEach(t => dz.addEventListener(t, e => { e.preventDefault(); dz.classList.add('on'); })); ['dragleave', 'drop'].forEach(t => dz.addEventListener(t, () => dz.classList.remove('on')));
-    dz.addEventListener('drop', e => { e.preventDefault(); addFiles([...e.dataTransfer.files]); });
-    const need = () => { const s = pickedPkgs(); if (!s.length) { toast('견적을 하나 이상 고르세요'); return null; } return s; };
-    $m('#estApply').onclick = () => { const s = need(); if (s) { estApply(estSummary(s)); closeModal(); } };
-    $m('#estDoc').onclick = () => { const s = need(); if (s) runProposal('docx', estSummary(s)); };
-    $m('#estPpt').onclick = () => { const s = need(); if (s) runProposal('pptx', estSummary(s)); };
-    $m('#estPdf').onclick = () => { const s = need(); if (s) runProposal('pdf', estSummary(s)); };
-    load(true);
+    const rows = () => [...md.querySelectorAll('#meRows tr')].map(tr => { const o = {}; tr.querySelectorAll('[data-k]').forEach(i => o[i.dataset.k] = i.value); o.count = +o.count || 0; o.unit = o.unit ? +o.unit : null; o.amount = o.unit != null ? o.unit * o.count : null; return o; });
+    md.querySelector('#meAdd').onclick = () => { const tb = md.querySelector('#meRows'); tb.insertAdjacentHTML('beforeend', rowHtml({ job: '', title: '', count: 1, shift: '' }, tb.children.length)); };
+    md.querySelector('#meRows').onclick = e => { const b = e.target.closest('[data-del]'); if (b) b.closest('tr').remove(); };
+    md.querySelector('#mClose').onclick = closeModal;
+    md.querySelector('#meOk').onclick = () => {
+      const rs = rows().filter(r => r.job || r.title || r.count); const sum = rs.reduce((a, r) => a + (r.amount || 0), 0);
+      const mm = md.querySelector('#meMonthly').value, months = +md.querySelector('#meMonths').value || 12, monthly = mm ? +mm : (sum || null);
+      const pkg = saveManual({ id: (edit && edit.id) || 'm-' + Date.now(), title: md.querySelector('#meTitle').value.trim() || '직접 입력 견적', client: md.querySelector('#meClient').value.trim(), rows: rs, monthly, vat: monthly != null ? Math.round(monthly * 0.1) : null, yearly: monthly != null ? monthly * months : null, period: { months } });
+      closeModal(); LINK.picked.add(pkg.id); refreshLinks(false).then(() => { const E = curEst(); if (E) estApplyForm(E, true); }); toast('직접 입력 견적을 저장했습니다');
+    };
   });
 }
-/* 견적 → 작성 정보 */
-function estApply(E) {
-  PROP.applied = E;
-  const st = E.client && SITES.find(s => { const a = s.name.replace(/\s|주식회사|\(주\)|㈜/g, ''), b = E.client.replace(/\s|주식회사|\(주\)|㈜/g, ''); return a && b && (a.includes(b) || b.includes(a)); });
-  if (st) selectSite(st, true);
-  if (E.jobs[0] && JOB[E.jobs[0]]) setJob(E.jobs[0]);
-  if (!st && E.client) { $('#f_client').value = E.client; }
-  const sh = (E.rows.find(r => r.shift) || {}).shift || '';
-  const lines = [`[견적 연동] ${E.client || ''} ${E.svc || ''} — 총 ${E.heads}명${E.monthly ? ` · 월 ${wonL(E.monthly)}원(VAT 별도)` : ''}${E.period.from ? ` · 기간 ${E.period.from} ~ ${E.period.to}` : ''}`]
-    .concat(E.rows.slice(0, 8).map(r => `- ${r.job || ''} ${r.title || ''} ${r.count}명${r.shift ? ' · ' + r.shift : ''}`));
-  const sp = $('#f_special'); if (sp && !sp.value.includes('[견적 연동]')) sp.value = (sp.value ? sp.value + '\n' : '') + lines.join('\n');
-  if (typeof autoTitle === 'function') autoTitle();
-  toast(`견적을 반영했습니다 — ${st ? st.name : E.client || '고객사'} · ${JOB[E.jobs[0]] ? JOB[E.jobs[0]].n : ''} · ${E.heads}명${sh ? ' · ' + sh : ''}`, 4500);
+function openSrcMenu() {
+  openModal(`<h2>견적 프로그램 열기</h2><div class="sub">견적을 만든 뒤 각 프로그램 화면 아래쪽의 <b>「📑 제안서로 보내기」</b>를 누르면 이 목록에 들어옵니다. (같은 계정으로 로그인하면 다른 기기에서 보낸 견적도 들어옵니다)</div>
+    <div class="srcs">${['stqs', 'wbe', 'stse'].map(k => `<a class="srcbtn" href="${SRC[k].url}" target="_blank" rel="noopener" style="--c:#${SRC[k].color}"><span class="ic">${SRC[k].ic}</span><span><b>${esc(SRC[k].n)}</b><small>${esc(SRC[k].full)}</small></span><i>↗</i></a>`).join('')}</div>
+    <div class="mrow"><button class="btn pri" id="mClose">닫기</button></div>`, md => { md.querySelector('#mClose').onclick = closeModal; });
 }
 
-/* ---------- 제안서 내용 ---------- */
-function propCtx(E) {
-  const f = readForm(), st = f.siteObj, c = pkCtx(Object.assign({}, f, { client: E.client || f.client }));
-  const client = E.client || (st ? st.name : f.client) || '고객사';
-  return { E, f, c, client, svc: E.svc || `${client} ${E.jobs.map(j => JOB[j] ? JOB[j].n : j).join('·')} 용역`, org: c.org, internal: PROP.mode === 'internal', date: c.date };
+/* ---------- ③ RFP 분석 ---------- */
+function rfpPicks(r) {
+  const T = state.kind === 'man' ? 'man' : 'std', s = new Set();
+  r.rows.forEach(x => (x[T] || []).forEach(c => s.add(c)));
+  return [...s].filter(c => findSmall(c));
 }
-const PROP_TOC = ['제안 개요', '회사 소개', '현황 분석 및 요구사항', '인력 운영 계획', '업무 수행 방안(업무표준·작업표준)', '교육 · 훈련 계획', '안전보건 · 법규 준수', '품질관리 · Complaint 대응', '운영 개시 · 인수인계', '가격 제안', '기대 효과'];
-function propSections(X) {
-  const E = X.E, J = E.jobs.filter(j => JOB[j]), jn = J.map(j => JOB[j].n).join(' · ') || JOB[state.job].n;
-  const per = E.period.from ? `${E.period.from} ~ ${E.period.to}${E.period.months ? ` (${E.period.months}개월)` : ''}` : '협의';
-  const S = [];
-  S.push({ h: '제안 개요', lines: [`사업명: ${X.svc}`, `발주처: ${X.client}`, `용역 범위: ${jn}`, `계약 기간: ${per}`, `투입 인원: ${E.heads}명`, E.monthly ? `월 용역비: ${wonL(E.monthly)}원 (부가세 별도)` : '월 용역비: 견적서 기준', `제안사: ${X.org} (에스텍 그룹)`],
-    tip: `${X.client}의 ${jn} 업무를 「업무표준서 · 작업표준(SOP) · 현장 근무지침」으로 표준화해, 누가 근무해도 같은 품질로 운영하는 것을 제안합니다.` });
-  S.push({ h: '회사 소개', lines: [`에스텍 그룹 — 보안·미화·주차·시설·안내·조리·방역 종합 용역`, `에스텍베스트 ${BRANCHES.length}개 지사(${BRANCHES.map(b => b.key).join('·')}) · 운영 사업장 ${SITES.length}곳`, '9개 업무 프로그램(근태관리·사업장 현황·견적 3종·업무표준·Complaint 대응·법률 대응·제안서)으로 현장을 관리', '모든 현장에 업무표준서·작업표준·서식·교육 자료를 같은 체계로 비치'] });
-  S.push({ h: '현황 분석 및 요구사항', lines: [`대상: ${X.client}${E.addr ? ` (${E.addr})` : X.c.addr ? ` (${X.c.addr})` : ''}`, `요구 직종: ${jn}`, ...E.notes.filter(n => /조건|전년|대안/.test(n)).slice(0, 5), '현장 조사(면적·구역·동선·위험요인)를 운영 개시 전 다시 확인해 작업표준과 인원 배치를 확정합니다'] });
-  return { S, jn, per };
+function runRfp(auto) {
+  const t = $('#f_rfp').value.trim(); if (!t) { if (!auto) toast('RFP·과업지시서 내용을 붙여넣거나 파일을 올려 주세요.'); renderRfp(null); return; }
+  const r = analyzeRFP(t); renderRfp(r);
+  if (auto) applyRfp(r, true);
+  toast(`요구사항 ${r.rows.length}건을 찾았습니다${r.ind ? ' · 업종 ' + IND[r.ind].n : ''} — 출력물 「과업 요구사항 대응표」에 들어갑니다.`, 4200);
 }
-function sopHighlights(job, n = 4) {
-  const A = SOP[job] ? SOP[job].areas : []; const out = [];
-  A.forEach(a => { if (out.length < n && a.tasks[0]) out.push({ a: a.n, t: a.tasks[0] }); });
+function renderRfp(r) {
+  const box = $('#rfpRes'); if (!r) { box.innerHTML = ''; return; }
+  const cats = {}; r.rows.forEach(x => cats[x.cat] = (cats[x.cat] || 0) + 1);
+  const pk = rfpPicks(r);
+  box.innerHTML = `<div class="rfp-h"><b>요구사항 ${r.rows.length}건</b>${Object.entries(cats).map(([k, n]) => `<span class="tg">${esc(k)} ${n}</span>`).join('')}</div>
+    <div class="rfp-hint">${[r.title ? `사업명: <b>${esc(r.title)}</b>` : '', r.client ? `발주처: <b>${esc(r.client)}</b>` : '', r.ind ? `업종 추정: <b>${esc(IND[r.ind].n)}</b>` : '', r.jobs.length ? `직종: <b>${r.jobs.map(j => JOB[j] ? JOB[j].n : j).join('·')}</b>` : '', r.period ? `기간: <b>${r.period.from} ~ ${r.period.to}</b>` : '', r.heads.length ? `인원: <b>${r.heads.map(h => `${h.job} ${h.count}명`).join(', ')}</b>` : ''].filter(Boolean).join(' · ')}<br>
+    <button type="button" class="btn l" id="rfpApply">↧ 작성 정보에 반영</button><button type="button" class="btn l" id="rfpPick">★ 관련 ${state.kind === 'man' ? '매뉴얼 장·절' : '표준 항목'} ${pk.length}개 선택</button></div>
+    <ol class="rfp-list">${r.rows.slice(0, 12).map(x => `<li><span class="tg">${esc(x.cat)}</span>${esc(x.req)}</li>`).join('')}${r.rows.length > 12 ? `<li class="more">… 외 ${r.rows.length - 12}건 (출력물 「과업 요구사항 대응표」에 모두 들어갑니다)</li>` : ''}</ol>`;
+  $('#rfpApply').onclick = () => applyRfp(r, false);
+  $('#rfpPick').onclick = () => { const add = rfpPicks(r).filter(c => !state.picked.includes(c)); add.forEach(c => { if (state.picked.length < MAX_PICK) state.picked.push(c); }); sortPicked(); renderTree($('#q').value); renderPicked(); toast(`관련 항목 ${add.length}개를 선택했습니다.`); };
+}
+function applyRfp(r, quiet) {
+  if (r.client && !$('#f_client').value) { $('#f_client').value = r.client; renderSiteInfo(); }
+  if (r.ind && IND[r.ind] && !$('#f_ind').dataset.touched) $('#f_ind').value = r.ind;
+  const j = r.jobs.find(x => JOB[x]); if (j && j !== state.job) setJob(j, true);
+  const sp = $('#f_special'); if (sp && r.rows.length && !sp.value.includes('[과업 요구사항]')) sp.value = (sp.value ? sp.value + '\n' : '') + '[과업 요구사항] ' + r.rows.slice(0, 5).map(x => x.req).join(' / ');
+  autoTitle();
+  if (!quiet) toast('RFP 분석 결과를 작성 정보에 반영했습니다.');
+}
+
+/* ---------- 연결 ---------- */
+function initLinkUI() {
+  $('#linkTabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (b) { LUI.tab = b.dataset.tab; renderLinks(); } };
+  $('#linkList').onclick = e => {
+    const x = e.target.closest('[data-x]'); if (x) { e.stopPropagation(); const id = x.dataset.x; confirmDel('이 견적을 목록에서 뺄까요? (견적 프로그램의 원본은 그대로 남습니다)', () => { removeLocalPkg(id); LINK.picked.delete(id); refreshLinks(false); }); return; }
+    const li = e.target.closest('li.lk'); if (!li) return; const id = li.dataset.id;
+    if (LINK.picked.has(id)) LINK.picked.delete(id); else { LINK.picked.add(id); const E = curEst(); if (E) estApplyForm(E, false); }
+    renderLinks();
+  };
+  $('#btnLinkRefresh').onclick = () => refreshLinks(true).then(() => toast('견적 목록을 새로 불러왔습니다.'));
+  $('#btnLinkOpen').onclick = openSrcMenu;
+  $('#btnLinkManual').onclick = () => openManualEst();
+  $('#btnLinkFile').onclick = () => $('#linkFile').click();
+  $('#linkFile').onchange = async e => { const fl = e.target.files[0]; e.target.value = ''; if (!fl) return; try { const arr = await importLinkFile(fl); arr.forEach(p => LINK.picked.add(p.id)); await refreshLinks(false); const E = curEst(); if (E) estApplyForm(E, true); toast(`연동 파일에서 견적 ${arr.length}건을 불러왔습니다.`); } catch (er) { toast(er.message, 5000); } };
+  $('#btnLinkXl').onclick = () => $('#xlFile').click();
+  const takeXl = async files => { let ok = 0, last = null; busy(true, '견적서 읽는 중…');
+    try { for (const fl of files) { try { const p = await importEstimateFile(fl); LINK.picked.add(p.id); last = p; ok++; } catch (er) { toast(`「${fl.name}」 — ${er.message}`, 6000); } }
+      if (ok) { LUI.tab = 'manual'; await refreshLinks(false); const E = curEst(); if (E) estApplyForm(E, true); toast(`견적서 ${ok}건을 불러왔습니다 — 월 ${wonL(last.monthly)}원 · ${last.heads}명${last.mix ? ' · 원가 구성 포함' : ''}`, 4500); } } finally { busy(false); } };
+  $('#xlFile').onchange = e => { const fs = [...e.target.files]; e.target.value = ''; if (fs.length) takeXl(fs); };
+  const lc = $('#linkCard'); ['dragover', 'dragenter'].forEach(ev => lc.addEventListener(ev, e => { if ([...(e.dataTransfer.items || [])].some(i => i.kind === 'file')) { e.preventDefault(); lc.classList.add('drag'); } }));
+  ['dragleave', 'drop'].forEach(ev => lc.addEventListener(ev, () => lc.classList.remove('drag')));
+  lc.addEventListener('drop', e => { const fs = [...(e.dataTransfer.files || [])]; if (!fs.length) return; e.preventDefault(); const xs = fs.filter(f => !/\.json$/i.test(f.name)); if (xs.length) takeXl(xs); });
+  $('#btnLinkExport').onclick = e => { e.preventDefault(); const ps = pickedPkgs(); if (!ps.length) return toast('내보낼 견적을 체크하세요.'); download(exportLinkFile(ps), `견적연동_${safeName($('#f_client').value || 'export')}.json`); };
+  initRfp();
+  $('#btnRfp').onclick = () => runRfp(false);
+  $('#btnRfpClear').onclick = () => { $('#f_rfp').value = ''; RFP.att = []; RFP.res = null; renderRfpFiles(); renderRfp(null); };
+  refreshLinks(true);
+}
+
+/* =====================================================================
+ * 출력물 연동 섹션 — 업무표준서 · 업무매뉴얼 (Word · PPT · PDF)
+ *  ① 인력 운영 기준(견적 연동): 직종·직책·인원·근무형태 → 근무조 코드 지표 · 배치 기준 · (사내용) 월 금액
+ *  ② 과업 요구사항 대응표(RFP): 요구사항 → 관련 표준 항목/매뉴얼 장 · 이행 방법
+ *  Designed & Developed by Rat Rae Choi
+ * ===================================================================== */
+function linkData(p) {
+  if (!p.link) p.link = { E: curEst(), R: curRfp() };
+  return p.link;
+}
+function estRowsFor(E) { return E.rows.map(r => ({ job: r.job || '', title: r.title || '', count: r.count || 0, shift: r.shift || '', unit: r.unit, amount: r.amount, code: estCodeForShift(jobFromText(r.job + ' ' + r.title) || state.job, r.shift) })); }
+function refName(code) { const x = findSmall(code); return x ? `${code} ${x.S.n.replace(/\s*\(.*\)$/, '')}` : code; }
+/* ---------- Word ---------- */
+function linkDocx(ch, p, n) {
+  const { E, R: RQ } = linkData(p), internal = p.f.mode !== 'client', AC = docx.AlignmentType.CENTER;
+  const head = t => ch.push(H1(n != null ? `${ROMAN[n++]}. ${t}` : t));
+  if (E) {
+    head('인력 운영 기준 (견적 연동)');
+    ch.push(P([R(`출처: ${E.srcs.map(s => SRC[s] ? SRC[s].full : s).join(' · ')} — ${E.client || p.f.client} · 총 ${E.heads}명${E.period.from ? ` · 계약 기간 ${E.period.from} ~ ${E.period.to}` : ''}`, { size: 18, color: C.gray })], { after: 60 }));
+    const rows = estRowsFor(E), w = internal ? [1300, 2100, 800, 2438, 1400, 1600] : [1500, 3000, 900, 4238];
+    ch.push(table([(internal ? ['직종', '직책 · 업무', '인원', '근무형태 (근무조 코드)', '1인 단가', '월 금액'] : ['직종', '직책 · 업무', '인원', '근무형태 (근무조 코드)']).map((h, i) => th(h, w[i]))].concat(rows.map(r => {
+      const base = [td(r.job, w[0], { bold: true }), td(r.title, w[1]), td(`${r.count}명`, w[2], { align: AC }), td(`${r.shift || '-'}${r.code ? `\n${r.code.id} · ${r.code.name.replace(/^\S+\s/, '')}` : ''}`, w[3], { size: 17 })];
+      return internal ? base.concat([td(r.unit != null ? wonL(r.unit) : '-', w[4], { align: docx.AlignmentType.RIGHT }), td(r.amount != null ? wonL(r.amount) : '-', w[5], { align: docx.AlignmentType.RIGHT })]) : base;
+    })).concat([[td('합계', w[0], { bold: true, fill: 'EEF1F5' }), td('', w[1], { fill: 'EEF1F5' }), td(`${E.heads}명`, w[2], { align: AC, bold: true, fill: 'EEF1F5' }), td('', w[3], { fill: 'EEF1F5' })].concat(internal ? [td('', w[4], { fill: 'EEF1F5' }), td(E.monthly ? wonL(E.monthly) : '-', w[5], { align: docx.AlignmentType.RIGHT, bold: true, fill: 'EEF1F5' })] : [])]), w, { header: true }));
+    const L = [];
+    uniq(rows.map(r => r.code && r.code.id)).forEach(id => { const c = AMS_CODES.find(x => x.id === id); if (!c) return; const m = shiftMetrics(c); L.push(`${c.id} ${c.name.replace(/^\S+\s/, '')} — 순환 ${c.seq.split('').join(' ')} · 월 근무 ${m.days.toFixed(1)}일 · 월 실근로 약 ${Math.round(m.hours)}시간 · 주 평균 ${m.week.toFixed(1)}시간 · 24시간 초소 최소 ${m.crews}조${c.ltype === '감시단속' ? ' · 감시·단속적 근로 승인 필요(근로기준법 제63조)' : ''}`); });
+    L.push(`배치 기준: 견적 인원 ${E.heads}명을 근무 편성표(근태관리 근무조 코드)로 편성하고, 결원 시 지사 대체 인력을 24시간 이내 투입한다.`);
+    L.push('근무시간·휴게·연장·야간·휴일근로는 견적 산출 조건과 같게 운영하고, 바뀌면 견적과 이 표준을 함께 개정한다.');
+    if (internal && E.monthly) L.push(`월 도급비 ${wonL(E.monthly)}원 (VAT 별도${E.yearly ? ` · 계약 기간 ${wonL(E.yearly)}원` : ''}) — 사내 관리용, 고객사 제출본에는 금액이 빠집니다.`);
+    if (internal && E.mix) L.push(`원가 구성(사내): 인건비 ${wonL(E.mix.labor)}원 · 제비용 ${wonL(E.mix.expense)}원 · 일반관리비·이윤 ${wonL(E.mix.marg)}원`);
+    ch.push(...bullets([{ title: '운영 기준', lines: L }]));
+  }
+  if (RQ) {
+    head('과업 요구사항 대응표 (제안요청서 · 과업지시서)');
+    ch.push(P([R(`${RQ.title ? `사업명: ${RQ.title} · ` : ''}${RQ.client ? `발주처: ${RQ.client} · ` : ''}요구사항 ${RQ.rows.length}건 — 요구사항마다 관련 업무표준·매뉴얼과 이행 방법을 정한다.`, { size: 18, color: C.gray })], { after: 60 }));
+    const w = [600, 1300, 3600, 2200, 1938], T0 = p.kind === 'man' ? 'man' : 'std';
+    ch.push(table([['No', '구분', '요구사항', '관련 표준 · 매뉴얼', '이행 방법'].map((h, i) => th(h, w[i]))].concat(RQ.rows.map((x, i) => [td(String(i + 1), w[0], { align: AC, size: 16 }), td(x.cat, w[1], { bold: true, size: 16 }), td(x.req, w[2], { size: 16 }),
+      td((x[T0] || []).filter(c => findSmall(c)).map(refName).join('\n') || '-', w[3], { size: 15 }), td(x.how || '', w[4], { size: 15 })])), w, { header: true }));
+    if (RQ.subm && RQ.subm.length) ch.push(...bullets([{ title: '제출 서류 요구', lines: RQ.subm.slice(0, 10) }]));
+  }
+  return n;
+}
+/* ---------- PPT · PDF ---------- */
+function linkSlides(p, S, no, label) {
+  const { E, R: RQ } = linkData(p), internal = p.f.mode !== 'client';
+  if (E) {
+    const rows = estRowsFor(E), per = 11;
+    for (let i = 0; i < Math.max(1, rows.length); i += per) {
+      const o = frame(label('인력 운영 기준 (견적 연동)') + (rows.length > per ? ` (${i / per + 1})` : ''), `${E.client || p.f.client} · 총 ${E.heads}명${E.period.from ? ` · ${E.period.from} ~ ${E.period.to}` : ''}`, no, p);
+      const cols = internal ? [{ t: '직종', w: 1.5, b: 1 }, { t: '직책 · 업무', w: 3.2 }, { t: '인원', w: 0.9, al: 'center' }, { t: '근무형태 · 근무조 코드', w: 3.9 }, { t: '1인 단가', w: 1.3, al: 'right' }, { t: '월 금액', w: 1.35, al: 'right', b: 1 }]
+        : [{ t: '직종', w: 1.8, b: 1 }, { t: '직책 · 업무', w: 4.0 }, { t: '인원', w: 1.0, al: 'center' }, { t: '근무형태 · 근무조 코드', w: 5.35 }];
+      const body = rows.slice(i, i + per).map(r => { const a = [r.job, r.title, `${r.count}명`, `${r.shift || '-'}${r.code ? ` (${r.code.id})` : ''}`]; return internal ? a.concat([r.unit != null ? wonL(r.unit) : '-', r.amount != null ? wonL(r.amount) : '-']) : a; });
+      if (i + per >= rows.length) { const t = ['합계', '', `${E.heads}명`, '']; const rr = internal ? t.concat(['', E.monthly ? wonL(E.monthly) : '-']) : t; rr._fill = 'EEF1F5'; body.push(rr); }
+      const y = tbl(o, 0.6, 1.6, cols, body, { rh: 0.38, pt: 11 });
+      const codes = uniq(rows.map(r => r.code && r.code.id)).map(id => AMS_CODES.find(x => x.id === id)).filter(Boolean);
+      if (codes.length && y < 6.2) o.push(T(0.6, y + 0.15, 12.1, SH - y - 0.75, listParas([{ title: '근무형태 지표 (근태관리 근무조 코드)', lines: codes.map(c => { const m = shiftMetrics(c); return `${c.id} ${c.name.replace(/^\S+\s/, '')} — 월 근무 ${m.days.toFixed(1)}일 · 월 실근로 ${Math.round(m.hours)}h · 주 ${m.week.toFixed(1)}h · 24시간 최소 ${m.crews}조`; }) }]), { max: 13, min: 9.5 }));
+      S.push(o); no++;
+    }
+  }
+  if (RQ) {
+    const T0 = p.kind === 'man' ? 'man' : 'std', per = 9;
+    for (let i = 0; i < RQ.rows.length; i += per) {
+      const o = frame(label('과업 요구사항 대응표') + (RQ.rows.length > per ? ` (${i / per + 1}/${Math.ceil(RQ.rows.length / per)})` : ''), `${RQ.title || RQ.client || '제안요청서 · 과업지시서'} · 요구사항 ${RQ.rows.length}건`, no, p);
+      tbl(o, 0.6, 1.6, [{ t: 'No', w: 0.6, al: 'center' }, { t: '구분', w: 1.4, b: 1 }, { t: '요구사항', w: 5.2 }, { t: '관련 표준 · 매뉴얼', w: 2.6 }, { t: '이행 방법', w: 2.35 }],
+        RQ.rows.slice(i, i + per).map((x, k) => [String(i + k + 1), x.cat, x.req, (x[T0] || []).filter(c => findSmall(c)).map(c => c).join(', ') || '-', x.how || '']), { rh: 0.54, pt: 10 });
+      S.push(o); no++;
+    }
+  }
+  return no;
+}
+
+/* 에스텍 「비상대처 매뉴얼」 — 사건사고·천재지변·집단민원·화재·소란난동·침입이상·응급환자·가스누출·보안사건·매스컴·대테러
+ * tools/extract_emg.py 로 원문에서 추출 · 업무매뉴얼 「비상대처 매뉴얼」 장에 그대로 수록
+ * Designed & Developed by Rat Rae Choi */
+const EMG = [{"t": "사건사고의 대응", "items": [["p", "1. 사건 사고란?"], ["p", "■ 사건(事件) : 주목을 받을 만한 \"뜻밖에 일어난 일\"로서 『살인사건』, 『폭행사건』과 같이 발생 동기나 원인이 비교적 의도적인 행위에 의한 결과를 사건이라 한다."], ["p", "■ 사전적 의미로는 뜻밖에 일어난 일이나 \"탈\".. 또는 변고(變故)라고 저의하고 있으며, 이반적으로 사회 통념상으로는 \"예상하지 못한 평시에 없는 뜻밖의 일\"로서 『교통사고』,『산재사고』와 같이 원인이 불안전한 환경요인과 부주의로 인하여 비 의도적으로 생긴 일의 결과를 사고라 말하고 있음."], ["p", "2. 업무 수행 중 발생되는 사건사고 종류"], ["t", [["구 분", "용 어 해 설"], ["화재사고", "ㅇ 경비 대상물 또는 경비 대상물과 관련이 있는 곳에서 발생한 화재"], ["인사사고", "ㅇ 계약처 내에서 사람이 다치거나 사망하는 등의 사고 (SE & 계약처 소속지원)"], ["산재사고", "ㅇ POST 또는 업무 수행중 상해, 과로 등으로 발생한 사고 (SE & 계약처 소속지원)"], ["폭행사건", "ㅇ 근무중 정신적, 신체적으로 가해 또는 피해를 입은 사건"], ["금전사건", "ㅇ 회사의 공금을 유용, 횡령, 절도, 용도 변경하는 등의 사건\n(SE & 계약처 소속지원 & 또는 공모범죄)"], ["절도사건\n(근무중)", "ㅇ 부정, 불법에 의한 방법으로 타인의 돈, 유가증권, 서류 등을 절취한 사건\n(SE & 계약처 소속지원)"], ["부정사건", "ㅇ 업무와 관련한 금품수수, 공금횡령, 변칙사용, 밀반출 등의 불법, 부정행위\n(SE & 계약처 소속지원)"], ["침입도난사건", "ㅇ 책임 구역내에 무단 / 불법으로 침입한 자에 의하여 계약처의 시설물 또는 금전적 손실을 끼친 \"침입도난사건\"\n① SE ② 계약처 직원(정규,비정규) ③ 외부인"], ["도박사건", "ㅇ 돈내기, 놀음. 야바위 등 영리를 목적으로 하는 행위 (SE & 계약처 소속지원)"], ["음주사고", "ㅇ 근무 중 음주로 인하여 발생한 사고 (SE & 계약처 소속지원)"], ["교통사고", "ㅇ 계약처 내의 차량사고로 부상, 사망 또는 차량훼손 등의 사고"], ["노사분쟁", "ㅇ 근무처 또는 경비 대상물의 입주사 등 근무처와 관계된 자에 의한 분규로 안전업무 제공과 업무 수행에 영향(지장) 을 미치는 경우\n(SE는 사용자의 이익을 대변하는 자에 속하므로 사내 질서유지와 중요시설의 무단점거 등에 대비 하는 업무수행)"], ["소 비 자", "ㅇ 소비자 또는 민원인에 의하여 경비책임 구역 내에서 항의 집회 등 일련의 사건,사고를 유발케 하여 책임 소재를 불분명케 하는 사건,사고 등\n(① 미온적 대응 논란 ② 과잉논란 ③ 형사상/고소,고발에 개입)"]]], ["p", "3. 사건사고 발생 시 유형별 조치요령"], ["t", [["사고유형", "조 치 요 령", "비 고"], ["화 재\n사 고", "① 무전기 또는 육성으로 화재사실을 신속히 전파하면서 소화기,옥내,\n외 소화전 등으로 초기진화를 실시한다.\n② 사업장내 방재 센타, 보안실에 화재사실을 신속하게 통보한다.\n* 화재위치, 화재의 규모정도, 사람의 재실 여부 등\n③ 대형화재 발생시 먼저 화재사실을 전파하여 현장의 인원을 대피하게\n하고 소방서에 화재신고를 한다.", "* 先조치 後보고\nㅇ 초기진화는\n발화된 후\n3분내에 실시\n(6하 원칙에 의거)"], ["보안사고", "① 사업장내 보안사고(정보 & 기밀유출 등) 발생 시 의심이 가는 자를\n임의 동행하여 관련부서에 통보 후 담당자의 지시를 따른다.\n단, 그러한 조치 직후에 보고 체계에 의거 하여 보고 하여야 한다.\n② 외부에서 보안사고 적발 시,또는 정보를 입수 할 경우에는 본부 품질\n관리팀에 즉각 상황을 보고 후 조치를 받는다.\n(담당부서에 즉각 보고 후 지침을 받아 업무 수행토록 한다.)"], ["부정사건", "① 업무와 관련하여 받은 금품(촌지)은 반드시 즉시 보고 체계의 상사에게 보고하여야 한다.\n* 근무격려금, 위로금 등의 명목으로 공식, 비공식으로 주는\n금품일지라도 원칙적으로 수수해서는 안되며 일단, 수수한 경우에는 부서장 이상의 지휘계통에 즉시 보고하여야 한다.\n(취지에 따라 조치)\n* 유실물을 습득한 경우 상급자의 보고계통을 통해 관계 부서에 즉시 신고한다.\n(사건사고 보고서에 습득 당시 상황 기록)\n② 업무 시 부정사건\n* SE가 사업장 물품을 절취 하였다면 절도죄 (가중처벌대상)\n* SE가 유실물을 횡령하면 점유 이탈물 횡령죄 (가중처벌대상)", "ㅇ 유실물법 참조"], ["직원사고\n(경찰관련\n사고발생)", "① 경찰서에서 유선이용 출두 요청 시\n* 출두 대상자 성명, 사유, 담당 경찰관 및 전화번호 등을 가능한 자세하게 기록한다.\n* 출두자와 직접 면담 후 출두 사유 등을 상세하게 확인한다.\n(직접 면담 후 지사장, 관련 부서장에게 보고 후 별도 지시를 받는다.)\n* 경찰서 출두 시 반드시 사업장 책임자가 동행하여 대처토록 한다.\n* 지사에서는 사업장으로부터 상황을 접수 즉시 본사에 상황을 설명\n한 후 협조를 구한다.\n(품질관리팀에서는 접수 후 진행상황을 수시 파악 후 본사 차원의\n지원 방안을 강구한다.)\n② 경찰이 직접 방문 연행 시\n* 대상자 성명, 사유, 등을 가능한 자세하게 파악하고 방문 경찰관의 소속, 성명, 전화번호, 등을 자세히 파악한다.\n(이때 사업장의 책임자는 경찰서까지 동행하여 상황을 파악한다.)\n* 사업장에서는 지점장, 지사장, 본부장에 신속히 보고하여 지시를 받는다.(필히 발생 후 5분 이내 보고 완료토록 함)\n* 상황접수 즉시 지사에서는 본사 및 관련부서에 상황을 설명한 후 협조를 구한다.\n(협조사항 ; 연행된 원인, 보도관제, 신속하고 원만한 처리 가능토록 경찰 협조)\n* 품질 관리팀에서는 접수 후 진행 사항을 수시 파악한 후 본사 차원의 지원 방안을 강구한다."], ["노사 분쟁\n집단 사태\n대응 방안", "① 노사관련 정보는 보고체계에 의거하여 보고하고 상황이 급박한 경우 관련,부서장에게 즉각 보고 후 지시를 받는다.\n② 물리적인 시위(집회,농성,검거 등)가 발발(勃發)된 상황인 경우 경비업무 본연의 의무인 도난방지,시설 보호, 질서유지 업무에 주력하면서 책임자의 지시에 따른다.\n▷ 책임구역 내에 화염병의 소지,휴대 운반자는 화염병 사용 등에 관한 처벌법규에 따라 퇴치하거나 경찰에 신고.(직원이라 할지라도 신고)", "ㅇ노사에 관한\n수비/방어적\n입장을 견지\nㅇ집단민원발생시\n업무처리기준\n5항 참조"], ["범인과\n조우(遭遇)\n하는 각종\n사건/사고", "① 사건사고 발생시 범인(가해자)을 자극(刺戟)하는 언동을 자제한다.\n② 범인 또는 가해자의 인상,착의,특징 등을 관찰하고 대응 방안을 은밀(隱密)히 강구한다.\n③ 시간을 다투는 긴급상황인 경우, 현장에서는 보고체계를\n생략하고 관련부서, 본부장에게 신속히 유선 보고하여\n지시를 받는다. - 필히 발생 후 즉시 보고 완료토록 함.\n④ 현행범 또는 준 현행범은 누구라도 영장없이 체포 (逮捕) 할 수 있다\n※ 현행범이란 ? : 범행 중이거나 범행 직후인 자\n※ 범인을 잡을 목적으로 GAS총, 진압도구를 함부로 사용해서는 안됨\n(선의의 피해를 입는 다른 고객이 있다는 사실을 명심)", "ㅇ 형사소송법\n참조"]]], ["p", "4. 기타 사고 대응 요령"], ["t", [["사고유형", "대 응 요 령"], ["절 취 자\n적 발 시", "▷ 절취자가 건물 내에서 소란을 피우지 않도록 조용히 보안실로 안내한다.\n▷ 안내 시 도주 및 자해행위에 대비하여 감시를 철저히 한다.\n▷ 연행 시 증거인멸을 예방하기 위하여 행동을 주위 깊게 관찰한다.\n(연행 시 절취자의 옆 또는 1보 뒤에서 호송)\n▷ 필요에 따라 동료 SE의 지원을 요청한다.\n▷ 보안실로 연행 후 검문검색을 한다.\n▷ 절취행위에 대한 경위서를 징구 한다.\n▷ 절취자 대화 시 구타, 욕설 등을 하여서는 안된다.\n▷ 범죄의 경중에 따라 훈방 또는 보호자에게 인계(어린이) 및 경찰서에 이첩한다.\n(피해자가 훈방을 원할 시 훈방조치)\n▷ 관련부서에 처리 결과를 통보한다."], ["계 약 처\n정 전 시", "▷ 주위의 사람들을 안심 시킨다.\n▷ 렌턴을 들고 건물 내 인원을 안전하게 대피 시킨다.\n▷ 안전사고, 도난사고, 화재사고 등을 예방하기 위하여 사람들을 비상계단으로 유도한다.\n▷ E/V에 탑승자들이 갇혀 있는지를 확인하고 갇혀 있을 시에는 탑승자를\n안심시키고 시설팀, 총무팀에 연락하여 조치를 취 하도록 한다.\n▷ 시설물의 이상유무를 확인한다.\n▷ 시설팀, 방재실에 연락하여 정전사유와 복구 예정시간을 확인한다.\n▷ 정전 회복 시 E/V, 기타 시설물의 작동이 되었는지 확인한다.\n▷ 정전 회복 시 각 사무실 및 시설물의 정상작동 등의 이상유무를 확인하고 보안실로\n연락한다.\n▷ 정전내용을 기록한다."], ["분실사고\n발생 시", "▷ 분실자에게 분실 품을 확인하고 주변을 수색하여 분실자로 하여금 SE가 열심히 찾고 있고 성심 성의를 다해 도와주고 있다는 인상을 부여한다.\n▷ 건물 내에서 소란을 피우지 않도록 보안실로 유도하여 음료, 물 등을 권하여 안정을 갖도록 해준다.\n▷ 분실 내용을 접수하여 상황일지에 기록한다. (시간, 장소, 성명, 연락처, 분실품, 분실경위)\n▷ 분실자에게 자극을 주는 언행을 금한다.\n* 잘 보관하시지 않고...\n* 조심하셔야죠 등...\n▷ 수표 또는 신용카드 등은 분실신고를 유도한다.\n▷ 분실 물을 습득 시 즉시 연락하겠다는 약속을 하고 귀가 시킨다."], ["안전사고\n발생 시", "▷ 신속히 해당부서로 안내하여 응급조치를 한다. 긴급을 요할 시 119 연락\n▷ 사고경위와 사고 정도를 파악하고 시간, 장소, 인적사항을 상황일지에 기록 및 보고 한다.\n▷ 경상인 경우에는 간단한 치료 후 귀가 조치를 하고 중상인 경우 지정병원인\n000 병원으로 후송 조치하여 치료를 받게 한다."], ["거동 수상자\n빌견 시", "▷ 주간 순회 중 발견\n* 외모, 행동이 수상한자를 발견하면 즉시 상황보고 한다.\n* 언변에 주의 하여 내방목적과 관계여부를 묻는다.\n* 조업상 관계없는 사람일 경우, 신원확인 후 출문 조치한다.\n* 신원 확인이 안될 경우 담당자에게 보고하고 사업장 이상유무를 확인한다.\n* 필요시 인근파출소에 인계하고 신병인수증을 받는다.\n▷ 야간 순회 중 발견\n* 외모, 행동이 수상한자를 발견하면 즉시 보안실에 연락 지원 요청한다.\n* 안전에 주의 하여 (2인1조 등)로 방문 목적을 확인한다.\n* 신원을 확인 체크하고 관계없는 사람일 경우 출문 조치한다.\n* 사무실 내부에서 발견 시 신원확인에 불응하면 침입자로 판단하고 인근\n파출소에 연락 인계하며 신병인수증을 받아 놓는다."], ["업무방해\n요소발견 시", "▷ 발견 즉시 퇴실조치 한다.\n▷ 혼자서 처리 불가능 시 인접 SE 지원을 요청한다.\n▷ 건물 내에서 소란을 피우지 않도록 유도하여 퇴실 조치한다.\n▷ 밖으로 나가는 것을 꼭 확인한다.\n* 다른 층으로 이동하는 것을 예방하고 경계한다.\n* 또다시 안으로 들어오지 못하도록 유도 한다.\n▷ 저지 또는 퇴점 조치시 구타, 욕설 금지"], ["컴 프레인\n(Complain)\n발생 시", "▷ 입주사내의 Complain 발생시 신속하게 담당직원에게 통보하여 해결하도록 유도 한다.\n▷ 고객과의 직접적인 마찰은 삼가고 고객의 의지대로 순응하여 주면서 담당자에게 빠른 시간내에 인계한다.\n▷ Complain 내용을 접수하였을 경우 내용을 해당 부서에 보고하여 조치한다.\n▷ 화가 난 상태이므로 특히 말을 삼가 하여야 하며 응대 시 성심 성의를 다하여 응대를 실시한다.\n▷ 최대한 신속히 처리가 될 수 있도록 최선을 다한다.\n▷ 고객이 만족하도록 조치한다.\n▷ 내 자신이 컴프레인 고객을 응대 시“사과의 말”을 한다."], ["미 아\n발생 시", "▷ 주변에 보호자가 있는지 확인한다.\n▷ 보호자가 없을 시 미아의 성명, 나이, 인상착의 등을 확인하여 00층 방송실 및 방재실에서 방송을 한다.\n▷ 방송을 하여도 보호자가 없을 시 집으로 전화를 하여 조치한다.\n▷ 전화번호도 모르고 시간이 많이 경과하면 자기의 업무를 수행해야 함으로 관할 000 파출소에 미아신고를 하고 신병을 인계한다."], ["사람의 손이나 발이 문틈에 끼었을 때 대처방법", "▷ 상황 접수 후 사고지역과 가장 근거리에 있는 POST로 신속하게 상황을 전파, 지원 할 수 있도록 한다.\n▷ 도착 즉시 상황 판단 후 후속조치를 원활하게 하기 위해 보호자와 사고자를 안정 시킨다.\n▷ 손,발의 문틈 낀 부분에 장비나 기타 세제(비누,식용유)를 발라 미끄럽게 한 다음\n순리적으로 손,발을 빼낸다.\n▷ 장비나 기타 세제(비누, 식용유)를 사용해야 할 경우가 발생할 수 있으므로 사고장소에서 신속한 조치가 이루어지도록 사전에 이동경로를 확보하여 대비함을 염두해 두어야 한다. (가급적 119 연락)\n▷ 조치 후의 휴유증이 일어날 수 있으므로 즉시 병원으로 이동시켜서 전문의의 진단을 받을 수 있도록 조치한다.\n▷ 응급 조치 후 사고자를 안정시키고 또한 사고지역의 문제점을 파악하여 해당 부서로\n통보하여 재발 방지 대책에 만전을 기한다.\n▷ 보호자 및 피해자에게 사과의 말을 잊지 않도록 한다.\n▷ 경상인 경우에는 간단한 치료 후 귀가 조치를 하고 중상인 경우 119구급대 및 병원으로 후송하여 치료를 하도록 한다."], ["문의/안내를\n요구 할 때", "▷ 문의 내용을 조용히 경청한다.\n▷ 최단 거리로 알려 주고 안내한다.\n▷ 문의 내용을 친절히 안내하고 문의 내용을 모를 경우 고객에게 양해를 구하고 인접에 있는 SE, 해당부서에 문의하여 정중하고 친절하게 안내를 한다.\n▷ 안내 시 위치를 가리킬 때는 손바닥을 곧게 펴서 공손하고 알기 쉽게 안내 하고 안내\n불가능 시에는 사과의 말을 한다.\n▷ 수행 안내 시 고객의 옆에나 1보 앞에서 안내를 한다."], ["음 주 자\n발 생 시", "▷ 사내 직원이 음주방문 시\n* 언행을 소홀히 하지 말고 방문목적을 확인한다.\n* 음주정도를 파악하고, 음주상태에서 업무를 할 수 없음을 이해 시킨다.\n(보안실 및 안내실)안내\n* 부득이 입실을 해야 한다면 계약처 담당자 연락, 지시에 따른다\n* 출입시간 및 인적사항, 관련인등을 기록 보관한다.\n(만에 하나 있을지도 모르는 사고 때문 )\n* 직원이 만취 상태일 경우 자택 및 관계부서 연락하여 귀가 시킨다.\n▷ 외부인 취객방문\n* 언행을 소홀히 하지 말고 방문목적을 확인한다.\n* 음주정도를 파악하고 외부인일 경우 입실허용 불가 설명을 한다.\n* 음주한 고객이 행패를 부려도 구타. 욕설 행위는 금지하며, 파출소에 연락 인계토록\n조치 한다.\n* 신원 확인 연락 한다.\n▷ 만취고객\n* 언행을 소홀히 하지 말고 방문 목적을 확인한다.\n* 만취상태로 대화가 어려울 때는 인접 SE에게 연락한다.\n* 술에 만취한 고객은 신원 확인 후 집으로 연락을 취한다.\n* 만취한자가 건물 내로 자꾸 진입 하고자 하면 인근 파출소로 연락하여\n인계토록 한다.\n▷ 참고사항\n* 음주고객 응대 시 언어와 행동에 주의해야 한다.\n* 음주고객임을 표현하지 말고 방문목적을 정확하게 파악 해야한다.\n* 고객이 음주 상태에 있더라도 응대에 소홀 해서는 안된다.\n* 음주고객이 실수 할 경우라도 폭언이나 잘못된 행동을 해서는 안된다."]]], ["p", "5 . 사건 사고 시 보고요령"], ["p", "가. 보고 요령"], ["p", "1) 모든 보고는 다음과 같은 순으로 행하며 보고의 생명은 신속성과 정확성에 있다."], ["p", "2) 『6하 원칙 + ∝ ; 5W + 1H』에 의건 충실히 보고한다."], ["t", [["1. 언제", "(When), 발생일시 및 시간 (년/월/일/시간)"], ["2. 어디서", "(Where), 발생장소"], ["3. 누가", "(Who), 누가"], ["4. 무엇을", "(What), 사고내용"], ["5. 왜", "(Why), 사고동기 및 범행동기"], ["6. 어떻게", "(How), 사고방법 및 범행방법"], ["7. 얼마나", "(How-Much), 피해내용"]]], ["p", "3) SE는 사건 사고 발생 시 발생 내용에 대하여 보안실(또는 상황실)에 신속하고 정확하게 보고 하여야 하며, 보안실 또는 상황실에서는 사업장내 SE에게 유,무선을 통하여 전파 하여 사건 사고의 확대 방지 및 예방활동을 실시 할 수 잇도록 조치 하여야 한다."], ["p", "만일, 인접 사업장의 지원 및 협조가 필요할 경우에는 인접 사업장에서도 전파하여 공조체계를 유지토록 한다."], ["p", "4) 관련기관(경찰서,소방서 등)에 통보를 하기 위하여는 보안실 또는 상황실에 정보를 정확하게 보고하여 신속한 대응이 될 수 있도록 하여야 한다."], ["p", "□ 관련기관 통보 요령"], ["t", [["구 분", "통보요령 및 순서"], ["경찰기관\n☎. 112", "범죄의 종류\n☞ 현재의 상황 ☞ 피해자의 상황 ☞ 현장 소재시 ☞ 통보자 성명 등\n※ 범인이 도주(逃走)한 경우 : 범인의 인상, 착의, 특징, 도주방향,\n차량의 색상, 차량 형식, 번호 등을 알 수 있는 범위 내에서 통보"], ["소방기관\n☎. 119", "정확한 상황 구분 통보(화재...? 구급(구조)...? ☞ 소재지 및 명칭\n☞ 인근의 찾기 쉬운 목표물(유명한 건물 등)\n☞ 연소장소(12층 건물의 1층 부분), 연소정도, 연소물건\n☞ 그 외 소방 활동상 필요한 사항\n(위험물, 고압 Gass 등의 연소 위험의 유무)"], ["구 급 차\n☎. 119\n☎. 129", "장소, 가까운 목표물\n☞ 어떻게 해서 \"상처를 입었는지\" ? 어떤 상태로 \"발병 했는지\" ?\n☞ 현재 어떠한 상태인지, 환자는 몇 명인지\n☞ 담당 직원의 질문에 답한다."]]], ["p", "□ 긴급 통보 시 유의 사항"], ["p", "▷ 말의 내용을 간결(간단)히 할 것"], ["p", "▷ 불 필요한 접속어 사용금지 ( \" 저~, 그러니까!\"... 등)"], ["p", "▷ 내용에 누락 부분이 없도록 Memo 활용"], ["p", "▷ 감정을 냉정히 유지하고 단어 사용은 정중히 할 것"], ["p", "▷ 자기 멋대로 일방적으로 말하거나, 자신이 일방적으로 전화 등을 끊지 않을 것"], ["p", "나. 보고 체계 (Flow)"], ["p", "□ 사업장에서 발생되는 모든 사건사고 및 상황에 대한 보고 체계는 다음과 같이 운용토록 한다."], ["p", "1) 회사에 보고 할 경우 (별첨 # 1 ∼별첨 # 7참조)"], ["p", "▷ 별첨 # 1. 사건사고 예방(적발) 업무보고 Flow"], ["p", "▷ 별첨 # 2. 사건사고 예방(적발) 보고서"], ["p", "▷ 별첨 # 3. 사건사고 발생 업무보고 Flow"], ["p", "▷ 별첨 # 4. 도난/피해사고 처리 절차"], ["p", "▷ 별첨 # 5-1. 사건사고 발생 보고서"], ["p", "▷ 별첨 # 5-2. 사건사고 발생 보고서(계약처 제출 양식)"], ["p", "▷ 별첨 # 5-3. 사건사고 발생 보고서(계약처 제출 양식)"], ["p", "▷ 별첨 # 6. 도난품목 명세서"], ["p", "▷ 별첨 # 7. 합의서"], ["p", "2) 계약처에 보고 할 경우 (사업장에서 운영 중인 각 상황별 내용으로 보고)"], ["p", "▷ 각 상황별 비상 연락망 체계도"], ["p", "▷ 관련기관 연락처"], ["p", "▷ 각 상황별 계약처 순위별 연락망"], ["p", "6. 사업장 사건사고 발생시 현장 보존 요령"], ["p", "가. 사건사고 현장 보존이란?"], ["p", "■ 사건 사고 후 현장을 그대로 보존하고 증거 및 유류품의 분실이나 변질 등을 방지 하여 경찰 및 관련기관의 증거 채취에 협력하는 것을 말한다."], ["p", "나. 현장 보존의 중요성"], ["p", "1) 현장보존은 현장의 파괴(破壞), 멸실(滅失), 변경(變更) 등의 방지를 위해 절대적으로 필요한 것이다."], ["p", "2) 사업장 SE는 중요사건 발생시 피해자, 신고인 등 사건 관계자, 기자 및 일반인, 물론이고 사업장 SE, 등 부주의로 현장이 인위적으로 파괴되어 현장 채증 활동 및 감식 등 사건 수사에 지장을 주지 않도록 하여야 한다."], ["p", "다. 현장 보존 요령"], ["p", "1) 현장 보존 전 조치"], ["p", "□ 경찰 및 관계자 현장 도착 전까지 SE는 현장을 보존 한 후 경찰관서, 소방서 및 중요기관에 신고하고 경찰 및 관계자 도착 시 까지 피해자 또는 신고인 등 관계자에게 현장을 훼손하는 일이 없도록 유. 무선, 기타 방법을 통하여 주지 시키며, 현장 보존에 활동을 수행토록 한다."], ["p", "2) 현장보존, 출입제한"], ["p", "가. 현장보존이 잘못되어 SE가 사건사고에 연루되어 피해가 없도록 해야 한다."], ["p", "나. 피해자 및 그 가족이라 할지라도 출입을 제한하고 출입을 하는 경우는 경찰관, 관련기관, 관계자 입회 하에 이루어지도록 한다. 출입제한은 사람뿐만 아니라 사업장 옥내/외를 막론하고 개, 고양이 등 동물도 통제를 해야 한다."], ["p", "(사소한 것일지라도 중요하다)"], ["p", "3) 범죄 현장에 부상자가 있는 경우 신속히 구조해야 한다."], ["p", "가) 부상자 후송 시 부상자가 있었던 위치를 식별가능 하도록 표시하고 (백묵,스프레이)"], ["p", "나) 사진촬영을 하여 수사 등 현장 확인 목적으로 조사 할 때 혼동 되지 않도록 조치 해야 된다. (사업장내 발생시)"], ["p", "4) 현장인계"], ["p", "가) 경찰관, 관련기관 관계자 사건사고 현장에 도착하면 SE의 현장보존 임무는 끝난다."], ["p", "현장에 도착한 관계자에게 현장(사건사고)발견시간, 발견 경위, 발견후의 조치, SE의 메모 사항 등을 자세하게 설명한다."], ["p", "5) 출입제한을 위한 조치"], ["p", "가) 경찰 및 관계자 도착 전까지 인접 SE의 지원을 받고, 밧줄 등을 이용하여 부착한다."], ["p", "통행을 차단고 줄에 출입금지, 바리케트, 테이프, 표찰이나 적색 등을 부착한다."], ["p", "나) 촉수금지, 주의 등의 표찰을 비치하고 경찰 및 관계자 도착 시 까지 주의해야 한다."], ["p", "라. 현장 보존 시 유의사항"], ["p", "□ SE는 사건 사고가 발생되면 사업장 관계자, 지점장, 지사, 본부, 본사에 보고 후 관련기관에 신고 한다."], ["p", "□ 현장 보존 시 가능한 한 업무 교대는 경찰 및 관계자 도착 후로 미룬다."], ["p", "□ 신고 후 SE는 현장 보존을 철저히 하고 경찰 및 관계자에게 인계 한다."], ["p", "□ 필히 신고시간, 도착시간을 꼭 기록한다. □ 경찰 및 관계자 수사 시 최대한 협조한다."], ["p", "□ 피해자와 관련자의 인권에도 관련되므로 비밀을 유지해야 한다."], ["p", "□ SE는 수사에 대해 알려 고도 하지 말며 알아도 비밀을 유지해야 한다."], ["p", "□ SE는 현장 보존만 잘 했다면 그 책임은 다한 것이다."], ["p", "□ 수사 협조 시 주의 해야 할 것은 말을 아끼고 횡설수설 하면 안 된다."], ["p", "□ 사고 보고서를 6하 원칙에 의거 작성한다."], ["p", "□ 진행 과정을 수시로 계약처 관계자, 지점장, 지사, 본부, 본사에 수시로 보고한다."], ["p", "도난/피해사고 처리 절차"], ["p", "별 첨 # 4"], ["p", "1. 현장조사 (사고접수 즉시)"], ["p", "가. 사건사고 발생시 check point"], ["p", "□ 당사 계약처에 사고 발생시 1차 조사자(사업장선임)는 다음 각호의 사항을 체크하여 사건사고보고서(양식#1)를 작성한다."], ["p", "1) 침입 추정경로"], ["p", "2) 방호력 상태 (견고성 및 취약부분)"], ["p", "3) 경비구역 외부상태"], ["p", "4) 시건 장치 및 침입 시 파손상태"], ["p", "5) 고객 KEY 소지인,관리형태,보조키 상태"], ["p", "6) 경찰 도착시간,활동내역,성명 등"], ["p", "7) 기계경비시스템 설치 유무"], ["p", "8) 기타 취약점 및 지역에 대한 분석 및 조치 요구한 사실 서류 유무"], ["p", "나. 피해물품 확인"], ["p", "□ 고객진술,현장상황 등을 바탕으로 도난품목 명세서(양식#2)를 작성한다."], ["p", "※ 도난물품이 없을 시"], ["p", "- 도난품목 명세서에 “도난물품 없음”으로 확인 받을것 !"], ["p", "다. 증거자료 확보"], ["p", "□ 추후 사고상황 파악에 도움이 되는 자료를 확보한다."], ["p", "- 사진촬영 : 침입경로, 감지기 설치 등을 위주로 촬영"], ["p", "- 녹취 : 필요시 확보"], ["p", "2. 사건사고 보고서 작성 (사고발생 12 hr 이내)"], ["p", "가. 작성책임 : 해당 운영지점장"], ["p", "나. 작성방법 : 현장조사를 바탕으로 양식에 의거 작성"], ["p", "다. 첨부서류"], ["p", "1) 계약서,각종 합의서(승계서 등),공문 등 당사와 관련하여 고객에게 보내졌던 일체의 서류"], ["p", "2) 도난사고 발생 사실 확인원 - 경찰서 발급분"], ["p", "3) 사진,녹취 등 증거자료"], ["p", "3. 손해배상 여부 및 손해배상액 결정"], ["p", "가. 손해배상여부 심사"], ["p", "1) 손해배상여부 심사는 관련법규와 판례,약관(각종합의서 포함)에 의거 객관적인 시각에서 합리적으로 결정하며,"], ["p", "2)피해금액 多小를 떠나서 손해보험사에 위임하는 것을 원칙으로 함"], ["p", "나. 손해배상여부 심사 의뢰 시 다음의 사항을 고려하여 대응"], ["p", "1) 과실 책임에 대한 판단을 하지 말 것 - 누가 책임 질거라는 말은 禁止"], ["p", "2) 고객에게 제공해야할 업무의 범위(제공업무약관 참조)"], ["p", "3) 고객의 적격여부 (고객이 권리자임과 동시에 의무자가 되는지)"], ["p", "4) 영업과정상 약관,방호력에 대한 사전 언급정도,협의내용 등"], ["p", "5) 경비계획서 상 실제 제공업무가 동일한 내용으로 이루어 지는지"], ["p", "6) 인과관계 적용 (회사가 잘못한 사항이 있을 시 그것이 사고발생 및 피해확대의 직접적 원인이 되었는지 여부)"], ["p", "7) 회사의 면책사항 적용 여부 ( 첨부 # 3 )"], ["p", "* 약관 + α, 취약점 및 기타 사건사고 발생원인에 대한 조치를 요구했는지 ?"], ["p", "* 고객은 이에 대하여 조치를 했는지 ? 했다면 어느 정도인가?"], ["p", "8) 고객의 과실상계 여부"], ["p", "(사고원인,발생,확대 등에 고객책임이 있는지 여부)"], ["p", "다. 손해배상액 결정"], ["p", "1) 손해배상액 결정은 “손해사정회사 보고서\"에 따른다."], ["p", "2) 손해배상액이 결정되면 해당 지사는 즉시 고객과 합의 하에 합의서 를 작성·기명 날인하고 피해금액에 대한 처리방법을 협의한다."], ["p", "3) 회사의 면책이 확정되면「면책공문」을 작성, 발송하여야 한다."], ["p", "4) 손해배상액 결정은 손해사정인의 손해사정결과에 의거하여 지사에서 품의 후 본사결재 후 지급 토록 한다. (최종결재자: 사장)"], ["p", "라. 기 타"], ["p", "1) 회사는 긴급을 요하거나 회사의 존립,신용 등 중대한 사유가 발생하였을 때에는 그 요건을 따로 정하여 “손해배상 합의금”을 지급할 수 있다."], ["p", "2) 사건사고 발생으로 인하여 회사에 금전적 손해 및 신뢰저하에 대한 책임은 문책예정."]], "k": "acc"}, {"t": "천재지변 발생 시", "items": [["p", "1. 천재지변 이란?"], ["p", "■ 천재(天災)로 인하여 개인·집단 등 인간사회에 막대한 인명·재산 등의 피해를 주는 재해를 말한다."], ["p", "2. 천재지변 종류"], ["t", [["유 형", "내 용"], ["기상재해(氣象災害)", "□ 기상의 원인이 되어서 일어나는 재해.\n▷ 강풍,호우,대설(大雪),뇌우,이상건조, 지속적인 저온현상 등이 있다.\n▷ 이들에 의한 건조물(建造物)풍해,눈사태,낙뢰(落雷),화재,\n고조(高潮),홍수,산사태, 설해(雪害),한발(旱魃),농작물냉해,스모그 등이 발생한다."], ["풍수해(風水害)", "□ 강풍과 호우(豪雨) 또는 강풍과 호우 및 해일(海溢), 파랑 등이\n복합하여 발생하는 재해이다. 폭풍우에 의하여 발생하는 복합재해이다.\n▷ 풍해나 수해 등은 단순재해이나 풍수해는 단순재해와 달리\n거의 동시에 성질이 다른 파괴력이 합세되어 격심한 재해가 된다.\n▷ 풍수해는 태풍(颱風)이나 발달한 저기압에 의하여 일어나는데,\n특히 태풍에 의한 풍수해는 태풍재해라고도 한다.\n※ 태풍이란? 통과경로를 중심으로 많은 강우량과 30 m/s 이상의\n강풍을 광범위하게 가져오며,더욱이 중심부에는 심한\n기압강하까지 가져온다."], ["재해 (災害)", "□ 이상적인 자연현상 또는 인위적인 사고가 원인이 되어 발생하는\n사회적·경제적 피해.\n▷ 자연현상 재해 원인 ; 폭퐁,호우,대홍수,해일,지진 등이 있다.\n▷ 인 위 적 재해 원인 ; 화재,폭발,방사성물질의 방출,자동차사고,\n선박의 침몰, 항공기의 조난,\n건물 붕괴 등이 있다."], ["지진 (地震 )", "□ 지각의 일부에 변형력이 지속적으로 작용하여 암석들이 쪼개질 때,\n이 지점에 국지적으로 모인 탄성 ·화학 · 중력 에너지가 갑자기\n방출되어 생기는 자연적 현상을 말한다.\n※ 지진에 대한 기본이해\n▷ 지진 : 땅속에 용암분출로 인하여 약하게는 땅이 흔들리고\n강하게는 땅이 갈라지며 지반이 내려 앉는 상태이다.\n▷ 강도 : 지진의 에너지를 표현하는 언어임\n▷ 진도 : 지상에 있는 장소에서 요동치는 것을 크게 표현하는 언어임\n※ 지진이 일어나면.................\n▷ 건물이 붕괴·파손한다.\n▷ 건물의 붕괴 및 파손으로 유리,철사 등 파편이 튄다.\n▷ 대형선박,책장,상자 등 무거운 물건들이 넘어진다.\n▷ 전력선이 파손된다.\n▷ 화재가 발생 한다."], ["기 타", "□ 병충해 (病蟲害) : 식물이 병균이나 벌레에 의해 입는 해.\n□ 상해 (霜害) : 서리로 인해 일어나는 피해."]]], ["p", "가. 진도층,가속도,강도의 비교"], ["t", [["진 도 층", "가 속 도", "지진의 명칭", "지진의 강도"], ["0", "무 진", "0 ∼ 0.8", "철소지진", "1 ∼ 3"], ["1", "철 진", "0.8 ∼ 2.5", "철소지진", "1 ∼ 3"], ["2", "경 진", "2.5 ∼ 8", "소지진", "3 ∼ 5"], ["3", "약 진", "8 ∼ 25", "소지진", "3 ∼ 5"], ["4", "중 진", "25 ∼ 80", "중지진", "5 ∼ 7"], ["5", "강 진", "80 ∼ 250", "중지진", "5 ∼ 7"], ["6", "역 진", "250 ∼ 400", "대지진", "7 ∼ 8"], ["7", "격 진", "400 이상", "거대지진", "8 이상"]]], ["p", "나. 진도별 지진의 형태"], ["t", [["구 분", "진 도 의 느 낌"], ["진도 0(무감)", "인체에는 느껴지지 않지만 지진계에 기록되는 정도"], ["진도 1(철진)", "정지해있는 사람, 특히 지진에 민감한 사람만 느끼는 정도"], ["진도 2(약진)", "많은 사람이 느끼는 정도, 창문이 조금씩 흔들리는 것을 느끼는 정도"], ["진도 3(증진)", "집이 흔들리고 창문 등이 소리가 나도록 떨리며\n어항의 수면이 흔들리는 것을 알 수 있는 정도"], ["진도 4(강진)", "집이 흔들리는 것이 격하고 앉아 있는 것이 무섭고\n꽃병 등이 떨어지고 그릇의 물이 엎질러지는 정도"], ["진도 5(설진)", "벽이 갈라지고, 담이 넘어지고,굴뚝 등이 파손되는 정도"], ["진도 6(격진)", "건물이 무너지는 것이 30% 이하이며 산이 무너지고,\n땅이 갈라지며, 사람이 일어서기 어려운 정도"], ["진도 7(거대지진)", "진도 6 이상이면 대형 참사로 이어짐"]]], ["p", "■ 알아두면 좋아요?"], ["p", "□ 지진은 아무 예고 없이 불시에 찾아오는 재앙이다.평소에 이러한 점을 유의하여 지진에 대한 대비책을 마련하여야 한다."], ["p", "▷ 지진은 아무 예고 없이 불시에 닥쳐온다."], ["p", "▷ 지진으로부터 직접적인 상해를 입은 경우 보다는 지진으로 인하여 유리창을 파손 되거나 위에서 무거운 물건이 떨어지고 전기선이 파손되어 누전현상이 생기거나 화재가 발생하는 등으로 인하여 받는 피해가 더 크다는 사실을 인식하여야 한다."], ["p", "▷ 대지진은 화재와 폭발상황을 함께 동반한다. 가스관이 폭발한다거나 전기 누전으로 화재가 발생하고 기름들이 흘러 화재와 폭발이 일어난다."], ["p", "▷ 사람들이 많이 모이는 장소나 건물 깊숙이 들어가 있을 때 비상 대피할 장소를 미리 유의해 두어야 한다."], ["p", "▷ 사업장내 작업장의 천장이나 높은 선반 등에 무거운 물품 등이 있는 가를 사전 점검하고 안전 대책을 미리 세워 두어야 한다."], ["p", "▷ 재난이 발생한 지역에서는 전화 소통이 불가능하게 되는 경우가 많으므로 이동전화 사용이나 전화 불통 지역을 빠져 나와 타 지역과 연락하는 방법을 모색 하여야 한다."], ["p", "▷ 자동차에는 항상 연료를 많이 채워 주도록 하여 필요한 경우에는 자동차를 사용할 수 있도록 하는 것이 필요 하다. 그러나 꼭 필요한 경우가 아니면 자동차의 사용을 자제하여 긴급한 재해 복구 차량이 도로를 사용 할 수 있도록 한다."], ["p", "3. 천재지변 발생 시 착안 사항"], ["p", "가. 폭풍, 집중 호우 시 착안사항"], ["p", "□ 저지대 및 상습 침수지역 등 재해위험지구 파악 및 대피로(路)를 확보 한다."], ["p", "□ 산사태, 언덕, 위험축대 등 시설물 점검 및 감시한다."], ["p", "□ 각종 공사장 안전조치 및 중단 시킨다."], ["p", "□ 뇌우(雷雨) 시 사업장 지상 대피로 파악한다."], ["p", "□ 고압전선주변 접근금지 하도록 통제 한다."], ["p", "□ 옥내 외 전기수리 금지한다."], ["p", "□ 라디오, TV등에 의한 기상 및 홍수예보 청취."], ["p", "□ 배수문 및 양수기 점검하여 대비한다."], ["p", "□ 특히 산, 언덕에 접한 건물은 배수로 필히 점검 한다."], ["p", "□ 사업장 내,외부 하수도 및 용, 배수로 점검 정비한다."], ["p", "□ 출입문, 창문 굳게 닫고 잠글것."], ["p", "□ 옥상 결박, 간판, 낙하 위험시설물의 제거 또는 결속."], ["p", "□ 피해 발생 시 즉시 계약처 담당자에 통보 한다. (24시간 상시)"], ["p", "□ 관련기관에 연락한다. (경찰서, 소방서)"], ["p", "나. 지진 발생 시 대피 착안사항"], ["p", "□ 지진이 발생하면 즉시 가리고, 엎드리고 , 붙잡아 몸을 안전하게 보호한다."], ["p", "□ 전열기구는 신속하게 끌 것"], ["p", "▷ 당황하지 말고 사용하던 전열기구, 가스렌지 등을 확실하게 끈다.(전기/가스 차단)"], ["p", "□ 비상탈출구는 확보"], ["p", "▷ 문이 뒤틀려 열리지 않을 수 있으므로 재빨리 문을 열어 탈출구를 확보한다."], ["p", "□ 화재는 초기에 소화"], ["p", "□ 침착하게 행동한다."], ["p", "▷ 가능한 한 지진이 끝날 때까지 안에 머무르고, 밖으로 피할 때는 유리창, 간판 등 낙하물에 주의한다."], ["p", "□ 대피할 장소 사전확인"], ["p", "▷ 좁은 길 , 담 근처로 피신하지 말고 , 벽 , 문 기둥 ,자판기 등은 넘어지기 쉬우므로 주의한다."], ["p", "□ 서로 도와 구조하고 보호한다."], ["p", "▷ 안전을 확인한 후 많은 사상자가 발생하므로 노인, 장애인, 어린이 등을 먼저 구조, 구급, 구호한다."], ["p", "□ 유언비어에 현혹되지 말 것"], ["p", "▷ 라이오나 텔레비젼을 통해 정보를 입수하여 적절한 행동을 취하고 유언비어에 휩쓸리지 않도록 한다."], ["p", "4. 천재지변 발생 시 대처요령"], ["t", [["유 형", "대 처 요 령"], ["폭풍, 폭우 시", "□ 폭풍으로 인한 비산물, 낙하물 발생 우려가 있는 대상물에 대한 사전\n조사 및 대책을 강구한다.\n□ 계약처 점검시 안전보호장비 착용(안전모, 우의 등)을 한다.\n□ 폭우 시 위험 잠재요소 부근의 인원을 통제하고 침수, 축대붕괴 등의\n예상지역에 대한 사전 순찰을 강화 한다.\n□ POST 주변 수방 장비 (양동이, 모래주머니, 마대 등)를 파악, 사전 점검을 한다\n□ 계약처 각 배수로 필히 점검 (배수로 막힘을 뚫는 것이 매우 중요) 한다.\n□ 매스컴을 통한 매시간 일기예보 청취 하도록 한다.\n□ 피해상황 발생시 상황에 따라 비상연락망에 의한 인원소집 한다.\n□ 피해 발생시 구급차 및 소방차 출동 요청 후 신속한 후송조치 한다."], ["폭설 시", "□ 신속히 진입로 제설작업 (건물외곽, 주차장 입구)을 한다.\n□ 각 POST (보안실, 시설팀) 유, 무선망 확인 한다\n. - 비상사태 발생시 대비\n□ 상황에 따라 제설작업 및 염화칼슘, 모래 살포 하고 시설팀에 협조 한다."], ["지진 발생 시", "□ 대피요령\n▷ 가스 및 전기를 차단한다.\n▷ 가스버너 위에 끓고 있는 모든 물건을 치운다.\n▷ 닫혀 있는 문(출입구)은 모두 열어 놓아야 한다.\n(건물이 무너질 경우 닫힌 상태에서는 문을 열고 나올 수 없으므로)\n▷ 책상 밑으로 대피한다.(침대 밑으로 피하는 것은 금물)\n□ 행동요령\n▷ 움직일 때는 머리를 다치지 않게 방석 등으로 머리를 보호한다.\n▷ 붕괴의 위험이 있는 건물에서 멀리 떨어진다."]]], ["p", "폭풍&폭우 시 대처방안"], ["p", "별 첨 # 2-1"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 유,무선 를 이용, 신속하게 인접 보안요원 및 상황실로\n신속하게 연락을 취한다.\n[에스텍 각대 외곽 동쪽 1층 외벽에 침수지원바람].....\n2회 이상 반복\n신속하게 파손 및 손실지역을 정확하게 전파한다.", "보안요원 또는\n계약처 임직원"], ["상황전파", "□ 팀장은 전 보안요원에게 유,무선 전파, 보안요원은\n출동장비를 가지고 현장으로 출동 바람 2회 이상 반복", "보안실 책임자\n(또는 선임자)"], ["조치요령", "□ 보안요원은 신속히 출동하되 최대한 자기 몸을 보호\n하여 사고 현장에 접근 하도록 유의 하여야 한다.\n▷ 건물 내 침수지역은 전기가 흐른다는 것을 항상\n명심하여 접근 하기 바람\n▷ 침수 장소가 도로인 경우에는 통신 매몰 등 위험을\n도사린다는 것을 명심하고 접근\n▷ 산사태 시 인명이 갇힌다는 것을 명심하여 접근\n▷ 배수로가 잘못되어 건물 내 or 한 방향으로 물이\n침수 될 시 책임자 통제아래 물을 분산 시키는\n작업을 실시하여 건물이 침수 되지 않도록 한다.\n□ 1단계\n▷ 별첨 #1의 비상연락망 순서에 의해 비상연락망 가동\n□ 2단계\n▷ 폭풍으로 인한 비산물,낙하물 발생 우려가 있는 곳은\n접근금지\n▷ 폭우 시 위험 잠재요소 부근의 인원을 대피시키고\n통제한다.\n▷ POST 주변 수방 장비 (양동이,모래주머니,마대 등)\n로 이용하여 막고\n▷ 피해상황 발생시 상황에 따라 비상연락망에 의한\n인원소집\n▷ 피해 발생시 구급차 및 소방차 출동 요청 후 신속한\n후송조치", "보안요원\n계약처 임직원"]]], ["p", "폭설 시 대처방안"], ["p", "별 첨 # 2-2"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 유,무선 를 이용, 신속하게 인접 보안요원 및 상황실로\n신속하게 연락을 취한다.\n[에스텍 각대 회사 외부에 재설 작업으로 인하여\n출동 바람] ....2회 이상 반복", "보안요원 또는\n계약처 임직원"], ["상황전파", "□ 팀장은 전 에게 유,무선 전파, 보안요원은 출동장비를\n가지고 현장으로 출동 바람 2회 이상 반복", "보안실 책임자\n(또는 선임자)"], ["조치요령", "□ 보안요원은 신속히 출동하여 최대한 자기 몸을 보호\n하여 재설 작업에 임하도록 하여야 한다.\n▷ 사업장은 내가 지킨다는 책임, 주인의식을 고취하여\n임한다.\n▷ 보안요원 개, 개인이 재설 작업을 실시하여 임직원\n및 고객의 안전 확보가 되는 것이다.(안전사고예방)\n▷ 팀장 및 책임자 지시사항 의해 임한다.\n□ 신속히 진입로 제설작업 (건물외곽, 주차장 입구)을\n한다.\n□ 각 POST (보안실, 시설팀) 유, 무선망 확인 한다\n▷ 비상사태 발생시 대비\n□ 상황에 따라 제설작업 및 염화칼슘, 모래 살포 하고\n시설팀에 협조 한다.", "보안요원\n계약처 임직원"]]], ["p", "지진 발생 시 대처방안"], ["p", "별 첨 # 2-3"], ["t", [["구 분", "내 용", "담 당"], ["조치요령", "□ 계약처에서 지진은 아무 예고 없이 불시에 찾아오는\n재앙이다.\n□ 평소에 이러한 점을 유의하여 보안요원은 사업장을\n지키는 직업인으로써 지진에 대한 대비책을 마련하여야\n한다.\n□ 강도이상 지진이 발생 하게 면 지진으로 인하여\n사업장을 지키기는커녕 개인의 목숨을 위태롭게\n하기 때문에 아래와 같이 지진에 대해 설명 사항을\n숙지하여 자신을 보호하고 피해를 최소화 하도록\n해야 한다.\n▷ 지진이 발생하면 즉시 가리고, 엎드리고 , 붙잡아 몸을\n안전하게 보호한다.\n▷ 전열기구는 신속하게 끌 것\n▷ 비상탈출구는 확보\n▷ 화재는 초기에 소화\n▷ 침착하게 행동한다.\n▷ 대피할 장소 사전확인\n▷ 서로 도와 구조하고 보호한다.\n▷ 유언비어에 현혹되지 말 것\n□ 대피요령\n▷ 가스 및 전기를 차단한다.\n▷ 가스버너 위에 끓고 있는 모든 물건을 치운다.\n▷ 닫혀 있는 문(출입구)은 모두 열어 놓아야 한다.\n(건물이 무너질 경우 닫힌 상태에서는 문을 열고\n나올 수 없으므로)\n▷ 책상 밑으로 대피한다.(침대 밑으로 피하는 것은\n금물)\n□ 행동요령\n▷ 움직일 때는 머리를 다치지 않게 방석 등으로\n머리를 보호한다.\n▷ 붕괴의 위험이 있는 건물에서 멀리 떨어진다.", "보안요원\n계약처 임직원"]]]], "k": "nat"}, {"t": "집단민원 발생 시", "items": [["p", "1. 집단민원이란?"], ["p", "■ 분규란? : 조직을 분리시키고 서로간 의견, 입장만을 고집하고 주장하다가 타협점을 찾지 못하여 일이 어지럽게 뒤 얽히어 발생 하는 일이다."], ["p", "■ 집회&시위란? : (공동 목적을 위하여) 많은 사람이 일정한 때에 일정한 자리에 모임, 회합(會合), 특정한 요구사항을 관철시키기 위하여 다수인이 벌이는 집단행동을 말한다."], ["p", "2. 집단민원의 종류"], ["p", "가. 분규의 종류"], ["t", [["구 분", "세 부 내 용"], ["노사분규", "□ 회사 경영주와 종업원간의 서로의 의견이나 주장이 대립되어 발생 하는 일"], ["조직분규", "□ 회사, 또는 조직 내에서 분열이 일어 나는 것"], ["학내분규", "□ 학생, 학교, 교사 분열 등"], ["기타분규", "□ 어떠한 단체나 조직에서 서로 뜻이 맞지 않아 분열 되는것"]]], ["p", "나. 집회의 종류"], ["t", [["구 분", "세 부 내 용"], ["옥외집회", "□ 천장이 없거나 사방이 막히지 않은 장소에서 다수인이 회합하는 일."], ["데먼스트레이션", "□ 특정한 요구사항을 관철시키기 위하여 다수인이 벌이는 집단행동.약칭하여\n데모라고도 하며, 시위 ·시위운동 ·시위 행동이라고 한다\n▷ 좁은 뜻으로는 데모행진 ·데모집회를 가리키나, 넓은 뜻으로는\n지배자 ·피지배자 ·사회집단이 자기의 힘을 눈에 보이는 구체적인\n인원과 물량 등을 동원하여 상대에게 심리적 압력을 가하는 사회적 ·\n정치적 기술을 가리킨다. 예컨대,무장한 경관·기동대 ·군대의 행진과\n연습, 전차의 행진이나 항공기의편대, 해군의 관함식(觀艦式) 등은\n지배자측의 데모이다.\n▷ 쇼(show)의 색채가 짙은 것은 간접적 데모이고, 국경 주변의 군사연습\n등은 직접적 데모이다.\n▷ 자연 발생적 데모와 정기적 데모의 구별도 있다. 정기적 데모로는 1889년\n파리에서의 제2인터내셔널대회 이후 오늘날까지 계속되어온 세계노동\n자들에 의한 메이데이(May Day:5월 1일)의 데모가 유명 하다.\n▷ 이 밖에도 형태와 방법에 따라서 여러 유형으로 구별할 수 있는데,\n항의(抗議)데모 ·진정데모 ·통근데모 ·공장데모 · 해상데모 등이\n있다. 또 가두데모에도 지그재그데모, 도로 가득히 퍼져 행진하는\n프랑스식 데모, 기동대원에게 둘러싸여 규제되는 데모 등도 있다.\n노동자 ·학생 ·시민단체 등의 데모는 주로 데모행진 ·데모집회의\n형식을 띠는데, 깃발 · 플래카드 ·머리띠 등을 두르고 구호를\n외치며 가두행진 ·연좌 ·옥외집회를 행하는 평화적인 데모이나,\n경관과 유혈 충돌하는 혼란 속에 군중이 끼여들어 폭동을 일으키는\n데모도 있다."], ["공개집회", "□ 프랑스 제2제정(帝政) 말기의 반(反)제정 대중운동의 핵심을 이루며\n파리코뮌(1871년 프랑스 파리에서 세워졌던 노동자계급의 혁명적\n자치정부)의 출발점이 된 집회운동."], ["대중집회", "□ 대중 의사표현의 직접적 형태."], ["폭동", "□ 조직되지 않은 인간집단(폭도)이 자연 발생적으로 폭력에 의해 소동을\n일으키는 일."]]], ["p", "3. 집단민원 발생 시 대처요령"], ["p", "가. 기본방침"], ["p", "□ 집단 민원 발생 시에는 당사가 제공 할 수 있는 업무의 범위가 한정되어 있음에 따라 관련법규 및 경찰 지침 범위 내에서 계약처의 피해를 최소화 시킬 수 있도록 한다."], ["p", "나. 대처 요령"], ["t", [["구 분", "대 처 요 령", "사전 확인 사항"], ["분규 발생 시", "▷ 분규 발생 조짐의 인지나 발생 초기 시 즉각 팀장, 지점장을 경유하여 지사장에게 보고한다.\n▷ 불손세력 및 외부세력의 접근을 막기 위해 출입문을 최소화 하며 나머지는 봉쇄함을 (계약처 사전협의) 원칙으로 한다.\n▷ CCTV 등의 감시망 또는 유·무선망을 최대한 가동 시킨다.\n▷ POST의 모든 SE를 투입시켜 경계를 강화한다.\n▷ 선동에 의한 과격한 행동에 대비하여 충분히 방호\n할 수 있는 장비를 준비한다.\n(소화기, 방석포, 무전기, 카메라 등)\n▷ 사복조를 운영하여 현장의 상황을 정확하게 파악한다.\n▷ 계약처와 협조하여 SE인원을 보강한다.\n▷ 휴무 SE의 비상연락망을 점검하고 대기하였다가\n필요시 출동 할 수 있도록 대비한다.", "* 6하 원칙에 의거\n* 계약처 지시에 의거 시행한다.\n* 사업장 임직원에게 사전 양해를 구한다."], ["집단 시위\n발생 시", "■ 초기조치\n▷ 집단시위 발생 조짐의 인지나 발생 초기 시 즉각 ,지점장 ,\n팀장을 경유하여 지사장에게 보고한다.\n▷ 불손세력 및 외부세력의 접근을 막기 위해 출입문을\n최소화하며 나머지는 봉쇄함을 원칙으로 한다.\n▷ CCTV 등의 감시망 또는 유·무선망을 최대한 가동 시킨다.\n▷ POST의 모든 SE를 투입시켜 경계를 강화한다.\n▷ 선동에 의한 과격한 행동에 대비하여 충분히 방호 할 수 있는 장비를 준비한다.\n(소화기, 방석포, 무전기, 카메라 등)\n▷ 사복 조를 운영하여 현장의 상황을 정확하게 파악한다.\n▷ 계약처 측과 협조하여 인원을 보강한다.\n▷ 휴무 SE의 비상연락망을 점검하고 대기하였다가\n필요시 출동 할 수 있도록 대비한다."], ["집단 시위\n발생 시", "■ 플랭카드, 꽹과리 등으로 외곽에서 농성 시\n▷ 주요 출입구(샷다)의 전부 또는 일부를 폐쇄한다.\n(계약처 지시에 의거)\n▷ SE들을 출입구에 증원 배치하여 출입자 봉쇄에 중점을 둔다.\n▷ SE는 안전보호 장비를 휴대한다.\n(무전기, 가스총, 카메라 등은 비노출로 휴대함)\n▷ 소화기, 방석포 등 소화기구를 출입구에 이동 배치\n하여 방화 행위시 즉각 소화할 수 있는 태세를 갖춘다.\n▷ 사복조를 운영하여 사복조는 카메라를 휴대하고\n시위자로부터 피탈(被奪)되지 않도록 주의한다.\n▷ 신변보호가 가능한 지점에서 주모자 또는 주동자급의\n선동장면을 은밀하게 촬영한다."], ["집단 시위\n발생 시", "■ 집단적인 소요사태 발생 시\n▷ 계약처 여건상 건물 내에 들어오기가 용이하여 건물 내에서\n사태가 발생할 확률이 높고 사전에 알고 있어야만 조치가\n가능함.\n▷ 소요사태 발생시 소요자들이 과격한 행동을 하지 않도록 언행을 조심 한다.\n▷ 가스총의 사용을 최대한 억제하고 집단운집 상태에서는\n절대로 사용하여서는 안된다.\n▷ 주요 시설물에 인원을 증원하여 시설물의 보호한다.\n(전산실, VIP실 등)\n▷ 대치지역에서는 반드시 단체행동을 하여야 한다."], ["집단 시위\n발생 시", "■ 화염병 투척 시\n▷ 집단이 운집한 상태에서 화염병 투척 시 소화에만 전념한다.\n▷ SE가 행위자보다 많을 시에는 예방진압 하며 행위자를\n체포 한다.\n▷ 대치지역에서는 반듯이 단체행동을 하여야 하고 장비\n(가스총, 무전기, 기타)를 피탈(被奪) 당하지 않도록\n자기 방어를 최우선으로 한다.\n▷ 소화기, 소화전 위치를 사전에 파악하여 화재 발생시\n즉각 진화한다.\n▷ 소화기, 방석포를 비치하여 화염병 투척 시 화재를 진화한다."]]], ["p", "4. 집단 민원 발생 시 유의사항"], ["p", "가. 충동적이고 자극적인 언행은 시위집단을 자극 할 수 있으므로 자극적인 언행은 삼가 한다."], ["p", "나. 별도의 지시가 없으면 “강제 해산”등의 방법은 삼가 한다."], ["p", "다. 정당방위를 제외하고는 어떠한 상황이라도 폭력사용을 금한다.."], ["p", "라. 사복 및 내부 경계 조는 편성된 조별 행동을 해야 하며 무전기, 가스총 등이 시위집단에 피탈 되지 않도록 주의한다."], ["p", "마. SE들은 증거를 수집(사진, 비디오)하여 상황종료 후 보관한다."], ["p", "5. 집단민원 현장의 경비업 업무처리 기준"], ["p", "□ 최근 집단민원현장(예:노사분규사업장, 재개발 관련 분규 현장 등)에 배치된 경비원이 경비 업무를 일탈하여 노조원과 충돌하는 등 불법행위 사례가 발생 하였는바, 추후 유사한 사례가 재발생 하지 않도록 하기 위한 관리 기준임."], ["p", "가. 집단민원현장 주요사례"], ["p", "□ `04년 6. 30일 강남 ㅇㅇ공원 식당에서 ㅇㅇㅇ 재개발위원회 조합원이 각각 신변보호 목적으로 배치한 경비원간 충돌 물의야기"], ["p", "※ 관련 2개 경비업체 행정처분(허가취소)진행 중"], ["p", "□ `04 년 9. 18 성동구 왕십리 ㅇㅇ아파트 13∼24동 재개발관련 철거전문업체인"], ["p", "ㅇㅇ개발에서 (주) ㅇㅇ 경비업체에 신변보호 경비원 50명을 의뢰하여 배치신고 받아 본 바, 반대측인 철거민 대책위 등 4개 저항세력들과 마찰이 우려되어 경비업무 外 경비원 배치 금지토록 감독 명령하자 경비원 폐지신고"], ["p", "※ 경비업체의 불법행위 사전 예방"], ["p", "나. 집단민원현장의 경비업무의 범위"], ["t", [["변 경 전", "변 경 후"], ["☞ 노사분규 사업장에 투입된 경우\n폭력행위 발생 등의 경우에만\n형사처벌 조치\n☞ 출입통제, 강제퇴거에 대해서는\n시설주의 업무 및 관리권 범위내\n행위로서 경비업무에 해당\n한다고 해석하여 묵인\n☞ 경비업체가 집단민원현장에 동원,\n도급주 측의 구사대로 활용", "☞ 경비업체가 재개발, 재건축 현장 등 집단 민원\n현장에 동원되는 경우 시설주의 관리권 범위\n내에서 시설, 장비, 신변 등을 보호하기 위한\n소극적인 방어의 범위 내에서 이루어져야 함.\n☞ 주민의 집회시위 등을 방해하거나 철거현장에서\n강제 퇴거시키는 행위 또는 입주 등 정당한\n권리 행사를 방해하는 경우는 경비 업무의\n범위를 일탈한 것임\n■ 시설경비 : 시설주의 관리권내에서 시설ㆍ장비\n등의 도난ㆍ화재 기타 위험발생을 방지하는\n시설보호에 한함\n■ 신변보호 : 특정한 의뢰인의 생명ㆍ신체에\n대한 위해를 방지하는 업무에 한함"]]], ["p", "다. 집단민원현장의 경비업법 위반행위"], ["p", "1). 각종 민원집회 등을 고의로 방해하는 행위"], ["p", "가) 경비원을 투입하여 집회시위를 방해하거나 항의 방문을 저지하는 등 민원집회를 방해하는 행위"], ["p", "나) 집단민원현장에서 민원인을 강제해산 또는 퇴거시키는 행위"], ["p", "다) 시설 또는 신변보호 목적으로 폭력을 행사하는 행위"], ["p", "2) 타인의 정당한 권리행사를 방해하는 행위"], ["p", "가) 권한 없이 재개발, 재건축 총회장 등에 상대집단의 출입을 저지하거나 입주 등 정당한 권리 행사를 방해하는 행위, 또는 폭력 등으로 진입을 시도하는 행위"], ["p", "나) 타인의 사업장에 진입하여 시설, 장비 등을 탈취하는 행위"], ["p", "3) 노사분규사업장 내 경비업법(제7조제2항ㆍ5항)위반행위"], ["p", "가) 사용자의 구사대로 쟁의행위 저지 또는 방해"], ["p", "① 쟁의행위를 저지 또는 방해하는 것은 노사관계에 개입하는 것으로 경비업법상 경비업무를 벗어난 것임"], ["p", "② 노동조합 및 노동관계조정법의 절차를 벗어난 불법적인 쟁의행위라 하더라도 이는 관계법령에 의한 처벌 및 정당한 권한을 부여받은 공권력에 의해 저지되어야 함."], ["p", "나) 예상되는 시설파괴행위 등에 대한 저지행위"], ["p", "① 경비원이 소극적인 방어로써 시설물 파괴행위의 저지는 가능하나,"], ["p", "② 시설물 파괴 등이 예상된다는 이유로 노조원의 쟁의 행위를 방해하는 등 위력 행사는 경비업무의 범위를 일탈한 행위임."], ["p", "다) 노조원의 사업장 출입통제"], ["p", "① 직장폐쇄 등 사용자가 정당한 법적 처분을 받은 경우에는 출입통제가 가능하나"], ["p", "(노조업무수행을 위해 노조사무실 출입은 허용)"], ["p", "② 정당한 처분없이 노동자의 사업장 출입을 통제하는 행위는 노사분규에 개입하는 것으로 경비업무를 일탈한 행위임"], ["p", "라) 사업장에서의 노조원 강제퇴거 행위"], ["p", "① 사업장을 점거한 노조원을 강제 퇴거시키는 행위는 이미 시설 및 신변보호의 범위를 벗어 났으므로 경비업무가 아니며,"], ["p", "② 직장폐쇄 된 경우라 하더라도 기 점거 중인 노조원을 퇴거시키는 행위는 법집행이라 볼 수 있으므로 경비업무에 해당되지 않음."], ["p", "마) 법원의 처분에 근거한 각종 강제집행 행위"], ["p", "□ 법원의 처분에 따른 각종 장제집행은 시설 또는 신변을 보호하는 경비업무에 해당하지 않으므로 경비원이 행할 수 없음"], ["p", "라. 행정처분"], ["p", "1) 허가받은 경비업무 외의 업무(동법 제7조제5항)"], ["p", "가) 경비원으로 하여금 각종 민원집회 등을 고의로 방해하거나 강제 해산시키는 행위는 경비업법상 경비업무가 아니며,"], ["p", "나) 경비업자가 민원집회 등을 방해할 목적으로 계약을 체결, 경비원을 투입하였을 경우 『허가받은 경비업무외의 업무에 경비원을 종사하게 하는 것』으로 볼 수 있고, 이 경우 경비업법 제19조 제1항 제2호에 의거 허가취소 가능"], ["p", "2) 도급을 외뢰받은 경비업무가 위법 또는 부당한 것(동법제7조제2항)"], ["p", "가) 경비원의 행위가 타 법령에 위배되거나 시설주의 관리권의 범위를 벗어나는 경우 위법 또는 부당한 업무에 해당되며,"], ["p", "나) 경비업자가 시설주의 관리권을 벗어나 노조원, 민원인과의 충돌 등 타인의 권리를 방해할 우려가 있는 업무를 도급받은 경우에는『위법ㆍ부당한 업무를 거부하지 아니한 경우』에 해당 이 경우 경비업법 제19조 제1항 제7호에 의거 행정처분(영업정지 & 허가취소) 가능"], ["p", "마. 준수사항"], ["p", "1) 경비원 배치신고 기재 항목(동법 제18조제2항)"], ["p", "가) 신변보호 및 행사장 등에서 경비업무를 수행하는 일반경비원은 배치 24시간 전까지 신임경비원 교육을 이수한 경비원을 관할 경찰서에 배치 신고"], ["p", "(동법 시행규칙제24조)"], ["p", "나) 경비원 배치신고 항목 중「경비의 목적 또는 내용」을 구체적으로 특정하고(특히 신변보호의 경우 신변보호 대상자가 누구인지 특정)대상물이 경비업법상 적합한 경비대상인지 확인"], ["p", "※ 단순히 \"신변보호, 시설경비\"로 기재하거나, 철거대상인 아파트 등 시설경비 한다는 것은 사회 통념에 맞지 않음"], ["p", "다)「경비용역도급 회사명」은 실제 시설주 및 특정한 대상자와 계약을 체결하고 계약서 및 계약 내용 구체적인지 확인"], ["p", "라) 「경비장소」는 주소 및 특정대상 구체적으로 적시되어야 함"], ["p", "※ ㅇㅇ동 일대, ㅇㅇ동 주변, ㅇㅇ노동조합원들 등의 금지"], ["p", "마) 민간민원 및 노사분규사업장에 경비원 배치신고 접수 시 대표자 및 경비책임자 연락처 필히 기재 여부 확인"], ["p", "2) 경비지도사 선임 (동법제12조)"], ["p", "가) 집단민원 배치 현장에는 반드시 경비지도사를 선임ㆍ배치하여야 하고, 선임된 경비 지도사는 경비원의 지도ㆍ감독을 실시하여 불법행위를 방지하고, 경찰서와 연락 체계를 상시 유지하여야 한다."], ["p", "나) 경비지도사는 월1회 경비원의 지도ㆍ감독ㆍ교육에 관한 계획수립ㆍ실시ㆍ기록유지 및 주 1회 경비현장 순회점검 실시"], ["p", "3) 배치경비원에 대한 신임교육(동법제13조)"], ["p", "□ 경비원을 새로이 채용한때에는 근무배치 후 1월이 경과하기 전까지 신임교육을 받게 하여야 한다."], ["p", "※ 단 신변보호 및 행사장 등에 배치하는 일반경비원은 배치기간과 관계없이 24시간 전에 배치해야 함으로 신임교육을 이수한자로 배치원칙"], ["p", "4) 배치 경비원에 대한 제복(동법시행규칙제19조)"], ["p", "□ 집단민원 현장에 배치 시에는 경비원임을 식별할 수 있는 통일된 제복 착용토록 한다."], ["p", "※ 경비업법과 관련 세부 내역은 「경비업 수검관리 대장」참조"], ["p", "◇ 별첨 # 1. 집단민원 발생 시 비상연락 체계도 별첨 # 2-1. 노사 분규 시 대처방안 별첨 # 2-2. 집단집회&시위 시 대처방안 별첨 # 3. 집단민원 발생 시 (성공&실패) 사례연구 노사 분규 시 대처 방안 별 첨 # 2-1"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 상황인지 즉시 유,무선을 이용하여 인접 보안요원과 보안실로 상황을\n전파한다.\n□ 노사분규 발생조짐 및 초기분규 시 즉각 팀장을 경유하여 수\n사업장에 보고한다.", "보안요원 or\n계약처 임직원"], ["상황전파", "□ 통보 받은 책임자는 유,무선을 이용하여 상황을 비상가동 전파한다.\n□ 지점장, 지사장에 즉시 보고한다.\n□ 계약처 담당부서 또는 해당부서 즉시 통보한다. (비상연락망 가동)", "보안실 책임자\n(or 선임자)"], ["조치요령", "□ 노사분규 발생 초기 (사업장 비상발령)\n▷ 소요상태 발생여부를 정확하게 판단하여 팀장 및 수 사업장에 보고한다.\n▷ 불순세력 및 외부세력의 접근을 막기 위하여 출입문을 최소화\n하고 나머지는 봉쇄한다.\n▷ 출입구 및 외곽 POST에 가능한 모든 보안요원을 투입시켜\n경계를 강화한다.\n▷ 선동에 의한 과격한 행동을 대비하여 안전업무를 수행하고,\n사복조를 운영하여 현장의 상황을 파악한다.\n▷ 계약선과 협조하여 E/L 사용의 제한과 옥상출입문 임시 폐쇄\n여부를 결정한다.\n▷ 시설 및 방재실과 협조체계를 유지하고 CCTV 등 기계 시스템을\n최대한 활용한다.\n▷ 상황이 장기화로 발전될 가능성과 임직원의 안전등을 생각하여\n계약선과 협조하여 지원 인력을 요청한다.\n□ 분규 장기화 발전 ( 인력지원요청 )\n▷ 계약처 지원요청 시 지원인력을 받아(지사 승인) 장기 비상대처\n근무로 전환한다.\n▷ 보안요원 (내부,사복,지원) 조별 선임자를 두고, 팀장 지시에 따라\n행동하며 개인별 행동은 하지 않는다.\n▷ 충동적이고 자극적인 행동은 시위집단을 자극할 수 있으므로\n언어와 행동에 주의한다.\n▷ 우발적 행동은 큰 사건사고로 발전될 가능성이 있으므로 별도의\n지시가 없는 한 \"강제해산\" 등의 신체적 접촉은 하지 않는다.\n▷ 정당방위를 제외하고는 어떠한 상황이라도 폭력을 사용해서는 안 된다.\n▷ 사복 조는 증거를 수집(사진.비디오) 하여 보관하고 상황 종료 후\n팀장에게 인계한다.\n▷ 시위집단에 의해 장비(무전기,가스총,삼단 봉)등이 피탈 되지\n않도록 주의한다.", "SE\n계약처 임직원"]]], ["p", "집단집회&시위 시 대처 방안"], ["p", "별 첨 # 2-2"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 상황인지 즉시 유,무선을 이용하여 인접 보안요원과 보안실로 상황을\n전파한다.\n□ 집단행위 발생조짐 및 초기집회 시 즉각 팀장을 경유하여 수\n사업장에 보고한다.", "보안요원 or\n계약처 임직원"], ["상황전파", "□ 통보 받은 책임자는 유,무선을 이용하여 상황을 비상가동 전파한다.\n□ 지점장, 지사장에 즉시 보고한다.\n□ 계약처 담당부서 또는 해당부서 즉시 통보 한다 (비상연락망 가동)", "보안실 책임자\n(또는 선임자)"], ["조치요령", "□ 집회초기 (사업장 비상발령)\n▷ 소요상태 발생여부를 정확하게 판단하여 팀장 및 수 사업장에 보고한다.\n▷ 불순세력 및 외부세력의 접근을 막기 위하여 출입문을 최소화하고\n나머지는 봉쇄한다.\n▷ 출입구 및 외곽 POST에 가능한 모든 보안요원을 투입시켜 경계를 강화한다.\n▷ 선동에 의한 과격한 행동을 대비하여 안전업무를 수행하고, 사복\n조를 운영하여 현장의 상황을 파악한다.\n▷ 계약선과 협조하여 E/L 사용의 제한과 옥상출입문 임시 폐쇄\n여부를 결정한다.\n▷ 시설 및 방재실과 협조체계를 유지하고 CCTV 등 기계 시스템을\n최대한 활용한다.\n▷ 상황이 장기화로 발전될 가능성과 임직원의 안전등을 생각하여\n계약선과 협조하여 지원 인력을 요청한다.\n□ 장기화 발전 ( 인력지원요청 )\n▷ 계약선 지원요청 시 지원인력을 받아(지사 승인) 장기 비상대처\n근무로 전환한다.\n▷ 보안요원(내부,사복,지원)조별 선임자를 두고, 팀장 지시에 따라\n행동하며 개인별 행동은 하지 않는다.\n▷ 충동적이고 자극적인 행동은 시위집단을 자극할 수 있으므로\n언어와 행동에 주의한다.\n▷ 우발적 행동은 큰 사건사고로 발전될 가능성이 있으므로 별도의\n지시가 없는 한 \"강제해산\" 등의 신체적 접촉은 하지 않는다.\n▷ 정당방위를 제외하고는 어떠한 상황이라도 폭력을 사용해서는 안 된다.\n▷ 사복 조는 증거를 수집(사진.비디오) 하여 보관하고 상황 종료 후\n팀장에게 인계한다.\n▷ 시위집단에 의해 장비(무전기,가스총,삼단 봉)등이 피탈 되지\n않도록 주의한다.", "보안요원\n계약처 임직원"]]]], "k": "grp"}, {"t": "화재 발생 시", "items": [["p", "1. 화재의 기본이론"], ["p", "2. 소화 방법의 종류"], ["p", "3. 화재발생 원인별 분류"], ["p", "4. 화재의 종류"], ["p", "5. 화재 유형별 소화요령"], ["p", "6. 화재예방을 위한 착안 사항"], ["p", "※ 즉시,소방서에 119 화재 발생 사실을 다음과 같이 통보 한다. ☞ 주소,인근 중요건물 등"], ["p", "(단, 소방서 신고시에는 계약처의 지시의 의거 시행)"], ["p", "7. 화재발생 시 응급조치 활동"], ["p", "8. 대피 유도 요령"], ["p", "9. 화재 발생시 대처 요령"], ["p", "□ 알아 두면 좋아요?"], ["p", "10. 소화 설비의 종류"], ["p", "가. 소화기[ 消火器, fire extinguisher]란?"], ["p", "1) 화재의 극히 초기단계에 있어서 소화제가 갖는 냉각 또는 공기차단 등의 효과를 이용해서 불을 끄는 운반할 수 있는 기구(器具)를 말한다."], ["p", "2) 소화기 용도 및 사용방법"], ["p", "3) 소화기 사용법은 그림과 같다."], ["p", "※ 소화 약제가 방출 되는 시간은 20초이다."], ["p", "나. 소화전[消火栓, fire hydrant] 이란?"], ["p", "1) 소화를 위해 상수도의 급수관에 설치된 소화호스를 장치하기 위한 시설을 말한다."], ["p", "2) 옥내소화전의 사용법"], ["p", "□ 옥내소화전 설비는 소방대상물의 화재 시 3명이 1조가 되어 조작하되"], ["p", "① 옥내소화전 함을 열고 소방용 호스와 방사 관창(노즐)을 꺼낸다."], ["p", "② 2명은 화원(화재가 발생된 장소)으로 달려가 방사관 창을 잡는다."], ["p", "③ 수동기동 방식인 경우 옥내소화전함의 상부에 설치되어 있는 기동스위치를 누른다.(나머지 1명)"], ["p", "④ 옥내소화전 방수구(개폐 밸브)의 핸들을 5∼6회 회전시켜 완전히 개방하여 소화약제인 물이 방사되도록 한다.(나머지 1명)"], ["p", "⑤ 화점에 방사한다."], ["p", "⑥ 소화 후에는 소화전 방수구의 핸들을 돌려 완전히 밸브를 닫는다."], ["p", "(호스는 건조 후에 원래의 위치에 보관한다.)"], ["p", "□ 옥외소화전 사용법은 옥내 소화전 사용법에 준해서 한다."], ["p", "3) 소화전 사용법은 그림과 같다."], ["p", "다. 자동소화설비.【스프링클러[ sprinkler]】"], ["p", "라. 화재 수신반"], ["p", "11. 피난 설비 (避難 設備)"], ["p", "가, 피난 설비란?"], ["p", "□ 화재중의 재해시 건물로부터 탈출, 피난 하기 위해서 사용하는 기계, 기구 or 설비를 말한다."], ["p", "나, 피난설비의 종류"], ["p", "1) 미끄럼대, 피난사다리, 구조대, 완강기, 피난교, 피난밧줄, 공기안전매트 그 밖의 피난기구"], ["p", "2) 방열복, 공기호흡기, 인공소생기, 등 인명 구조기구"], ["p", "3)유도 등 및 유도 표지: 피난구 통로 및 객석 유도 등을 말한다."], ["p", "4) 비상 조명등"], ["p", "5) 방화문 : 계벽(界壁)이나 칸막이벽보다 훨씬 높은 방화 효과를 기대할 수 있는 벽"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "▷ 유,무선 를 이용, 침착하게 인근근무자 및 상황실(정문)로\n신속하게 연락을 취한다.\n[에스텍 각대 5라인 2층에 화재발생, 지원바람].....\n2회이상 반복 침착하게 화재지역을 정확하게 전파한다.", "보안요원 or\n계약처 임직원"], ["상황전파", "▷ 상황인지 즉시 “불이야!”라는 함성과 함께 소화기 및\n출동장비를 가지고 현장으로 출동 한다.", "보안실 책임자\n(또는 선임자)"], ["조치요령", "□ 초기진화 가능 상황판단\n▷ 화재발생이나 신고접수 즉시 팀장,선임에게 보고한다.\n▷ 접수자는 이를 침착하게 상황실(정문)로 보고한다.\n▷ 전 근무자에게 화재발생 사실을 전파한다.\n▷ 최초발견자는 초기진화가 가능하다고 판단되면\n인근의 소화기를 사용하여 초기 진화한다.\n▷ 초기진화 후 보고 및 사후처리를 지시받는다.\n▷ 실내화재인 경우는 유독가스가 발생하므로 주위한다.\n▷ 시설 및 방재실로 연락하여 배기 펌프 가동 및 화재\n진화 협조를 구한다.\n▷ 화재발생시 당황하지 말고 부여된 임무를 신속 정확\n하게 수행하여 초기진화 할 수 있도록 한다.\n▷ 응급환자 발생시 신속히 구조하고 보도관제 및\n소방차, 구급차 유도수행을 한다.\n▷ 팀장 및 선임은 사후 처리 및 보안을 유지한다.", "보안요원\n계약처 임직원"], ["1, 2단계\n상황판단", "▷ 1단계 : 자체인원 및 인근사업장의 지원요청으로\n초기진화가 가능.(소화기,소화전 사용진화.)\n▷ 2단계 : 초기진화 불능상태의 대형화재로 판단 소화\n전 사용 사내 소방대 신고, 비상연락망을\n통한 비상소집 발령 인명피해 최소화 할\n수 있는 대피로 확보,(사내 소방차,구급차 유도)", "보안실 책임자\n(or 선임자)"]]], ["p", "○ 화재발생시 대처방법 – 단계별"], ["t", [["1단계", "1. 화재발견 시나 신고 접수 즉시 침착하게 전 보안요원에게 화재발생\n사실을 전파한다.\n2. 즉각 팀장 및 선임에게 선 조치,보고하여 지시를 받는다.\n3. 발견자는 초기 진압이 가능하다고 판단 시 인근 소화기나\n소화전을 사용하여 진화한다.\n4. 진화가 되면 보고 후 사후처리를 지시 받는다."], ["2단계", "1. 진화가 어려우면 현장에서 주변 지역통제를 실시하여 관계자 외 출입을 막는다.\n2. 자체 소방대 출동을 요청한다.\n3. 출입문 보안요원은 화재 현장 교통정리를 하여 소방차 진입을 유도한다.\n4. 고객안전확보와 출,입을 통제 유도한다."], ["3단계", "1. 인명피해 발생을 대비하여 구급차를 대비한다.\n2. 보도관제 및 출입문 폐쇄하고 인원,차량 출입을 제한한다.\n3. 도난 예방을 위하여 외곽경계를 철저히 한다."], ["주의사항", "1. 초기진화에 대한 판단을 신속하게 한다. (판단 오류 시 화재가 확대되는 점에 유의)\n2. 전기화재는 전원공급을 우선 차단한다.\n3. 유류 화재는 물을 사용하지 말고 소화기,모래,이불,등을 덮어\n제거 소화를 실시하여 최단시간에 소화한다.\n4. GAS 화재 시 밸브를 차단한다.\n5. 화재장소가 옥내일 경우 내부에 가친 사람이 있는가를 신속히\n파악하여 구조나 대피토록 한다."]]], ["p", "○ 화재발생시 대처방법 - 소화기 사용법"], ["t", [["최초 발견자", "상황 접수자"], ["□ 초기진화에 대한 판단은 신속해야 한다.\n□ 초기진화 가능 시 최단거리 소화기를\n사용한다.\n□ 판단이 그르치면 화재의 확대 위험성\n이 있다.", "□ 침착하게 인접 보안요원, 수 사업장\n관계부서로 연락한다.\n□ 비상 연락 체계도에 의한 보고를 실시한다.\n□ 화재현장으로 출동하여 지원한다."], ["□ 행동 요령"], ["1, 안전핀을 제거한다.", "2, 노즐을 화점으로 향하게 한다."], ["3, 누름 레바를 누르며 소화한다.", "4, 바람을 등지고 좌에서 우, 우에서 좌\n로 비로 쓸 듯이 소화한다."]]], ["p", "○ 화재발생시 대처방법 - 소화전 사용법"], ["t", [["최초 발견자", "상황 접수자"], ["▷ 초기진화 실패 상황판단\n▷ 화점에 가까운 소화전 사용\n▷ 조작은 안전하고 확실하게 사용\n▷ 연소 확대 방면에 유의하여 사용", "▷ 화재현장을 정확하게 사내소방서로\n통보한다.\n▷ 관계부서 및 방재실로 보고한다.\n▷ 인원대피 및 화재현장으로 출동\n하여 지원한다."], ["□ 행동요령"], ["1. 소화전 뚜껑을 연다.", "2. 호스를 꼬이지 않게 화점 까지\n늘여 놓는다."], ["3. 중간 밸브 연결", "4. 밸브를 열고 소화한다."]]], ["p", "○ 화재발생시 대처방법"], ["p", "□ 자동 GAS 방출 소화방법 □ 자동 물 방출방법"], ["p", "○ 화재발생시 대처방법 - 보안요원별 대처요령"], ["t", [["보안 요원", "조 치 요 령"], ["최초 발견자", "□ 신속하고 정확한 상황판단이 요구된다.\n□ 주변 임직원 및 고객에게 상황을 전파한다.\n□ 전화,무전기를 이용하여 인근 보안요원 및 보안실로\n상황을 전파한다.\n□ 인근 소화기 및 소화전을 사용하여 초기진화를 실시\n한다.\n□ 화재별 선 조치 후보고(작은 불씨),선보고 후 조치를\n할 수있다."], ["★상황 접수자\n( 주간:정문 보안실 )\n( 야간:정문 보안실 )", "□ 상황접수 및 전파를 한다.\n▷ 화재지역과 정도를 정확하게 접수 받는다.\n▷ 인접 POST 보안요원에게 협조 요청한다.\n\" 에스텍 각대 00층 00구역 (A,B,C)급 화재발생\n에스텍 각대 00층 00구역 (A,B,C)급 화재발생\n긴급지원 바람\"..........2회이상\n▷ 정확하게 화재 지역을 보안요원에게 전달한다.\n▷ 방독면,위험표지판,통제구역설치용 끈 등을 준비\n즉시 배포한다.\n▷ 관계부서로 통보(수 사업장, 사내소방대, 총무)\n등 에게 연락한다.\n▷ 책임자의 지시에 따라 관할부서에 신고한다.\n▷ 방송의뢰\n☆ 방재실에 비상방송을 의뢰한다.\n(00층 000가 00되었으니 고객 및 사원\n여러분께서는 신속히 대피하여 주십시오\n----------------- 2회 반복\n(방송 메트 참조)\n▷ 상황에 맞게 신속하고 적절한 행동조치를 할 수\n있도록 보안요원은 유도하고 대피 시킨다."]]], ["p", "○ 화재발생시 대처방법 - 보안요원별 대처요령"], ["t", [["보안 요원", "조 치 요 령"], ["현장 출동자\n(정문)\n주,야 동일", "1. 장비를 휴대하고 현장에 출동한다.\n▷ 보안실에 비치된 장비(방독면,렌턴 등)를 지참하고\n유독가스 발생에 대비한다.\n2. 신속하게 현장으로 출동하여 지휘권자의 지휘를 받아\n초기 진화에 전념한다.\n3. 사내 소방 관계자 도착 시까지 현장보존 및 인원통제를\n실시한다.\n4. 관계자가 도착 시는 상황발생 지역으로 안내 후 보안\n요원은 안전지역으로 대피한다."], ["현장 출동자\n(순찰)\n주,야 동일", "1. 장비를 휴대하고 현장에 출동한다.\n▷ 보안실에 비치된 장비(방독면,렌턴 등)를 지참하고\n유독가스 발생에 대비한다.\n2. 신속하게 현장으로 출동하여 지휘권자의 지휘를 받아\n초기 진화에 전념한다.\n3. 출입통제 및 고객대피에 전념한다.\n▷ 통제구역을 설정 끈을 이용하여 출입을 통제 하고\n위험 표지판을 설치한다.\n▷ 오염자는 응급처치 후 병원으로 후송한다.\n▷ 대피인원 통제 및 유도(실외,옥상차단지역으로 이동)\n시킨다.\n4. 관계자가 도착 시는 상황발생 지역으로 안내 후 보안\n요원은 안전지역으로 대피한다."], ["현장 출동자\n(주간:지원)", "1. 휴대장비를 준비 보안요원에게 신속하게 전달한다.\n▷ 보안실에 비치된 장비(방독면,렌턴 등)를 지참하고\n유독가스 발생에 대비하며 신속하게 현장으로 출동\n하여 초기 진화를 지원한다.\n2. 지휘권자의 지휘를 보좌하며 순찰 근무자와 협조하여\n고객을 안전지역으로 대피 유도시킨다.\n3. 통제구역을 설정 끈을 이용하여 출입을 통제 하고\n위험 표지판을 설치한다.\n4. 관계자가 도착 시는 상황발생 지역으로 안내 후 보안\n요원은 안전지역으로 대피한다."]]], ["p", "○ 화재발생시 대처방법 - 보안요원별 대처요령"], ["t", [["보안 요원", "조 치 요 령"], ["현장 출동자\n(주간:팀장)", "1. 상황을 신속 정확히 판단하여 피해를 최소화 한다.\n2. 유,무선을 이용하여 보안요원을 통제하고 고객안전과\n초기진화에 중점을 둔다.\n3. 장비(방독면,렌턴 등)를 지참하고 유독가스 발생에\n대비하며 신속하게 현장으로 출동하여 지휘한다.\n4. 상황실 보안요원(정문)와 유,무선을 사용 화재 현장\n상황을 전파하고 관계기관 호출 및 비상연락망 가동\n등을 판단 지시한다.\n5. 관계자가 도착 시는 상황발생 지역으로 안내 후 고객\n및 보안요원의 안전을 확인 대피시킨다.\n6. 무리한 진화로 인하여 안전 및 화재 확대의 원인을\n제공 하지 않도록 주위한다."], ["소방차 진입로확보\n( 외 곽 )", "1. 사내소방 관계자 도착 시까지 정문 앞에서 인원통제를\n실시하고 소방차 진입로 확보에 전념한다.\n2. 출입통제 및 고객대피에 전념한다.\n응급환자후송을 지원하고 차량통로를 유지한다.\n대피인원 안전확보와 보도관제를 유지한다.\n3. 혼란한 틈을 이용하여 절취하는 범법자의 유,무 확인과\n계약선 중요자료의 운반 등을 도와준다.\n4. 관계자가 도착 시는 상황발생 지역을 정확하게 설명\n하고 피난로 확보 및 소방차 진입로 확보에 전념한다.\n5. 소방차가 과다할 경우 진입로가 혼잡할 수 있음으로\n외부차량 주,정차 금지 통제를 강력하게 실시한다."]]], ["p", "사례 연구 (성공 및 실패 사례)"], ["p", "별 첨 # 4-1"], ["t", [["성공사례 1", "00 사업장 지하 2층 00실 화재발생"], ["[ (발생원인) ]\n1999년 10월 2일 24시경 순찰요원 000가 지하 2층 순회 중 이상한 냄새가\n나는 것을 발견 인접 POST에 지원요청 하고 000에서 연기가 새어 나오는\n것을 발견 즉시 소화기로 유리창을 파손하고 불이 나는 현장으로 달려가\n소화기로 000 SE와 진화 하였음,스프링쿨러가 작동하였으나 스프링쿨러\n헤드 아래에 넓은 파이프에 걸려 물이 불길에 쏘지 못하고 불길이 계속 번져 상황실에 연락 000주임은 무전기로 중요 POST 제외한 전 SE가 화재발생을 발령하고 출동명령 하였슴, 마스타키/랜턴을 가지고 현장에 도착하니\n연기가 00실에서 새어 나와 계단으로 올라 층으로 올라가고 있었음. 즉시\n계단 출입문 시건 및 방화문 작동 시키고 즉시 00실 출입문을 open 시키고\nSE들과 소화기로 대형 화재 사고를 미연에 방지 하였음,방재실에서 화재 경보음이 울려 방재직원 출동.방재직원 1명 S-TEC직원 7명 초기진화 성공함.\n원인 ; 000 직원들이 대형 세탁기에서 건조되어 나오는 옷을 마무리 하고\n퇴근해야 되는데 000(파견직원)들이 빨리 퇴근할 목적으로 세탁기에서\n나오는 옷을 정리 하지 않아 옷이 쌓여 뜨거운 열기에 의해 자연적 발생\n된것으로 사료됨."], ["[ 성공 Point (잘한 점) ]\n① 순찰중 사소한 냄새에도 관심을 가져 발견 침착하게 보고하고 화재 발생을\n알려 인접 SE들이 출동 소화기 10대로 대형화재를 미연에 방지함.\n② 계단을 타고 연기가 조금 올라가 방재실에 연락 층별 전체 유리창을\n자동으로 OPEN 하도록 함.\n③ 방화문,계단 출입문 시건으로 연기를 층으로 올라 가는 것을 차단하고 지하\n2층에서 옥외로 통하는 출입문 OPEN 시켜 연기를 밖으로 보냄\n④ 000팀장은 즉시 사업장 비상연락망 가동하여 임원진,시설팀장이\n현장에 방문 원인 분석 후 돌아감.\n⑤ 임원진에게 SE들의 화재 초기 진화에 칭찬을 듣고\n계약선에 신뢰를 제고하여 회사의 이미지를 위상 시킴.\n※ 참고로 위와 유사한 건은 호텔,병원에서 많이 발생 한다고 함 - 00실 팀장\n세탁기는 일반 세탁기가 아닌 대형 공장형 세탁기임 건조 되면서 나오는\n옷은 즉시 펼쳐 놓아야 한다 함 사업장에서 세탁실이 있는 사업장은 불이\n나는 곳의 취약지점이므로 관찰을 수시로 해야 할 것입니다."]]], ["t", [["성공사례 2", "00 사업장 주위 산불 예방"], ["[ (발생원인) ]\n1998년 3월 14일 17시경 00POST에서 00POST에 밀어내기 근무 중 00사업장\n인접 야산 방향에서 연기가 솟는 것을 발견 신속 출동하여 보니 산불이 번져\n00사업장 방향으로 산불이 번지고 있었음.즉시 무전기로 상황 전파하여\nSE 8명이 소화기로 산불을 초기에 진화에 성공함.\n□ ㅇㅇ 소방대 소방차 2대 출동 후 사고 조사 후 돌아감\n□ 야산면적은 3000평 정도임,화재 발생면적은 20평\n□ 소화기 7대 사용으로 초기진화\n원인 ; 행인이 버린 담배불에 의해 마른 잔듸에 불이 붙으면서 화재가\n발생된 것으로 사료됨."], ["[ 성공 Point (잘한 점) ]\n① 밀어내기 근무 중 일지라도 주위를 멀리 경계하고 사소한 것이라도 관심을\n가져 불 안전 요소를 발견 하는 것이 중요하다는 것을 인식시켰다.\n② 즉시 연기 나는 방향 출동 하여 불이 난 것을 확인 후 침착하게\n무전기로 전 SE에게 화재 발생을 알려 초기에 진화을 성공 했다.\n(침착하게 장소,위치 등 정확하게 전달)\n③ 만약 조기 발견이 되지 않고 화재가 발생 하였다면 00사업장의 화재가\n대형 사고로 변할 수 있었습니다.\n④ 화재를 초기에 진화하여 계약처에 신뢰도를 높일 수 있었습니다.\n※ 참고로 위와 유사한 건은 공장,정원이 있는 사업장과 야산인접 사업장에서\n발생 할 수 있는 사례임 (산불)\n마른 잔듸로 인해 겨울철,봄에 행인의 담배 불에 의해 화재가 발생할\n소지가 있습니다."]]], ["p", "별 첨 # 4-2"], ["t", [["실패사례 1", "서울 중구 대연각 화재사건"], ["[ (발생원인) ]\n1971년 12월 25일 10시경 대연각 호텔 2층 커피숍에서 연소기와 용기의 PVC 연결배관에서 LP가스가 누출되어 점화되었으며, 용기가 파열되면서 화재가 급속히 확산되었다. 화재는 로비의 가연성 내장재가 타면서 계단을 통하여 3층과 4층으로 번져 나갔으며, 냉난방 닥트를 통하여 건물 최상층인 스카이 라운지로 확대되었다. 최상층과 저층부에서 화염이 발생한 상태에서 중간층에 있던 사람들의 피해가 많았다. 옥상 출입구가 잠겨 있어 대피하지 못한 23명이 옥상 출입구 부근에서 희생되었다.\n피해사항 ; 인명피해 ; 사망163명, 부상 63명\n재산피해 ; 8억3천8백만원"], ["[ (문제점) ]\n① 화재가 발생되었을 시 피난\n②\n③"], ["[ 대응 및 분석 ]\nLP가스의 사용이 보편화되지 않았던 시기에 발생한 화재로서 일반적인 안전사항이 지켜지지 않았다. 가스용기를 옥외 불연재함에 보관하지 않고 실내에 보관하고 있었으며 주배관을 금속관을 사용하지 않고 비닐배관을 사용하였다. 그러나 이러한 사항은 최근에도 자주 발생하는 사고의 원인으로써 지적되고 있어 30년 전의 교훈이 시사하는 바가 크다.\n“특수건물”이란 화재로 인한 재해보상과 보험가입에 관한 법률”에 의해 규정된 건물로써 전국에 위치한 일정규모 이상의 국유건물, 학원, 병원, 호텔, 공연장, 방송시설, 시장 및 대규모점포, 유흥주점영업, 학교, 16층 이상의 아파트, 공장, 11층 이상의 건물을 말한다.\n화재 발생 당시 경보설비가 설치되어 있었으나 제대로 작동하지 않았으며, 스프링클러와 같은 자동식 소화설비가 설치되지 않아 피해가 증가하였다. 현재까지 스프링클러 설비는 효과적인 소방시설로 알려지고 있으며 특히, 소방대원의 진입이 어렵거나 초기소화가 필요한 고층 건물 등에는 스프링클러가 가장 효과적인 소방시설로 설치의무를 강화하고 있다.\n층별 또는 면적별 방화구획은 화재피해를 줄일 수 있는 필수적인 시설로서 계단의 구획은 화염이나 연기의 수직전파를 방지함은 물론 피난을 용이하게 해준다는 점에서 중요하다. 특히, 설비 배관과 전선 등이 설치된 피트 및 냉난방 닥트 등은 눈에 잘 띄지 않는 곳이라 철저한 확인이 필요하다."]]]], "k": "fire"}, {"t": "소란,난동자 발생 시", "items": [["p", "1. 소란,난동자란?"], ["p", "■ 시끄럽고 어수선하게 하며, 인명 상해, 및 시설물 파괴, 방화를 하는 등 사업장내 질서를 어지럽히며 함부로 행동하는 사람을 말한다."], ["p", "2. 소란,난동자 종류"], ["p", "가. 불만을 가진자 : 회사에 대해, 제품에 대해, 상사에 대해"], ["p", "나. 음 주 자 : 단순 음주자, 계획적인 불만 소지자"], ["p", "다. 서로 다툼 : 서로 의견 충돌이 있는 사람끼리 자기 주장 고집"], ["p", "3. 소란,난동자 발생 시 대처요령"], ["p", "가. 신고접수 및 순회(순찰)을 통한 발견 시 침착하게 행동한다."], ["p", "1) 유선 또는 무선을 이용하여, 인접SE 및 보안실로 연락을 취한다."], ["p", "2) 태도를 분명하게 하고 조심스럽게 접근하며 1人인지, 2人인지, 서로 쌍방인지 신속히 판단하고 상황에 맞게 대응한다, 흥분한 상태 일 경우 자리를 이동시켜 진정 시킨다."], ["p", "3) 상황(고객, 잡상인, 관계인 등)을 판단하고 적절하게 대응한다."], ["p", "나. 접수된 상황을 인근 SE에게 연락하여 지원 조를 투입시킨다."], ["p", "다. 상황별 대응 요령"], ["t", [["구 분", "대 응 요 령"], ["단독 (1명) 일 때", "▷ 상황을 파악한 후 조심스럽게 접근하여 부드러운 목소리로 응접\n실이나 회의실 등으로 각각 이동시켜 흥분된 고객을 진정시킨다.\n▷ 담배, 성냥, 재떨이 및 음료수를 준비하여 정성과 관심을 보인다.\n▷ [선생님! 참! 죄송하게 되었습니다. 무슨 일로 그러셨습니까?]\n등으로 대화를 유도한다.\n▷ 소란, 난동자가 왜 그랬는지 원인을 정확하게 파악하여 소란,\n난동 고객의 용무가 정확하고 신속하게 처리되도록 배려한다.\n▷ 적극적인 태도와 예의로 고객의 입장에서 대화를 주도한다.\n▷ 항상 듣는다는 자세와 마음가짐으로 용건을 정확히 파악한다.\n▷ 고객의 이름과 성격, 용무 등을 재빨리 파악한다.\n▷ 신속히 담당자 에게 연락하여 조치한다."], ["2명 이상 일 때", "▷ 의견충돌이 있는 A와 B를 분리 시키고 자리를 응접실이나\n회의실 등으로 각각 이동시켜 흥분된 고객을 진정시킨다.\n▷ 담배, 성냥, 재떨이 및 음료수를 준비하여 정성과 관심을 보인다.\n▷ [참! 죄송하게 되었습니다. 무슨 일로 다투셨습니까?] 등으로\n대화를 유도한다.\n▷ 소란, 난동자가 왜 그랬는지 원인을 정확하게 파악하여 소란,\n난동 고객의 용무가 정확하고 신속하게 처리되도록 배려한다.\n▷ 적극적인 태도와 예의로 고객의 입장에서 대화를 주도한다.\n▷ 항상 듣는다는 자세와 마음가짐으로 용건을 정확히 파악한다.\n▷ 고객의 이름과 성격, 용무 등을 재빨리 파악한다.\n▷ 신속히 담당자 에게 연락하여 조치한다."], ["자격과 필요성이\n없는 고객과 충돌\n(잡상인, 외부인)", "▷ 의견충돌이 있는 고객(잡상인, 외부인)과 직원을 분리 시키고\n자리를 각각 이동시켜 흥분된 고객을 진정시킨다.\n▷ 적극적인 태도와 예의로 듣는다는 자세와 마음 가짐으로 용건을\n정확히 파악한다.\n▷ 제 3자의 입장에서 회사규정과 고객의 입장을 비교 설득하여\n양해를 구하고 양보를 부탁하여 출문 시킨다."]]], ["p", "라. 소란,난동자 발생을 대비하여 관련기관 (경찰,소방,병원 등)에 대한 비상연락 체계를 구축한다."], ["t", [["경 찰 관 련", "소 방 관 련", "병 원 관 련"], ["강서경찰서", "녹산지구대", "강서소방서", "부속병원", "세양병원"], ["271-0112", "971-5112", "760-5000", "9083", "207-4322"]]], ["p", "4. 소란,난동자 대처 시 유의사항"], ["p", "□ 소란, 난동자 응대 시 언어와 행동에 주의 한다."], ["p", "① 흥분된 상태에 있더라도 응대에 소홀 해서는 안 된다."], ["p", "② 문제발생의 원인을 제공하므로 신체적 접촉을 해서는 안 된다."], ["p", "□ 사전에 사업장내 조직전체에 대한 관련정보를 인지하여 고객의 용무&불만 등이 신속하게 처리 할 수 있도록 하여야 한다."], ["p", "※ 사안별 담당부서와 담당자가 누구인지?"], ["p", "□ 계약선 담당자와 협의하여 파출소 신고한다."], ["p", "소란난동자 발생 시 대처방안"], ["p", "별 첨 # 2"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 신고접수 및 순회를 통한발견 시 침착하게 행동한다.\n▷ 유,무전기를 이용,인접보안요원 및 보안실로 연락을\n취한다.\n▷ 태도를 분명하게 하고 상황에 맞는 목소리로 격분한\n고객과 직원을 분리 시킨다.\n▷ 상황(고객, 잡상인,관계인 등)을 판단하고 적절하게\n대응한다.", "보안요원 or\n계약처 임직원"], ["상황전파", "□ 접수된 사항을 인근 보안요원에게 연락하여 지원 조를\n투입시킨다.\n\" 에스텍 각대 00, 00지역 소란 난동자 발생 지원바람 \"\n\" 에스텍 각대 00, 00지역 소란 난동자 발생 지원바람 \"\n□ 상황 종료 및 관련자를 기록해 둔다.", "보안실 책임자\n(or 선임자)"], ["조치요령", "□ 난동자 발견 시 착안 사항\nㅇ 육하원칙에 의거 신속한 상황 보고\nㅇ 상황근무자(팀장)의 지시에 따라 행동 대처한다\nㅇ 인근Post 보안요원과 협조하여 2인 1조로\n하여 난동자를 보안실로 유도한다\nㅇ 주변 출입인원을 통제하고 소란이 발생하지 않도록 한다\nㅇ 난동자를 최대한 진정 시킨 후 인적사항을 파악 한다\n□ 사내 난동자 조치사항\nㅇ 난동자 신상을 확인하고 친절히 회사규정에 대해\n설명하고 회사에 입문하지 않도록 한다.\nㅇ 난동자의 상태를 확인 후 팀장에게 보고한다\nㅇ 상황보안요원은 총괄 당직자에게 유선으로 상황전파 한다.\nㅇ 총괄 당직자 지시에 의거 여부 결정 한다\nㅇ 난동자가 소란을 일으킬 경우 보안실로 유도하여\n진정을 시킨 회사 규정에 대해 설명한다", "보안요원\n계약처 임직원"], ["주위사항", "□ 고객 응대 시 언어와 행동에 주의해야 한다.\n□ 흥분된 상태에 있더라도 응대에 소홀 해서는 안 된다.\n□ 문제발생의 원인을 제공하므로 신체적 접촉을 해서는 안된다.\n□ 난동의 정도가 과다 할 경우 비상 연락망을 이용 하여\n조치한다."]]]], "k": "riot"}, {"t": "침입이상 발생 시", "items": [["p", "1. 침입이상이란 ?"], ["p", "■ 외부로부터 무용자가 사업장 시설내(內)에 허가없이 무단으로 들어와 행하는 부당한 행위를 말한다."], ["p", "2. 침입이상의 종류"], ["p", "가. 기계 System 경비 시에 침입/이상 신호 접수 시."], ["p", "나. 순찰자가 무단 출입자 발견 시."], ["p", "다. 시설의 일부가 외부인에 의해 무단으로 점거되거나 그러한 상황이 진행 중 일때."], ["p", "3. 침입이상 발생시 대처요령"], ["p", "가. 기본지침"], ["p", "1) 침입이상이 발생되면 최초 인지한 시점부터 신속 정확한 초동조치를 실시하여 사태의 조기해결 및 피해 확대를 방지토록 한다."], ["p", "2) 침입이상 시 SE는 신체적 안전을 최우선으로 하여 행동한다."], ["p", "3) 침입이상 시 신속히 도주로를 차단하여 침입자 색출에 대비한다."], ["p", "□ 초동조치의 3요소"], ["p", "▷ 정확한 상황전파."], ["p", "▷ 신속한 출동."], ["p", "▷ 적절한 지휘 및 통제 등의 3요소가 긴급사태 해결의 관건임."], ["p", "나. 상황 전파 시에는 침입이상 발생지역을 사업장 전 SE에게 무선 또는 유선을 이용하여 통보한다."], ["p", "다. 현장출동 및 점검을 실시한다."], ["p", "1) 현장출동 시에는 가스총, 무전기, 렌턴, 경봉등의 장비를 지참한다."], ["p", "2) 현장출동 시에는 2인이 1조로 하여 출동함을 원칙으로 한다."], ["p", "3) 침입에 대한 흔적 발견 또는 상황이 발생 할 경우 SE는 무선을 통하여 선임 또는 팀장에게 신속하게 보고 후 지원을 요청한다. (사업장내 SE 및 숙직자 등)"], ["p", "▷ 사업장 자체 인원으로 대처가 곤란한 경우에는 인접사업장에 협조를 요청한다."], ["p", "4) 지원자 도착 전/후에는 출입인원 통제,도주 예상로 차단, 주요지역 수색업무 등을 실시한다."], ["p", "라 침입자(또는 범인) 체포요령"], ["p", "1) 1명은 수화 실시 (손들어, 뒤로 돌아, 엎드려)"], ["p", "2) 1명은 휴대품 검사 및 흉기회수"], ["p", "마. 보고서 작성 및 보고"], ["p", "1) 회 사 : 회사 보고 Flow에 의거 (세부내역『사건사고 대응』항 참조"], ["p", "2) 계약처 : 사업장 자체 기준에 의거"], ["p", "註) 발생 시 비상연락망 및 대처방법 (별첨 #1, 참조)"], ["p", "4. 침입이상 발생 시 유의 사항"], ["p", "□ 범인과 조우 시 자신의 신체 안전을 확보한다."], ["p", "□ 행동 비닉과 역습에 주의하여 접근한다."], ["p", "□ 인접 SE에게 전파한다."], ["p", "□ 신속하게 비상벨 버튼을 누르거나, 경찰서 112 전화로 신고한다."], ["p", "□ 범인의 수, 흉기의 종류, 인상착의 등 특징을 기억한다."], ["p", "□ 범인을 설득하거나, 가능한 시간을 끌면서 범인과 조우한다."], ["p", "□ 범인 도주 시 범인을 추적하지 않으며, 범인의 차량번호, 차종, 색깔 등을 기록한다."], ["p", "□ 사건사고발생시 고객을 안전한 장소로 대피시키고 부상자는 119연락 및 응급조치를 취한다."], ["p", "□ 포박 및 손을 뒤로 꺾어 제압한 상태에서 연행한다."], ["p", "□ 범인 체포 후 고문 및 구타 등의 행위 및 욕을 하는 행위, 절대 금지한다."], ["p", "□ 범인이 2인 이상일 경우 격리시킨다."], ["p", "□ 처리 규정에 의거하여 처리 한다. (SE는 수사권이 없다)"], ["p", "□ 경찰서에 이첩 한다. (신병 인수증을 받는다)"], ["p", "◇ 별첨 # 1 . 침입이상 발생 시 비상연락 체계도 별첨 # 2 . 침입이상 발생 시 대처방안 별첨 # 3 . 침입이상 발생 시 (성공&실패) 사례연구 별 첨 # 2 침입이상 발생 시 대처방안"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 순찰자가 순찰중 침입자를 발견함\n▷ 순찰자: 여기 000지역! 정문 송신바람!\n▷ 정 문: 여기 정문! 송신 바람!\n▷ 순찰자:현재 000지역 00지점에 침입자 발생! 긴급 출동바람!\n□ 보고가 끝난 순찰자는 자신을 은폐하여 침투자 이동\n상황을 출동자에게 통보(교신)한다", "보안요원"], ["상황전파", "□ 에스텍 각 POST에 일립니다!\n▷ 현재 시간부로 000지역 00지점에 침입자 발생!\n▷ 출동장비를 지참하고 신속히 출동 바람!\n(지시 후 현장으로 신속히 이동)", "보안실 책임자\n(or 선임자)"], ["조치요령", "□ 각 POST에서 도착하는 선착 순으로 출동자를 인원에\n비례하여\n○ 경계조 2명\n▷ 침투자의 침투로를 사전 차단하기 위하여\n회사내 원거리부터 배치한다\n외곽에도 예상 도주로를 차단하여 침투자를\n체포한다\n☞ 배치자는 서로 보이는 간격으로 거리를 유지한다\n○ 수색조 3명\n▷ 일정한 간격을 유지하고 침투자가 은폐하기\n용이한 곳부터 수색한다\n☞ 이때 체포조는 수색조 후방을 보조한다\n○ 체포조 2명\n▷ 체포조는 수색조를 보조한다\n수색조가 침입자 발견이라는\n고함과 함께 포위망으로 들어가 침입자가 2차 행위를\n할 염려가 있으므로 2명은\n▷ 정지! 와 함께 경계\n1명은 동시에\n업드려 뻣처! 와 함께 소지품을 확인하고 일으켜 세워\n양손을 뒤로 하고 포승줄을 묶는다\n▷ 도보로 정문으로 이동시 2명은 양팔을 잡고\n1명은 중앙에서 경봉으로 3차 행위를 경계한다\n▷ 정문으로 이송하여 6하 원칙에 의거 보고서를 작성한다.\n조사 후 회사 재산상의 피해가 있을 시 즉시\n사업장에 보고하고 조치를 받고 필요시 경찰에\n이첩시킨다.\n(범죄자 인수 인계서를 받는다.)\n▷ 회사 재산상 피해가 없고 훈방이 가능하다고\n판단되면 훈방하고 익일 보고한다", "보안요원"]]], ["p", "사례 연구 (성공 및 실패 사례)"], ["p", "별 첨 # 3-1"], ["t", [["성공사례 1", "무단 월담자 체포"], ["[ (발생원인) ]\n2003년 02월06일 10시09분경 인근 건물의 박00라는 사람이\n당사업장 외곽 ㅇㅇㅇ 앞 휀스로 공사업체 이00(00그린개발)와 함께\n월담을 하는 것을 상황실 근무자 상황실CCTV에 포착되어\n상황실 보안요원 ㅇㅇㅇ의 출동명령이 무전으로 연락되자 정문 (상황실)에\n근무하던 ㅇㅇㅇ 보안요원외 인근post SE와 연계하여 신속한 출동으로\n현장에서 체포된 사실임\n상기인 박00는 옆 공장에 위치하여 1년전 회사측에 땅을 팔았는데\n회사의 하수도 배관이 회사측으로 나있어서 몇일 후 공사를 하기 위하여\n공사업체 00그린개발 이00와 현장을 살펴보고 당사업장으로 연결되어\n있는 하수도 위치를 알아보고자 월담하였던 것임"], ["[ 성공 Point (잘한 점) ]\n비록 불순분자의 침투는 아니였으나 상황 보안요원의 철저한 감시로\n외곽 침투를 신속히 발견할 수 있었으며 상황보안요원의 비상발령시\n항상 비상대기 자세로 있던 각POST 신속히 출동하여 대처함으로서\n더 이상의 침투를 방지하고 현장에서 체포할 수 있었음"]]], ["p", "별 첨 # 3-2"], ["t", [["실패사례 1", "무단 월담자 침투 시 대처 지연에 따른 크레임"], ["[ (발생원인) ]\n▷ 2003년 08월 00일 23:00시경 ㅇㅇ문과 ㅇㅇ문 사이 폐쇄된\n출입문(정문)으로 000사원이 침투함\n▷ 침투 후 신속히 대기시켜 놓았던 차량을 이용 회사 내에 이동하다\nㅇㅇㅇ 건물로 잠입하여 현관로비를 통해 건물 내로 입문함\n▷ 건물내부를 이동하다 ㅇㅇㅇ 후문으로 통과하여\n출문 하였으나 보안요원들의 어떠한 제지도 받지 않음\n▷ 상기 사원들은 본사 보안그룹사원들로 보안점검 차원에서\nTEST한 내용으로 근무 여건이나 회사상황을 정확히 파악한 후\n입문하고 ㅇㅇㅇ 입문 시는 사원증을 패용하고 잠입한 관계로\n보안요원들의 제지를 받지 않음"], ["[ (문제점) ]\n① 월담 시 기계시스템이 작동하였으나 출동거리가 긴 관계로\n출동 시에는 이미 잠입한 후였음\n② ㅇㅇㅇ 입문시 임직원 사원증을 패용한 관계로 제지를 받지 않았으나\n처음 보는 사람임에도 전혀 개의치 않고 입문시킴\n③ ㅇㅇㅇ 후문으로 출문 할 때에도 주머니에 휴대폰을 소지하고 있었으나\n전혀 제지를 하지 않음"], ["[ 대응 및 분석 ]\n▷ 출동거리가 길어 긴급 출동한다고 해도 침입자의 체포는\n현실적으로 어려움\n이동거리가 긴 출입문은 순찰자를 배치하거나 중간 초소를\n운영하여 보안 공백을 메울 수 있음\n▷ 사원증을 패용 후 입문하는 인원에 대해서도 본인여부를\n정확히 확인하고, 출문 시 개인 소지품도 철저히 검색하여\n보안사고를 예방하도록 함"]]]], "k": "intr"}, {"t": "응급환자 발생 시", "items": [["p", "1. 응급 환자, 처치란?"], ["p", "■ 응급환자란? 갑자기 신체에 이상이 생기는 환자이다."], ["p", "■ 응급처치란? 응급처치라는 것은 어떤 환자에서 어떤 손상이나 질병이 생겼을 때 구급차나 의료진이 도착하기 전에 처음 도움을 주거나 처치를 하는 것을 말한다."], ["p", "2. 응급 환자 발생 시 행동요령"], ["p", "□ 신속히 119 및 가까운 병원 등으로 구급차를 지원요청 하며 응급환자에 대해 가벼운 응급 처치를 하고 구급차 도착 시 SE는 이를 적극적으로 협조하며 도와준다."], ["p", "3. 응급 환자 발생 시 유의사항"], ["p", "가) 신속히 처리하여 신뢰감을 갖도록 한다."], ["p", "나) 환자에게 알맞은 자세나 체위를 취하도록 한다."], ["p", "다) 의사의 치료가 즉시 가능할 시에는 다른 장소로 옮기지 않는다."], ["p", "라) 환자의 보온과 충격 방지에 유의 한다."], ["p", "마) 부상자일 경우 상처를 보이지 않도록 하고 그 가족이나 주위사람들은 건전한 정신 상태를 갖도록 안심 시킨다."], ["p", "바) 위급하고 중한 부상자를 우선 처리하고 많은 사람이 손상을 입었을 시에는 확인되는 대로 응급처리 하고 옮길 때 에는 운반기구를 사용한다."], ["p", "사) 전문 의료인이나 구급차를 지원 요청한다."], ["p", "아) 가장 큰 환부부터 적은 환부 까지 처치한다."], ["p", "□ 응급환자 발생시 119 신고 요령"], ["p", "* 사고(환자) 발생위치(주소번지, 목표물 등 알기 쉽게)"], ["p", "* 사고자의 상태 및 인적사항"], ["p", "* 신고자의 인적사항 및 전화번호"], ["p", "* 현장주변 상황 등을 신속하고 침착하게"], ["p", "註) 응급환자 발생시 대처요령 등에 대한 세부 내용은 『구급법』참조."], ["p", "◇ 별첨 # 1. 응급환자 발생 시 비상연락 체계도 별첨 # 2. 응급환자 발생 시 대처방안 별첨 # 3. 응급환자 발생 시 (성공&실패)사례연구 응급환자 발생 시 대처방안 별 첨 # 2"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 유,무선을 이용, 침착하게 상황실로(보안실,) 연락을\n취한다.\n▷ \" 현재시간 00지점(정확한 위치)에 00상태의 응급\n환자 발생 119 연락 및 즉각 지원요청 바람\"\n□ 환자의 상태 부상정도를 파악한다.", "보안요원 or\n계약처 임직원"], ["상황전파", "1. 연락을 받은 보안요원은 팀장,주임(선임),보안요원에게\n상황을 전파하고 즉각적인 지원을 실시한다.\n2. 비상연락망을 가동하여 119 및 인근 병원으로 연락 한다.\n3. 응급차량 유도와 관계자에게 환자의 위치와 상태를\n설명해 준다.\n4. 이송병원 및 후송자 등을 기록해 둔다.", "보안실 책임자\n(또는 선임자)"], ["조치요령", "▷ 환자의 상태 부상정도를 파악한다.\n▷ 환자를 함부로 움직여서는 안되며 편안한 자세로\n만든다.\n▷ 즉시 유,무선을 이용 지원요청을 한다.(119)\n▷ 환자의 상태를 살피고 구급차가 올 때까지 돌보아 준다.", "보안요원\n계약처 임직원"], ["주의사항", "▷ 의식이 없는 환자를 눕힐 땐 기도를 확보한 체위로\n눕힌다.\n▷ 환자가 의식이 있어도 말을 자주 걸어서는 안 된다.\n▷ 상처구에 함부로 솜과 종이조각을 얹어 치료해서는\n안 된다.\n▷ 대 출혈에 따른 상처는 곧 지혈하지 않으면 안 된다.\n▷ 환자의 체온을 유지하고 춥지 않도록 돌보아 준다.\n▷ 골절상을 입은 환자는 함부로 이동시켜서는 안 된다.", "보안요원"]]], ["p", "○ 응급환자 발생시 대처방법 - 쇼크"], ["t", [["□ 쇼크", "쇼크는 인체 조직에 산소공급이 제대로 이루어지지 않음으로써 생김"], ["□ 증상", "1)피부가 창백하고 차가워지며 식은땀이 난다.\n2)전신의 힘이 빠진다\n3)맥박이 빠르고 미약해진다(1분에 100회 이상)\n4)숨쉬는 횟수가 증가한다.\n5)환자가 안절부절 못하고 불안감을 나타낸다.\n6)갈증이 생기며 토하기도 한다.\n7)자극해도 반응이 없고, 심하면 의식을 잃게 된다."], ["□ 처치", "1)호흡을 할 수 있도록 하기 위해 목 뒤에 조그만 베게를 받쳐서\n목이 뒤로 젖혀지게 하고, 호흡여부를 확인한다.\n2)쇼크의 원인을 치료해야 한다.\n▷쇼크의 원인......출혈이 있을 때는 지혈을 해주고,\n통증이 심할 때는 진통제를 투여하고,\n호흡이 곤란할 때는 호흡기를 유지해 주고,\n심한 경우에는 인공호흡을 실시한다.\n3)환자를 담요 등으로 싸서 체온을 유지시켜 준다.\n4)얼굴이 창백 하거나, 피부가 축축하거나 출혈이 있거나, 구토시\n피가 섞여 나올 때는 인체 내부나 외부에 출혈이 있다는 표시이므로\n환자의 다리를 약 30cm 올려 주는 것이 좋다.\n5)가슴에 흉통이 있고, 얼굴이 붓고, 숨쉬기가 불편하게 대면,\n이것은 호흡곤란에 의한 것이므로 이때는 환자의 머리와 어깨를\n약간 올려서 호흡을 쉽게 해주어야 한다."], ["□주의사항", "1)환자의 상태를 수시로 점검하여 만약 처치④,⑤에서 행한 후 상태가\n더욱 나빠지면,즉시 그 자세를 풀고 편한 자세로 눕힌다.\n2)환자가 물을 요구할 때는 신중히 생각하여 행동하여야 한다.\n만약 의료기관까지 수시간 이상 걸리는 장소라면 환자에게 물이나 쥬스를 주되, 어른은 120cc (반컵) 정도,1세에서 12세까지의 어린이에게는 어른의 반인 60cc정도, 유아에게는 약 30cc정도를 천천히, 적어도 15분 이상에 걸쳐서 주는 것이 바람직하다."]]], ["p", "○ 응급환자 발생시 대처방법 - 의식"], ["t", [["□주의사항", "3)그러나 절대로 물을 주지 말아야 하는 경우도 있다. 즉\nㄱ)의식이 없을 때\nㄴ)경기할 때(즉,간질증상 이나 발작 시에)\nㄷ)수술이 필요할 것 같을 때\nㄹ)머리에 손상이 있을 때\nㅁ)위나 장에 손상을 입어 구토를 하거나,항문으로 피가 나올 때"], ["□ 의식이 있는 사람의 처치", "1) 구조자는 침착하게 환자를 격려하고 안심시킵니다.\n2) 환자로 하여금 가장 편한 자세를 취하게 합니다.\n3) 안정시키고 보온에 유의합니다.\n4) 환자에게 상처나 혈액, 구토물을 보이지 않게 합니다.\n5) 원칙적으로 마실 것은 주지 않고, 줄 필요가 있을 경우라도 한번에\n많은 양을 마시게 해서는 안됩니다.\n6) 머리를 부딪쳤을 때는 반듯하게 눕히거나 아니면 머리 부분을\n약간 높여 줍니다.\n7) 안색이 창백할 때는 발을 높게, 붉을 때는 머리부분을 높입니다."], ["□의식이 없는 사람의 처치", "1) 의식이 없는 환자는 공기가 통하는 길(숨통)이 막혀 있는 경우가\n많으므로 숨통확보에 유의하고 수평으로 반듯이 눕게 합니다.\n2) 안색이 창백할 때는 발 쪽을 붉을 때는 머리 쪽을 높입니다.\n3) 머리를 부딪쳤을 때는 수평으로 반듯이 눕히거나, 머리를 약간\n높입니다.\n4) 구토가 있을 때는 토한 것 때문에 질식하는 경우가 있으므로\n옆으로 눕힌 혼수체위로 합니다.\n5) 환자의 상태 관찰은 부상자나 환자의\n관찰 방법\n6) 안정과 보온에 유의합니다.\n7) 물 같은 마실 것을 주어서는\n안됩니다."]]], ["p", "○ 응급환자 발생시 대처방법 - 의식확인"], ["t", [["□ 심 장\n상태확인", "▷ 심폐소생술을 실시하기에 앞서 환자가 숨을 쉬고 있는지,\n심장박동은 있는 지를 확인하여야 한다."], ["□ 심 장\n박동확인", "▷ 환자의 코와 입 가까이 귀를 대어 환자가 숨을 쉬고 있는지를\n확인한다.\n▷ 환자의 가슴을 보고 상하로 움직이고 있는 가 확인한다.\n▷ 환자의 목에 있는 경동맥에 손을 대고, 맥이 뛰고 있는 지를 확인\n한다."], ["□주의사항", "▷호흡과 심장박동 여부의 확인에 시간을 끌지 말고 최대한 빠른\n시간 내에(15초 이내)확인을 끝내야 하며, 확실치 않을 때는\n심폐소생술을 실시해야 한다."]]], ["p", "○ 응급환자 발생시 대처방법 - 심패소생술"], ["t", [["□ 심폐\n소생술", "▷ 갑작스런 심장마비이거나 사고로 인해 폐와 심장의 활동이 멈추게\n되는 때에 바른 속도의 심폐소생술을 실시해야 한다."], ["□ 심폐\n소생술\n중요성", "1) 우리 몸에 가장 기본이 되는 장기인 심장, 뇌, 그리고 그 외의\n장기에 산소를 공급하자는 데 있다.\n2) 가장 중요하게 기억해야 할 것이 시행하는 속도이며, 이것이\n또한 심폐 소생술의 성공여부를 결정하는 중대한 열쇠이다.\n3) 심장이 멈추게 되면 폐와 혈관속에 여분의 산소가 더 이상 순환\n될 수가 없으므로 이때 심폐소생술이 그 위력을 발휘할 수 있다.\n4) 심장과 폐가 멎고 나서 즉시 4분 이내에 심폐소생술이 시행되면\n거의 대부분에서 완전소생의 기회가 높다.\n5) 4∼6분 이상 혈액순환이 안되면 뇌에 손상이 올 가능성 이 크다.\n6분 이상 이러한 상태가 계속되면 거의 전부 에서 뇌의 기능이\n완전히 정지되고 생명을 잃게 된다.\n6) 유사시에는 무엇 보다도 중요한 것이 바로 심폐소생술을 해야\n하는지의 여부를 파악해야 하고, 필요한 경우로 판단되면 즉시\n올바른 심폐 소생술을 실시하여 환자를 소생시키거나, 혹은\n전문의료진이 도착할 때까지 생명을 연장 시켜야 한다."], ["□ 심 폐\n소생술의\n기 본", "▷ 기본적인 3요소는\n☆ 기도의 확보\n☆ 호흡\n☆ 순환\n▷ 환자의 상태를 파악하는 것 이 가정 우선\n☆ 환자의 의식상태 확인한다.\n☆ 환자가 생겼을 때는 부드럽게 흔들며 \"괜찮나요?\"\n하고 확인해 볼 일이다.\n☆ 환자를 관찰하는 과정에서 심장박동이 없거나,\n호흡이 없을 때는 바로 심폐소생술을 시행하여 전문\n의료진이 도착할 때까지 생명을 연장시켜야 한다."]]], ["p", "○ 응급환자 발생시 대처방법 - 심패소생술"], ["t", [["□ 초 기", "▷환자가 의식이 있는지 확인한다.\n▷주의의 도움을 요청한다.\n▷환자를 평평한 표면 위에 바로 수평되게\n눕힌다.\n▷심폐소생술을 실시한다.\n( 기도유지, 호 흡, 순환 )"], ["□ 기도의\n유 지\n(Airway)", "▷가장 중요한 소생술의 기본이다.\n▷무의식환자에서는 혀가 기도를 막는\n가장 흔한 원인이다.\n▷아래 턱을 앞쪽으로 올려서 혀를 앞쪽으로\n오게 하면 기도를 열게 할 수 있다."], ["□ 호 흡\n(Breathing)", "▷기도가 유지되어도 호흡이 멎으면 장기에\n필요한 산소가 부족 내지는 없어지게 된다.\n▷인공 호흡은 환자의 폐에 산소를 공급 하는\n기본이 된다.\n▷내쉰 숨에도 호흡이 없는 사람에게 필요한\n충분한 양의 산소가 있으므로 전문 팀에\n의한 인공호흡이 실시되기 전까지는 계속\n호흡을 유지시켜 주는 것이 이상적이다."], ["□ 순 환\n(Circulation)", "▷심장박동이 멎은 경우, 가슴을 압박하여\n다시 심장박동을 소생케 하려는 시도이다.\n▷혈액을 뇌와 다른 기본 장기에 공급하게\n된다. 인공호흡과 함께 실시해야 효과가\n있다."]]], ["p", "□ 구강 대"], ["p", "구강호흡"], ["p", "소생술"], ["p", "1)환자의 이마를 누르고 있는 손의 첫째, 둘째 손가락을 이용하여 환자의 콧구멍을 막는다."], ["p", "2)시술자가 숨을 크게 들여 마시고, 입에 대고, 숨을 빠르게 불어 넣는다."], ["p", "3)이 동작을 1분에 12번정도의 속도로 반복한다."], ["p", "4)바로 전에 언급했듯이 환자에게 충분한 양의 공기를 주입하기 위해서는 매번 숨을 불어 넣기 전에 시술자가 숨을 크게 들여 마셔야 한다."], ["p", "5)구강 대 구강 호흡법은 환자 자신이 완전히"], ["p", "정상적으로 숨을 쉴 때까지, 혹은 전문"], ["p", "의료진이 도착할 때까지 계속되어야 한다."], ["p", "6)숨을 불어 넣는 중에는 가슴이 오르락 내리락 하지 않으면 이는 숨구멍이 막혀 있다는 증거이다."], ["p", "이때는 환자의 아래턱을 앞으로 당겨서 다시"], ["p", "시도하여야 한다."], ["p", "7)입을 통한 인공호흡이 어려운 경우에는"], ["p", "환자의 목을 받치고 있던 손을 떼어서"], ["p", "환자의 입을 막고, 환자의 코를 통해서 숨을"], ["p", "불어 넣어 주며, 숨을 불어 넣은 후에는 입을"], ["p", "막은 손을 떼어서 공기가 밖으로 나오도록"], ["p", "한다. 이 동작을 1분에 12회 반복한다"], ["p", "□ 입 대 코"], ["p", "8)유아나 영아인 경우에는"], ["p", "머리를 어른에서와 같이 심하게 뒤로 젖히지"], ["p", "말아야 하며, 코와 입을 동시에 사용해서"], ["p", "1분에 20회 정도의 속도로 공기를 불어 넣어"], ["p", "준다."], ["p", "○ 응급환자 발생시 대처방법 - 인공호흡"], ["p", "○ 응급환자 발생시 대처방법 - 기도유지"], ["t", [["□ 기도의\n유지", "1)앞에서도 언급했듯이 환자를 방바닥 이나\n땅위 같은 단단한 곳에 바로 눕힌다."], ["□ 기도의\n유지", "2)입안 및 목구멍 깊숙히 손가락을 집어 넣어\n이물질을 제거한다."], ["□ 기도의\n유지", "3)한손은 환자의 목을 받치고, 다른 한\n손으로 이마를 짚고 아래로 눌러서 머리를\n젖히는 효과를 얻으면 기도를 열게 할 수\n있다.\n▶환자가 목을 다쳤다는 생각이 들면 목을\n움직이지 말아야 한다."], ["□ 심 장\n마사지", "▷ 심장이 멎고 4-6분 이상 뇌에 혈액이 보내지지 않으면\n뇌는 산소부족에 약한 까닭에, 설령 심장이 다시 움직이기 시작\n해도 뇌의 활동은 원상으로 회복되지 않습니다.\n이럴 때는 즉시 인공호흡과 심장마사지를 실시하여 심장으로부터\n혈액을 보내 주지 않으면 안됩니다."]]]], "k": "ems"}, {"t": "가스 누출사고 발생 시", "items": [["p", "1. 가스 누출(漏出) 사고란?"], ["p", "■ 가스시설이나 용품? 기기 등에서 가스(GAS)가 누출되는 것으로써 폭발, 화재 또는 질식을 수반하지 않은 것을 말한다."], ["p", "2. 가스 누출 사고 시 대처요령"], ["p", "가. 유독가스 누출사고 시"], ["p", "1) 가스사고를 발견하면 즉시 인접SE, 계약처에 상황을 전파한다. (행정기관에 통보는 계약처와 협의 후 결정)"], ["p", "2) 바람방향을 고려, 오염지역을 판단하여 안전지대로 신속히 이동한다."], ["p", "3) 대피시는 개인 보호장비를 착용하고 피부노출을 최대한 피한다."], ["p", "▷ 대피시 사고지점 가까이에서는 바람이 불어오는 방향으로 멀리 떨어진 지역에서는 바람이 불어오는 직각 방향으로 대피한다."], ["p", "▷ 건물이나 실내 대피시 통풍을 막기 위해 창문, 출입문을 밀폐한다."], ["p", "▷ 오염지역내의 식수, 음식물은 먹지말고 오염시설, 장비를 만지지 않는다."], ["p", "▷ 응급처치 요령"], ["p", "* 가스흡입 시 우선 통풍이 잘되는 안전지대로 이동하고 보온을 유지 및 인공호흡을 실시한다 ."], ["p", "* 오염이 심한 경우 인공호흡을 하면서 신속히 병원으로 후송한다."], ["p", "* 가스가 피부에 묻은 경우 오염 부위를 깨끗한 물로 15분 이상 세척 후 청결한 붕대 등으로 싸서 의사의 치료를 받는다."], ["p", "* 가스가 눈에 들어간 경우는 물로서 약 15분간 씻어 낸다."], ["p", "(가급적 2% 농도는 붕산수로 세척하기)"], ["p", "나. 폭발성가스 사고 시"], ["p", "1) 사고발생시 인접SE ,계약처계약처에 상황을 전파한다. (행정기관에 통보는 계약처와 협의 후 결정)"], ["p", "2) 신속히 피해 범위를 벗어난다."], ["p", "3) 대피시 풍향을 고려하여 사고지점에서부터 후방지역은 바람 반대 방향으로, 측방은 바람 방향의 직각 방향으로 대피한다."], ["p", "4) 주변의 화재, 위험물질을 제거하고 소방대책을 강구한다."], ["p", "5) 응급처치요령"], ["p", "▷ 가스를 대량 흡입 시 신선한 곳으로 옮기고 호흡곤란 시"], ["p", "▷ 인공호흡,산소호흡 등을 실시한다."], ["p", "▷ 피부에 묻어 동상 증상이 있을 때는 냉수 등으로 서서히 따뜻하게 한다."], ["p", "▷ 피부에 화상을 입었을 때는 냉수 등으로 30분 이상 식히고 환부를 가제 등으로 보호 조치한 후 후송한다."], ["p", "3. 가스누출 (漏出) 사고 시 유의사항"], ["p", "□ 사업장내 전 SE 및 계약처 담당 부서에는 발생 즉시 전파한다."], ["p", "□ 관련기관 통보는 계약처와 협의 후 결정한다."], ["p", "1) 상황을 신속히 전파 한다."], ["p", "2) 주변 전기 및 화기사용 작업을 금지 시킨다.(사고즉시 확인한다)"], ["p", "3) 전등.스위치 등 전기 및 화기관련 조작은 절대로 하지 않는다."], ["p", "4) 누출장소에 사람이 있는지 확인한다."], ["p", "5) 누출장소에 출입 시는 산소호흡기를 착용한다."], ["p", "6) 바람부는 방향으로 신속히 이동 한다."], ["p", "7) 공조기 가동 시 누출장소를 집중적으로 배출한다.(배기만 가동)"], ["p", "8) 가스사고 시 출입을 통제하고 인원을 분산시켜 안전지대로 대피 시킨다."], ["p", "9) 실내, 지하에서 발생했을 시는 즉시 실외 또는 지상으로 대피하여야 한다."], ["p", "10) 멀리 있을 때는 바람이 불어오는 직각 방향으로 이동한다."], ["p", "11)건물이나 실내로 대피할 경우 공기가 들어오지 않도록 문틈을 막는다."], ["p", "12) 오염된 지역에서 음식물, 식수 취식 금지 한다."], ["p", "13) 전문가, 전문처리 반에서 처리할 수 있도록 접근금지 등의 안전조치를 시킨다."], ["p", "14) 오염환자는 응급조치 후 신속하게 후송 시킨다."], ["p", "15) 호흡기와 피부를 최대한 보호한다. (방독면, 비닐, 물수건 이용)"], ["p", "□ 방독면 사용법"], ["p", "* 방독면을 휴대한다."], ["p", "* 방독면의 입구부를 개방한다."], ["p", "* 방독면을 꺼내어 턱부터 얼굴 순으로 뒤집어 쓴다."], ["p", "* 끈으로 고정시키고 흡 입구를 손으로 막아 흡입상태를 확인한다."], ["p", "16) 누출장소에 출입 시 충분한 환기를 시킨 후 출입한다."], ["p", "4. 가스사고 발생가능 지역 및 점검 사항"], ["t", [["장 소", "사고발생 가능사유", "사전점검사항", "관련부서"]]], ["p", "◇ 별첨 # 1. 가스 누출사고 시 비상연락 체계도 별첨 # 2. 가스 누출사고 시 대처방안 별첨 # 3. 가스 누출사고 시 (성공&실패) 사례연구 가스 누출사고 발생시 대처방안 별 첨 # 2"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "▷ 최초 발견자는 신속히 유,무선을 이용하여 상황을 전파\n한다. [ ○라인 ○○지점 A급 가스발생 ]\n▷ 대피유도와 위험성 정도를 판단할 수 있도록 A B 로\n구분한다.\n☆ A급( 유독가스,폭발성가스 유출) =매우 위험 신속\n대피 요망,\n☆ B급(모름) = 위험 신속대피요망", "보안요원 or\n계약처 임직원"], ["상황전파", "▷ 지원자는 방독면을 착용하고 현장에 최단시간에 투입\n한다.\n▷ 휴대장비 - 방독면, 랜턴(야간),위험표시(안전 띠,표지판)\n무전기, 출입문 키(카드) 등", "보안실 책임자\n(or 선임자)"], ["조치요령", "▷ 상황접수 즉시 상황을 전파하고 비상연락망 가동 및\n관련기관, 관계부서에 통보한다.\n▷ 휴대장비 - 방독면, 랜턴(야간),위험표시(안전 띠,표지판)\n무전기, 출입문 키(카드) 등 지참하고 현장 출동한다.\n▷ 현장으로 출동하여 방독면을 착용하고 인원접근을\n통제와 입주자를 대피시킨다.\n▷ 상황에 따라 인접 사업장에 지원을 요청하고,응급환자\n구출과 후송업무 및 제독차,구급차 유도 등 교통정리를\n한다.", "보안요원\n계약처 임직원"], ["참고사항", "▷ 방독면 착용법\n☆ 방독면에 있는 끈을 이용하여 어깨와 허리에 걸쳐\n고정시킨다.\n☆ 방독면을 턱에서부터 머리위로 뒤집어 쓴다.\n☆ 방독면 끈을 적절히 조정하여 얼굴부위와 최대한\n밀착 시킨다.\n☆ 두건을 어깨 아래부분까지 내려쓴 후 겨드랑이\n사이로 띠를 고정시킨다."]]]], "k": "gas"}, {"t": "보안사건 발생 시", "items": [["p", "1. 보안 사건이란?"], ["p", "■ 회사가 보유하고 있는 지적 재산권, 영업비밀, 기술 및 경영상 내용, 문서, 책자, 도면 CD, 디스켓, HDD, 사진, TAPE, 전산시스템, 영상매체, 시설, 기타 경영상 보호를 받아야 할 제반 내용들이 밖으로 유출 되는 것을 말한다."], ["p", "2. 보안 사건의 종류"], ["p", "가. 산 업 스 파 이 : 기업활동을 위해 보호할 가치가 있는 인원, 문서, 시설, 기술 등 제반 산업기밀이 관계없는 자에게 누설 되는 것이다."], ["p", "나. 비밀 정보 유출 : 기업비밀 그 내용을 알아서는 안될 불특정인에게 공개되어 기업의 안전과 이익에 해를 끼치는 사항을 말한다."], ["p", "다. 정보 자산 유출 : 회사의 존재하는 유무형의 자산을 담은 극비, 대외비, 일반서류 등 내부/외부로 반출·유출 시키는 것을 말한다."], ["p", "라. 시설 보호 위반 : 불순한 목적을 가진 사람이 회사의 시설파괴, 기밀자료에 대한 무단 누출을 목적으로 사진촬영, 도청, 육안으로 익히려 하는 행위를 말한다."], ["p", "3. 보안 사건 예방을 위한 업무 처리 기준 (사업장에서 운영 中인 내용 및 기준 기재)"], ["t", [["구 분", "예방을 위한 업무 처리 기준", "관련근거"], ["정문 &\n각 출입문", "□ SE는 모든 인원에 대하여 사원증, 방문증. 출입증\n여부를 확인하여 출입자를 확인한다.\n□ 사전에 위장 입문자를 색출한다.\n□ 인원, 차량 검문 검색을 철저히 한다.\n□ 검색 후 가방이나 물건 등은 전자 감음 장치, 금속\n탐지기, 등 장비에 의해 Check 한다.\n□ 필요 시 실장, 팀장 or 인접 SE에게 전파하여 지원\n요청을 받는다.\n□ 장기간 반출 품목(Note PC 등)에 대하여는 회사\n규정에 의거 반출(스티커 부착, 반출증 확인 등)\n□ 보안 물품의 예\n▷ 각종 PC류 (Note PC, Desk Top 등)\n▷ 각종 저장 매체 (CD, Diskette, USB메모리 등)\n▷ 개발 업무 관련 (개발부품, 설계회로도, 도면,\nTEST 결과 등)\n▷ 회사 경영계획 및 대외비 문서 등\n▷ 계약처 규정의 비밀 문서 등"], ["순회(순찰) 中", "□ 시설물에 대한 사진촬영자가 있을 경우 사진 촬영\n허가 여부를 확인하여 조치한다.\n□ 항상 결례되지 않도록 대응한다.\n□ 직원과 업체 인원의 대화 내용을 귀담아 듣는다.\n□ 계약처 내 산업 스파이 색출을 위한 정보수집\n활동을 한다.\n□ 출입문 및 회사 주위 배회자는 신분확인 후 조치한다.\n□ 작업자에 한하여 담당자 감독아래 작업하도록 한다.\n□ SE는 보안규정을 숙지하여 업무에 차질이 없도록\n한다."]]], ["p", "4. 보안사고 발생(적발) 시 대처요령 (사업자에서 운영 中인 기준 기재)"], ["p", "가) 위반자(또는 범인)가 도주하지 못하도록 도주로 차단 및 경계 근무를 강화 한다."], ["p", "나) 필요 시 실장, 팀장 or 인접 SE에게 전파하여 지원 요청을 받는다."], ["p", "다) SE는 적발된 자에게 욕설, 비방 결례 되는 행동을 하지 않는다."], ["p", "라) 팀장,선임자는 사고 보고서를 작성한다. (6하 원칙)"], ["p", "마) 계약처 담당 부서장에게 필히 연락하여 인계하며, 부재 시 당직자에게 연락한다."], ["p", "◇ 별첨 # 1 . 보안사고 발생 시 비상연락 체계도 별첨 # 2 . 보안사고 발생 시 대처방안 별첨 # 3 . 보안사고 발생 시 (성공&실패) 사례연구 보안사고 발생 시 대처방안 별 첨 # 2"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 보안관련사고가 발생하면 우선 사고자의 신병을 확보\n하고 해당POST 선임자에게 통보한 후 해당 팀장에게\n사고내용을 보고한다", "보안요원 or\n계약처 임직원"], ["상황전파", "□ 해당팀장은 사고의 輕重에 따라 실장이나, 지점장에게\n보고한 다음 관련부서인 보안그룹에 우선 유선 통보를\n한다", "보안실 책임자\n(or 선임자)"], ["조치요령", "□ 해당팀장이나 POST 선임자는 사고내용을 확인한 다음\n사고자에게 사고발생경위를 작성하도록 한다\n사고자 확인 시 강압적인 자세를 자제하고 친절하고\n부드럽게 조치하도록 한다\n사고경위를 작성하면 선임자는 해당팀장에게 사고자를\n인계하며, 팀장은 담당부서인 보안그룹에 보고한 후\n사고자를 인계 조치한다\n사고자 인계가 끝나면 사고 해당 POST의 선임자나\n또는 해당팀장은 보고서를 작성하여 지점장에게 보고\n한 후 조치 결과를 보안그룹에 통보한다.", "보안요원\n계약처 임직원"]]], ["p", "사례 연구 (성공 및 실패 사례)"], ["p", "별 첨 # 3-1"], ["t", [["성공사례 1", "제품 절도사건 적발"], ["[ (발생원인) ]\n▷ (주)ㅇㅇㅇㅇ의 박00 대리가 12월10일 14:30분경 VIP CENTER내에서\n전일 행사(가치혁신 발표회) 정리정돈 관계로 인부 2명과 용달차량을\n입문시켜 정리를 마친 후 용달차량을 이용하여 ㅇㅇㅇ 2대와 ㅇㅇㅇ\n1SET(4BOX)를 센터 건물 지하 쪽문에서 적재하여 출문 하였음.\n▷ VIP센터 보안요원 ㅇㅇㅇ는 현장을 목격하고 이를 수상히 여겨 차량이\n출문하는 출입문으로 신속히 연락하였으나 워낙 물류량이 많은 시간대인\n관계로 정확한 추적이 어려웠슴\n전부터 제품 이동 경로에 의문점을 발견하고 몇일 전 순찰 중에 지하에\n보관되어 있던 제품들의 품명과 생산번호(S/N)를 기록해 둔 데이터를 근거로\n퇴근 후 ㅇㅇPOST 있는 반입 확인증 과 차량 행선지 카드, 반출증 등을\n확인한 결과 이들은 ㅇㅇㅇ 연구소에 근무 중인 같은 회사 김00팀장\n(ㅇㅇㅇㅇ)과 모의하여 반출증을 작성한 다음 정상적인 경로를 통해 각자\n자신들의 집으로 제품들이 반출된 사실을 확인 함"], ["[ 성공 Point (잘한 점) ]\n▷ 보안요원으로써 어떠한 보안에 관련된 미세한 문제 또는 의문점이\n발생하더라도 무시하지 않고 다시 확인하는 자세\n▷ 보안사고가 발생했다고 판단된 경우 결코 포기하지 않고 끝까지\n찾아내어 문제점을 도출해내는 근성있는 자세와 책임감\n▷ 비록 정상적인 경로를 통하였다고는 하나 규정의 맹점을 이용한\n지능적인 범죄임을 인식하고 신속히 조치함으로써 계약처의 재산유출을\n방지함"]]], ["t", [["실패사례 1", "반출사고 발생 시 발생된 Complain 사례"], ["▷ 0000년 0월 00일 19:00시경 ㅇㅇ사업장의 ㅇㅇㅇ 차장이 ㅇㅇㅇ에서\n업무를 마치고 출입문으로 통과하는 과정에서,대외비 보안문서를 반출증 없이\n나가려다 보안요원에게 적발됨.\n▷ 보안요원은 보안문서임을 ㅇㅇㅇ 차장에게 알린 다음, 해당 보안 Team장에게\n본 사실을 알리고 조치를 부탁하였음.\n▷ 보안 Team장은 본 내용을 경청한 다음 상황보고서를 작성하고 ㅇㅇㅇ 차장\n에게는 사고경위서를 작성하도록 요청하였으나,\n▷ ㅇㅇㅇ 차장은 매우 불쾌한 듯 \"내가 무슨 범죄자냐! 내가 왜 이런 것을\n작성해야 하냐!\" 하며, 작성을 거부하였음.\n▷ 또한, 며칠 후 본 건과 관련하여 보안요원의 자세와 태도 등 고객응대에 대한\n항의성 메일을 보안부서장에게 발송함."], ["[ 시사점 (응대 시 문제점) ]\n① 사업장 출입관리 규정에 대하여 충분한 설명없이 사고처리에만 급급하였고,\n② 사고처리 시에도 서로 떠넘기기 식으로 업무를 처리함에 따라 시간 지연\n③ 또한, 경위서 작성 시에도 왜 작성해야 하는지 등에 대한 충분한 설명이\n없었을 뿐만 아니라, 경직되고 명령조의 언어 사용 등"], ["[ 응대 요령 ]\n▷ 보안요원 : ㅇㅇㅇ 차장님! 실례지만 보안문서 반출증은 발급 받으셨습니까?\n▶ 고 객 : 아니, 없는데요! (or 아니, 못 받았는데요!)\n▷ 보안요원 : 업무가 바쁘셨나 봅니다. 대외비 문서의 경우엔 회사의 재산\n보호를 위하여, 번거롭더라도 보안문서 반출증을 발급\n받으셔야 합니다.\n▶ 고 객 : 내 물건인데, 왜! 반출증이 필요 한거죠!\n▷ 보안요원 : 차장님의 물건일지라도 사내에 대외비로 분류되는 서류 및\n물품은 반출증을 첨부하여 반출입이 되고 있습니다.\n불편하시더라도 담당 부서에서 반출증을 발급받아 주셨으면\n합니다.\n▶ 고 객 : 몰랐던 사실이네.알겠습니다.반출증 양식 받아 오면 되는 거죠!\n▷ 보안요원 : 네! 맞습니다.귀찮더래도 앞으로도 부탁 드리겠습니다.\n감사합니다.\n(당사 업무 처리상태에 대하여, 좋은 느낌을 받을 수 있도록\n응대)"]]]], "k": "secu"}, {"t": "매스컴 대응 시", "items": [["p", "1. 언론 대응 목표"], ["p", "■ 위기 사황 발생 시 신속하고 현실 적합한 대응으로 기업이미지 손상을 예방하고 기업가치를 보호 하는데 있다."], ["p", "2. 대 언론 대응 방법"], ["p", "가. 대 언론 대응 필요성"], ["p", "□ 기업은 사적인 존재로서 기업의 영리 활동과 사회적 존재로서 기업행위 사이에는 끊임없이 마찰이 생기게 되므로 순조로운 기업행위를 영위하기위해 기업은 사회와 우호적인 분위기를 조성하고 다양한 사회집단의 이해와 협조를 구해야 할 필요성이 생기며 그렇지 못할 때 기업활동은 크게 지장 받게 되는데 이같은 장애를 제거하고 예방하기 위해 기업이 외부를 향해서 펴 나가는 것이 홍보의 역할이다."], ["p", "결국 홍보는 즉 커뮤니케이션 활동으로 사회가 이해해 주기를 바라는 정보를 사전에 알아 명확한 형태로 알려 나가는 활동이며 커뮤니케이션의 사회 대중적 수단이 매스컴 또는 언론매체를 활용하고 언론에 효과적으로 잘 대응해 나가야 함은 기업에 있어서는 불가피한 사실이라고 할 수 있다."], ["p", "나. 대 언론 대응자세"], ["p", "□ 기업이 기업활동과 직간접으로 관련되는 사회환경과 우호적 관계를 설정하고 효과적 정보제공을 위해 언론을 활용 한다고 한다."], ["p", "이때 기업은 기자들과 교제, 접촉을 통해 적극적인 인간관계를 조성하도록 한다."], ["p", "한편 이들을 대응하는 담당자는 담당부서의 사항은 물론이려니와 업계 및 경제 정세와 기타 산업분야 등 다방면에 걸친 고른 지식을 갖춰야 하며 이외에도 대응방법 및 자세 등에 대한 숙지가 사전에 이루어져야 한다."], ["p", "다. 언론의 속성"], ["p", "□ 신문, 잡지, 방송사 등의 대중매체는 일종의 사업행위를 영위하는 집단으로 언론사 취재기자들은 새로운 기사를 찾기위해 많은 정보원을 필요로 하며 모든 정보에 대해 지대한 관심을 보이며 우리와 제일 먼저 접촉하려 한다는 사실을 인식 할 필요가 있다."], ["p", "언론의 중요한 속성 중에 하는 데드라인 이다."], ["p", "▷ 데드라인 이란?"], ["p", "기사원고가 제출되어야 하는 마감시간으로 기자들은 기사 마감 시간 내에 자신이 보도하고자 하는 정보를 기사작성해서 제출 해야 하는데 우리는 취재를 통제하는 입장이고 보니 당연히 마찰이 생기는 것이다."], ["p", "언론의 사회적 공공적 성격에도 주목해야 한다."], ["p", "현대사회에서 언론은 사회적 책임과 역할은 중요하다고 기자들은 생각하고 있어 자신에 대한 긍지와 자존심, 사명감이 매우 높은 편으로 언론은 항상 공공성에 바탕을 두는 내용의 보도를 하는 것으로 인식하고 있다."], ["p", "라. 바람직한 응대자세"], ["p", "1) 전임직원이 홍보맨이다."], ["p", "□ 홍보전담 부서뿐만 아니라 최고경영자에서 SE요원까지 기자들과 부담없이 만날 수 있는 전임직원이 홍보맨이다라는 인식하에 기자들을 상대할 수 있도록 언론에 대한 상식과 기자를 상대하는 자세를 기본적으로 공부해두는 것이 좋다."], ["p", "2) 주저없이 취재에 응한다."], ["p", "□ 어느 매개체의 기자는 누구인가? 등 소속을 확인하고 대외비가 아닌 개략적 내용에 대해서는 솔직하게 대답해주는 자세가 필요하며 만약 기밀, 영업과 관련된 곤란한 내용은 상급부서나 홍보부서와 연락을 취하여 조치 하거나 몇시까지 내용이 필요하십니까? 등의 방법으로 시간을 요청하도록 한다."], ["p", "홍보부서에 연락하여 답변할 내용을 준비하도록 하는 것도 잊어서는 안된다."], ["p", "3) 인간적 관계를 구축하라."], ["p", "□ 기자의 방문이나 취재 시 응할 때가 이들과 인간적 관계를 구축 할 수 있는 첫 단계라는 사실을 생각해야 한다."], ["p", "때로는 기자가 기사라는 먹이가 없어 배고픔을 느낄 때 기업은 자사와 관련없는 타 업계나 타사의 일이라 할지라도 취재를 도울 수 있는 아이디어를 제공할 수 있으면 좋다."], ["p", "이것이 바로 기자를 자기 사람으로 만드는 지름길이며 인간적 신뢰감을 느낄 것이다."], ["p", "마. 응대 시 유의사항"], ["p", "1) 추측기사로 인한 오보 가능성에 유의하라"], ["p", "□ 기업이 대외적으로 밝히는 것을 꺼리는 내용이 있을 수 있다."], ["p", "항상 명확하고 명료한 표현을 구사하여 기자의 오해를 유발할 수 있는 발언은 삼가 해야 한다."], ["p", "“결정되지 않았다”등과 같은 애매한 표현으로 기자의 상상에 화법은 추측기사나 오보의 원인이 된다."], ["p", "2) 취재 전에 응대계획 및 준비를 꼼꼼히 하라."], ["p", "□ 기자들이 참석을 요청할 경우가 있을 때에는 사전준비는 다음과 같은 개념에 입각 하도록 한다."], ["p", "우선 사전에 관련된 전 부서에 방문사실을 알려 주어 조금의 실수라도 발생할 여지가 없도록 하며 홍보책임 부서는 해당 언론 매체의 보도 성향 등을 분석하여 이에 맞는 정보를 보여 줄 수 있도록 준비한다."], ["p", "기자에 대해서는 어느 정도까지 대접할 것인가? 어떤 서비스를 하여 줄 것 인가를 사전 교육하여 준비하면 좋다."], ["p", "사전적이고 예방적인 홍보의 역할을 수행해 나가야 한다."], ["p", "3) 위기 상황 관리"], ["p", "□ 위기상황이란 폭발, 독극물, 물건에 대한 외부에 대한 공격 또는 물건이 침입자에 대하여 도난당 했을 때 사고 등과 같은 기업의 부주의로 인한 사고로 기업의 정상적인 업무가 마비되고 언론의 주목을 받아 기업 이미지나 영업능력에 심각한 타격을 입게 되는 경우 같은 상황을 말하며 방치해둘 경우 언론보도로 사회문제로 비화되어 파문이 확산 될 수 있으므로 기업은 즉각적이고 조직적인 대응을 할 필요가 있다."], ["p", "우선 기업은 기업내외부에서 발생될 가능성이 있는 기업의 위기요인을 파악해 두어야 한다."], ["p", "그에 따른 이해 집단의 관심사 및 언론보도의 향방에 대해 역대 발생한 유사자료를 수집해서 분석해 위기상황의 발생가능성을 사전에 방지하는 한편 대처하는 방법을 매뉴얼화한 위기관리계획의 사전 수립이 필요하다."], ["p", "□ 위기상황이 발생하게 되면"], ["p", "▷ 사태의 현황을 파악함과 동시에 위기관리 방향을 설정한다."], ["p", "▷ 즉각 사태해결에 돌입 할 수 있도록 한다."], ["p", "▷ 기자들에게 우선 친절하며 감정 및 마찰이 없도록 해야 한다."], ["p", "▷ 홍보부서 및 관련부서에서 우선통보 하여 대응하며 처리하도록 한다."], ["p", "▷ 언론매체명과 차량번호, 인원을 재빨리 파악하여 보고하고 상급부서의 지시를 받는다.."], ["p", "▷ 사업장 외부 촬영 시 통제를 하되 마찰이 없도록 하여 사안에 따라 융통성 있는 근무를 하도록 한다."], ["p", "▷ 경어를 사용하여 간단한 커피를 대접하면서 친밀감을 표하고 가급적이면 시간도 지체하여 대응하면 좋다."], ["p", "▷뉴스가치가 높거나 사안이 중요할 때 방문하여 우리 SE들과 종종 마찰을 일으켜 대응이 부족한 편이다."], ["p", "□ 기자들의 속성"], ["p", "▷석사출신과 박사출신의 상당수 고학력으로 지적호기심과 프라이드가 높다."], ["p", "▷ 일반기업체에 비해 상당히 높은 수준의 임금을 받고 생활과 문화수준이 남보다 높다고 생각한다."], ["p", "▷ 자기직업에 대하여 높은 긍지와 자존심을 가지고 있다."], ["p", "▷ 국민과 사회의 대변자로서 사회적 사명의식이 높은 편이다."], ["p", "▷ 지나친 자부심으로 건방지고 예의바르지 못한 사람이 많다."], ["p", "▷ 쎈세이셔널한 특종기사를 좋아하고 남에게 대접받기를 좋아한다."], ["p", "3. SE의 대 언론 대응 요령"], ["p", "가. 취재 대응시 마음가짐"], ["p", "1) 취재기자에 부담없이 대하고 즉시 계약처에 연락 후 계약처의 지시에 의거 대응한다."], ["p", "(어떠한 경우에도 임의처리 금지)"], ["p", "2) 뛰어난 척 하거나 반대로 주눅이 들면 안되고 성실하고 자연스러운 태도 및 솔직하게 대화를 한다."], ["p", "3) 범위를 벗어나지 말고 간단 명료하게 한다."], ["p", "4) 여유를 갖고 격의없는 대화를 해야 한다."], ["p", "5) 인터뷰에 응할 시에는 자신이 얼마만큼 시간이 있는지를 먼저 알려 줘야 차후라도 기자의 마음에 좋은 인상이 남는다."], ["p", "6) 전화질문 취재 시에는 회사로 직접 방문해 주도록 요청한다."], ["p", "7) 응대 시 시종 미소와 겸손한 언행으로 정중하게 맞이한다."], ["p", "8) 사안 확대 및 악화방지를 위하여 계약처에 즉각 보고한다."], ["p", "나. 사업장 방문 시 대응방법"], ["p", "□ 언론사 취재차 방문 시"], ["p", "▷ 최대한 친절하게 관련부서 담당사원 또는 담당 부서장에게 신속하게 통보하여 대응하도록 한다."], ["p", "▷ SE요원이 직접 대응하여 마찰로 인한 문제가 발생하지 않도록 한다."], ["p", "▷ 언론사명, 인원수(신분 파악 시), 방문시간, 기타 업무일지에 기록한다."], ["p", "▷ 상황보고는 순서에 입각하여 신속하게 한다."], ["p", "□ 외부에서 건물 촬영 시"], ["p", "▷ 외부에서 건물 촬영 시 신속하게 담당사원 또는 부서장에게 언론사명, 촬영위치를 통보하고 신속하게 대응토록 한다."], ["p", "※ 주의사항"], ["p", "▷ 외부에서 촬영 시 사업장 담당부서에 통보 조치 외 가급적 통제를 하지 않는 것을 원칙으로 업무 수행한다."], ["p", "□ 긴급사태(사건,화재 등)발생 시"], ["p", "▷ 피하지 말라"], ["p", "▷ 숨기지 말라"], ["p", "▷ 사건사고의 내용을 잘 모르는 시점이라도 책임자가 나와서 개요만이라도 설명할 수 있는 마음가짐이 필요하다."], ["p", "□ 언론 대응 시 행동 요령"], ["p", "▷ 기자의 방문이나 취재 시 소속을 확인하고 관련부서로 연락하여 관계자의 안내를 받도록 유도한다."], ["p", "▷ 적극적인 자세로 인간관계를 조성하고 우호적 관계를 유지하도록 한다."], ["p", "▷ 언변에 주의하고 언론에 대한 상식과 상담하는 자세를 기본적으로 공부해 두어야 한다."], ["p", "▷ 문의 시 대외비가 아닌 개략적 내용에 대해서는 솔직하게 대답해 준다."], ["p", "▷ 만약 기밀,영업과 관련된 곤란한 내용을 문의 시 본인은 알지 못하므로 계약처 담당부서 또는 홍보 부서로 연락을 취하여 대응케 한다."], ["p", "※ 필히 계약처 상기 사항에 대하여 알아도 답변을 하지 않는 것을 원칙으로 한다."], ["p", "다. 취재 대응시 주의할 점"], ["p", "1) 추측 기사 가능성을 없애기 위해 \"Yes, No\"로 확실히 대답한다."], ["p", "2) 기자 화법에 말려 논쟁과 화를 내지 않도록 한다."], ["p", "3) 확실하지도 않은 정보에 대한 발설은 회사를 어렵게 한다."], ["p", "4) 전화는 의사전달 실수의 근원이므로 전화취재는 가능한 피하도록 한다."], ["p", "라. 취재진 과잉 응대 및 저지로 인한 문제 발생 사례"], ["p", "1) 출입관리 미비로 무단출입 취재 발생"], ["p", "『ㅇㅇ 1공장 MBC 무단 취재 사전 Check 미비로 크레임 발생』"], ["p", "2) 취재진 도착 시 과잉제지, 보고지연으로 크레임 발생 『서울 ㅇㅇ 동 ㅇㅇ 빌딩 과잉제지 및 보고 지연으로 크레임 발생』"], ["p", "3) 겸손하고 정중하게 성의를 다하여 설득 취재기자 계약처 홍보팀 또는 관련부서로 안내 『사업장 취재기자를 사전에 발견 친절하게 안내로 관련부서로 안내 취재내용을 홍보팀 또는 관련부서에서 설명 사건 악화 예방』"], ["p", "매스컴 대응 시 대처방안"], ["p", "별 첨 # 2"], ["t", [["구 분", "내 용", "담 당"], ["□ 발견\n전파", "▷ 최초 발견자는 신속히 유,무선을 이용하여 상황을 전파\n한다. [ 에스텍 각대 ○○지점 언론 취재 ] 참고 바람\n▷ 신속히 접한 보안요원은 해당 부서에 신속히 연락 한다", "SE 또는\n계약처 임직원"], ["□ 언론의\n속 성", "▷ 새로운 기사를 찾기위해 많은 정보원을 필요로 하며 모든 정보에\n대해 지대한 관심을 보이며 우리와 제일 먼저 접촉하려 한다.\n▷ 기사 마감 시간에 자신이 보도 하고자 하는 정보를 기사작성해서\n제출 해야 하는데 우리는 취재를 통제하는 입장이고 보니 당연히\n마찰이 생기는 것이다.\n▷ 기자는 사회적 책임과 역할이 중요하다고 생각하고 긍지와 자존심,\n사명감이 매우 높은 편으로\n▷ 언론은 항상 공공성에 바탕을 두는 내용을 보도해야 하는 것으로\n인식하고 있다.", "보안실 책임자\n(또는 선임자)"], ["□행동요령", "▷ 기자의 방문이나 취재 시 소속을 확인하고 관련부서로 연락하여\n관계자의 안내를 받도록 유도한다.\n▷ 적극적인 자세로 인간관계를 조성하고 우호적 관계를 유지하도록\n한다.\n▷ 언변에 주의하고 언론에 대한 상식과 상담하는 자세를 기본적으로\n공부해 두어야 한다.\n▷ 문의 시 대외비가 아닌 개략적 내용에 대해서는 솔직하게 대답해\n준다.\n▷ 만약 기밀,영업과 관련된 곤란한 내용을 문의 시 본인은 알지 못\n하므로 상급부서나 홍보부서로 연락을 취하여 안내를\n받거나 몇 시까지 내용이 필요하십니까?등의 방법으로 시간을\n요청하도록 한다.\n▷ 홍보부서에 연락하여 답변할 내용을 준비하도록 한다.", "SE\n계약처 임직원"], ["□주의사항", "▷ 추측기사로 인한 오보 가능성에 유의하라.\n기업이 대외적으로 밝히는 것을 꺼리는 내용이 있을 수 있다.\n항상 명확하고 명료한 표현을 구사하여 기자의 오해를 유발할 수\n있는 발언은 삼가야 한다.\n▷ 취재 전에 응대계획 및 준비를 꼼꼼히 하라.\n사전에 관련된 전 부서에 방문사실을 알려 주어 조금의 실수라도\n발생할 여지가 없도록 한다.\n▷ 홍보책임 부서는 해당 언론 매체의 보도성향 등을 분석하여 이에\n맞는 정보를 보여 줄 수 있도록 준비한다."]]]], "k": "media"}, {"t": "대 테러 발생 시", "items": [["p", "1. 테러 란?"], ["p", "■ 정치적, 사회적 목적을 가진 개인이나 집단이 그 목적을 달성하거나 상징적 효과를 얻기 위하여 계획적으로 행하는 불법 행위를 말한다."], ["p", "2. 테러의 개념"], ["p", "가. '테러'란 한마디로 말하면 '정치적(이념적) 폭력'으로 정의되나 이념대립, 종교·민족갈등, 이해관계에 따라 논란이 많은 개념이다."], ["p", "나. 이유는 '테러'란 용어 자체가 내포하고 있는 '정치적 목적'과 '폭력'의 범위에 대한 한계를 명확히 구분하기 어렵고, 테러행위를 보는 시각에 따라 규탄 받을 범죄행위임과 동시에 자유전사들의 영웅적 행위로 칭송되는 상반된 견해가 제시될 수 있기 때문이다."], ["p", "다. 국제적으로 확립된 '테러'의 개념정의는 없으나 학자들의 주장과 우방국 관계기관 등이 정의한 내용을 보면 대체로 아래와 같은 공통되는 요소를 발견할 수 있다."], ["p", "1) 정치적 목적이나 동기가 있다."], ["p", "2) 폭력의 사용이나 위협이 따른다."], ["p", "3) 심리적인 충격이나 공포심을 불러일으킨다."], ["p", "4) 소기의 목표나 요구사항을 관철시키려고 한다."], ["p", "5) '자유 민주주의'라는 보편적 가치와 '자국의 국익'을 고려한다."], ["p", "□ 리마 증후군(Lima Syndrome) 이란 ?"], ["p", "▷ 납치 및 인질 테러사건에서 테러범이 인질들의 문화를 학습하거나 정신적으로 동화됨으로써 테러범 자신을 인질과 동일시하게 되어 결과적으로 공격적인 태도가 완화되는 현상을 말한다."], ["p", "□ 스톡홀름 증후군(Stochholm Syndrome)이란 ?"], ["p", "▷ 항공기 납치 등 인질 테러사건에서 인질범과 인질사이에 생성되는 감정적 전이현상"], ["p", "(transference)으로써 장기적으로 격리된 장소에서 인질범과 인질이 같이 생활하면서 같은 운명체라는 정서적 유대감을 갖고 협력하게 되는 것을 말한다."], ["p", "이 용어는 1973년 8월 스웨덴의 스톡홀름에서 발생한 은행강도 인질사건에서 유래되었다."], ["p", "3. 테러의 유형"], ["t", [["구 분", "내 용"], ["폭탄 테러", "□ 폭탄을 이용한 테러는 우편물에 폭발물을 숨기거나,건물 등에 폭발물을\n설치하거나 또는 폭발물을 차량에 탑재하여 목표물을 폭파시키는 형태가 있다.\n폭탄은 크기가 작은데다 여러 모양으로 위장이 가능하기 때문에 외관상으로\n식별하기가 곤란한 것이 특징 이다.\n일단 폭탄이 발견되면 어떠한 경우에도 손을 대지 말아야 하며 특히 폭발물에\n의한 직접적인 피해 못지 않게 대피 과정에서 혼란으로 인한 희생이 더욱\n클 수 있다는 점을 명심해야 한다."], ["항공기 테러", "□ 항공기 테러에는 항공기 납치, 항공기 폭파, 항공기 건물 충돌 등의 형태가\n있다. 항공기는 구조적 취약점과 공간적 폐쇄성으로 인해 적은 인원과\n단순한 무기로도 테러가 가능하기 때문에 테러 목표가 되기 쉽다.\n항공기 테러를 예방하기 위해서는 모든 탑승객이 테러 감시자가 되어야 된다."], ["시설 점거\n요인 납치", "□ 주로 치안 불안지역에서 발생하고 인질 몸값을 노리는 경우가 많으며\n장기적으로 진행되는 경우가 많다.\n시설 점거의 경우 구출작전 과정에서 부상당할 수도 있으므로 신변 안전\n확보가 매우 중요하다. 납치사건의 경우 몸값 지불 후 풀려 나는 사례가\n많아 인질 입장에서는 끝까지 살아 남는 것이 관건이라 할 수 있다."], ["구 분", "내 용"], ["시설 점거\n요인 납치", "□ 주로 치안 불안지역에서 발생하고 인질 몸값을 노리는 경우가 많으며\n장기적으로 진행되는 경우가 많다.\n시설 점거의 경우 구출작전 과정에서 부상당할 수도 있으므로 신변 안전\n확보가 매우 중요하다. 납치사건의 경우 몸값 지불 후 풀려 나는 사례가\n많아 인질 입장에서는 끝까지 살아 남는 것이 관건이라 할 수 있다."], ["화생방 테러", "□ 화생방 테러에는 치명적인 유독가스 등을 살포하는 화학 테러, 세균이나\n기타 병원체를 살포하는 생물테러, 폭발물을 이용해서 방사능 물질을\n살포하는 방사능 테러 등이 있다.\n화생방 테러는 신체에 특이한 증상이 나타나기 전에는 발생여부를 알지\n못하는 취약점이 있다.\n이같은 물질들은 흡입·접촉 등을 통해 감염되거나 오염되기 때문에 최대한\n빠른 시간 내 오염지역을 벗어나야 한다."]]], ["p", "가. 폭발물에 의한 테러"], ["p", "1) 폭발물이란? 어떤 화합물이나 혼합물이 열, 충격, 압력 등에 의하여 화학적 폭발을 일으켜 순간적으로 열, 압력, 가스등을 분출하는 물질을 폭발물이라 한다."], ["p", "2) 폭발물의 구성요소"], ["p", "가) 폭 약 : 다이나마이트, TNT, 콤포지션, 흑색화약 등"], ["p", "나) 뇌 관 : 전기식뇌관, 비전기식 뇌관"], ["p", "다) 전 원 : 건전지, 불꽃"], ["p", "라) 스위치 : 압력식 및 압력해제식, 인력식 및 인력해제식, 진동식, 시한식 등"], ["p", "3) 폭발물의 종류"], ["p", "가) 탄 약 : 인원, 장비, 구조물, 기타 군사 표적에 손상을 입힐 목적으로 제작된 폭발물 및 화학·생물학·방사선 작용제 등의 총칭."], ["p", "나) 폭 탄 : 일반적으로 인명의 살상과 구조물의 파괴를 위해서 항공기로부터 투하하는 폭발물 및 수류탄 등"], ["p", "다) 사제폭발물 : 인가되지 않은 비표준 폭발물로서 임의 제작된 일체의 폭발물을 말하며 주로 사회혼란 및 범죄 목적으로 사용되고 있습니다."], ["p", "□ 사제폭탄의 유형"], ["t", [["종 류", "내 용 설 명"], ["파이프", "□ 쇠 또는 PVC 만들어진 파이프에 마개가 달린 형이다.\n(도화선,시한장치,배터리로 구성)"], ["가방,박스", "□ 도시락 등과 같이 모양,크기,색깔 등이 다양하고 담배갑의 크기도 있다."], ["우편물", "□ 수신자 및 발신자 주소가 부정확하거나 소인 등이 복잡하고 견고한\n겉 봉투로 되어 있는 우편물은 일단 의심해 보아야 한다."], ["차 량", "□ 수천 파운드의 폭발물 운반이 가능하며 치명적이고 가장 손쉬운 방법,\n자동차 시트 뒤편,트렁크,연료탱크 등 어떤 곳이나 설치 가능하다."], ["기 타", "□ 소화기,휴지통,연료탱크,페인트,책 어떤 물건도 폭탄으로 위장 된다."]]], ["p", "□ 의심스러운 우편물 식별 및 조치요령"], ["t", [["구 분", "의심스러운 우편물 식별요령"], ["외관상 특징", "□ 통상의 우편물보다 과도하게 우표를 부착\n□ 수취인의 이름없이 직책만 표기(○○회사 사장 등)\n□ 친전, 취급주의, 긴급 등 수취인만 개봉토록 표기\n□ 글씨체가 조잡하거나 오탈자가 있음\n□ 발신자의 주소나 성명이 표기되어 있지 않음\n□ 발신자가 수취인과는 전혀 관계가 없는 인물\n□ 소인이 없거나 발신자 주소와 관할 우체국 소인 상이\n테이프나 끈 등으로 필요이상으로 튼튼하게 포장\n□ 포장지나 편지봉투에 기름얼룩이 묻어 있거나 변색\n포장지 외부로 끈이나 전선 등이 짧게 돌출"], ["중량 또는 냄새상\n특징", "□ 추정되는 내용물보다 지나치게 무겁거나 가벼움\n소포나 편지가 한쪽으로 무게가 쏠려 있음\n□ 편지폭탄의 경우 통상편지보다 무겁고 두툼함\n□ 외부에서 구두약이나 아몬드 향이 남\n□ 경우에 따라서는 자극성 있는 냄새가 스며나옴"], ["기타 특징", "□ 편지봉투가 부자연스럽게 단단하거나 탄력적임\n□ 소포의 내용물이 고정되어 있지 않고 덜거덕거림\n□ 시계소리나 액체의 찰랑거림 등 이상한 소리발생\n물체가 숨겨져 있는 느낌"]]], ["p", "□ 의심스러운 우편물 발견 시 조치요령 [주소지 및 발송명의 등을 추적 우편물 발송여부 확인 만일 규명이 불가능하거나 의심스럽다고 판단되면]"], ["p", "▷ 범인 조기검거 및 불필요한 사회불안심리 확산 차단을 위해 보안 유지 하에 우편물의 크기·모양·발신자·수신자 등 의심이 가는 내용을 종합하여 관련기관에 신속하게 통보하고"], ["p", "▷ 폭발물 처리요원이 도착하기 이전 모든 인원의 접근을 통제"], ["p", "* 관계기관 공무원도 폭발물 처리요원 도착이전 접근금지"], ["p", "▷ 개봉하지 말고 우편물이 위치한 사무실내 인원 대피"], ["p", "▷ 흙 또는 모래주머니를 우편물 주위에 배치"], ["p", "▷ 사무실의 모든 창문과 출입문을 개방, 폭발 시 피해 최소화"], ["t", [["구 분", "유 의 사 항"], ["발견 시", "▷ 손으로 만지거나 개봉하지 말 것.\n▷ 충격, 열, 마찰을 가하거나 흔들어 보지 말 것.\n▷ 파이프 같은 원통형 물건을 돌리지 말 것.\n▷ 나사식 뚜껑이나 끈 등을 절단하지 말 것.\n▷ 인화성 물질은 주의해서 제거한다.\n▷ 임무가 있는 사람도 안전장구 착용 한다."], ["발견 취급 시", "▷ 폭발물 등 위험물 발견 시 충격. 열. 마찰 등을 가하지 말고 있는\n그대로 보존하여 관계팀에 신고하여야 하며 임무가 있는 사람을\n제외하고 침착하고 신속하게 대피 시켜야 한다.\n▷ 폭발물 등 위험물을 발견하면 위의 사항을 준수 하여야 한다.\n▷ 폭발물 등 위험물을 제작하거나 사용하려는 사람은 즉시 신고하여야\n하며 SE 및 시설 및 중요부서 직원은 항상 의심을 가지고 주위를 잘\n살펴야 하고 통제 해야한다.\n▷ 폭발물은 뇌관과 분리되거나 전원(불꽃)이 없으면 촉발하지 않는다."]]], ["p", "5) 폭발물 발견 시 행동 요령"], ["t", [["구 분", "행 동 요 령"], ["최초 발견자", "▷ 신속한 상황 판단\n▷ 신속한 상황 전파\n*“폭발물 발견”이라고 2∼3회 큰소리로 전파\n* 유,무선을 이용하여 상황실에 전달 (신속, 정확, 명료하게)\n▷ 현장출동\n* 필요장비 착용 및 휴대(무전기, 랜턴, 안전표지판, 통제구역\n설치용 끈, 호각 등)\n* 통제구역을 설치하고 주위의 인원을 대피시킴."], ["상황 접수자", "▷ 상황접수 및 전파\n* 인접 SE에게 협조요청 한다.\n* 보관된 장비 즉시 배포 한다.\n* 관계부서에 즉시 통보(시설팀, 총무팀) 한다.\n* 책임자의 지시에 따라 행동 한다.(관련기관에 신고)\n상황에 따라 112신고\n▷ 안내 방송실 및 방재실에 지속적 방송의뢰 한다.\n▷ 현장출동 한다."], ["현장 출동자", "▷ 장비휴대 후 현장출동 한다.\n▷ 출입자 통제 및 잔류인원 대피 시킨다.\n* 통제구역 끈을 이용하여 출입을 통제\n* 안전표지판 설치.\n▷ 관계자 도착 시까지 현장보전 및 인원통제 한다.\n* 관계자 도착 후 안전한 지역으로 대피"]]], ["p", "6) 폭탄테러 협박 받았을 시 유의사항"], ["t", [["구 분", "유 의 사 항"], ["폭파 협박\n전화를 받을\n경우", "▷ 국가 주요시설이나 백화점, 지하철, 터미널 등 다중이용시설,\n항공기 등에 대한 협박전화에 시달리고 있고 이러한 사례가\n증가함에 따라 사회의 불안이 가중되고 공권력이 헛되이 낭비되는\n사례도 빈발하고 있는 실정이다.\n▷ 이상한 전화가 걸려 왔다고 해서 과민반응을 보일 필요는 없으며\n침착하게 전화를 받도록 한다.\n▷ 모르는 사람으로부터 전화가 걸려 올 경우 일단 의심해 볼 필요는\n있으며, 자신의 신원을 성급하게 상대에게 밝혀서는 안된다.\n▷ 국가 주요시설이나 다중이용 시설에 근무하는 사람이 폭파 협박\n전화를 받았을 경우에는 먼저 건물 내에 있는 사람들을 즉각 대피\n시키고 관련기관에 신고하여 도움을 받도록 해야 한다.\n▷ 폭파협박 전화가 자주 걸려 올 경우에도 절대 당황하지 말고 가능한\n많은 시간을 끌면서 다음과 같은 정보를 입수하도록 해야 한다."], ["폭파 전화\n접수 시\n확인할 사항", "▷ 폭파 예정시간 및 폭발물 설치장소\n▷ 폭파협박 동기\n▷ 협박자 성명 또는 나이\n▷ 전화가 걸려 온 시간 및 통화내용 메모\n▷ 관련기관 신고"]]], ["p", "7) 폭탄테러 협박 전화 접수 양식"], ["t", [["※주의 : ①침착하고, 과감하게 그리고 주의 깊게 청취할 것.\n②신고자가 말을 하고 있을 때 끼어 들지 말 것.\n③통화 중 상급자와 보안담당관에게 사전 약속된 신호를 보낼 것.\n■ 일자 : ■ 시간 :\n■ 협박 녹취내용"], ["질 문 사 항"], ["폭발 예정시간 :"], ["폭발물 설치장소 :"], ["폭발물 종류 :"], ["폭발물 모양 :"], ["폭발 장치 :"], ["신고자가 폭발물 설치 당사자인지 여부 :"], ["폭발물 설치이유 :"], ["신고자 성명 :"], ["신고자 주소 :"], ["공중전화를 이용하고 있는지 :"], ["위치 또는 전화번호 :"], ["신고자 성별 :\n□남 □여", "신고자 인종 :", "신고자 연령 :"]]], ["t", [["신고자 음성"], ["□ 침착\n□ 느림\n□ 목소리가 큼\n□ 일반적인 목소리\n□ 콧소리로 말함\n□ 신경질적인 음성\n□ 헛기침을 함\n□ 쉰 목소리", "□ 억양이 있음\n□ 화난목소리\n□ 빠른 속도로 말함\n□ 웃음섞인 목소리\n□ 또렷한 목소리\n□ 더듬거림\n□ 저음\n□ 심호흡을 함", "□ 위장한 목소리\n□ 친숙한 목소리\n□ 흥분된 목소리\n□ 부드러운 목소리\n□ 울음섞인 목소리\n□ 불분명하게 말함\n□ 혀 짧은소리\n□ 거친 목소리"], ["배경 소음"], ["□ 길거리 소음\n□ 주변 안내방송 등\n□ 자동차 소리\n□ 공장 기계소리\n□ 조용함", "□ 장거리 전화\n□ 찻잔 소리\n□ 사무실 비품 소음\n□ 동물 소리\n□ 가정집 소음", "□ 공중전화\n□ 통화자외 음성\n□ 수신기 잡음\n□ 지방 사투리 등\n□ 음악소리"], ["위협 용어"], ["□ 조리있게 말함(고학력)\n□ 비이성적\n□ 미리 작성된 메세지 읽기", "□ 저질스러움\n□ 녹음된 소리\n□ 일관성결여"], ["■ 기타사항\n전화종료 후 곧바로 지침대로 상급자와 보안담당관에게 보고하고 상급자 및\n보안 담당관의 지시에 의하지 않고서는 일체 타인에게 발설하지 말 것\n수신전화번호 : 수신자:"]]], ["p", "나. 생물학 무기에 의한 테러"], ["p", "1) 생물학 무기란? 국제 테러단체는 최소의 비용으로 최대의 효과를 달성하기 위해 탄저균 ·페스트·콜레라 등의 박테리아와 천연두·보툴리즘 등 10여종을 테러무기로 활용할 가능성이 있다."], ["p", "※ 1인당 살상비용이 탄저균은 1천원인데 비해 재래식 무기는 2만원 소요"], ["p", "2) 생물학 테러의 주요 병원체 종류 및 주요증상"], ["t", [["구 분", "주 요 증 상"], ["탄저균", "□ 노출된 후 6일 정도 지나면 매우 피곤하고, 기침이 나고, 가슴이 답답하며, 음식물 삼키기가 불편하다.\n□ 호흡곤란이나 근육마비 등의 증세가 나타나면, 1∼2일 내에 사망하게 된다."], ["페스트", "□ 세균 감염후1∼6일이 지나면 고열·오한·호흡곤란·두통·기침 시 피를 토하게 된다.\n□ 증상이 심해지면 2∼4일 뒤 사망하게 된다."], ["천연두", "□ 세균에 노출되면 2∼3일 뒤 온몸에 뾰루지가 나타나며, 12일 뒤 고열·\n피로 등의 증세가 나타난다.\n□ 증세가 악화되면 2주내 30%가 사망한다."], ["바이러스성\n뇌출혈", "□ 고열·근육통·오심·설사·가슴통증·쇼크·출혈 등\n□ 감염 일주일 뒤 에볼라의 경우 90%가 사망한다."], ["보툴리즘", "□ 상한 음식을 먹은 뒤 12∼36시간 내에 시야·발음이 흐려지고, 호흡·\n근육 마비 증상이 나타난다.\n□ 상태가 악화되면 24시간 내에 사망한다."]]], ["p", "※ 자연상태에서 쉽게 구할 수 있는 탄저균 3kg을 공중에 살포할 경우 한꺼번에 25만명을 살상시킬 수가 있기 때문에 테러 조직이 탄저균을 테러무기로 사용한다면 엄청난 피해가 예상된다."], ["p", "3) 탄저병 예방대책 감염 시 행동 요령"], ["p", "가) 탄저균이란? 흙속에 있는 탄저병 세균이 가축을 통해 사람에게 전염되는 질환이다."], ["p", "열에 강한 포자로 둘러싸여 있고, 공기를 통해서도 전염되기 때문에 강력한 테러 무기로 악용될 수 있다."], ["p", "나) 탄저병 증상은 탄저균이 분비하는 단백질 분해 독소에 의해 발생하는데 항생제도 특별한 효과가 없어 치사율이 높다."], ["p", "다) 감염 경로 및 잠복기"], ["p", "① 탄저균에 감염된 동물을 손으로 만지거나(피부), 동물 배설물에서 나온 탄저균 포자를 호흡하거나(호흡), 감염된 동물의 고기를 익히지 않은 채 섭취하는 경우(음식) 등이다."], ["p", "② 잠복기는 침입경로와 병원체 수에 따라 다르지만 평균 5일이다."], ["p", "라) 임상적 특징"], ["p", "① 호흡기를 통해 탄저균이 오염될 경우 치사율이 80∼90%로 가장 높은데 초기에는 감기 증상을 보이기 때문에 치료 기회를 놓칠 수 있다. 증세가 악화 되면 급격한 호흡곤란과 흉부 부종이 일어나 사망하게 된다."], ["p", "② 오염된 육류섭취 등을 통해 감염된 경우에는 복통·오한·구토·고열 등의 증상이 나타나는데 치사율은 25∼60% 정도에 이른다."], ["p", "③ 탄저균 포자나 균체가 피부를 통해 오염될 경우 벌레에 물린듯 가렵고, 감염된 피부에는 2∼3cm 정도의 종기나 수포가 형성되며, 2∼6일 이내에 검은색의 피부로 변하고, 20% 정도가 사망한다."], ["p", "마) 탄저균 살포방법"], ["p", "① 탄저균은 비행기 살포, 미사일 분말 살포, 우편물·음료수 등의 투입, 건물의 냉·난방 장치를 이용하여 살포된다."], ["p", "②최근 탄저균을 배양한 뒤 우편물에 넣어 배달하는 사례가 빈발하고 있는데 우편물에 있는 균을 흡입하면, 감염될 수 있다. 그러나 탄저균이 봉투 속에 있기만 하면 감염되지 않는다."], ["p", "바) 우편물 식별 및 처치요령"], ["t", [["우편물\n식별", "□ 모르는 사람에게서 온 우편물\n□ 발신자와 주소가 기재되어 있지 않거나 허위인 것 같은 우편물\n□ 수령인의 이름과 직책이 다른 우편물\n□ 활자가 잘못 찍혀 있거나 주소 등이 부정확하게 기입된 우편물\n□ 크기에 비해 무게가 무겁거나 한쪽으로 기울어진 우편물\n□ 딱딱하거나 부피가 큰 우편물\n□ 가장자리가 찌그러졌거나 표면이 울퉁불퉁한 우편물\n□ 「친전」「대외비」등의 문자를 유달리 강조하여 기재한 우편물\n□ 전선 또는 철사 줄이 엿보이거나 이상한 냄새가 나는 우편물\n□ 발송 주소와 다른 우체국 소인이 있는 우편물\n□ 우표가 과다하게 부착된 외국 우편물\n□ 봉투를 비닐·테이프·줄 등으로 과다하게 포장한 우편물\n□ 봉투에 기름 얼룩 흔적·탈색·가루가 묻어 있는 우편물 등"], ["처치요령", "□ 의심스런 우편물을 접수한 경우에는 개봉하거나 흔들지 말고,\n다른 물체에 부딪치지 않도록 조심하여야 한다.\n□ 우편물의 내용이 새지 않도록 비닐 봉투나 다른 용기에 보관하고,\n적당한 용기가 없을 경우 우편물을 의복이나 종이 등으로 가린다.\n□ 우편물이 개봉한 후 의심스런 물질이 발견되면 주변을 차단하고,\n신속히 대피한 후 외부인의 출입을 엄격히 금지시켜야 한다.\n□ 우편물에서 백색 가루가 발견될 경우 스팀 다리미를 120도 이상\n으로 가열시킨 후 차아염소산염(하이포클로라이드) 5% 용액을\n이용하여 15파운드 압력으로 15분간 탄저균이 오염된 부위를 누른다.\n□ 탄저균으로 의심되는 백색가루가 피부에 묻었을 경우에는 오염\n부위를 물과 비누로 세척한 후 의료기관에서 전문치료를 받는다.\n다만, 표백제나 살균제를 피부에 사용해서는 아니 된다.\n□ 의심스런 가루가 마루나 책상 등의 표면에 흘러나올 경우에는\n치우려고 하지 말고, 의복이나 신문 등으로 가리고 다른 사람들이\n만지지 않도록 표시를 한다.\n□ 의복이 심하게 오염된 경우 가능한 신속하게 옷을 벗어 버리고,\n비닐 봉투나 밀폐된 용기에 넣고, 비누를 이용하여 샤워를 한다.\n□ 현장 인근 경찰관서나 보건당국에 신고한다."]]], ["p", "사) 탄저균 예방과 치료요령"], ["p", "① 탄저균으로 의심되는 물체 발견 시 보호 두건이 부착된 방독면이나 긴팔 옷· 장갑 등을 착용하여 처리하고, 가검물 수거 용기는 테이프로 밀봉하고, 호치키스나 클립 등을 사용해선 안 된다."], ["p", "② 음식물은 반드시 익혀서 먹고, 오염이 된 피부는 비눗물로 세척하고, 피복을 삶아서 햇빛에 건조시킨다."], ["p", "③ 인체와 주변 환경을 청결히 하고, 오염된 건물이나 지역에 있는 모든 사람을 즉각 대피시켜야 한다."], ["p", "④ 탄저균에 오염된 환자를 이송할 경우에도 오염을 방지하기 위해 장갑을 착용 하여 처리한다."], ["p", "⑤ 오염된 환자를 격리할 필요는 없으나 환자가 사용하는 기물을 깨끗이 세척하고, 오염된 부위는 철저히 소독하여야 한다."], ["p", "다. 독 가스에 의한 테러"], ["p", "1) 독 가스란? 독가스라 함은 흡입 또는 접촉에 의해 인명을 살상시키거나 상해를 입힐 수 있는 유독성 가스나 증기를 발산하는 액체 혹은 고체를 말한다."], ["p", "2) 주요 유독가스의 종류"], ["t", [["종 류", "주 요 특 징"], ["사린가스\n(Sarin)", "□ 무색 무취의 액체로 살충제 제조와 인명 살상용 신경가스로 사용하며,\n휘발성이 강하고 공기보다 5배 정도 무겁기 때문에 바닥으로 빠르게 확산된다\n□ 액체의 경우 체중 70kg인 成人이 0.7mg/㎥ 이상을 마시면 1분 이내에\n사망하고, 기체의 경우 공기중 농도가 70mg/㎥ 이상이면 즉사한다.\n□ 2차 대전중 나치 독일이 개발하여 이라크가 이란 및 쿠르드족과의 전쟁때, 그리고 95.3월 日本 옴진리교가 지하철역에 살포, 6천여명의 사상자가 발생하였다."], ["루이사이트\n(Lewisite)", "□ 발포성 毒가스로 구소련이 상당량 제조했던 것으로 휘발성이 강해\n공중에 살포하는데 흡입시 즉사한다."], ["VX 가스", "□ 피부·폐를 통해 흡수되는 치명적인 신경가스로 갈색을 띠고 있으나\n냄새는 없으며, 독성이 매우 강하기 때문에 극소량만 흡입해도 즉사한다.\n□ 미국은 61.4 생산을 시작했으나 성분은 비밀로 남아 있으며, 용기나\n장비에 오염되면 세척이 어렵다."], ["타 분\n(Tabun)", "□ 1930년대 독일 화학자 「슈뢰더」가 발명한 無色 또는 갈색의 액체로\n냄새는 없으며, 다른 살충제처럼 신경가스로 전환이 용이하다."], ["시안화 수소\n(청산칼리)", "□ 無色의 독성이 강한 액체 또는 기체로 상온에서 쓴 아몬드와 동일한\n냄새가 나며, 주로 살충제로 사용되는데 중독시 호흡마비로 즉사한다.\n□ 80년대 이라크가 이란 및 쿠르드족과 전쟁시 사용한 것으로 추정된다."], ["이페릿", "□ 발포성 독가스로 1차 대전때 처음으로 사용되었으며 美國·러시아·\n독일·이라크 등이 생산하는 대표적인 화학무기이다."]]], ["p", "3) 독가스가 살포될 경우"], ["p", "① 여러 사람이 한꺼번에 쓰러진다든지 기침이나 구토를 하고 눈물을 흘리면서 발작을 일으킨다면 일단 유독가스가 살포된 것으로 의심을 하고 신속히 대처해야 한다."], ["p", "② 실외에서는 새들의 움직임이 유독가스 살포여부를 판단하는 주요 단서가 된다."], ["p", "특별한 이유없이 새들이 땅에 떨어진다면 그 장소는 유독가스에 오염된 것으로 판단하고 즉각 대피해야 한다."], ["p", "③ 테러 공포가 확산되면서 방충제 살포용 헬리콥터만 보아도 신고하려는 사람이 있으나 우리 나라 도심에서 항공기에 의한 독가스 살포 가능성은 현행 방공 시스템상 희박 한 것으로 판단된다."], ["p", "4) 유독가스가 우리 주위에 살포된 것으로 판단될 경우"], ["p", "① 방독면이나 물수건, 각종 마스크, 장갑 등을 이용해서 호흡기를 보호하고, 피부의 노출을 최대한 방지해야 한다. 방독면은 자신의 입과 코를 모두 덮을 수 있도록 각자 얼굴 크기에 맞는 사이즈를 구입하고 방독면이 없을 경우 마스크를 사용할 수 있겠지만 유독가스를 막는 데는 한계가 있다."], ["p", "② 실외에서는 바람이 불어오는 방향으로 이동하고 멀리 떨어진 지역에 살포된 경우에는 바람이 불어오는 직각방향으로 대피한다 야외에서는 고층건물이나 고지대로 대피 하는 것이 현명하다."], ["p", "③ 실내에 독가스가 살포되었다면 신속히 밖으로 탈출한 후 겉옷을 모두 벗어 버리고, 인근에 있는 물로 피부를 씻도록 해야 한다."], ["p", "④ 지하철역이나 백화점 등 밀폐된 시설에서는 겉옷이나 손수건 등을 사용하여 코와 입을 막고 실외로 신속히 대피한다."], ["p", "⑤ 대피시 현장의 안내 유도요원이나 종사자의 통제에 따라 질서 정연히 대피해야 한다."], ["p", "⑥ 사업장의 저층에서는 창문을 밀폐하고 커튼을 쳐 외부공기가 들어오지 않도록 한다. 특히, 공기를 통한 오염을 방지토록 실내에 있는 에어컨은 곧바로 꺼야 한다."], ["p", "⑦ 사업장 저층 건물, 야외에 있을 경우 미리 알려 둔 대피장소로 신속히 이동하되 가능한 높은 지점으로 대피한다."], ["p", "⑧ 오염된 지역에서는 식수나 음식물은 절대로 먹지 말고, 오염된 물체를 맨손으로 만지지 않도록 한다."], ["p", "⑨ 귀가 시 즉시 옷을 벗어 세탁하고 따뜻한 비눗물로 샤워를 하여 피부를 보호한다."], ["p", "⑩ 이런 예방조치를 취했다 하더라도 불행히 오염환자가 발생했을 경우 병·의원에 신속히 이송하여 전문치료를 받아야 한다."], ["p", "⑪ 대피 후 몸에 이상이 있을 경우 이웃에 알려 구호 요청을 하고 소방서(119)나 경찰서(112)에 즉시 신고한다."], ["p", "5) 생화학(독가스) 발생 시 유의 사항"], ["t", [["구 분", "유 의 사 항"], ["발견 시", "□ 상황을 신속히 전파하고 경찰관서에 신고 한다.\n□ 바람부는 방향으로 신속히 이동한다.\n□ 멀리 있을 때는 바람이 불어오는 직각 방향으로 이동한다.\n□ 건물이나 실내로 대피할 경우 공기가 들어오지 않도록 문틈을 막는다.\n□ 공조기 가동 시 누출장소를 집중적으로 배출한다. (배기반 가동)\n□ 주변 전기 및 화기사용 작업을 금지시킨다.(사고즉시 확인한다)\n□ 누출장소에 사람이 있는지 확인한다.\n□ 오염된 지역에서 음식물, 식수 취식 금지\n□ 전문가, 전문 처리반에서 처리할 수 있도록 안전조치 및 접근금지 시킨다.\n□ 오염환자는 최우선으로 응급조치 한다.\n□ 오염물체를 맨손으로 만져서는 안된다.\n□ 오염환자는 응급조치 후 신속하게 후송 시킨다.\n□ 호흡기와 피부를 최대한 보호 한다. (방독면, 비닐, 물수건 이용)"], ["발생 시", "□ 손으로 만지지 거나 개봉하지 않는다.\n□ 내부에 무엇이 들어있나 흔들지 않는다.\n□ 파이프 같은 원통형 물건을 돌리거나 나사식 뚜껑이나 끈 등을 절단하지 않는다.\n□ 지원인원 도착 전까지 안전을 확보한다.\n□ 유독가스 유출은 위험함으로 인원통제 후 대피한다.\n□ 방독면 등 안전장구를 착용한다."]]], ["p", "6) 생화학(독가스) 발생 시 행동요령"], ["t", [["구 분", "행 동 요 령"], ["최초 발견자", "▷ 신속한 상황판단 ▷ 신속한 상황전파\n*“독가스 살포”라고 2∼3회 큰소리로 전파\n* 유 무선을 이용하여 보안실, SE에게 전달(신속, 정확, 명료하게) ▷ 현장출동\n* 필요장비 착용 및 휴대\n(방독면, 무전기, 랜턴, 비닐, 장갑, 안전표지판, 통제구역 설치용\n끈, 호각 등)\n▷ 통제구역을 설치하고 주위의 인원을 대피시킴."], ["상황 접수자", "▷ 상황접수 및 전파\n* 인접SE에게 협조요청\n* 보관된 장비 즉시 배포\n* 관계부서에 즉시 통보(시설팀, 총무팀)\n* 책임자의 지시에 따라 행동(관할부서에 신고)\n※ 상황에 따라 112신고\n▷ 안내방송 및 방재실에 지속적 방송의뢰 ▷ 현장출동"], ["현장 출동자", "▷ 장비휴대 후 현장출동\n▷ 출입자 통제 및 잔류인원 대피\n* 통제구역 끈을 이용하여 출입을 통제\n* 안전표지판 설치.\n* 오염자는 응급조치 후 병원으로 후송\n▷ 관련기관 도착 시까지 현장 보존 및 인원통제"]]], ["p", "5. 테러 사건 발생 시 대처 요령 및 유의사항"], ["p", "□ 폭발, 생화학무기 및 총기난동 등 테러사건발생 시 위험지역으로부터 신속히 벗어나 자신의 안전을 확보한 후 상황인지, 전파, 처리계통도의 절차에 의해 관련기관에 신고한다."], ["p", "(경찰서, 관련기관 등)"], ["p", "가) SE를 즉시 출동시켜 현장을 확인 및 관련기관에 통보(방독면착용등 개인안전에 주의)"], ["p", "나) 다중인원을 대피 시키고 주변의 위험유무 등을 점검한다."], ["p", "다) 독가스 등 생화학무기 살포시에는 출입을 통제하고 방독면, 물수건, 비닐 등의 보호장비를 착용하고 바람이 불어오는 방향으로 대피한다."], ["p", "라) 사건장소 시설 내 공급되는 도시가스, 프로판가스, 유류공급원을 차단한다."], ["p", "마) 생화학무기에 오염 되었을 때에는 응급조치 후 즉시 병원으로 후송한다."], ["p", "바) 현장에 외부인의 접근을 통제하고 증거물 보존한다."], ["p", "사) 관계기관의 전문요원이 현장 도착 시 지시에 따라 처리한다."], ["p", "◇ 별첨 # 1. 대 테러 발생 시 비상연락 체계도 별첨 # 2-1. 대 테러 발생 시 대처방안 별첨 # 2-2. 폭발물 발생 시 대처방안 별첨 # 2-3. 도 가스 발생 시 대처방안 별첨 # 3. 대 테러 발생 시 (성공&실패) 사례연구 대 테러 발생 시 대처방안 별 첨 # 2-1"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 테러용의자 접수,발견 시 유,무선 를 이용, 침착하게\n인접 보안요원 및 상황실 (정문)로 신속하게 연락을\n취한다.\n[에스텍 각대 5라인 2층에 테러용의자 발생, 지원\n바람]........ 2회 이상 반복 침착하게 테러 용의자 발생을\n정확하게 전파 한다.", "보안요원 or\n계약처 임직원"], ["상황전파", "□ 상황접수 및 전파\n▷ 보관된 장비 즉시 배포 한다.\n▷ 관계부서에 즉시 통보(시설팀, 총무팀) 한다.\n▷ 책임자의 지시에 따라 행동 한다.(관련기관에 신고)\n상황에 따라 112신고\n▷ 안내 방송실 및 방재실에 지속적 방송의뢰 한다.", "보안실 책임자\n(또는 선임자)"], ["조치요령", "□ 현장 가까이 접근하지 말며 보안요원은 자기 몸을 최대한\n보호 하면서 관련부서에 연락 협조를 요청하여 관련\n기관에 신고토록 하여야 하며 임무가 있는 사람을 제외\n하고는 침착하고 신속하게 대피 시켜야 한다.\n□ 테러 용의자로부터 최단시간 내 대피하고 인접 보안\n요원, 인접인원을 소리를 지르거나,, 호각 등으로 알려\n신속히 대피 시켜야 한다.\n□ 회사 주위 의심스러운 차량이나 낮선자가 배회 할\n경우 계속 관찰하여 경찰 등 관련 기관 연락하고\n도착 시 사실 대로 알려야 한다.(차량번호, 외모 등)\n□ 보안요원 개인적인 행동을 삼가고 테러 용의자에게\n위협을 받았을 경우 소리를 지르거나, 호각을 이용하여\n주위 사람들로부터 관심을 갖도록 해야 한다.\n□ 휴대전화, 무전기,전자 충격기 등 작동 시 전자파가\n폭발물 기폭장치가 작동될 수 있으므로 사용을 자제한다.\n□ 만약, 폭탄이 장치된 것을 발견 하였을 경우 장치된\n방향과 반대방향의 비상계단을 이용하고 건물 밖으로\n빠져 나오되 E/V사용은 절대 금물이다.\n□ 일단, 밖으로 빠져 나오면 적어도 500m 이상 떨어진 곳\n까지 대피하고 필요하다면 건물 자체에서 선정한 안전\n거리까지 대피 시킨다.\n□ 보안요원이 테러자를 체포하거나 테러자와 대응 한다면\n실패이므로 관련기관 도착 시까지 기다리도록 한다.", "보안요원\n계약처 임직원"]]], ["p", "폭발물 발생 시 대처방안"], ["p", "별 첨 # 2-2"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 폭발물 접수,발견 시 유,무선 를 이용, 침착하게 인접\n보안요원 및 상황실 (정문)로 신속하게 연락을 취한다.\n[에스텍 각대 5라인 2층에 폭발물 발생, 지원바람].....\n2회이상 반복 침착하게 테러발생을 정확하게 전파한다.", "보안요원 또는\n계약처 임직원"], ["상황전파", "□ 상황인지 즉시 “폭발물발생이라는”라는 함성과 함께\n필요장비 착용 및 휴대(무전기, 랜턴, 안전표지판, 통제\n구역 설치용 끈, 호각 등)\n출동장비(경봉,GAS총 등)을 가지고 현장으로 출동 한다.", "보안실 책임자\n(또는 선임자)"], ["조치요령", "□ 보안요원은 신속히 출동하되 자기 몸이 부상 당하지\n않도록 조심스럽게 접근하여야 한다.\n□ 출동한 보안요원은 폭발물 등 위험물 발견 시 충격.열.\n마찰 등을 가하지 말고 있는 그대로 보존한다,\n관련기관에 신고하여야 하며 임무가 있는 사람을 제외\n하고는 침착하고 신속하게 대피 시켜야 한다.\n□ 폭발물 등 위험물을 발견하면 함부로 다루다가는 부상\n당할 위험이 크므로 유의사항을 준수 하여야 한다.\n□ 폭발물 등 위험물을 제작하거나 사용하려는 사람은\n즉시 신고하여야 하며 보안요원 및 시설요원 중요부서\n근무자는 항상 의심을 가지고 주위를 잘 살펴야 하고\n통제 하여야 한다.\n□ 만약, 폭발물 발견 시 주위 사람들을 신속히 500m 이상\n대피 시키고 본인도 신속히 대피하여 관련기관 도착 시\n까지 기다려야 한다.\n□ 폭발물 발견 시 유의 사항\n▷ 손으로 만지지 않는다.\n▷ 개봉을 하지 않는다\n▷ 내부에 무엇이 있나 흔들어 보지 않는다.\n▷ 파이프 같은 원통형 물건을 돌리지 않는다.\n▷ 나사식 뚜껑이나 끈 등을 절단하지 않는다.\n▷ 안전구역을 설정 접근금지 표시판 설치 한다.\n▷ 폭발성 물질(가스.휘발유 등)물질 제거 한다.\n▷ 인화성 물질제거 한다.\n▷ 임무가 있는 사람이라도 안전장비 착용을 의무적\n으로 한다.\n□ 꼭 지켜야 한다.함부로 건드려 부상당하지 않도록 한다.", "보안요원\n계약처 임직원"]]], ["p", "독가스 발생 시 대처방안"], ["p", "별 첨 # 2-3"], ["t", [["구 분", "내 용", "담 당"], ["발견&전파", "□ 독 가스 접수,발견 시 유,무선 를 이용, 침착하게 인접\n보안요원 및 상황실 (정문)로 신속하게 연락을 취한다.\n[에스텍 각대 5라인 2층에 독 가스 발생, 지원바람].....\n2회 이상 반복 침착하게 독 가스지역을 정확하게\n전파한다.", "보안요원 또는\n계약처 임직원"], ["상황전파", "□ 상황인지 즉시 “독 가스발생이라는”라는 함성과 함께\n필요장비 착용 및 휴대(무전기, 랜턴, 안전표지판, 통제\n구역 설치용 끈, 호각 등)\n출동장비(경봉,GAS총 등)을 가지고 현장으로 출동 한다.", "보안실 책임자\n(또는 선임자)"], ["조치요령", "□ 보안요원은 신속히 출동하되 자기 몸이 부상 당하지\n않도록 조심스럽게 접근하여야 한다.\n□ 장비휴대 후 현장출동\n□ 출입자 통제 및 잔류인원 대피\n▷ 통제구역 끈을 이용하여 출입을 통제\n▷ 안전표지판 설치.\n▷ 오염자는 응급조치 후 병원으로 후송\n□ 독가스 누출 및 발생시 인접인원을 신속히 소리를\n지르거나, 호각을 이용하여 멀리 대피 시킨다.\n□ 관련기관 도착 시까지 현장 보존 및 인원통제\n▷ 오염환자는 최우선으로 응급조치 한다.\n▷ 오염된 지역의 식수나 음식물은 먹지말고 오염물체\n를 맨손으로 만져서는 않된다.\n▷ 가스사고는 전문가.또는 전문처리반에서 제독할 수\n있도록 안전조치 및 인원의 접근금지를 시켜야 한다.\n▷ 누출장소에 출입 시 충분한 환기를 시킨 후 출입한다.\n▷ 누출장소에 사람이 있는지 확인한다.\n▷ 공조기 가동 시 누출장소를 집중적으로 배출한다\n(배기반 가동)\n▷ 주변 전기 및 화기사용 작업을 금지시킨다.\n(사고즉시 확인한다.)\n□ 관련기관 도착 시까지 멀리 대피 하여 자기 몸이 부상당하지 않도록 한다.", "보안요원\n계약처 임직원"]]], ["p", "○ 비상 방송 문안 (방재센타에서 상황 시 방송)"], ["p", "□ 대피유도 방송(연속으로 방송) 섬성전자 ITD센타에서 알려 드립니다."], ["p", "현재 사내에 있는 모든 인원들은 본 방송이 지시하는 대로 대피를 하여 주십시오."], ["p", "□ 대피 유도요원의 안내에 따라 질서있게 대피하여 주십시오."], ["p", "□ 수건 등에 물을 적셔 코와 입에 가볍게 대고 대피하여 주십시오."], ["p", "□ 연기 및 냄새가 있는 지역에서는 허리를 굽혀 낮은 동작으로 대피하여 주십시오"], ["p", "□ 화재 시에는 엘리베이터가 동작하지 않습니다 비상계단을 이용하십시오."], ["p", "□ 계단으로 통하는 철문은 꼭 닫고 대피하십시오."], ["p", "□ 전기 플러그 분리 및 가연물을 제거하시고 대피 바랍니다."], ["p", "□ 질서있게 대피하여 주십시오"], ["p", "○ 안내방송"], ["p", "□ 삼성전자 ITD센타에서 알려 드립니다."], ["p", "▷ 현재 ○○층 ○○장소에 ( )이상이 발생되어 통제를 하고 있사 오니 사내에 있는 모든 인원들은 층간 이동을 자제하고 건물 밖으로 신속히 나가 주시기 바랍니다."], ["p", "□ 유도요원의 통제에 적극 협조하여 주시기 바랍니다."], ["p", "□ 다시 한번 알려 드립니다."], ["p", "▷ ▷ 현재 ○○층 ○○장소에 ( )이상이 발생되어 통제를 하고 있사 오니 사내에 있는 모든 인원들은 층간 이동을 자제하고 건물 밖으로 신속히 나가 주시기 바랍니다."]], "k": "terr"}];
+
+/* =====================================================================
+ * 비상대처 매뉴얼 — 업무매뉴얼 「비상대처 매뉴얼」 장 (에스텍 비상대처 매뉴얼 원문 11개 장)
+ *  · Word: 원문 순서대로 제목·문단·표 그대로 · 그림만 있던 항목은 표준 내용으로 보충(EMG_FILL)
+ *  · PPT/PDF: 장마다 표지 + 항목별 슬라이드(넘치면 나눔)
+ *  Designed & Developed by Rat Rae Choi
+ * ===================================================================== */
+const EMG_FILL = {
+  'fire|1. 화재의 기본이론': ['연소의 3요소: 가연물(탈 것) · 산소(공기) · 점화원(열·불꽃) — 셋 중 하나만 없애도 불은 꺼진다', '연소의 4요소: 3요소 + 연쇄반응', '실내 화재는 발화 → 성장 → 플래시오버(5~6분) → 최성기 → 감쇠 순으로 진행 — 초기 3분 안에 진화해야 한다'],
+  'fire|2. 소화 방법의 종류': ['냉각소화: 물 등으로 온도를 낮춘다(일반 화재)', '질식소화: 산소를 차단한다(소화포·모래·이산화탄소·뚜껑 덮기)', '제거소화: 가연물을 치운다(가스 밸브 잠금·주변 물건 이동)', '억제소화: 연쇄반응을 끊는다(분말·할론 소화약제)'],
+  'fire|3. 화재발생 원인별 분류': ['전기 화재: 문어발 콘센트·노후 전선·전열기 과열·먼지 쌓인 플러그(트래킹)', '담뱃불: 흡연장 외 흡연·꽁초 휴지통 투기', '가스 화재: 밸브 미차단·호스 노후·누설', '화기 작업: 용접·절단 불티(작업허가·불티 방지포·감시인)', '방화: 외부인 침입·불만자(순찰·출입통제)', '자연발화: 기름 묻은 걸레·왁스 걸레 방치(뚜껑 있는 금속 용기에 보관)'],
+  'fire|4. 화재의 종류': ['A급(일반 화재, 백색): 종이·목재·섬유 — 물·분말 소화기', 'B급(유류 화재, 황색): 기름·페인트·알코올 — 분말·이산화탄소 소화기, 물 금지', 'C급(전기 화재, 청색): 전기 설비 — 전원 차단 후 분말·이산화탄소 소화기, 물 금지', 'K급(주방 화재): 식용유 — K급 소화기, 물 절대 금지', 'D급(금속 화재): 마그네슘 등 — 마른 모래·전용 약제'],
+  'fire|5. 화재 유형별 소화요령': ['일반 화재: 소화기 → 옥내소화전 순으로 화점 아래쪽부터', '유류 화재: 물 뿌리지 말고 분말 소화기·소화포로 덮는다', '전기 화재: 차단기를 먼저 내리고 분말·이산화탄소 소화기', '식용유 화재: 가스 밸브 잠금 → K급 소화기 또는 젖은 수건·뚜껑으로 덮기', '가스 화재: 밸브를 잠가 공급을 끊은 뒤 불을 끈다(밸브 잠그기 전 끄면 가스 누출로 폭발 위험)'],
+  'fire|7. 화재발생 시 응급조치 활동': ['「불이야!」 크게 외치고 비상벨(발신기)을 누른다', '119 신고 — 주소·건물명·층·불난 것·사람 유무를 또박또박', '초기 진화: 소화기(20초 분사)로 진화, 천장까지 번지면 즉시 대피', '방재실·현장대리인·고객사에 동시 보고(무전)', '방화문·출입문을 닫아 연기 확산을 막는다(잠그지 않는다)', '소방대 도착 시 화점 위치·남은 사람·위험물 위치를 알려 준다'],
+  'fire|8. 대피 유도 요령': ['큰 목소리와 경광봉으로 가까운 계단·비상구 쪽으로 유도한다', '엘리베이터 사용 금지 — 계단으로만', '연기가 있으면 젖은 수건으로 입·코를 막고 낮은 자세로', '장애인·노약자·임산부를 먼저 돕고 2인 1조로 부축', '대피 집결지에서 인원을 확인해 현장대리인에게 보고', '아래층으로 대피가 어렵다면 옥상으로, 문틈을 막고 구조 요청'],
+  'fire|라. 화재 수신반': ['감지기·발신기 신호를 받아 화재 위치(경계구역)를 표시하는 설비 — 방재실·경비실에 설치', '화재 신호 시: 표시창의 구역 확인 → 현장 확인(2인) → 실제 화재면 경보·119, 오작동이면 복구', '오작동이라도 원인(먼지·습기·공사 분진)을 기록하고 시설 담당에게 통보', '음향 정지 스위치는 확인 후에만 누르고, 확인 후 반드시 정상 위치로 복구']
+};
+const EMG_VID = { acc: 'sec3', nat: 'sec2', grp: 'sec1', fire: 'sec2', riot: 'sec3', intr: 'sec1', ems: 'sig', gas: 'fac', secu: 'sec1', media: 'off', terr: 'sec3' };
+const EMG_ICON = { acc: '🚨', nat: '🌪', grp: '📢', fire: '🔥', riot: '😡', intr: '🚷', ems: '🚑', gas: '⚠', secu: '🔐', media: '🎤', terr: '💣' };
+const EMG_HEAD = /^([0-9]+\s*[.]|[가-하]\s*[.,])\s*\S/;
+function emgItems(c) {
+  const out = [];
+  c.items.forEach((it, i) => { out.push(it); if (it[0] === 'p') { const f = EMG_FILL[`${c.k}|${it[1]}`]; if (f) f.forEach(l => out.push(['p', '▷ ' + l, 1])); } });
   return out;
 }
-
+function emgTaxInit() {
+  if (typeof EMG === 'undefined' || MAN.find(L => L.c === 'MX')) return;
+  const smalls = EMG.map((c, i) => ({ c: `MX-${pad(i + 1)}`, n: `${EMG_ICON[c.k] || '■'} ${c.t.replace(/의 대응$/, ' 대응')}`, g: /fire|ems|acc|gas/.test(c.k) ? 'M' : 'C', gen: 'emg', emg: c.k,
+    k: ['비상', '대처', '비상대처', c.t].concat(c.items.filter(x => x[0] === 'p' && EMG_HEAD.test(x[1]) && x[1].length < 40).map(x => x[1].replace(EMG_HEAD, '').trim()).slice(0, 12)), l: c.k === 'fire' ? ['FSA16'] : c.k === 'grp' ? ['SSA7'] : c.k === 'ems' ? ['OSH38'] : [] }));
+  const iMF = MAN.findIndex(L => L.c === 'MF');
+  MAN.splice(iMF + 1, 0, { c: 'MX', n: '비상대처 매뉴얼', e: '🆘', mids: [{ c: 'MX', n: '비상대처', smalls }] });
+  Object.keys(MAN_PACK).forEach(lv => smalls.forEach(s => { if (!MAN_PACK[lv].includes(s.c)) MAN_PACK[lv].push(s.c); }));
+}
+function emgOf(S) { return (typeof EMG !== 'undefined' ? EMG : []).find(c => c.k === S.emg); }
+function emgGroups(S) {
+  const c = emgOf(S); if (!c) return [];
+  const heads = c.items.filter(x => x[0] === 'p' && /^[0-9]+\s*\./.test(x[1])).map(x => x[1]);
+  return [{ title: '목적', lines: [`${c.t} 근무자가 해야 할 판단·조치·보고·유의사항을 에스텍 비상대처 매뉴얼 기준으로 정한다.`] }, { title: '수록 항목 (원문 순서대로 출력)', lines: heads.length ? heads : ['원문 전체'] }, { title: '공통 원칙', lines: ['선(先) 조치 후(後) 보고 — 인명 안전이 최우선', '6하 원칙(언제·어디서·누가·무엇을·어떻게·왜) + 얼마나(피해)로 보고', '현장 보존 — 경찰·관계기관 도착 전까지 출입 통제', '발생 5분 이내 1차 보고 · 12시간 이내 사건사고 보고서'] }];
+}
 /* ---------- Word ---------- */
-async function makeProposalDocx(E) {
-  const X = propCtx(E), { S, jn, per } = propSections(X), ch = [], AC = docx.AlignmentType.CENTER, J = E.jobs.filter(j => JOB[j]);
-  R.raw = false;
-  ch.push(P([R(`${X.org} · ${X.internal ? '내부 검토용' : '대외 제출용'}`, { size: 18, bold: true, color: C.green })], { align: docx.AlignmentType.RIGHT, after: 200 }));
-  ch.push(P([R(X.client, { size: 30, bold: true, color: C.gray })], { align: AC, before: 400, after: 80 }));
-  ch.push(P([R(X.svc, { size: 44, bold: true, color: C.navy })], { align: AC, after: 60, line: 460 }));
-  ch.push(P([R('운 영 제 안 서', { size: 36, bold: true, color: C.navy })], { align: AC, after: 240 }));
-  ch.push(new docx.Paragraph({ alignment: AC, children: [new docx.ImageRun({ type: 'png', data: b64ToU8(dataUrlB64(ASSET.osi)), transformation: { width: 170, height: 170 } })] }));
-  ch.push(P([R(`${X.date}   ${X.org}`, { size: 22, bold: true })], { align: AC, before: 300, after: 80 }));
-  ch.push(boxPara([P([R('□ 목차', { size: 22, bold: true, color: C.greenD })], { after: 60 })].concat(PROP_TOC.map((t, i) => P([R(`${i + 1}. ${t}`, { size: 20 })], { indent: { left: 240 }, after: 10 })))));
-  let no = 0;
-  const H = t => ch.push(H1(`${++no}. ${t}`));
-  const lines = ls => ls.filter(Boolean).forEach(l => ch.push(P([R('• ', { bold: true, color: C.green }), R(l, { size: 21 })], { after: 50, indent: { left: 300, hanging: 220 } })));
-  S.forEach(s => { H(s.h); lines(s.lines); if (s.tip) ch.push(boxPara([P([R(s.tip, { size: 20, bold: true, color: C.greenD })], { after: 0 })])); });
-  /* 4. 인력 운영 계획 */
-  H('인력 운영 계획');
-  const w = [1500, 2700, 900, 2238, 1150, 1150];
-  ch.push(table([[th('직종', w[0]), th('직책 · 업무', w[1]), th('인원', w[2]), th('근무형태', w[3]), th('1인 단가', w[4]), th('월 금액', w[5])]].concat(E.rows.map(r => [td(r.job || '', w[0], { bold: true }), td(r.title || '', w[1]), td(`${r.count}명`, w[2], { align: AC }), td(r.shift || '-', w[3]), td(r.unit != null ? wonL(r.unit) : '-', w[4], { align: docx.AlignmentType.RIGHT }), td(r.amount != null ? wonL(r.amount) : '-', w[5], { align: docx.AlignmentType.RIGHT })]))
-    .concat([[td('합계', w[0], { bold: true, fill: 'EEF1F5' }), td('', w[1], { fill: 'EEF1F5' }), td(`${E.heads}명`, w[2], { align: AC, bold: true, fill: 'EEF1F5' }), td('', w[3], { fill: 'EEF1F5' }), td('', w[4], { fill: 'EEF1F5' }), td(E.monthly ? wonL(E.monthly) : '-', w[5], { align: docx.AlignmentType.RIGHT, bold: true, fill: 'EEF1F5' })]]), w, { header: true }));
-  const code = AMS_CODES.find(c => c.id === X.f.code);
-  if (code) { const m = shiftMetrics(code); lines([`기준 근무형태: ${code.name} — 월 근로시간 약 ${Math.round(m.hours)}시간 · 주 평균 ${m.week.toFixed(1)}시간 · 24시간 운영 최소 ${m.crews}조`]); }
-  lines(['결원 시 지사 대체 인력 24시간 이내 투입 · 근태관리 프로그램으로 출퇴근·대체근무 실시간 관리', '현장 책임자(현장대리인)가 고객사 요청을 받아 근무자에게 전달 — 고객사 직원의 직접 지시 없이 운영(도급 원칙)']);
-  /* 5. 업무 수행 방안 */
-  H('업무 수행 방안 (업무표준 · 작업표준)');
-  lines([`${jn} 업무를 「업무표준서 → 작업표준(SOP) → 현장 근무지침 → 서식」 4단계로 문서화해 운영합니다.`, '작업표준은 작업마다 주기·소요시간·도구·약품(희석)·보호구·단계별 동작과 요령·완료 기준·금지 사항·기록 양식을 정합니다.']);
-  J.forEach(j => {
-    const A = SOP[j] ? SOP[j].areas : []; if (!A.length) return;
-    ch.push(P([R(`■ ${JOB[j].n} — 작업표준 ${A.reduce((a, x) => a + x.tasks.length, 0)}건 (${A.length}개 구역)`, { size: 22, bold: true, color: C.navy })], { before: 120, after: 60 }));
-    const w2 = [2200, 5238, 2200];
-    ch.push(table([[th('구역', w2[0]), th('작업 (주기)', w2[1]), th('기록', w2[2])]].concat(A.map(a => [td(a.n, w2[0], { bold: true }), td(a.tasks.map(t => `${t.n} (${t.f})`).join('\n'), w2[1], { size: 17 }), td([...new Set(a.tasks.map(t => t.r).filter(Boolean))].join(', '), w2[2], { size: 16 })])), w2, { header: true }));
-    sopHighlights(j, 2).forEach(({ a, t }) => {
-      ch.push(P([R(`예시 작업표준 — ${a} · ${t.n}`, { size: 20, bold: true, color: C.greenD })], { before: 100, after: 40 }));
-      (t.s || []).slice(0, 8).forEach((s, k) => ch.push(P([R(`${k + 1}. ${s[0]}`, { size: 19 }), R(s[1] ? `  — ${s[1]}` : '', { size: 17, color: C.gray })], { after: 20, indent: { left: 300 } })));
-    });
+function emgDocx(S) {
+  const c = emgOf(S), out = []; if (!c) return out;
+  emgItems(c).forEach(it => {
+    if (it[0] === 't') {
+      const rows = it[1], n = Math.max(...rows.map(r => r.length));
+      const w0 = n === 2 ? [2000, CW - 2000] : n === 3 ? [1700, CW - 3400, 1700] : Array.from({ length: n }, () => Math.floor(CW / n));
+      const wsum = w0.reduce((a, b) => a + b, 0); w0[w0.length - 1] += CW - wsum;
+      out.push(table(rows.map((r, ri) => { const cells = r.concat(Array(n - r.length).fill('')).slice(0, n);
+        return cells.map((v, k) => ri === 0 && rows.length > 1 && /구\s*분|사고유형|종\s*류|항\s*목/.test(r[0]) ? th(v.replace(/\n/g, ' '), w0[k]) : td(v, w0[k], { size: 18, bold: k === 0 && n > 1, fill: k === 0 && n > 1 ? 'F4F6FA' : undefined })); }), w0));
+      out.push(P([R('')], { after: 40, line: 200 }));
+      return;
+    }
+    const t = it[1];
+    if (/^[0-9]+\s*\.\s*\S/.test(t) && t.length < 60) out.push(P([R(t, { size: 22, bold: true, color: C.navy })], { before: 140, after: 60, keepNext: true, border: { bottom: { style: docx.BorderStyle.SINGLE, size: 4, color: 'C9D3E6', space: 2 } } }));
+    else if (/^[가-하]\s*[.,]\s*\S/.test(t) && t.length < 70) out.push(P([R(t, { size: 21, bold: true, color: C.greenD })], { before: 80, after: 40, keepNext: true }));
+    else if (/^□|^■/.test(t)) out.push(P([R(t, { size: 20, bold: true })], { after: 40, indent: { left: 120 } }));
+    else out.push(P([R(t, { size: 20, color: it[2] ? '17552F' : undefined })], { after: 36, indent: { left: /^[0-9]+\)|^[가-하]\)|^[①-⑳]|^▷|^\*|^ㅇ|^-/.test(t) ? 360 : 200 } }));
   });
-  /* 6. 교육 */
-  H('교육 · 훈련 계획');
-  const w3 = [1000, 3000, 5638];
-  ch.push(table([[th('월', w3[0]), th('안전보건교육 주제', w3[1]), th('주요 내용', w3[2])]].concat(EDU_MONTH.map((e, i) => [td(`${i + 1}월`, w3[0], { align: AC, bold: true }), td(e[0], w3[1], { bold: true }), td(e[1], w3[2], { size: 17 })])), w3, { header: true }));
-  J.forEach(j => (EDU_JOB[j] || []).length && lines([`${JOB[j].n} 직무교육: ` + EDU_JOB[j].map(e => e[0]).join(' · ')]));
-  lines(EDU_LAW.map(e => `${e[0]} — ${e[1]}`));
-  /* 7. 안전보건 */
-  H('안전보건 · 법규 준수');
-  lines(['근무 시작 TBM(5분) — 오늘의 작업·위험요인·보호구 확인', '위험성평가(연 1회 정기 + 작업 변경 시 수시) · 아차사고 보고', '관리감독자 지정 · 연 16시간 교육 · 약품 MSDS·경고표지 비치', '중대재해 발생 시 즉시 보고 체계(현장 → 지사 → 본사 → 관할 노동관서)']);
-  const lawIds = uniq(J.flatMap(j => SOP_LAWS[j] || [])).filter(id => LAWS[id]).slice(0, 10);
-  if (lawIds.length) lines(lawIds.map(id => `${LAWS[id].law} ${LAWS[id].art} ${LAWS[id].title} — ${LAWS[id].sum}`));
-  /* 8. 품질 */
-  H('품질관리 · Complaint 대응');
-  lines(['월 1회 자체 품질평가(일반·위험·품질관리부문 체크리스트, 배점 100점) — 결과와 개선 계획을 월 주요업무실적으로 보고', '화장실·순찰 등 시간대별 점검표로 실시 여부를 기록', 'Complaint 접수 → 즉시 조치 → 원인 분석 → 재발 방지 교육 → 결과 회신(S-Tec Complaint Response System)', '분기 1회 고객사 만족도 면담 · 연 1회 운영 결과 보고']);
-  /* 9. 인수인계 */
-  H('운영 개시 · 인수인계');
-  const AP = [['D-30', '계약 조건·과업 범위 확인'], ['D-28', '현장 조사(면적·구역·동선·장비)'], ['D-21', '채용·기존 근무자 승계 면담'], ['D-14', '장비·용품 인수, 초도 발주'], ['D-10', '채용 시 교육·직무교육 계획'], ['D-7', '업무표준서·작업표준·근무지침 확정'], ['D-3', '기존 업체와 대면 인수인계'], ['D-Day', '운영 개시 · TBM · 고객사 보고'], ['D+7', '1주 품질 점검·고객사 면담'], ['D+30', '1개월 보고·개선 계획']];
-  const w4 = [1400, 8238];
-  ch.push(table([[th('일정', w4[0]), th('실행 내용', w4[1])]].concat(AP.map(a => [td(a[0], w4[0], { align: AC, bold: true }), td(a[1], w4[1])])), w4, { header: true }));
-  lines(['운영 개시와 함께 「사업장 자료 패키지」(관리서류 40여 종: 계획표·일지·교육·품질평가·대장·약품 경고표지)를 현장에 비치합니다.']);
-  /* 10. 가격 */
-  H('가격 제안');
-  const w5 = [3600, 6038];
-  const money = [['월 용역비 (공급가액)', E.monthly ? `${wonL(E.monthly)}원` : '견적서 기준'], ['부가가치세', E.vat ? `${wonL(E.vat)}원` : '-'], ['월 합계 (VAT 포함)', E.monthly ? `${wonL(E.monthly + (E.vat || 0))}원` : '-'], ['계약 기간 총액 (VAT 별도)', E.yearly ? `${wonL(E.yearly)}원 (${E.months}개월)` : '-']];
-  if (E.once) money.push(['단기·행사 용역 (공급가액)', `${wonL(E.once)}원 (VAT ${wonL(E.onceVat)}원 별도)`]);
-  if (E.monthly) money.push(['금액 (한글)', `금 ${korWon(E.monthly)}원정 (월, 부가세 별도)`]);
-  ch.push(table(money.map(r => [td(r[0], w5[0], { bold: true, fill: 'EEF1F5' }), td(r[1], w5[1], { bold: true, color: C.navy })]), w5));
-  if (X.internal && E.mix) { const t = (E.mix.labor || 0) + (E.mix.expense || 0) + (E.mix.marg || 0) + (E.mix.addon || 0); ch.push(P([R('원가 구성 (내부 검토용)', { size: 20, bold: true, color: C.brick })], { before: 120, after: 40 }));
-    lines([`인건비(복리후생 포함): ${wonL(E.mix.labor)}원`, `제비용·경비: ${wonL(E.mix.expense)}원`, `일반관리비·이윤: ${wonL(E.mix.marg)}원`, t ? `합계 ${wonL(t)}원` : '']); }
-  if (E.need) lines(['※ 일부 견적은 금액이 확정되지 않았습니다 — 견적 프로그램에서 「📑 제안서로 보내기」 후 다시 만드세요.']);
-  lines(E.notes.slice(0, 6).map(n => '참고: ' + n));
-  /* 11. 기대 효과 */
-  H('기대 효과');
-  lines(['표준화: 근무자가 바뀌어도 같은 순서·같은 품질 — 신규 근무자 교육 기간 단축', '투명성: 일지·점검표·품질평가·월 보고로 운영 상태를 숫자로 확인', '안전: 작업표준·TBM·MSDS·보호구로 산업재해 예방', '대응력: 상황별 대처 매뉴얼과 Complaint 처리 절차로 신속 대응']);
-  ch.push(P([R('- 끝 -', { size: 20, bold: true })], { align: AC, before: 240, after: 80 }));
-  ch.push(P([R(`${APP.name} ${APP.version} · 견적 연동 운영 제안서 · Designed & Developed by Rat Rae Choi`, { size: 15, color: '8A93A3' })], { align: AC }));
-  return await packDocx(ch, `${X.client} 운영 제안서`);
+  out.push(P([R('출처: 에스텍 「비상대처 매뉴얼」 · ▷ 초록 글씨는 그림으로만 실려 있던 내용을 표준 내용으로 보충한 것입니다.', { size: 15, color: C.gray })], { before: 60, after: 120 }));
+  return out;
 }
-
-/* ---------- PPT · PDF (슬라이드 모델) ---------- */
-function buildProposalSlides(E) {
-  const X = propCtx(E), { S: SEC, jn, per } = propSections(X), J = E.jobs.filter(j => JOB[j]), p = { f: { client: X.client, mode: 'client' }, title: `${X.client} 운영 제안서` };
-  const S = []; let no = 1;
-  S.push(coverSlide({ eyebrow: `${X.org} · ${X.internal ? '내부 검토용' : '대외 제출용'} · 운영 제안서`, title: X.svc, lines: [X.client, `${jn} · ${E.heads}명 · ${per}`], meta: `${X.date}   |   견적 연동 ${E.srcs.map(s => SRC[s] ? SRC[s].n : s).join(' · ')}`, badge: '운영 제안서', badgeColor: C.green, fig: J[0] === 'cln' ? 'team_dio' : 'mgr' })); no++;
-  const sl = (t, sub, groups, vid) => { const o = frame(t, sub, no, p); const w = vid ? 6.2 : SW - 1.2;
-    o.push(T(0.6, 1.6, w, 5.2, listParas(groups), { max: 16, min: 11 }));
-    if (vid) { o.push(Rc(7.05, 1.62, 5.7, 3.3, '0F1530')); o.push(Vd(7.1, 1.67, 5.6, 3.2, vid)); o.push(T(7.1, 4.95, 5.6, 0.4, '▶ 현장 영상 — PPT에서 누르면 재생', { pt: 11, color: K.mute })); }
-    S.push(o); no++; };
-  const vid = VIDEO_OF[J[0]] || 'sec1';
-  sl('01  제안 개요', X.svc, [{ title: '사업 개요', lines: SEC[0].lines }, { title: '제안 방향', lines: [SEC[0].tip] }], vid);
-  sl('02  회사 소개', '에스텍 그룹', [{ title: '', lines: SEC[1].lines }]);
-  sl('03  현황 분석 및 요구사항', X.client, [{ title: '', lines: SEC[2].lines }]);
-  { const o = frame('04  인력 운영 계획', `총 ${E.heads}명 · ${per}`, no, p);
-    const rows = E.rows.slice(0, 11).map(r => [r.job || '', r.title || '', `${r.count}명`, r.shift || '-', r.unit != null ? wonL(r.unit) : '-', r.amount != null ? wonL(r.amount) : '-']);
-    rows.push({ 0: '합계', 1: '', 2: `${E.heads}명`, 3: '', 4: '', 5: E.monthly ? wonL(E.monthly) : '-', length: 6, _fill: 'EEF1F5' });
-    tbl(o, 0.6, 1.6, [{ t: '직종', w: 1.6, b: 1 }, { t: '직책 · 업무', w: 3.9 }, { t: '인원', w: 1.0, al: 'center' }, { t: '근무형태', w: 2.6 }, { t: '1인 단가', w: 1.5, al: 'right' }, { t: '월 금액', w: 1.5, al: 'right', b: 1 }], rows, { rh: 0.38, pt: 11 });
-    S.push(o); no++; }
-  J.forEach(j => { const A = SOP[j] ? SOP[j].areas : []; if (!A.length) return;
-    const o = frame(`05  업무 수행 방안 — ${JOB[j].n}`, `작업표준(SOP) ${A.reduce((a, x) => a + x.tasks.length, 0)}건 · ${A.length}개 구역`, no, p);
-    tbl(o, 0.6, 1.6, [{ t: '구역', w: 2.4, b: 1 }, { t: '작업 (주기)', w: 9.7 }], A.slice(0, 12).map(a => [a.n, a.tasks.map(t => t.n).join(' · ')]), { rh: 0.4, pt: 10.5 });
-    S.push(o); no++;
-    sopHighlights(j, 2).forEach(({ a, t }) => sl(`05  작업표준 예시 — ${t.n}`, `${JOB[j].n} · ${a} · ${t.f}`, [{ title: '작업 순서', lines: (t.s || []).slice(0, 7).map((s, k) => `${k + 1}. ${s[0]}`) }, { title: '완료 기준', lines: (t.q || []).slice(0, 3) }], SOP_VID[j])); });
-  sl('06  교육 · 훈련 계획', '월별 안전보건교육 + 직무교육 + 법정교육', [{ title: '월별 안전보건교육 (매월 2시간)', lines: EDU_MONTH.map((e, i) => `${i + 1}월 ${e[0]}`) }, { title: '법정교육', lines: EDU_LAW.slice(0, 5).map(e => `${e[0]} — ${e[2]}`) }]);
-  sl('07  안전보건 · 법규 준수', '산업재해 예방 체계', [{ title: '', lines: ['근무 시작 TBM(5분)', '위험성평가 · 아차사고 보고', '관리감독자 지정 · 연 16시간 교육', 'MSDS·경고표지 비치 · 보호구 지급', '중대재해 즉시 보고 체계'] }], 'sig');
-  sl('08  품질관리 · Complaint 대응', '측정 → 보고 → 개선', [{ title: '', lines: ['월 1회 자체 품질평가(배점 100점)', '시간대별 점검표 · 업무일지 · 월 주요업무실적 보고', 'Complaint 접수 → 즉시 조치 → 원인 분석 → 재발 방지 → 결과 회신', '분기 1회 고객사 만족도 면담'] }], 'cases/cmp1');
-  sl('09  운영 개시 · 인수인계', 'D-30 ~ D+30', [{ title: '', lines: ['D-30 계약 조건·과업 범위 확인', 'D-28 현장 조사', 'D-21 채용·승계 면담', 'D-14 장비·용품 인수', 'D-7 업무표준·작업표준·근무지침 확정', 'D-3 대면 인수인계', 'D-Day 운영 개시', 'D+30 1개월 보고·개선 계획'] }]);
-  { const o = frame('10  가격 제안', X.internal ? '내부 검토용 — 원가 구성 포함' : '부가가치세 별도', no, p);
-    const rows = [['월 용역비 (공급가액)', E.monthly ? `${wonL(E.monthly)}원` : '견적서 기준'], ['부가가치세', E.vat ? `${wonL(E.vat)}원` : '-'], ['월 합계 (VAT 포함)', E.monthly ? `${wonL(E.monthly + (E.vat || 0))}원` : '-'], ['계약 기간 총액 (VAT 별도)', E.yearly ? `${wonL(E.yearly)}원 (${E.months}개월)` : '-']];
-    if (E.once) rows.push(['단기·행사 용역', `${wonL(E.once)}원`]);
-    if (X.internal && E.mix) rows.push(['원가 — 인건비', `${wonL(E.mix.labor)}원`], ['원가 — 제비용', `${wonL(E.mix.expense)}원`], ['원가 — 관리비·이윤', `${wonL(E.mix.marg)}원`]);
-    tbl(o, 1.6, 1.8, [{ t: '구분', w: 4.4, b: 1 }, { t: '금액', w: 5.6, al: 'right', b: 1, color: C.navy }], rows, { rh: 0.52, pt: 15 });
-    S.push(o); no++; }
-  sl('11  기대 효과', '', [{ title: '', lines: ['표준화 — 누가 근무해도 같은 품질', '투명성 — 일지·점검표·품질평가로 숫자 관리', '안전 — 작업표준·TBM·MSDS로 재해 예방', '대응력 — 상황별 대처·Complaint 처리 절차'] }]);
-  S.push(closingSlide({ tag: `${X.client} ${jn} 운영 제안 — 감사합니다`, org: `${X.org} · ${APP.org}` }));
-  return { slides: S, title: `${X.client} 운영 제안서` };
+/* ---------- PPT · PDF ---------- */
+function emgParas(c) {
+  const P0 = [];
+  emgItems(c).forEach(it => {
+    if (it[0] === 't') { it[1].forEach((r, ri) => { if (ri === 0 && it[1].length > 1 && /구\s*분|사고유형|종\s*류|항\s*목/.test(r[0])) return; const head = r[0].replace(/\n/g, ' '), rest = r.slice(1).join(' · ').split('\n').map(s => s.trim()).filter(Boolean);
+      P0.push({ text: head, bold: true, color: C.green, gap: 2 }); rest.forEach(l => P0.push({ text: '  ' + l, color: C.ink, gap: 2 })); }); return; }
+    const t = it[1];
+    if (/^[0-9]+\s*\.\s*\S/.test(t) && t.length < 60) P0.push({ text: t, bold: true, color: C.navy, gap: 4, head: true });
+    else if (/^[가-하]\s*[.,]\s*\S/.test(t) && t.length < 70) P0.push({ text: t, bold: true, color: K.ink, gap: 3 });
+    else P0.push({ text: t, color: it[2] ? '17552F' : C.ink, gap: 2 });
+  });
+  return P0;
 }
-async function runProposal(kind, E) {
-  const X = propCtx(E), base = `${String(kstNow().getFullYear()).slice(2)}${pad(kstNow().getMonth() + 1)}${pad(kstNow().getDate())}_${safeName(X.client)}_운영제안서${X.internal ? '(내부)' : ''}`;
-  try {
-    if (kind === 'docx') { busy(true, '제안서 Word 만드는 중…'); await download(await makeProposalDocx(E), base + '.docx'); }
-    else { const B = buildProposalSlides(E);
-      if (kind === 'pptx') { busy(true, '제안서 PPT 만드는 중… (현장 영상 포함)'); await download(await makePptx({ f: { client: X.client, mode: 'client' }, title: B.title, kind: 'prop' }, B.slides, B.title), base + '.pptx'); }
-      else { await download(await makePdf({ f: { client: X.client, mode: 'client' }, title: B.title, kind: 'prop' }, (i, n) => busy(true, `제안서 PDF ${i}/${n}`), B.slides, B.title), base + '.pdf'); } }
-    toast('제안서를 만들었습니다 — 다운로드 폴더를 확인하세요.');
-  } catch (e) { console.error(e); toast('제안서 생성 오류: ' + e.message, 5000); }
-  finally { busy(false); }
+function emgSlides(S, p, Sl, no, secLabel) {
+  const c = emgOf(S); if (!c) return no;
+  const paras = emgParas(c), pages = paginate(paras, 8.4, 5.15, 12);
+  pages.forEach((pg, i) => {
+    const o = frame(`${secLabel} ${S.n}${pages.length > 1 ? ` (${i + 1}/${pages.length})` : ''}`, '에스텍 비상대처 매뉴얼', no, p);
+    o.push(T(0.6, 1.55, 8.5, 5.25, pg, { max: 14, min: 11 }));
+    if (i === 0) { o.push(Rc(9.35, 1.6, 3.4, 2.0, '0F1530')); o.push(Vd(9.4, 1.65, 3.3, 1.9, EMG_VID[c.k] || 'sec1')); o.push(T(9.35, 3.7, 3.4, 0.35, '▶ 현장 영상 — 누르면 재생', { pt: 10, color: K.mute }));
+      o.push(Rc(9.35, 4.2, 3.4, 2.5, 'FDF1EF', { line: 'F2B8B0' })); o.push(T(9.5, 4.3, 3.1, 2.3, listParas([{ title: '공통 원칙', lines: ['先 조치 後 보고', '6하 원칙 + 피해 규모', '현장 보존 · 출입 통제', '5분 내 1차 보고'] }], { hcolor: 'C62828' }), { max: 13, min: 10 })); }
+    else { o.push(Rc(9.35, 1.6, 3.4, 5.1, 'F4F6FA')); o.push(T(9.5, 1.75, 3.1, 4.8, listParas([{ title: '이 장의 항목', lines: c.items.filter(x => x[0] === 'p' && /^[0-9]+\s*\./.test(x[1])).map(x => x[1]).slice(0, 12) }]), { max: 12, min: 9.5 })); }
+    Sl.push(o); no++;
+  });
+  return no;
 }
 </script>
 <script>

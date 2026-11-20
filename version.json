@@ -1,7 +1,7 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "date": "2026-11-20",
-  "note": "세부 작업표준(SOP) 114건 · 웹 매뉴얼(영상 실제 재생) · 시인성 개선 · 사업장 자료 패키지(관리서류 36~52종 ZIP) · 견적 연동(3종·엑셀/PDF) 운영 제안서",
-  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.html",
-  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.4.0.apk"
+  "note": "견적 연동·엑셀/PDF 견적서·RFP 불러오기(제안서 제작시스템과 같은 구성) → 업무표준서·업무매뉴얼 반영, 비상대처 매뉴얼 11개 장 수록, 출력 Word·PPT·PDF 3종 정리",
+  "html": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.5.0.html",
+  "apk": "releases/Program-for-Process-Standardization-and-Manual-Creation_v1.5.0.apk"
 }
