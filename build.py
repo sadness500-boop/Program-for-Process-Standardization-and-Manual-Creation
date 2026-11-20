@@ -23,7 +23,7 @@ html = html.replace('/*ASSETS*/', 'const ASSET=' + json.dumps(assets) + ';')
 for k, f in [('HF', 'src/hf.js'), ('SITES', 'src/sites.js'), ('DATA', 'src/data.js'), ('KB', 'src/kb.js'), ('UI', 'src/ui.js'), ('APP', 'src/app.js'), ('MANKB', 'src/man_kb.js'), ('MAN', 'src/man.js'),
              ('SUPABASE', 'vendor/supabase.js'), ('AUTH', 'vendor/auth.js'), ('APPACCESS', 'vendor/app_access.js')]:
     html = html.replace('/*' + k + '*/', scr(rd(f)))
-for k, fs in [('SOP', ['src/sop_cln.js', 'src/sop_sec.js', 'src/sop_etc.js', 'src/sop_out.js', 'src/webshow.js', 'src/pkg_data.js', 'src/pkg.js'])]:
+for k, fs in [('SOP', ['src/sop_cln.js', 'src/sop_sec.js', 'src/sop_etc.js', 'src/sop_out.js', 'src/webshow.js', 'src/pkg_data.js', 'src/pkg.js', 'src/est_link.js', 'src/proposal.js'])]:
     assert html.count('/*' + k + '*/') == 1, k
     html = html.replace('/*' + k + '*/', scr('\n'.join(rd(f) for f in fs)))
 html = html.replace('<script>/*WORKER*/</script>\n', '').replace('<!--AUTHCSS-->', rd('vendor/auth.css'))
