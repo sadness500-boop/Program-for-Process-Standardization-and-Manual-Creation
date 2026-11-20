@@ -1207,7 +1207,7 @@ async function init() {
   $('#btnClear').onclick = () => { state.picked = []; renderTree($('#q').value); renderPicked(); };
   $('#btnGen').onclick = () => { const p = state.kind === 'man' ? buildManPlan(readForm()) : buildPlan(); if (!p) return; state.plan = p; renderEditor(p); toast(p.kind === 'man' ? '업무매뉴얼이 생성되었습니다. 검토 후 출력하세요.' : '업무표준안이 생성되었습니다. 검토 후 출력하세요.'); if (innerWidth < 1100) $('#outPanel').scrollIntoView({ behavior: 'smooth' }); };
   document.querySelectorAll('input[name=mode]').forEach(r => r.onchange = () => { if (state.plan) { syncEditor(); renderEditor(state.plan); } });
-  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnWeb').onclick = () => run('web'); $('#btnForms').onclick = runForms;
+  $('#btnDocx').onclick = () => run('docx'); $('#btnPptx').onclick = () => run('pptx'); $('#btnPdf').onclick = () => run('pdf'); $('#btnAll').onclick = () => run('all'); $('#btnWeb').onclick = () => run('web'); $('#btnForms').onclick = runForms; $('#btnPkg').onclick = runPackage;
   $('#hist').addEventListener('click', histClick);
   await buildSignature(kstNow());
   $('#sigImg').src = state.sigDataUrl;

@@ -128,7 +128,9 @@ body.dark .ed label{color:#9DB1FF}
 .outbtns .btn{padding:11px 6px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .outbtns .btn small{font-weight:400;font-size:10.5px;opacity:.85}
 .outbtns .all{grid-column:1/-1;background:linear-gradient(100deg,#1E8B3A,#0B1F8F)}
-#outPanel:not(.ready) .outbtns .btn:not(.forms){opacity:.45;pointer-events:none}
+#outPanel:not(.ready) .outbtns .btn:not(.forms):not(.pkg){opacity:.45;pointer-events:none}
+.outbtns .pkg{grid-column:1/-1;background:#7C3AED;box-shadow:0 3px 0 #4c1d95;flex-direction:row;justify-content:center;gap:10px}.outbtns .pkg small{font-size:11.5px}
+#outPanel:not(.ready) .outbtns .btn.pkg{opacity:1;pointer-events:auto}
 .outbtns .forms{grid-column:1/-1;background:#2b579a;box-shadow:0 3px 0 #173361;flex-direction:row;justify-content:center;gap:10px}.outbtns .forms small{font-size:11.5px}
 #doc{background:#2b579a}#ppt{background:#C43E1C}#pdfb{background:#B71C1C}
 #hist{list-style:none;margin:0;padding:0;max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:10px}
@@ -456,6 +458,7 @@ ul.flatm{list-style:none;margin:4px 8px 6px 10px;padding:0}
         <button class="btn" id="btnPdf" style="background:#B71C1C;box-shadow:0 3px 0 #6d1010">📕 PDF<small>영상 누르면 재생</small></button>
         <button class="btn" id="btnWeb" style="background:#0F766E;box-shadow:0 3px 0 #0a4f49">🎬 웹 매뉴얼<small>영상 실제 재생(HTML)</small></button>
         <button class="btn forms" id="btnForms" type="button">📝 업무 서식 Word<small>사업장·직종 맞춤 인쇄용 양식 (보안·주차·시설·미화·기타)</small></button>
+        <button class="btn pkg" id="btnPkg" type="button">📦 사업장 자료 패키지 (ZIP)<small>관리서류 40여 종 — 계획표·일지·교육·품질평가·대장·약품 경고표지 (사업장명 기재)</small></button>
         <button class="btn all" id="btnAll">⬇ 일괄 출력 (Word + PPT + PDF + 웹 매뉴얼)</button>
       </div>
     </div>
